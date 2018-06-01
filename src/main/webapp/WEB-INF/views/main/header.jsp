@@ -20,8 +20,8 @@
 			<div class="forum"><a href="#">개발자 포럼</a></div>
 		</div>
 		<div class="member">
-			<a href="#">로그인</a>
-			<a href="#">회원가입</a>
+			<a href="">로그인</a>
+			<a href="join">회원가입</a>
 		</div>
 	</div>
 </body>

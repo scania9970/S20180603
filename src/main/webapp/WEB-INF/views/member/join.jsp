@@ -9,6 +9,8 @@
 <title>회원가입</title>
 </head>
 <body>
+
+안녕하세요 회원가입 화면입니다.
  <form action="">
  	<table>
  		<tr>

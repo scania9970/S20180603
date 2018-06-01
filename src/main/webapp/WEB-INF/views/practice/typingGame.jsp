@@ -112,7 +112,8 @@
 	height: 10%;
 	border: solid;
 	display:flex;
-	text-align: center;
+	align-items: center;
+    justify-content: center;
 }
 
 #user-id, #com-id{
@@ -131,13 +132,16 @@
 	border: solid;
 	font-size: 20px;
 	display: inline-block;
+	padding-top: 3%;
 }
 
 #items{
 	width: 100%;
 	height: 15%;
 	font-size: 20px;
-	display: inline-block;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 	border: solid;
 }
 
@@ -158,7 +162,7 @@
 	width: 100%;
 	height: 10%;
 	border: solid;
-	font-size: 20px;
+	font-size: 25px;
 	display: flex;
     align-items: center;
     justify-content: center;
@@ -230,7 +234,6 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/potion.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 35px;
 }
 
 #thunderbolt{
@@ -314,14 +317,14 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/coins.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 30%;
 }
 
 #money-left{
 	display: inline-block;
 	cursor: pointer;
 	width: 40px;
-	padding: 10px 0;
+	margin-left: 10px;
+	font-size: 20px;
 }
 
 #image-wrapper{
@@ -331,12 +334,13 @@ input[type="text"]{
 #pikachu-image{
 	display: inline-block;
 	cursor: pointer;
-	width: 130px;
-	height: 130px;
+	width: 160px;
+	height: 160px;
 	background: url("${pageContext.request.contextPath}/images/pikachu.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 15%;
+	margin-left: 23%;
+	margin-top: 5%;
 	transform: scaleX(-1);
 }
 
@@ -363,16 +367,17 @@ input[type="text"]{
 #com-char-image{
 	display: inline-block;
 	cursor: pointer;
-	width: 150px;
-	height: 130px;
+	width: 160px;
+	height: 160px;
 	background: url("${pageContext.request.contextPath}/images/pikachu.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 15%;
+	margin-left: 23%;
+	margin-top: 5%;
 }
 
 #user-meter, #com-meter{
-	margin-left: 17%;
+	margin-left: 25%;
 	width: 150px;
 }
 
@@ -514,6 +519,8 @@ input[type="text"]{
 			document.getElementById("user-meter").value = user_hp;
 			document.getElementById("com-meter").max = com_full_hp;
 			document.getElementById("com-meter").value = com_hp;
+			$('#com-hp-left').text('체력: ' + com_hp);
+			$('#user-hp-left').text('체력: ' + com_hp);
 			clearInterval(intervalId);
 		}
 		
@@ -587,7 +594,7 @@ input[type="text"]{
 				if(user_hp <= 0){
 					user_hp = 0;
 					alert("you lose!");
-					clearInterval(intervalId);
+					restart();
 				}
 			} else{
 				$('#shield-image').css('display', 'none');
@@ -633,8 +640,26 @@ input[type="text"]{
 			}
 		}
 		
+		function restart(){
+			$('#frame').css('display', 'none');
+			$('#start-frame').css('display', 'inline-block');
+			com_hp = 100;
+			com_full_hp = 100;
+			user_hp = 100;
+			user_full_hp = 100;
+			level = 1;
+			intervalTime = 2500;
+			user_damage = 4;
+			com_damage = 3;
+			money = 0;
+			potion = 0;
+			thunderbolt = 0;
+			clearInterval(intervalId);
+		}
+		
 		document.getElementById("start-btn").onclick = function() {
 			start_sound();
+			start();
 			$('#start-frame').css('display', 'none');
 			$('#frame').css('display', 'inline-block');
 			intervalId = setInterval(com_attack, intervalTime);
@@ -650,7 +675,7 @@ input[type="text"]{
 					$('#money-left').text(money);
 					$('#potion').text(potion);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};
@@ -665,7 +690,7 @@ input[type="text"]{
 					money -= 30;
 					$('#money-left').text(money);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};
@@ -679,7 +704,7 @@ input[type="text"]{
 					money -= 30;
 					$('#money-left').text(money);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};
@@ -694,7 +719,7 @@ input[type="text"]{
 					money -= 50;
 					$('#money-left').text(money);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};

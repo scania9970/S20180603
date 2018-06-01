@@ -29,7 +29,6 @@ body {
 }
 
 .logo_name_wrapper{
-	width: 505px;
 	height: 160px;
 	display: inline-block;
 	margin-left: 120px;
@@ -203,7 +202,7 @@ button:hover {
 }
 
 .spinner {
-  width: 160px;
+  width: 200px;
   height: 200px;
   font-size: 70px;
   display: none;

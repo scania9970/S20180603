@@ -12,12 +12,13 @@ import com.threejo.cota.model.Board;
 @Service
 public class BoardServiceImpl implements BoardService{
 	
-	/*@Autowired
+	@Autowired
 	private BoardDao bd;
-*/
+	
 	@Override
 	public List<Board> list(Board board) {
-		return null;
+		return bd.list(board);
 	}
+
 	
 }

@@ -23,6 +23,6 @@ public class BoardController {
 		
 		model.addAttribute("list", list);
 		
-		return "list";
+		return "main/Boardlist";
 	}
 }

@@ -13,10 +13,10 @@
 		<tr>
 			<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
 		</tr>
-		<c:forEach var="" items="">
+		<c:forEach var="board" items="${list }">
 		<tr>
-			<td></td>
-			<td></td>
+			<td>{board.bnum}</td>
+			<td>{board.title}</td>
 			<td></td>
 			<td></td>
 			<td></td>

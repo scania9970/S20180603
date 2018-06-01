@@ -9,12 +9,12 @@ import com.threejo.cota.model.Board;
 
 public class BoardDaoImpl implements BoardDao{
 	
-/*	@Autowired
+	@Autowired
 	private SqlSession session;
-	*/
+	
 	@Override
 	public List<Board> list(Board board) {
-		return null;
+		return session.selectList("Boardlist", board);
 	}
 
 }

@@ -3,9 +3,4 @@
 <mapper namespace="Member">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	
-	<select id="selectMyinfo" parameterType="java.lang.String" resultMap="Member">
-		<![CDATA[
-			SELECT * FROM MEMBER
-		]]>
-	</select>
 </mapper> 

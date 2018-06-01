@@ -162,7 +162,7 @@
 	width: 100%;
 	height: 10%;
 	border: solid;
-	font-size: 20px;
+	font-size: 25px;
 	display: flex;
     align-items: center;
     justify-content: center;
@@ -519,6 +519,8 @@ input[type="text"]{
 			document.getElementById("user-meter").value = user_hp;
 			document.getElementById("com-meter").max = com_full_hp;
 			document.getElementById("com-meter").value = com_hp;
+			$('#com-hp-left').text('체력: ' + com_hp);
+			$('#user-hp-left').text('체력: ' + com_hp);
 			clearInterval(intervalId);
 		}
 		
@@ -592,7 +594,7 @@ input[type="text"]{
 				if(user_hp <= 0){
 					user_hp = 0;
 					alert("you lose!");
-					clearInterval(intervalId);
+					restart();
 				}
 			} else{
 				$('#shield-image').css('display', 'none');
@@ -638,8 +640,26 @@ input[type="text"]{
 			}
 		}
 		
+		function restart(){
+			$('#frame').css('display', 'none');
+			$('#start-frame').css('display', 'inline-block');
+			com_hp = 100;
+			com_full_hp = 100;
+			user_hp = 100;
+			user_full_hp = 100;
+			level = 1;
+			intervalTime = 2500;
+			user_damage = 4;
+			com_damage = 3;
+			money = 0;
+			potion = 0;
+			thunderbolt = 0;
+			clearInterval(intervalId);
+		}
+		
 		document.getElementById("start-btn").onclick = function() {
 			start_sound();
+			start();
 			$('#start-frame').css('display', 'none');
 			$('#frame').css('display', 'inline-block');
 			intervalId = setInterval(com_attack, intervalTime);

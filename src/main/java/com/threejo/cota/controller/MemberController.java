@@ -13,16 +13,16 @@ import com.threejo.cota.service.MemberService;
 @Controller
 public class MemberController {
 	
-	@Autowired
-	private MemberService ms;
+//	@Autowired
+//	private MemberService ms;
 	
-	@RequestMapping(value="/list")
+	@RequestMapping(value="join") // 헤더 주소
 	public String listmb(Member member, Model model) {
-		List<Member> list = ms.list(member);
+//		List<Member> list = ms.list(member);
 		
-		model.addAttribute("list", list);
+//		model.addAttribute("list", list);
 		
-		return "list";
+		return "member/join"; // jsp 
 	}
 
 }

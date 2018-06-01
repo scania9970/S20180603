@@ -112,7 +112,8 @@
 	height: 10%;
 	border: solid;
 	display:flex;
-	text-align: center;
+	align-items: center;
+    justify-content: center;
 }
 
 #user-id, #com-id{
@@ -131,13 +132,16 @@
 	border: solid;
 	font-size: 20px;
 	display: inline-block;
+	padding-top: 3%;
 }
 
 #items{
 	width: 100%;
 	height: 15%;
 	font-size: 20px;
-	display: inline-block;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 	border: solid;
 }
 
@@ -230,7 +234,6 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/potion.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 35px;
 }
 
 #thunderbolt{
@@ -314,14 +317,14 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/coins.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 30%;
 }
 
 #money-left{
 	display: inline-block;
 	cursor: pointer;
 	width: 40px;
-	padding: 10px 0;
+	margin-left: 10px;
+	font-size: 20px;
 }
 
 #image-wrapper{
@@ -331,12 +334,13 @@ input[type="text"]{
 #pikachu-image{
 	display: inline-block;
 	cursor: pointer;
-	width: 130px;
-	height: 130px;
+	width: 160px;
+	height: 160px;
 	background: url("${pageContext.request.contextPath}/images/pikachu.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 15%;
+	margin-left: 23%;
+	margin-top: 5%;
 	transform: scaleX(-1);
 }
 
@@ -363,16 +367,17 @@ input[type="text"]{
 #com-char-image{
 	display: inline-block;
 	cursor: pointer;
-	width: 150px;
-	height: 130px;
+	width: 160px;
+	height: 160px;
 	background: url("${pageContext.request.contextPath}/images/pikachu.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 15%;
+	margin-left: 23%;
+	margin-top: 5%;
 }
 
 #user-meter, #com-meter{
-	margin-left: 17%;
+	margin-left: 25%;
 	width: 150px;
 }
 
@@ -650,7 +655,7 @@ input[type="text"]{
 					$('#money-left').text(money);
 					$('#potion').text(potion);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};
@@ -665,7 +670,7 @@ input[type="text"]{
 					money -= 30;
 					$('#money-left').text(money);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};
@@ -679,7 +684,7 @@ input[type="text"]{
 					money -= 30;
 					$('#money-left').text(money);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};
@@ -694,7 +699,7 @@ input[type="text"]{
 					money -= 50;
 					$('#money-left').text(money);
 				} else{
-					$('#item-desc').text('금화가 모자랍니다.');
+					$('#item-desc').text('골드가 모자랍니다.');
 				}
 			};
 		};

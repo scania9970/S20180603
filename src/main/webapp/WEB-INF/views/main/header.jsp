@@ -14,7 +14,7 @@
 			<div class="taja">
 				<a href="#" class="dropbtn">타자연습&nbsp;&nbsp;&#9662;</a>
 				<div class="dropdown-taja">
-					<a href="#">낱말연습</a> <a href="/javataja/sentence">문장연습</a> <a href="#">긴글연습</a> <a href="/javataja/typingGame">타자게임</a>
+					<a href="#">낱말연습</a> <a href="/cota/sentence">문장연습</a> <a href="#">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
 				</div>
 			</div>
 			<div class="forum"><a href="#">개발자 포럼</a></div>

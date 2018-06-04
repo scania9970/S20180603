@@ -353,6 +353,9 @@ input[type="text"] {
 			var ellapsedTime = endTime - startTime;
 			//console.log('ellapsedTime : ' + ellapsedTime);
 			//console.log('sentence length : ' + sentence.length);
+			typeableChars += sentence.length;
+			//console.log('sentence.length : ' + sentence.length);
+			//console.log('typeableChars : ' + typeableChars);
 			if (input.length == sentence.length) {
 				//console.log("3. enter pressed");
 				//console.log("ellapsed time : " + (endTime - startTime));
@@ -688,7 +691,8 @@ input[type="text"] {
 	o modal 설계하기 o
 	database 연동하기
 	o git 환경만들기 o
-	비생산적 타자가 0일때 버그, 비생산적 타이핑 수와 퍼센트가 잘 맞지 않음 확인하기	
+	o 비생산적 타자가 0일때 버그, 비생산적 타이핑 수와 퍼센트가 잘 맞지 않음 확인하기	
+	많이 틀린 자리 순서대로, 상위 5개만
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////ㅅㄱ////////////////////////////////////////
  -->
@@ -997,8 +1001,8 @@ input[type="text"] {
 			</p>
 	    </div>
 	    <div class="modal-footer">
-			<a href="#"><button>계속하기</button></a>
-			<a href="#"><button>종료하기</button></a>
+			<a href="/cota/sentence"><button>계속하기</button></a>
+			<a href="/cota/main"><button>종료하기</button></a>
 	    </div>
 	  </div>
 

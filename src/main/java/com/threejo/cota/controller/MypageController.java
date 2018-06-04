@@ -10,8 +10,8 @@ import com.threejo.cota.service.MypageService;
 @Controller
 public class MypageController {
 
-//	@Autowired
-//	private MypageService bs;
+	@Autowired
+	private MypageService ms;
 	
 	@RequestMapping(value = "mypage")
 	public String mypage() {
@@ -20,6 +20,8 @@ public class MypageController {
 	
 	@RequestMapping(value = "myinfo")
 	public String myinfo(Model model) {
+		ms.myinfo("asd@asd.com");
+		
 		return "mypage/myinfo";
 	}
 }

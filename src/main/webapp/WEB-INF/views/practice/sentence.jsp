@@ -323,8 +323,6 @@ input[type="text"] {
 			//console.log('startTime : ' + startTime);
 			//console.log('startTime milli : ' + startTime);
 		}
-		totalHits++;
-		sentenceHits++;
 		//console.log("totalHits : " + totalHits);
 		//console.log("2. redirection method");
 		//console.log($('#typed').prop("selectionStart")); //커서 포지션
@@ -338,6 +336,11 @@ input[type="text"] {
 		var cursorPosition = $('#typed').prop("selectionStart");
 		var progressbar = setProgressBar(sentence.length, input_textfield.value.length);
 
+		sentenceHits++;
+		if(x != 'Shift'){
+			totalHits++;
+			//console.log('totalHits++');
+		}
 		$('#meter-span').css('width', progressbar+"%");
 
 		//console.log("input=" + input); //입력값
@@ -350,6 +353,9 @@ input[type="text"] {
 			var ellapsedTime = endTime - startTime;
 			//console.log('ellapsedTime : ' + ellapsedTime);
 			//console.log('sentence length : ' + sentence.length);
+			typeableChars += sentence.length;
+			//console.log('sentence.length : ' + sentence.length);
+			//console.log('typeableChars : ' + typeableChars);
 			if (input.length == sentence.length) {
 				//console.log("3. enter pressed");
 				//console.log("ellapsed time : " + (endTime - startTime));
@@ -437,9 +443,12 @@ input[type="text"] {
 	});
 	
 	function replaceSentence() {
+		//console.log('currentSentence.length before add : ' + typeableChars);
 		current = Math.floor(Math.random() * 12);
 		var currentSentence = sentences[current];
-		typeableChars += currentSentence.length;
+		//console.log('currentSentence.length : ' + currentSentence.length);
+		//console.log('typeableChars : ' + typeableChars);
+		//console.log('totalHits : ' + totalHits);
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 		$('#s2').text('');
@@ -536,6 +545,8 @@ input[type="text"] {
 		
 		// 생산성
 		if(_totalHits < _typeableChars){
+			//console.log("_totalHits : " + _totalHits);
+			//console.log("_typeableChars : " + _typeableChars);
 			productivity = '오타가 너무 많습니다.';
 			typeableChars = 0;
 			$('#prod').text(productivity);
@@ -680,7 +691,8 @@ input[type="text"] {
 	o modal 설계하기 o
 	database 연동하기
 	o git 환경만들기 o
-	비생산적 타자가 0일때 버그, 비생산적 타이핑 수와 퍼센트가 잘 맞지 않음 확인하기	
+	o 비생산적 타자가 0일때 버그, 비생산적 타이핑 수와 퍼센트가 잘 맞지 않음 확인하기	
+	많이 틀린 자리 순서대로, 상위 5개만
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////ㅅㄱ////////////////////////////////////////
  -->
@@ -989,8 +1001,8 @@ input[type="text"] {
 			</p>
 	    </div>
 	    <div class="modal-footer">
-			<a href="#"><button>계속하기</button></a>
-			<a href="#"><button>종료하기</button></a>
+			<a href="/cota/sentence"><button>계속하기</button></a>
+			<a href="/cota/main"><button>종료하기</button></a>
 	    </div>
 	  </div>
 

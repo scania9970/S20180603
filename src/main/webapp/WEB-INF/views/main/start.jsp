@@ -122,19 +122,7 @@
 		  $(".spinner").css({"display": "block"});
 	}
 	
-	var sentences = ['System.out.println(Hello Java);',
-					 'Connection conn = null;',
-					 'int[] arr = new int[6];',
-					 'int k = Integer.parseInt(str);',
-					 'BigInteger a = BigInteger.ZERO;',
-					 'Collections.sort(array);',
-					 'if(p^q >= q);',
-					 'double k = Math.sqrt(n);',
-					 'thread.setPriority(10);',
-					 'char c = string.charAt(14);',
-					 'Welcome to JAVA TAJA',
-					 'private long cyphertext;',
-					 'public class Student(){}'];
+	var sentences = ['test'];
 	
 	//문장 랜덤으로 뿌려주기
 	var current = 0;
@@ -146,7 +134,7 @@
 				break;
 			}
 		} 
-		var currentSentence = sentences[current];
+		var currentSentence = sentences[0];
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 	}

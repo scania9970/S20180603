@@ -3,11 +3,13 @@
 <mapper namespace="Practice">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<resultMap type="Practice" id="typingData">
-		<result property="langType" column="lang_type"/>
+		<result property="lang_type" column="lang_type"/>
+		<result property="field_type" column="field_type"/>
+		<result property="para_type" column="para_type"/>
 		<result property="content" column="content"/>
 	</resultMap>
 	
 	<select id="selectTypingData" resultMap="typingData">
- 		select content from typing_data where lang_type=#{lang_type}
+ 		select * from typing_data where lang_type=#{lang_type}
 	</select>
 </mapper> 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/main/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -296,13 +297,14 @@ input[type="text"] {
 	var startDate = new Date();
 	var startTime = null;
 	var lapCnt = 0;
-	var sentences = [ 'System.out.println("Hello Java");',
+	var sentences = ${dataList};
+	/* var sentences = [ 'System.out.println("Hello Java");',
 		'Connection conn = null;', 'int[] arr = new int[6];',
 		'int k = Integer.parseInt(str);',
 		'BigInteger a = BigInteger.ZERO;', 'Collections.sort(array);',
 		'if(p^q >= q);', 'double k = Math.sqrt(n);',
 		'thread.setPriority(10);', 'char c = string.charAt(14);',
-		'Welcome to JAVA TAJA', 'private long cyphertext;' ];
+		'Welcome to JAVA TAJA', 'private long cyphertext;' ] */;
 	var correctHits = 0;
 	var incorrectHits = 0;
 	var typeableChars = 0;
@@ -704,6 +706,7 @@ input[type="text"] {
  -->
 
 <body oncopy="return false" oncut="return false" onpaste="return false">
+	${dataList}
 	<div>
 		<select>
 			<option value="java">JAVA</option>

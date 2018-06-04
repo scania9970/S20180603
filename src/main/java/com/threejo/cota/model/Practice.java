@@ -1,4 +1,4 @@
-package com.threejo.cota.dao;
+package com.threejo.cota.model;
 
 public class Practice {
 	private String lang_type;

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/main/header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title></title>
 <style>
 * {
@@ -325,9 +325,9 @@ input[type="text"] {
 		}
 		//console.log("totalHits : " + totalHits);
 		//console.log("2. redirection method");
-		//console.log($('#typed').prop("selectionStart")); //Ä¿¼­ Æ÷Áö¼Ç
-		var x = event.key; //ÀÔ·Â°ª ÀúÀå
-		var parsedKey = getParsedKey(x); // Å°º¸µå css ÄÁÆ®·ÑÇÒ element string
+		//console.log($('#typed').prop("selectionStart")); //ì»¤ì„œ í¬ì§€ì…˜
+		var x = event.key; //ì…ë ¥ê°’ ì €ì¥
+		var parsedKey = getParsedKey(x); // í‚¤ë³´ë“œ css ì»¨íŠ¸ë¡¤í•  element string
 		//console.log("x=" + x);
 		var input_textfield = document.getElementById('typed');
 		var input = input_textfield.value;
@@ -343,10 +343,13 @@ input[type="text"] {
 		}
 		$('#meter-span').css('width', progressbar+"%");
 
-		//console.log("input=" + input); //ÀÔ·Â°ª
-		//console.log("sentence=" + sentence); //ÀÔ·ÂÇØ¾ß ÇÒ ¹®Àå
+		//console.log("input=" + input); //ì…ë ¥ê°’
+		//console.log("sentence=" + sentence); //ì…ë ¥í•´ì•¼ í•  ë¬¸ì¥
 		//console.log("===============================");
-		if (x === 'Enter') { //¿£ÅÍ Å° ÀÔ·Â ½Ã
+		if (x === 'Enter') { //ì—”í„° í‚¤ ì…ë ¥ ì‹œ
+			if(input.length == 0){
+				return;
+			}
 			var endDate = new Date();
 			var endTime = endDate.getTime();
 			//console.log('endTime : ' + endTime);
@@ -360,18 +363,18 @@ input[type="text"] {
 				//console.log("3. enter pressed");
 				//console.log("ellapsed time : " + (endTime - startTime));
 				replaceSentence();
-				lapCnt++; // lapCnt Áõ°¡
+				lapCnt++; // lapCnt ì¦ê°€
 				$('#s1').css('color', '#A6A6A6');
 				$('#s2').css('color', '#A6A6A6');
 				$('#typed').val('');
 				$('#typing-speed').text(getSpeed(sentenceHits, ellapsedTime));
 				$('#typing-accuracy').text(getAccuracy(sentence, input));
-				chkLapCnt(lapCnt); // lapCnt¸¦ Ã¼Å©ÇÏ¿© modal load
+				chkLapCnt(lapCnt); // lapCntë¥¼ ì²´í¬í•˜ì—¬ modal load
 				sentenceHits = 0;
 				$('#meter-span').css('width', 0+"%");
 				startTime = null;
 				return;
-			} else { // ÀÔ·Â°ªÀÌ Æ²¸± ¶§
+			} else { // ì…ë ¥ê°’ì´ í‹€ë¦´ ë•Œ
 				$(input_textfield).addClass('shakeIt');
 				$("input").css({
 					"color" : "#CE3636"
@@ -385,13 +388,13 @@ input[type="text"] {
 					}, 1000);
 				}, 100);
 				replaceSentence();
-				lapCnt++; // lapCnt Áõ°¡
+				lapCnt++; // lapCnt ì¦ê°€
 				$('#s1').css('color', '#A6A6A6');
 				$('#s2').css('color', '#A6A6A6');
 				$('#typed').val('');
 				$('#typing-speed').text(getSpeed(sentenceHits, ellapsedTime));
 				$('#typing-accuracy').text(getAccuracy(sentence, input));
-				chkLapCnt(lapCnt); // lapCnt¸¦ Ã¼Å©ÇÏ¿© modal load
+				chkLapCnt(lapCnt); // lapCntë¥¼ ì²´í¬í•˜ì—¬ modal load
 				sentenceHits = 0;
 				$('#meter-span').css('width', 0+"%");
 				startTime = null;
@@ -418,6 +421,7 @@ input[type="text"] {
 			$('#s2').text(s2);
 		} else {
 			incorrectHits++;
+			console.log('incorrect key : ' + x);
 			incorrectKeys.push(x);
 			//console.log("incorrectHits : " + incorrectHits);
 			$(input_textfield).css({
@@ -520,7 +524,7 @@ input[type="text"] {
 	    var mean = 0;
 	    var productivity = 0;
 	   
-		// Æò±Õ Å¸¼ö
+		// í‰ê·  íƒ€ìˆ˜
 	    for(var i = 0; i < _speedArr.length; i++){
 	    	sum += _speedArr[i];
 	    }
@@ -531,7 +535,7 @@ input[type="text"] {
 		$('#mspeed').text(mean);
 		sum = 0; mean = 0;
 		
-		// Æò±Õ Á¤È®µµ
+		// í‰ê·  ì •í™•ë„
 		for(var i = 0; i < _accArr.length; i++){
 	    	sum += _accArr[i];
 	    }
@@ -543,25 +547,25 @@ input[type="text"] {
 		sum = 0; mean = 0;
 		
 		
-		// »ı»ê¼º
+		// ìƒì‚°ì„±
 		if(_totalHits < _typeableChars){
 			//console.log("_totalHits : " + _totalHits);
 			//console.log("_typeableChars : " + _typeableChars);
-			productivity = '¿ÀÅ¸°¡ ³Ê¹« ¸¹½À´Ï´Ù.';
+			productivity = 'ì˜¤íƒ€ê°€ ë„ˆë¬´ ë§ìŠµë‹ˆë‹¤.';
 			typeableChars = 0;
 			$('#prod').text(productivity);
 		}else{
 			productivity = Math.round((_totalHits - _typeableChars) / _totalHits * 100)+'%';
-			//console.log("prod : " + productivity);
-			//console.log("_totalHits : " + _totalHits);
-			//console.log("_typeableChars : " + _typeableChars);
+			console.log("prod : " + productivity);
+			console.log("_totalHits : " + _totalHits);
+			console.log("_typeableChars : " + _typeableChars);
 			$('#prod').text(productivity);
 			productivity = 0;
 			typeableChars = 0;
 		}
 		
 		
-		// ¸¹ÀÌ Æ²¸° Å°
+		// ë§ì´ í‹€ë¦° í‚¤
 		
 		incorrectKeys.sort();
 		var flag = _incorrectKeys[0];
@@ -685,19 +689,28 @@ input[type="text"] {
 <!-- 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
-	o Å¸¼ö ¹ö±× È®ÀÎ o
-	o arr ¾È¿¡ »õ·Î¿î arr¸¦ ÇÒ´çÇÏ¿© json ÇüÅÂ·Î ¸¸µé±â  incorrect keyµéÀÇ È½¼ö Ä«¿îÆ®ÇÏ¿© Çª½¬ o 
-	o ¸¹ÀÌ Æ²¸° ÀÚ¸®, °è¼ÓÇÏ±â, Á¾·áÇÏ±â Ç¥ÇöÇÏ±â  o
-	o modal ¼³°èÇÏ±â o
-	database ¿¬µ¿ÇÏ±â
-	o git È¯°æ¸¸µé±â o
-	o ºñ»ı»êÀû Å¸ÀÚ°¡ 0ÀÏ¶§ ¹ö±×, ºñ»ı»êÀû Å¸ÀÌÇÎ ¼ö¿Í ÆÛ¼¾Æ®°¡ Àß ¸ÂÁö ¾ÊÀ½ È®ÀÎÇÏ±â	
-	¸¹ÀÌ Æ²¸° ÀÚ¸® ¼ø¼­´ë·Î, »óÀ§ 5°³¸¸
+	o íƒ€ìˆ˜ ë²„ê·¸ í™•ì¸ o
+	o arr ì•ˆì— ìƒˆë¡œìš´ arrë¥¼ í• ë‹¹í•˜ì—¬ json í˜•íƒœë¡œ ë§Œë“¤ê¸°  incorrect keyë“¤ì˜ íšŸìˆ˜ ì¹´ìš´íŠ¸í•˜ì—¬ í‘¸ì‰¬ o 
+	o ë§ì´ í‹€ë¦° ìë¦¬, ê³„ì†í•˜ê¸°, ì¢…ë£Œí•˜ê¸° í‘œí˜„í•˜ê¸°  o
+	o modal ì„¤ê³„í•˜ê¸° o
+	database ì—°ë™í•˜ê¸°
+	o git í™˜ê²½ë§Œë“¤ê¸° o
+	o ë¹„ìƒì‚°ì  íƒ€ìê°€ 0ì¼ë•Œ ë²„ê·¸, ë¹„ìƒì‚°ì  íƒ€ì´í•‘ ìˆ˜ì™€ í¼ì„¼íŠ¸ê°€ ì˜ ë§ì§€ ì•ŠìŒ í™•ì¸í•˜ê¸°	
+	ë§ì´ í‹€ë¦° ìë¦¬ ìˆœì„œëŒ€ë¡œ, ìƒìœ„ 5ê°œë§Œ
+	language ê³ ë¥´ê¸°
+	
 ////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////¤µ¤¡////////////////////////////////////////
+////////////////////////////////////////////ã……ã„±////////////////////////////////////////
  -->
 
 <body oncopy="return false" oncut="return false" onpaste="return false">
+	<div>
+		<select>
+			<option value="java">JAVA</option>
+			<option value="python">PYTHON</option>
+			<option value="cdoubleplus">C++</option>
+		</select>
+	</div>
 	<div id="wrapper">
 		<div id="center">
 			<div id="sentence-div">
@@ -711,11 +724,11 @@ input[type="text"] {
 			</div>
 			<div id="status-div">
 				<div id="speed-div">
-					<label>ÇöÀçÅ¸¼ö</label>
+					<label>í˜„ì¬íƒ€ìˆ˜</label>
 					<label id='typing-speed'>0.0h/s</label>
 				</div>	
 				<div id="accuracy-div">
-					<label>Á¤È®µµ</label>
+					<label>ì •í™•ë„</label>
 					<label id='typing-accuracy'>0.0%</label>
 				</div>	
 						
@@ -982,27 +995,27 @@ input[type="text"] {
 	<div id="myModal" class="modal">
 	  <div class="modal-content">
 	    <div class="modal-header">
-	      <span class="close">&times;</span>
-	      <h2>ÄÚÅ¸ Åë°è</h2>
+	    
+	      <h2>ì½”íƒ€ í†µê³„</h2>
 	      <span></span>
 	    </div>
 	    <div class="modal-body">
 			<p>
-				<label class="stat">Æò±ÕÅ¸¼ö</label><label id="mspeed" class="statResult"></label>
+				<label class="stat">í‰ê· íƒ€ìˆ˜</label><label id="mspeed" class="statResult"></label>
 			</p>
 			<p>
-				<label class="stat">Æò±ÕÁ¤È®µµ</label><label id="macc" class="statResult"></label>
+				<label class="stat">í‰ê· ì •í™•ë„</label><label id="macc" class="statResult"></label>
 			</p>
 			<p>
-				<label class="stat">ºñ»ı»êÀû Å¸ÀÌÇÎ</label><label id="prod" class="statResult"></label>
+				<label class="stat">ë¹„ìƒì‚°ì  íƒ€ì´í•‘</label><label id="prod" class="statResult"></label>
 			</p>
 			<p>
-				<label class="stat">¸¹ÀÌ Æ²¸° ÀÚ¸®</label><label id="incorrect_keys" class="statResult"></label>
+				<label class="stat">ë§ì´ í‹€ë¦° ìë¦¬</label><label id="incorrect_keys" class="statResult"></label>
 			</p>
 	    </div>
 	    <div class="modal-footer">
-			<a href="/cota/sentence"><button>°è¼ÓÇÏ±â</button></a>
-			<a href="/cota/main"><button>Á¾·áÇÏ±â</button></a>
+			<a href="/cota/sentence"><button>ê³„ì†í•˜ê¸°</button></a>
+			<a href="/cota/main"><button>ì¢…ë£Œí•˜ê¸°</button></a>
 	    </div>
 	  </div>
 

@@ -15,15 +15,13 @@
 		</tr>
 		<c:forEach var="board" items="${list }">
 		<tr>
-			<td>{board.bnum}</td>
-			<td>{board.title}</td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>${board.bnum}</td>
+			<td>${board.title}</td>
+			<td>${board.nickname}</td>
+			<td>${board.view_count}</td>
+			<td>${board.board_date}</td>
 		</tr>
 		</c:forEach>
 	</table>
-	
-	
 </body>
 </html>

@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Board">
+	<resultMap id="BoardResult" type="Board">
+    <result property="bnum" column="bnum"/>
+    <result property="email" column="email"/>
+    <result property="board_type" column="board_type"/>
+    <result property="title" column="title"/>
+    <result property="content" column="content"/>
+    <result property="join_status" column="join_status"/>
+    <result property="view_conut" column="view_conut"/>
+    <result property="vote_conut" column="vote_conut"/>
+    <result property="board_date" column="board_date"/>
+    <result property="nickname" column="nickname"/>
+	</resultMap>
 
 	<select id="Boardlist" parameterType="Board" resultMap="BoardResult">
-		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email;
+		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email
 	</select>
 
 </mapper>

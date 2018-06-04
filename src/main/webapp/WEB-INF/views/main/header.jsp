@@ -28,7 +28,7 @@
 					<a href="#">낱말연습</a> <a href="/cota/sentence">문장연습</a> <a href="#">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
 				</div>
 			</div>
-			<div class="forum"><a href="#">개발자 포럼</a></div>
+			<div class="forum"><a href="/cota/list">개발자 포럼</a></div>
 		</div>
 		<div class="member">
 			<a href="">로그인</a>

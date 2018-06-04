@@ -323,8 +323,6 @@ input[type="text"] {
 			//console.log('startTime : ' + startTime);
 			//console.log('startTime milli : ' + startTime);
 		}
-		totalHits++;
-		sentenceHits++;
 		//console.log("totalHits : " + totalHits);
 		//console.log("2. redirection method");
 		//console.log($('#typed').prop("selectionStart")); //커서 포지션
@@ -338,6 +336,11 @@ input[type="text"] {
 		var cursorPosition = $('#typed').prop("selectionStart");
 		var progressbar = setProgressBar(sentence.length, input_textfield.value.length);
 
+		sentenceHits++;
+		if(x != 'Shift'){
+			totalHits++;
+			//console.log('totalHits++');
+		}
 		$('#meter-span').css('width', progressbar+"%");
 
 		//console.log("input=" + input); //입력값
@@ -437,9 +440,12 @@ input[type="text"] {
 	});
 	
 	function replaceSentence() {
+		//console.log('currentSentence.length before add : ' + typeableChars);
 		current = Math.floor(Math.random() * 12);
 		var currentSentence = sentences[current];
-		typeableChars += currentSentence.length;
+		//console.log('currentSentence.length : ' + currentSentence.length);
+		//console.log('typeableChars : ' + typeableChars);
+		//console.log('totalHits : ' + totalHits);
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 		$('#s2').text('');
@@ -536,6 +542,8 @@ input[type="text"] {
 		
 		// 생산성
 		if(_totalHits < _typeableChars){
+			//console.log("_totalHits : " + _totalHits);
+			//console.log("_typeableChars : " + _typeableChars);
 			productivity = '오타가 너무 많습니다.';
 			typeableChars = 0;
 			$('#prod').text(productivity);

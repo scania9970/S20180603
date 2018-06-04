@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">
+<<<<<<< HEAD
    <!-- Use type aliases to avoid typing the full classname every time. -->
    
+=======
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	
+>>>>>>> ce4b68a43abcbbd31b2609a6131cd61b36e0e8f0
 </mapper> 

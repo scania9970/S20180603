@@ -4,9 +4,11 @@
 	<typeAliases>
 		<typeAlias type="com.threejo.cota.model.Member" alias="Member"/>
 		<typeAlias type="com.threejo.cota.model.Mypage" alias="Mypage"/>
+		<typeAlias type="com.threejo.cota.model.Practice" alias="Practice"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="cota/Member.xml" />
 		<mapper resource="cota/Mypage.xml" />
+		<mapper resource="cota/Practice.xml" />
 	</mappers>
 </configuration>

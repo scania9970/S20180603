@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Practice">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap type="Practice" id="typingData">
+		<result property="langType" column="lang_type"/>
+		<result property="content" column="content"/>
+	</resultMap>
+	
+	<select id="selectTypingData" resultMap="typingData">
+ 		select content from typing_data where lang_type=#{lang_type}
+	</select>
+</mapper> 

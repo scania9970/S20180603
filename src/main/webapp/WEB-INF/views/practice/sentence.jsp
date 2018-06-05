@@ -297,13 +297,7 @@ input[type="text"] {
 	var startDate = new Date();
 	var startTime = null;
 	var lapCnt = 0;
-	var sentences = [ 'System.out.println("Hello Java");',
-		'Connection conn = null;', 'int[] arr = new int[6];',
-		'int k = Integer.parseInt(str);',
-		'BigInteger a = BigInteger.ZERO;', 'Collections.sort(array);',
-		'if(p^q >= q);', 'double k = Math.sqrt(n);',
-		'thread.setPriority(10);', 'char c = string.charAt(14);',
-		'Welcome to JAVA TAJA', 'private long cyphertext;' ];
+	var sentences = ${dataList};
 	var correctHits = 0;
 	var incorrectHits = 0;
 	var typeableChars = 0;
@@ -315,6 +309,7 @@ input[type="text"] {
 		var modal = document.getElementById('myModal');
 		modal.style.display = "none";
 	})
+	
 	
 	
 	function redirection(event) {
@@ -345,7 +340,7 @@ input[type="text"] {
 		$('#meter-span').css('width', progressbar+"%");
 
 		//console.log("input=" + input); //입력값
-		//console.log("sentence=" + sentence); //입력해야 할 문장
+		console.log("sentence=" + sentence); //입력해야 할 문장
 		//console.log("===============================");
 		if (x === 'Enter') { //엔터 키 입력 시
 			if(input.length == 0){
@@ -401,7 +396,7 @@ input[type="text"] {
 				startTime = null;
 				return;
 			}
-		}3
+		}
 		if (sentence.substring(0,input.length) == input.substring(0,input.length)) {
 			correctHits++;
 			//console.log("correctHits : " + correctHits);
@@ -414,7 +409,9 @@ input[type="text"] {
 				selectedObj.css("background-color", "white");
 			},100);
 			var s1 = sentence.substring(0, input.length);
+			console.log("s1 : " + s1);
 			var s2 = sentence.substring(input.length, sentence.length);
+			console.log("s2 : " + s2);
 			$('#s1').text(s1);
 			$('#s1').css({
 				"color" : "green"
@@ -442,14 +439,10 @@ input[type="text"] {
 			});
 		}
 	}
-
-	$(document).ready(function() {
-		replaceSentence();
-	});
 	
 	function replaceSentence() {
 		//console.log('currentSentence.length before add : ' + typeableChars);
-		current = Math.floor(Math.random() * 12);
+		current = Math.floor(Math.random() * 10);
 		var currentSentence = sentences[current];
 		//console.log('currentSentence.length : ' + currentSentence.length);
 		//console.log('typeableChars : ' + typeableChars);
@@ -607,10 +600,18 @@ input[type="text"] {
 	
 	
 	function getDataByLang(){
-		var lang_type = $()
-		
+		var lang_type = $('#lang-selecter option:selected').val();
+		location.href = '/cota/sentence?lang_type='+lang_type;
+		console.log($('#lang-selecter').val(lang_type));
 	}
-	
+	function setData(){
+		var param = window.location.search.split("=")[1];
+		$('#lang-selecter').val(param).prop("selected, true");
+		$('#continue').attr('href', '/cota/sentence?lang_type='+param);
+		
+		console.log('param : ' + param);
+		replaceSentence();
+	}
 	
 	function getParsedKey(key) {
 		//console.log("key in method : " + key);
@@ -709,7 +710,7 @@ input[type="text"] {
 ////////////////////////////////////////////ㅅㄱ////////////////////////////////////////
  -->
 
-<body oncopy="return false" oncut="return false" onpaste="return false">
+<body oncopy="return false" oncut="return false" onpaste="return false" onload="setData()">
 	<div>
 		<select id="lang-selecter" onchange='getDataByLang()'>
 			<option value="java">JAVA</option>
@@ -761,7 +762,7 @@ input[type="text"] {
 						<div id="key_four" class="key">
 							<div class="line1">$</div>
 							<div class="line2">4</div>
-						</div>20
+						</div>
 						<div id="key_five" class="key">
 							<div class="line1">%</div>
 							<div class="line2">5</div>
@@ -1020,7 +1021,7 @@ input[type="text"] {
 			</p>
 	    </div>
 	    <div class="modal-footer">
-			<a href="/cota/sentence"><button>계속하기</button></a>
+			<a id='continue'><button>계속하기</button></a>
 			<a href="/cota/main"><button>종료하기</button></a>
 	    </div>
 	  </div>

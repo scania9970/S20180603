@@ -15,15 +15,10 @@ public class PracticeDaoImpl implements PracticeDao{
 	SqlSession session;
 	
 	@Override
-	public List<Practice> selectTypingData(String lang_type) {
+	public List<String> selectTypingData(String lang_type) {
 		System.out.println("2.lang_type : '" + lang_type +"'");
-		List<Practice> prac = null;
-		try {
-			 prac = session.selectList("selectTypingData", lang_type);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
+		List<String> prac = null;
+		prac = session.selectList("selectTypingData", lang_type);
 		System.out.println("3. PracticeDaoImpl prac.size()-> " +prac.size());
 		return prac;
 	}

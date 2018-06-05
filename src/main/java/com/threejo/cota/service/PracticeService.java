@@ -5,5 +5,5 @@ import java.util.List;
 import com.threejo.cota.model.Practice;
 
 public interface PracticeService {
-	List<Practice> getTypingData(String lang_type);
+	List<String> getTypingData(String lang_type);
 }

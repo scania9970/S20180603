@@ -83,7 +83,7 @@
 									<form role="form">
 										<div class="form-group">
 											<label>이메일 주소</label>
-                                            <p class="form-control-static">email@example.com</p>
+                                            <p class="form-control-static">${member.email}</p>
 										</div>
 										<div class="form-group">
 											<label>별명 수정</label><input class="form-control" placeholder="최대 10글자 입력 가능">

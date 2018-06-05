@@ -297,14 +297,13 @@ input[type="text"] {
 	var startDate = new Date();
 	var startTime = null;
 	var lapCnt = 0;
-	var sentences = ${dataList};
-	/* var sentences = [ 'System.out.println("Hello Java");',
+	var sentences = [ 'System.out.println("Hello Java");',
 		'Connection conn = null;', 'int[] arr = new int[6];',
 		'int k = Integer.parseInt(str);',
 		'BigInteger a = BigInteger.ZERO;', 'Collections.sort(array);',
 		'if(p^q >= q);', 'double k = Math.sqrt(n);',
 		'thread.setPriority(10);', 'char c = string.charAt(14);',
-		'Welcome to JAVA TAJA', 'private long cyphertext;' ] */;
+		'Welcome to JAVA TAJA', 'private long cyphertext;' ];
 	var correctHits = 0;
 	var incorrectHits = 0;
 	var typeableChars = 0;
@@ -607,6 +606,11 @@ input[type="text"] {
 	}
 	
 	
+	function getDataByLang(){
+		var lang_type = $()
+		
+	}
+	
 	
 	function getParsedKey(key) {
 		//console.log("key in method : " + key);
@@ -706,9 +710,8 @@ input[type="text"] {
  -->
 
 <body oncopy="return false" oncut="return false" onpaste="return false">
-	${dataList}
 	<div>
-		<select>
+		<select id="lang-selecter" onchange='getDataByLang()'>
 			<option value="java">JAVA</option>
 			<option value="python">PYTHON</option>
 			<option value="cdoubleplus">C++</option>
@@ -758,7 +761,7 @@ input[type="text"] {
 						<div id="key_four" class="key">
 							<div class="line1">$</div>
 							<div class="line2">4</div>
-						</div>
+						</div>20
 						<div id="key_five" class="key">
 							<div class="line1">%</div>
 							<div class="line2">5</div>

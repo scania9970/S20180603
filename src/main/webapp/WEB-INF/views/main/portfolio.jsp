@@ -7,15 +7,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+
+
+</style>
 </head>
 <body>
-	<div>
-	
-	
-	</div>
-	<div>
-	
-	
-	</div>
+	<form action="popdate">
+		<input type="file" name="imagf_url"><br>
+		<input type="text" name="job"><br>
+		<input type="text" name="introduction"><br>
+		<input type="text" name="comment"><br>
+		<input type="submit" value="등록">
+	</form>
 </body>
 </html>

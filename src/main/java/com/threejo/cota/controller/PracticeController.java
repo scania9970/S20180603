@@ -18,7 +18,7 @@ public class PracticeController {
 	
 	@RequestMapping(value="/sentence")
 	public String loadSentencePrac(Model model, String lang_type) {
-		ArrayList<Practice> dataList = (ArrayList<Practice>)ps.getTypingData(lang_type);
+		ArrayList<String> dataList = (ArrayList<String>)ps.getTypingData(lang_type);
 		System.out.println("dataList : " + dataList);
 		System.out.println("lang_type : " + lang_type);
 		model.addAttribute("dataList", dataList);

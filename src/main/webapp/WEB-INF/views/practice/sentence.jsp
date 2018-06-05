@@ -1,15 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/main/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title></title>
+<%@ include file="/WEB-INF/views/main/header.jsp" %>
 <style>
 * {
 	margin: 0;
 	padding: 0;
+}
+
+#selector{
+	margin:auto;
+	width: 80%;
+}
+#lang-selector{
+	width: 100%;
+	height: 30px;
+	margin-top: 10px;
+	background: #f3f3f3; /* Old browsers */
+	background: #fff -webkit-gradient(linear, left top, left bottom, from(#ffffff),to(#e5e5e5));
+	background: #fff linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+	border-radius: 5px;
 }
 
 #wrapper {
@@ -19,7 +33,6 @@
 
 #center {
 	width: 100%;
-	border: 1px solid gray;
 }
 
 .fixed_width_wrapper {
@@ -34,8 +47,9 @@
 }
 
 #sentence-div {
-	margin: 20px auto;
+	margin: 10px auto;
 	border: 1px solid gray;
+	border-radius: 5px;
 	width: 80%;
 	text-align: center;
 }
@@ -45,11 +59,17 @@
 }
 
 .keyboard {
-	width: 100%;
+	background-color: #cccccc;
+	margin: auto;
+	border: 1px solid #cccccc;
+	border-radius: 25px;
+	width: 900px;
 }
 
 .key {
-	border: 1px solid gray;
+	background-color: white;
+	color: #737373;
+	border: 1px solid #cccccc;
 	border-radius: 10px;
 	width: 50px;
 	height: 52px;
@@ -57,7 +77,7 @@
 }
 
 .key.wide_1 {
-	width: 84px;
+	width: 82px;
 	height: 52px;
 }
 
@@ -100,7 +120,6 @@ strong {
 }
 
 #s1 {
-	width: 500px;
 	height: 50px;
 }
 
@@ -120,11 +139,11 @@ input[type="text"] {
 	border-width: 0px 0px 2px 0px;
 	border-color: #CE3636;
 	font-size: 40px;
-	font-family: sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: lighter;
 	color: black;
 	outline: none;
-	width: 81%;
+	width: 10px;
 	display: inline-block;
 	transition: 0.1s;
 }
@@ -297,13 +316,7 @@ input[type="text"] {
 	var startDate = new Date();
 	var startTime = null;
 	var lapCnt = 0;
-	var sentences = [ 'System.out.println("Hello Java");',
-		'Connection conn = null;', 'int[] arr = new int[6];',
-		'int k = Integer.parseInt(str);',
-		'BigInteger a = BigInteger.ZERO;', 'Collections.sort(array);',
-		'if(p^q >= q);', 'double k = Math.sqrt(n);',
-		'thread.setPriority(10);', 'char c = string.charAt(14);',
-		'Welcome to JAVA TAJA', 'private long cyphertext;' ];
+	var sentences = ${dataList};
 	var correctHits = 0;
 	var incorrectHits = 0;
 	var typeableChars = 0;
@@ -315,6 +328,7 @@ input[type="text"] {
 		var modal = document.getElementById('myModal');
 		modal.style.display = "none";
 	})
+	
 	
 	
 	function redirection(event) {
@@ -335,17 +349,15 @@ input[type="text"] {
 		var sentence = document.getElementById('sentence').value;
 		var sentence_obj = document.getElementById('sentence');
 		var cursorPosition = $('#typed').prop("selectionStart");
-		var progressbar = setProgressBar(sentence.length, input_textfield.value.length);
 
 		sentenceHits++;
 		if(x != 'Shift'){
 			totalHits++;
 			//console.log('totalHits++');
 		}
-		$('#meter-span').css('width', progressbar+"%");
 
 		//console.log("input=" + input); //입력값
-		//console.log("sentence=" + sentence); //입력해야 할 문장
+		console.log("sentence=" + sentence); //입력해야 할 문장
 		//console.log("===============================");
 		if (x === 'Enter') { //엔터 키 입력 시
 			if(input.length == 0){
@@ -401,7 +413,7 @@ input[type="text"] {
 				startTime = null;
 				return;
 			}
-		}3
+		}
 		if (sentence.substring(0,input.length) == input.substring(0,input.length)) {
 			correctHits++;
 			//console.log("correctHits : " + correctHits);
@@ -414,7 +426,9 @@ input[type="text"] {
 				selectedObj.css("background-color", "white");
 			},100);
 			var s1 = sentence.substring(0, input.length);
+			console.log("s1 : " + s1);
 			var s2 = sentence.substring(input.length, sentence.length);
+			console.log("s2 : " + s2);
 			$('#s1').text(s1);
 			$('#s1').css({
 				"color" : "green"
@@ -442,14 +456,10 @@ input[type="text"] {
 			});
 		}
 	}
-
-	$(document).ready(function() {
-		replaceSentence();
-	});
 	
 	function replaceSentence() {
 		//console.log('currentSentence.length before add : ' + typeableChars);
-		current = Math.floor(Math.random() * 12);
+		current = Math.floor(Math.random() * 10);
 		var currentSentence = sentences[current];
 		//console.log('currentSentence.length : ' + currentSentence.length);
 		//console.log('typeableChars : ' + typeableChars);
@@ -457,17 +467,9 @@ input[type="text"] {
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 		$('#s2').text('');
-	}
-	
-	function setProgressBar(totalLength, currLength){
-		var result = Math.round(currLength / totalLength * 100);
-		if(result >= 100){
-			return 100;
-		}
-		//console.log("totalLength : " + totalLength);
-		//console.log("currLength : " + currLength);
-		//console.log("progressbar : " + result);
-		return result;
+		var s1Width = $('#s1').css('width');
+		console.log('s1Width : ' + s1Width);
+		$('#typed').css('width', s1Width);
 	}
 	
 	function getSpeed(sentenceHits, ellapsedTime){
@@ -607,10 +609,18 @@ input[type="text"] {
 	
 	
 	function getDataByLang(){
-		var lang_type = $()
-		
+		var lang_type = $('#lang-selector option:selected').val();
+		location.href = '/cota/sentence?lang_type='+lang_type;
+		console.log($('#lang-selector').val(lang_type));
 	}
-	
+	function setData(){
+		var param = window.location.search.split("=")[1];
+		$('#lang-selector').val(param).prop("selected, true");
+		$('#continue').attr('href', '/cota/sentence?lang_type='+param);
+		
+		console.log('param : ' + param);
+		replaceSentence();
+	}
 	
 	function getParsedKey(key) {
 		//console.log("key in method : " + key);
@@ -709,9 +719,10 @@ input[type="text"] {
 ////////////////////////////////////////////ㅅㄱ////////////////////////////////////////
  -->
 
-<body oncopy="return false" oncut="return false" onpaste="return false">
-	<div>
-		<select id="lang-selecter" onchange='getDataByLang()'>
+<body oncopy="return false" oncut="return false" onpaste="return false" onload="setData()">
+
+	<div id="selector">
+		<select id="lang-selector" onchange='getDataByLang()'>
 			<option value="java">JAVA</option>
 			<option value="python">PYTHON</option>
 			<option value="cdoubleplus">C++</option>
@@ -725,10 +736,7 @@ input[type="text"] {
 					onkeyup="redirection(event)" autofocus /> <input type="hidden"
 					class="sentence" id="sentence" />
 			</div>
-			<div class="meter">
-	  			<span id="meter-span"></span>
-			</div>
-			<div id="status-div">
+			<!-- <div id="status-div">
 				<div id="speed-div">
 					<label>현재타수</label>
 					<label id='typing-speed'>0.0h/s</label>
@@ -738,7 +746,7 @@ input[type="text"] {
 					<label id='typing-accuracy'>0.0%</label>
 				</div>	
 						
-			</div>
+			</div> -->
 			<div class="fixed_width_wrapper">
 				<div class="keyboard">
 					<div class="line">
@@ -761,7 +769,7 @@ input[type="text"] {
 						<div id="key_four" class="key">
 							<div class="line1">$</div>
 							<div class="line2">4</div>
-						</div>20
+						</div>
 						<div id="key_five" class="key">
 							<div class="line1">%</div>
 							<div class="line2">5</div>
@@ -1020,7 +1028,7 @@ input[type="text"] {
 			</p>
 	    </div>
 	    <div class="modal-footer">
-			<a href="/cota/sentence"><button>계속하기</button></a>
+			<a id='continue'><button>계속하기</button></a>
 			<a href="/cota/main"><button>종료하기</button></a>
 	    </div>
 	  </div>

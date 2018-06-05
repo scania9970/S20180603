@@ -14,7 +14,7 @@ public class PracticeServiceImpl implements PracticeService{
 	private PracticeDao pd;
 	
 	@Override
-	public List<Practice> getTypingData(String lang_type) {
+	public List<String> getTypingData(String lang_type) {
 		return pd.selectTypingData(lang_type);
 	}
 	

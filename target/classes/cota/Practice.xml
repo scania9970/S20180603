@@ -6,9 +6,13 @@
 		<result property="content" column="content"/>
 	</resultMap>
 	
-	<select id="selectTypingData" parameterType="String" resultType="String">
- 		select content from typing_data where lang_type=#{lang_type}
+	<select id="selectTypingDataSentence" parameterType="String" resultType="String">
+ 		select content from typing_data where lang_type=#{lang_type} and field_type='sentence'
+	</select>
+	<select id="selectTypingDataWord" parameterType="String" resultType="String">
+ 		select content from typing_data where lang_type=#{lang_type} and field_type='word'
 	</select>
 
 	
 </mapper> 
+

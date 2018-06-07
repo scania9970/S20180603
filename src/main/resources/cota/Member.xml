@@ -3,7 +3,9 @@
 <mapper namespace="Member">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<insert id="insert" parameterType="Member">
+	<![CDATA[
 		INSERT INTO MEMBER (EMAIL, PASSWORD, NICKNAME, PROFILE_URL, IS_ENTERPRISE)
 		VALUES (#{email}, #{password}, #{nickname}, #{profile_url}, #{in_enterprise)
+	]]>
 	</insert>	
 </mapper> 

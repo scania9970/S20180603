@@ -6,6 +6,7 @@ import com.threejo.cota.model.Practice;
 
 public interface PracticeDao {
 
-	List<String> selectTypingData(String lang_type);
+	List<String> selectTypingDataSentence(String lang_type);
+	List<String> selectTypingDataWord(String lang_type);
 
 }

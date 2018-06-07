@@ -14,13 +14,17 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-	var count = 0;
-	
-	function emailCheck() {
-		var text = $("#email").val();
+/* function formCheck() {
+		var email = document.getElementById('email');
+		var password = document.getElementById('password');
+		var passwordchk = document.getElementById('passwordchk');
 		
-	var regexp = /[0-9a-zA-Z]/;
-	}
+		if (password.value != passwordchk.value) {
+			alert("비밀번호와 다릅니다. 다시 입력해 주세요");
+			focus.passwordchk;
+			return false;
+		}
+	} */
 
 </script>
 <head>
@@ -64,25 +68,25 @@
                         <h2 class="panel-title" style="font-size: 20pt" align="center">회원가입</h2>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="login">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" required autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="비밀번호" name="password" type="password" required value="">
+                                    <input class="form-control" placeholder="비밀번호" name="password" id="password" type="password" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="비밀번호 확인" name="passwordchk" type="password" required value="">
+                                    <input class="form-control" placeholder="비밀번호 확인" name="passwordchk" id="passwordchk" type="password" required >
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="닉네임" name="nickname" type="text" required value="">
+                                    <input class="form-control" placeholder="닉네임" name="nickname" type="text" required>
                                 </div>
                                  <div class="Image"><img id="" src="images/"></div>
                                  <div class="divUpload"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url" class="inputFile"></div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="enterprise" type="checkbox" value="">기업회원 구분
+                                        <input name="enterprise" type="checkbox" id="checkbox" value="기업여부">기업회원 구분
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

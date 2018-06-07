@@ -36,7 +36,8 @@
 }
 
 .fixed_width_wrapper {
-	margin: 0 30px;
+	overflow: hidden;
+	margin: 0 5%;
 	display: inline-block;
 	width: 765px;
 }
@@ -59,8 +60,9 @@
 	display: inline-block;
 }
 #middle-wrapper{
+	overflow: hidden;
 	width: 80%;
-	margin: auto;
+	margin: 20px auto;
 }
 .keyboard {
 	width: 100%;
@@ -80,7 +82,7 @@
 }
 
 .key.wide_1 {
-	width: 60px;
+	width: 66px;
 	height: 52px;
 }
 
@@ -232,6 +234,9 @@ input[type="text"] {
 }
 
 #ad{
+	position: absolute;
+	bottom: 100px;
+	left: 390px;
 	border: 1px solid gray;
 	width: 60%;
 	height: 100px;
@@ -311,7 +316,7 @@ input[type="text"] {
 }
 
 #left-hand{
-	margin-left: 40px;
+	margin-left: 5%;
 	display: inline-block;
 	width: 15%;
 	height: 280px;
@@ -484,8 +489,8 @@ input[type="text"] {
 			 ["Enter", "r-middle"]
 		]);
 		//console.log("key : " +keyMap.get(key));
-		console.log(key);
-		console.log(keyMap.get(key));
+		//console.log(key);
+		//console.log(keyMap.get(key));
 		var keyArr = keyMap.get(key).split('-');
 		parsedCss = "url(${pageContext.request.contextPath}/images/"+keyArr[0]+"-"+keyArr[1]+".png)";
 		 
@@ -598,7 +603,7 @@ input[type="text"] {
 		var times = 0;
 	 	var current = null;
 	 	var incorrectText = ' ';
-		
+		var incorrectArr = [];
 		for(var i = 0; i < _incorrectKeys.length; i++){
 			current = _incorrectKeys[i];
 			if(_incorrectKeys[i] != 'Backspace' &&_incorrectKeys[i] != 'Shift' ){
@@ -613,11 +618,17 @@ input[type="text"] {
 			}
 		}
 		
-		// 
-		for(var i = 0; i < Object.keys(incorrectJson).length; i++){
-			incorrectText += Object.keys(incorrectJson)[i] + ' : ' + Object.values(incorrectJson)[i] + ', ';
+		$.each(incorrectJson, function(index, value){ // incorrectJson 색인배열화(map처럼 만든다는 소리)
+	        incorrectArr.push({key: index, value: value});
+		});
+		incorrectArr.sort(function(a, b){ // value에 따라 정렬
+			return(a.value < b.value) ? -1 : (a.value > b.value) ? 1 : 0;
+		});
+		incorrectArr.reverse();
+		console.log("length : " + incorrectArr);
+		for(var i = 0; i < 3; i++){
+			incorrectText += " " + incorrectArr[i].key + " : " + incorrectArr[i].value + ",";
 		}
-		
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
 		
@@ -627,9 +638,9 @@ input[type="text"] {
 		var tText = $("#typed").val().length;
 		var sentence = $("#sentence").val();
 		var ch = sentence.substr(tText, 1);
-		console.log("tText length : " + tText);
-		console.log("sentence : " + sentence);
-		console.log("ch : " + ch);
+		//console.log("tText length : " + tText);
+		//console.log("sentence : " + sentence);
+		//console.log("ch : " + ch);
 		return ch;
 	}
 	

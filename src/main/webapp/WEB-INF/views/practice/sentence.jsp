@@ -6,12 +6,17 @@
 <head>
 <title>COTA</title>
 <%@ include file="/WEB-INF/views/main/header.jsp" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
-
+.checked {
+    color: orange;
+}
 #selector{
 	margin:auto;
 	width: 80%;
@@ -261,6 +266,7 @@ input[type="text"] {
 
 /* Modal Content */
 .modal-content {
+	font-family: 'NanumSquareRound',sans-serif;
     position: relative;
     background-color: #fefefe;
     margin: auto;
@@ -302,9 +308,9 @@ input[type="text"] {
 }
 
 .modal-header {
+	maring: 10px 0;
     padding: 2px 16px;
     background-color: white;
-    border-radius: 10px;
 }
 
 .modal-body {
@@ -331,6 +337,65 @@ input[type="text"] {
 	background-image: url(${pageContext.request.contextPath}/images/righthand.png);
 	background-size: 100% 100%;
 }
+#star-wrapper{
+	margin: auto;
+}
+#onestar{
+	font-size: 2em;
+	transition: 1s;
+}
+#twostar{
+	font-size: 2em;
+	transition: 1s;
+}
+
+#threestar{
+	font-size: 2em;
+	transition: 1s;
+}
+
+#fourstar{
+	font-size: 2em;
+	transition: 1s;
+}
+
+#fivestar{
+	font-size: 2em;
+	transition: 1s;
+} 
+
+.fa fa-star{
+}
+#statTable{
+	margin: auto;
+	font-family: 'NanumSquareRound',sans-serif;
+	text-align: center;
+	color: gray;
+}
+.stat{
+	font-family: 'NanumSquareRound',sans-serif;
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+}
+.statResult{
+	font-family: 'NanumSquareRound',sans-serif;
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+}
+.buttons{
+	font-family: 'NanumSquareRound',sans-serif;
+	font-size: 20px;
+	margin-left: 5px;
+	width: 48%;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	background-color: white;
+	color: gray;
+}
+
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -373,7 +438,7 @@ input[type="text"] {
 		var cursorPosition = $('#typed').prop("selectionStart");
 
 		sentenceHits++;
-		if(x != 'Shift'){
+		if(x != 'Shift'&& x!='Enter'){
 			totalHits++;
 		}
 		getCharToTyping();
@@ -561,28 +626,47 @@ input[type="text"] {
 	
 	function showModal(_speedArr, _accArr, _totalHits, _typeableChars, _correctHits, _incorrectHits, _incorrectKeys){
 		var modal = document.getElementById('myModal');
-	    var sum = 0;
-	    var mean = 0;
+	    var speedSum = 0;
+	    var speedMean = 0;
+	    var speedScore = 0;
+	    var accSum = 0;
+	    var accMean = 0;
+	    var accScore = 0;
 	    var productivity = 0;
+	    var productivityScore = 0;
 	   
 		// 평균 타수
 	    for(var i = 0; i < _speedArr.length; i++){
-	    	sum += _speedArr[i];
+	    	speedSum += _speedArr[i];
 	    }
-		mean = Math.round(sum / _speedArr.length);
-		$('#mspeed').text(mean);
-		sum = 0; mean = 0;
+	    speedMean = Math.round(speedSum / _speedArr.length);
+		$('#mspeed').text(speedMean);
+		
+		if(speedMean > 600){
+			speedScore = 5;	
+		}else if(600 >= speedMean > 450){
+			speedScore = 4;	
+		}else if(450 >= speedMean > 300){
+			speedScore = 3;	
+		}else if(300 >= speedMean > 150){
+			speedScore = 2;	
+		}else{
+			speedScore = 1;	
+		}
+		
+		console.log('speedScore : ' + speedScore);
+		
 		
 		// 평균 정확도
 		for(var i = 0; i < _accArr.length; i++){
-	    	sum += _accArr[i];
+			accSum += _accArr[i];
 	    }
-		mean = Math.round(sum / _accArr.length);
-		$('#macc').text(mean);
-		sum = 0; mean = 0;
-		
+		accMean = Math.round(accSum / _accArr.length);
+		$('#macc').text(accMean);
 		
 		// 생산성
+		console.log("_totalHits : " + _totalHits);
+		console.log("_typeableChars : " + _typeableChars);
 		if(_totalHits < _typeableChars){
 			productivity = '오타가 너무 많습니다.';
 			typeableChars = 0;
@@ -594,9 +678,20 @@ input[type="text"] {
 			typeableChars = 0;
 		}
 		
-		
+		if(accMean > 80){
+			accScore = 5;	
+		}else if(80 >= accMean > 60){
+			accScore = 4;	
+		}else if(60 >= accMean > 40){
+			accScore = 3;	
+		}else if(40 >= accMean > 20){
+			accScore = 2;	
+		}else{
+			accScore = 1;	
+		}
+
+		console.log('accscore : ' + accScore);
 		// 많이 틀린 키
-		
 		incorrectKeys.sort();
 		var flag = _incorrectKeys[0];
 	    var incorrectJson = new Object();
@@ -604,9 +699,8 @@ input[type="text"] {
 	 	var current = null;
 	 	var incorrectText = ' ';
 		var incorrectArr = [];
-	 	if(incorrectKeys == ''){
+		if(incorrectKeys == ''){
 			incorrectText = '정확도 100%!';
-			
 		}else{
 			for(var i = 0; i < _incorrectKeys.length; i++){
 				current = _incorrectKeys[i];
@@ -629,7 +723,6 @@ input[type="text"] {
 				return(a.value < b.value) ? -1 : (a.value > b.value) ? 1 : 0;
 			});
 			incorrectArr.reverse();
-			console.log("length : " + incorrectArr);
 			for(var i = 0; i < 3; i++){
 				if(!incorrectArr[i]){
 					continue;
@@ -638,8 +731,68 @@ input[type="text"] {
 			}
 		}
 		
+		
+		
+		var starScore = Math.round((speedScore+accScore)/2);
+		console.log("starScore : " + starScore); 
+		
+		if(starScore == 1){
+			setInterval(function() {
+				$('#onestar').addClass("checked");
+			}, 100);
+		}else if(starScore == 2){
+			setInterval(function() {
+				$('#onestar').addClass("checked");
+			}, 100);
+			setInterval(function() {
+				$('#twostar').addClass("checked");
+			}, 400);
+		}else if(starScore == 3){
+			setInterval(function() {
+				$('#onestar').addClass("checked");
+			}, 100);
+			setInterval(function() {
+				$('#twostar').addClass("checked");
+			}, 400);
+			setInterval(function() {
+				$('#threestar').addClass("checked");
+			}, 700);
+		}else if(starScore == 4){
+			setInterval(function() {
+				$('#onestar').addClass("checked");
+			}, 100);
+			setInterval(function() {
+				$('#twostar').addClass("checked");
+			}, 400);
+			setInterval(function() {
+				$('#threestar').addClass("checked");
+			}, 700);
+			setInterval(function() {
+				$('#fourstar').addClass("checked");
+			}, 1000);
+		}else{
+			setInterval(function() {
+				$('#onestar').addClass("checked");
+			}, 100);
+			setInterval(function() {
+				$('#twostar').addClass("checked");
+			}, 400);
+			setInterval(function() {
+				$('#threestar').addClass("checked");
+			}, 700);
+			setInterval(function() {
+				$('#fourstar').addClass("checked");
+			}, 1000);
+			setInterval(function() {
+				$('#fivestar').addClass("checked");
+			}, 1300);
+		}
+		
+		
+		
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
+		
 		
 	}
 	
@@ -1016,28 +1169,44 @@ input[type="text"] {
 	</div>
 	<div id="myModal" class="modal">
 	  <div class="modal-content">
-	    <div class="modal-header">
-	    
-	      <h2>코타 통계</h2>
-	      <span></span>
+	    <div class="modal-header" style="background-color:gray;color:white;font-size:25px;">
+			통계
 	    </div>
 	    <div class="modal-body">
-			<p>
-				<label class="stat">평균타수</label><label id="mspeed" class="statResult"></label>
-			</p>
-			<p>
-				<label class="stat">평균정확도</label><label id="macc" class="statResult"></label>
-			</p>
-			<p>
-				<label class="stat">비생산적 타이핑</label><label id="prod" class="statResult"></label>
-			</p>
-			<p>
-				<label class="stat">많이 틀린 자리</label><label id="incorrect_keys" class="statResult"></label>
-			</p>
+	    	<table id='statTable'>
+	    		<!-- <tr>
+	    			<td colspan='2' style="font-size:25px;">통계</td>
+	    		</tr> -->
+	    		<tr>
+	    			<td colspan='2'>	
+		    			<span id="onestar" class="fa fa-star"></span>
+						<span id="twostar" class="fa fa-star"></span>
+						<span id="threestar" class="fa fa-star"></span>
+						<span id="fourstar" class="fa fa-star"></span>
+						<span id="fivestar" class="fa fa-star"></span>
+					</td>
+	    		</tr>
+	    		<tr>
+	    			<td class='stat'>평균타수</td>
+	    			<td id="mspeed" class='statResult'></td>
+	    		</tr>
+	    		<tr>
+	    			<td class='stat'>평균정확도</td>
+	    			<td id="macc" class='statResult'></td>
+	    		</tr>
+	    		<tr>
+	    			<td class='stat'>비생산적 타이핑</td>
+	    			<td id="prod" class='statResult'></td>
+	    		</tr>
+	    		<tr>
+	    			<td class='stat'>많이 틀린 자리</td>
+	    			<td id="incorrect_keys" class='statResult'></td>
+	    		</tr>
+	    	</table>
 	    </div>
 	    <div class="modal-footer">
-			<a id='continue'><button>계속하기</button></a>
-			<a href="/cota/main"><button>종료하기</button></a>
+			<a id='continue'><button class="buttons">계속하기</button></a>
+			<a href="/cota/main"><button class="buttons">종료하기</button></a>
 	    </div>
 	  </div>
 

@@ -11,6 +11,18 @@
 	border-color: transparent;
 }
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+	var count = 0;
+	
+	function emailCheck() {
+		var text = $("#email").val();
+		
+	var regexp = /[0-9a-zA-Z]/;
+	}
+
+</script>
 <head>
 
     <meta charset="utf-8">

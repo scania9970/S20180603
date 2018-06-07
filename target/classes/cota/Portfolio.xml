@@ -3,4 +3,7 @@
 <mapper namespace="Portfolio">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	
+	<insert id="insert" parameterType="Portfolio">
+		insert into portfolio values (#{imagf_url}, #{job}, #{introduction}, #{comment})
+	</insert>
 </mapper> 

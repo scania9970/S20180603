@@ -6,7 +6,7 @@
 		<result property="content" column="content"/>
 	</resultMap>
 	
-	<select id="selectTypingData" parameterType="String" resultType="Practice">
+	<select id="selectTypingData" parameterType="String" resultType="String">
  		select content from typing_data where lang_type=#{lang_type}
 	</select>
 

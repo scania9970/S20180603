@@ -1,41 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/main/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title></title>
+<title>COTA</title>
+<%@ include file="/WEB-INF/views/main/header.jsp" %>
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
 
+#selector{
+	margin:auto;
+	width: 80%;
+}
+#lang-selector{
+	width: 100%;
+	height: 30px;
+	margin-top: 10px;
+	background: #f3f3f3; /* Old browsers */
+	background: #fff -webkit-gradient(linear, left top, left bottom, from(#ffffff),to(#e5e5e5));
+	background: #fff linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+	border-radius: 5px;
+}
+
 #wrapper {
 	width: 100%;
-	height: 900px;
+	height: 700px;
 }
 
 #center {
 	width: 100%;
-	border: 1px solid gray;
 }
 
 .fixed_width_wrapper {
-	width: 80%;
-	margin: 20px auto;
+	margin: 0 30px;
+	display: inline-block;
+	width: 60%;
 }
 
 .line {
-	width: 100%;
+	width: 100%; 
 	text-align: center;
 	margin: 10px auto;
 }
 
 #sentence-div {
-	margin: 20px auto;
+	margin: 10px auto;
 	border: 1px solid gray;
+	border-radius: 5px;
 	width: 80%;
 	text-align: center;
 }
@@ -46,18 +61,23 @@
 
 .keyboard {
 	width: 100%;
+	background-color: #cccccc;
+	border: 1px solid #cccccc;
+	border-radius: 25px;     
 }
 
 .key {
-	border: 1px solid gray;
+	background-color: white;
+	color: #737373;
+	border: 1px solid #cccccc;
 	border-radius: 10px;
-	width: 50px;
+	width: 43px;
 	height: 52px;
 	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
 }
 
 .key.wide_1 {
-	width: 84px;
+	width: 60px;
 	height: 52px;
 }
 
@@ -67,12 +87,12 @@
 }
 
 .key.wide_3 {
-	width: 105px;
+	width: 96px;
 	height: 52px;
 }
 
 .key.wide_4 {
-	width: 134px;
+	width: 120px;
 	height: 52px;
 }
 
@@ -100,7 +120,6 @@ strong {
 }
 
 #s1 {
-	width: 500px;
 	height: 50px;
 }
 
@@ -120,11 +139,11 @@ input[type="text"] {
 	border-width: 0px 0px 2px 0px;
 	border-color: #CE3636;
 	font-size: 40px;
-	font-family: sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: lighter;
 	color: black;
 	outline: none;
-	width: 81%;
+	width: 10px;
 	display: inline-block;
 	transition: 0.1s;
 }
@@ -187,9 +206,10 @@ input[type="text"] {
 }
 
 #status-div{
-	width: 80%;
-	height: 150px;
-	border: 1px solid gray;
+	text-align: center;
+	width: 60%;
+	height: 30px;
+	border-radius: 5px;
 	margin: 0 auto;
 }
 
@@ -198,12 +218,14 @@ input[type="text"] {
 	width: 50%;
 	height: 150px;
 	border: 1px solid gray;
+	border-radius: 5px;
 }
 #acuuracy-divs{
 	float: left;
 	width: 50%;
 	height: 150px;
 	border: 1px solid gray;
+	border-radius: 5px;
 }
 
 #ad{
@@ -285,6 +307,22 @@ input[type="text"] {
     padding: 2px 16px;
 }
 
+#left-hand{
+	margin-left: 40px;
+	display: inline-block;
+	width: 15%;
+	height: 280px;
+	background-image: url(${pageContext.request.contextPath}/images/lefthand.png);
+	background-size: 100% 100%;
+}
+
+#right-hand{
+	display: inline-block;
+	width: 15%;
+	height: 280px;
+	background-image: url(${pageContext.request.contextPath}/images/righthand.png);
+	background-size: 100% 100%;
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -297,13 +335,7 @@ input[type="text"] {
 	var startDate = new Date();
 	var startTime = null;
 	var lapCnt = 0;
-	var sentences = [ 'System.out.println("Hello Java");',
-		'Connection conn = null;', 'int[] arr = new int[6];',
-		'int k = Integer.parseInt(str);',
-		'BigInteger a = BigInteger.ZERO;', 'Collections.sort(array);',
-		'if(p^q >= q);', 'double k = Math.sqrt(n);',
-		'thread.setPriority(10);', 'char c = string.charAt(14);',
-		'Welcome to JAVA TAJA', 'private long cyphertext;' ];
+	var sentences = ${dataList};
 	var correctHits = 0;
 	var incorrectHits = 0;
 	var typeableChars = 0;
@@ -317,57 +349,41 @@ input[type="text"] {
 	})
 	
 	
+	
 	function redirection(event) {
 		if (startTime === null) {
 			startDate = new Date();
 			startTime = startDate.getTime();
-			//console.log('startTime : ' + startTime);
-			//console.log('startTime milli : ' + startTime);
 		}
-		//console.log("totalHits : " + totalHits);
-		//console.log("2. redirection method");
-		//console.log($('#typed').prop("selectionStart")); //커서 포지션
 		var x = event.key; //입력값 저장
+		changeFinger(getCharToTyping());
 		var parsedKey = getParsedKey(x); // 키보드 css 컨트롤할 element string
-		//console.log("x=" + x);
 		var input_textfield = document.getElementById('typed');
 		var input = input_textfield.value;
 		var sentence = document.getElementById('sentence').value;
 		var sentence_obj = document.getElementById('sentence');
 		var cursorPosition = $('#typed').prop("selectionStart");
-		var progressbar = setProgressBar(sentence.length, input_textfield.value.length);
 
 		sentenceHits++;
 		if(x != 'Shift'){
 			totalHits++;
-			//console.log('totalHits++');
 		}
-		$('#meter-span').css('width', progressbar+"%");
-
-		//console.log("input=" + input); //입력값
-		//console.log("sentence=" + sentence); //입력해야 할 문장
-		//console.log("===============================");
+		getCharToTyping();
 		if (x === 'Enter') { //엔터 키 입력 시
 			if(input.length == 0){
 				return;
 			}
 			var endDate = new Date();
 			var endTime = endDate.getTime();
-			//console.log('endTime : ' + endTime);
 			var ellapsedTime = endTime - startTime;
-			//console.log('ellapsedTime : ' + ellapsedTime);
-			//console.log('sentence length : ' + sentence.length);
 			typeableChars += sentence.length;
-			//console.log('sentence.length : ' + sentence.length);
-			//console.log('typeableChars : ' + typeableChars);
 			if (input.length == sentence.length) {
-				//console.log("3. enter pressed");
-				//console.log("ellapsed time : " + (endTime - startTime));
+				$('#typed').val('');
 				replaceSentence();
+				changeFinger(getCharToTyping());
 				lapCnt++; // lapCnt 증가
 				$('#s1').css('color', '#A6A6A6');
 				$('#s2').css('color', '#A6A6A6');
-				$('#typed').val('');
 				$('#typing-speed').text(getSpeed(sentenceHits, ellapsedTime));
 				$('#typing-accuracy').text(getAccuracy(sentence, input));
 				chkLapCnt(lapCnt); // lapCnt를 체크하여 modal load
@@ -388,11 +404,12 @@ input[type="text"] {
 						});
 					}, 1000);
 				}, 100);
+				$('#typed').val('');
 				replaceSentence();
+				changeFinger(getCharToTyping());
 				lapCnt++; // lapCnt 증가
 				$('#s1').css('color', '#A6A6A6');
 				$('#s2').css('color', '#A6A6A6');
-				$('#typed').val('');
 				$('#typing-speed').text(getSpeed(sentenceHits, ellapsedTime));
 				$('#typing-accuracy').text(getAccuracy(sentence, input));
 				chkLapCnt(lapCnt); // lapCnt를 체크하여 modal load
@@ -401,10 +418,9 @@ input[type="text"] {
 				startTime = null;
 				return;
 			}
-		}3
+		}
 		if (sentence.substring(0,input.length) == input.substring(0,input.length)) {
 			correctHits++;
-			//console.log("correctHits : " + correctHits);
 			$(input_textfield).css({
 				"color" : "green"
 			});
@@ -422,9 +438,7 @@ input[type="text"] {
 			$('#s2').text(s2);
 		} else {
 			incorrectHits++;
-			console.log('incorrect key : ' + x);
 			incorrectKeys.push(x);
-			//console.log("incorrectHits : " + incorrectHits);
 			$(input_textfield).css({
 				"color" : "red"
 			});
@@ -442,42 +456,62 @@ input[type="text"] {
 			});
 		}
 	}
-
-	$(document).ready(function() {
-		replaceSentence();
-	});
+	
+	
+	function changeFinger(key){
+		// uppercase 고려하기
+		// uppercase라면 shift
+		if(key == ''){
+			key = 'Enter';
+		}
+		var pasredCss = "";
+		var defaultLeft = "url(${pageContext.request.contextPath}/images/lefthand.png)";
+		var defaultRight = "url(${pageContext.request.contextPath}/images/righthand.png)";
+		var keyMap = new Map([
+			 [" ","l-thumb"],// l-thumb
+			 ["4","l-index"],["$","l-index"],["5","l-index"],["%","l-index"],["r","l-index"],["R","l-index"],["t","l-index"],["T","l-index"],["f","l-index"],["F","l-index"],["g","l-index"],["G","l-index"],["v","l-index"],["V","l-index"],["b","l-index"],["B","l-index"],// l-index
+			 ["3","l-middle"],["#","l-middle"],["e","l-middle"],["E","l-middle"],["d","l-middle"],["D","l-middle"],["c","l-middle"],["C","l-middle"],// l-middle
+			 ["2","l-ring"],["@","l-ring"],["w","l-ring"],["W","l-ring"],["s","l-ring"],["S","l-ring"],["x","l-ring"],["X","l-ring"],// l-ring
+			 ["1","l-little"],["!","l-little"],["q","l-little"],["Q","l-little"],["a","l-little"],["A","l-little"],["z","l-little"],["Z","l-little"],// l-little
+			 [" ","r-thumb"],// r-thumb
+			 ["6","r-index"],["^","r-index"],["7","r-index"],["&","r-index"],["y","r-index"],["Y","r-index"],["u","r-index"],["U","r-index"],["h","r-index"],["H","r-index"],["j","r-index"],["J","r-index"],["n","r-index"],["N","r-index"],["m","r-index"],["M","r-index"],// r-index
+			 ["8","r-middle"],["*","r-middle"],["i","r-middle"],["I","r-middle"],["k","r-middle"],["K","r-middle"],[",","r-middle"],["<","r-middle"],// r-middle
+			 ["9","r-ring"],["(","r-ring"],["o","r-ring"],["O","r-ring"],["l","r-ring"],["L","r-ring"],[".","r-ring"],[">","r-ring"],// r-ring
+			 ["0","r-little"],[")","r-little"],["p","r-little"],["P","r-little"],[";","r-little"],[":","r-little"],["/","r-little"],["?","r-little"],// r-little
+			 ["Enter", "r-middle"]
+		]);
+		//console.log("key : " +keyMap.get(key));
+		console.log(key);
+		console.log(keyMap.get(key));
+		var keyArr = keyMap.get(key).split('-');
+		parsedCss = "url(${pageContext.request.contextPath}/images/"+keyArr[0]+"-"+keyArr[1]+".png)";
+		 
+		if(keyArr[0] == 'l'){
+			$("#left-hand").css("background-image", parsedCss);
+			$("#right-hand").css("background-image", defaultRight);
+		}else{
+			$("#left-hand").css("background-image", defaultLeft);
+			$("#right-hand").css("background-image", parsedCss);
+			
+		}
+		//console.log("parsedCss : " + parsedCss);
+	};
+	
 	
 	function replaceSentence() {
-		//console.log('currentSentence.length before add : ' + typeableChars);
-		current = Math.floor(Math.random() * 12);
+		current = Math.floor(Math.random() * 10);
 		var currentSentence = sentences[current];
-		//console.log('currentSentence.length : ' + currentSentence.length);
-		//console.log('typeableChars : ' + typeableChars);
-		//console.log('totalHits : ' + totalHits);
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 		$('#s2').text('');
-	}
-	
-	function setProgressBar(totalLength, currLength){
-		var result = Math.round(currLength / totalLength * 100);
-		if(result >= 100){
-			return 100;
-		}
-		//console.log("totalLength : " + totalLength);
-		//console.log("currLength : " + currLength);
-		//console.log("progressbar : " + result);
-		return result;
+		var s1Width = $('#s1').css('width');
+		$('#typed').css('width', s1Width);
 	}
 	
 	function getSpeed(sentenceHits, ellapsedTime){
 		var seconds = ellapsedTime / 1000;
 		var speed = Math.round(sentenceHits / seconds * 60, 2);
 		speedArr.push(speed);
-		//console.log('seconds : ' + seconds);
-		//console.log('sentenceHits : ' + sentenceHits);
-		//console.log('speed : ' + speed);
-
 		return speed+' h/s';
 	}
 	
@@ -499,13 +533,11 @@ input[type="text"] {
 			}	
 		}
 		accuracy = Math.round(((sLength - incorrectChars) / sLength * 100));
-		//console.log("accuracy : " + accuracy);
 		accArr.push(accuracy);		
 		return accuracy+ ' %';
 	}
 	
 	function chkLapCnt(lCnt){
-		//console.log("lCnt : " + lCnt);
 		if(lCnt == 3){
 			lapCnt = 0;
 			showModal(speedArr, accArr, totalHits, typeableChars, correctHits, incorrectHits, incorrectKeys);
@@ -529,10 +561,7 @@ input[type="text"] {
 	    for(var i = 0; i < _speedArr.length; i++){
 	    	sum += _speedArr[i];
 	    }
-		//console.log('sArr length : ' + _speedArr.length);
-		//console.log("ssum : " + sum);
 		mean = Math.round(sum / _speedArr.length);
-		//console.log('smean : ' + mean);
 		$('#mspeed').text(mean);
 		sum = 0; mean = 0;
 		
@@ -540,26 +569,18 @@ input[type="text"] {
 		for(var i = 0; i < _accArr.length; i++){
 	    	sum += _accArr[i];
 	    }
-		//console.log('aArr length : ' + _accArr.length);
-		//console.log("asum : " + sum);
 		mean = Math.round(sum / _accArr.length);
-		//console.log('amean : ' + mean);
 		$('#macc').text(mean);
 		sum = 0; mean = 0;
 		
 		
 		// 생산성
 		if(_totalHits < _typeableChars){
-			//console.log("_totalHits : " + _totalHits);
-			//console.log("_typeableChars : " + _typeableChars);
 			productivity = '오타가 너무 많습니다.';
 			typeableChars = 0;
 			$('#prod').text(productivity);
 		}else{
 			productivity = Math.round((_totalHits - _typeableChars) / _totalHits * 100)+'%';
-			console.log("prod : " + productivity);
-			console.log("_totalHits : " + _totalHits);
-			console.log("_typeableChars : " + _typeableChars);
 			$('#prod').text(productivity);
 			productivity = 0;
 			typeableChars = 0;
@@ -574,20 +595,14 @@ input[type="text"] {
 		var times = 0;
 	 	var current = null;
 	 	var incorrectText = ' ';
-	 	//console.log('_incorrectKeys :' + _incorrectKeys);
 		
 		for(var i = 0; i < _incorrectKeys.length; i++){
-			//console.log('i :' + i);
-			//console.log('flag : ' + flag);
 			current = _incorrectKeys[i];
-			//console.log('current : ' + current);
 			if(_incorrectKeys[i] != 'Backspace' &&_incorrectKeys[i] != 'Shift' ){
 				if(flag == current){
 					times++;
 					incorrectJson[flag] = times;
 				}else{
-					//console.log('flag : ' + flag);
-					//console.log('incorrectJson[flag] : ' + incorrectJson[flag]);
 					flag = _incorrectKeys[i];
 					times = 1;
 					incorrectJson[flag] = times;
@@ -605,16 +620,29 @@ input[type="text"] {
 		
 	}
 	
-	
-	function getDataByLang(){
-		var lang_type = $()
-		
+	function getCharToTyping(){
+		var tText = $("#typed").val().length;
+		var sentence = $("#sentence").val();
+		var ch = sentence.substr(tText, 1);
+		console.log("tText length : " + tText);
+		console.log("sentence : " + sentence);
+		console.log("ch : " + ch);
+		return ch;
 	}
 	
+	function getDataByLang(){
+		var lang_type = $('#lang-selector option:selected').val();
+		location.href = '/cota/sentence?lang_type='+lang_type;
+	}
+	function setData(){
+		var param = window.location.search.split("=")[1];
+		$('#lang-selector').val(param).prop("selected, true");
+		$('#continue').attr('href', '/cota/sentence?lang_type='+param);
+		replaceSentence();
+		changeFinger(getCharToTyping());
+	}
 	
 	function getParsedKey(key) {
-		//console.log("key in method : " + key);
-		//console.log("1. paint key method");
 		if (key === ' ') {
 			return "#key_space";
 		} else if (key === '0' || key === ')') {
@@ -670,48 +698,15 @@ input[type="text"] {
 		}
 	}
 
-	/* $(document).keyup(function(event) {
-		let key = event.key;
-		//console.log("key : " + key);
-		let parsedId = getParsedKey(key);
-		//console.log("parsedId : " + parsedId);
-		//console.log("selectedId : " + selectedId);
-		
-	});
-
-	$(document).keydown(function(event) {
-		let key = event.key;
-		//console.log("key : " + key);
-		let parsedId = getParsedKey(key);
-		//console.log("parsedId : " + parsedId);
-		let selectedObj = $(parsedId);
-		//console.log("selectedId : " + selectedId);
-		selectedObj.css("background-color", "red");
-	}); */
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<!-- 
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-	o 타수 버그 확인 o
-	o arr 안에 새로운 arr를 할당하여 json 형태로 만들기  incorrect key들의 횟수 카운트하여 푸쉬 o 
-	o 많이 틀린 자리, 계속하기, 종료하기 표현하기  o
-	o modal 설계하기 o
-	database 연동하기
-	o git 환경만들기 o
-	o 비생산적 타자가 0일때 버그, 비생산적 타이핑 수와 퍼센트가 잘 맞지 않음 확인하기	
-	많이 틀린 자리 순서대로, 상위 5개만
-	language 고르기
-	
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////ㅅㄱ////////////////////////////////////////
- -->
 
-<body oncopy="return false" oncut="return false" onpaste="return false">
-	<div>
-		<select id="lang-selecter" onchange='getDataByLang()'>
+<body oncopy="return false" oncut="return false" onpaste="return false" onload="setData()">
+
+	<div id="selector">
+		<select id="lang-selector" onchange='getDataByLang()'>
 			<option value="java">JAVA</option>
 			<option value="python">PYTHON</option>
 			<option value="cdoubleplus">C++</option>
@@ -725,20 +720,15 @@ input[type="text"] {
 					onkeyup="redirection(event)" autofocus /> <input type="hidden"
 					class="sentence" id="sentence" />
 			</div>
-			<div class="meter">
-	  			<span id="meter-span"></span>
-			</div>
 			<div id="status-div">
-				<div id="speed-div">
 					<label>현재타수</label>
-					<label id='typing-speed'>0.0h/s</label>
-				</div>	
-				<div id="accuracy-div">
+					<label id='typing-speed'>0 h/s</label>
+					&nbsp;&nbsp;&nbsp;
 					<label>정확도</label>
-					<label id='typing-accuracy'>0.0%</label>
-				</div>	
+					<label id='typing-accuracy'>0 %</label>
 						
 			</div>
+			<div id="left-hand"></div>
 			<div class="fixed_width_wrapper">
 				<div class="keyboard">
 					<div class="line">
@@ -757,11 +747,11 @@ input[type="text"] {
 						<div id="key_three" class="key">
 							<div class="line1">#</div>
 							<div class="line2">3</div>
-						</div>
+						</div> 
 						<div id="key_four" class="key">
 							<div class="line1">$</div>
 							<div class="line2">4</div>
-						</div>20
+						</div>
 						<div id="key_five" class="key">
 							<div class="line1">%</div>
 							<div class="line2">5</div>
@@ -994,6 +984,7 @@ input[type="text"] {
 					</div>
 				</div>
 			</div>
+			<div id="right-hand"></div>
 			<div id="ad">
 			</div>
 		</div>
@@ -1020,7 +1011,7 @@ input[type="text"] {
 			</p>
 	    </div>
 	    <div class="modal-footer">
-			<a href="/cota/sentence"><button>계속하기</button></a>
+			<a id='continue'><button>계속하기</button></a>
 			<a href="/cota/main"><button>종료하기</button></a>
 	    </div>
 	  </div>

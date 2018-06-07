@@ -596,7 +596,6 @@ input[type="text"] {
 		
 		
 		// 많이 틀린 키
-		
 		incorrectKeys.sort();
 		var flag = _incorrectKeys[0];
 	    var incorrectJson = new Object();
@@ -604,9 +603,8 @@ input[type="text"] {
 	 	var current = null;
 	 	var incorrectText = ' ';
 		var incorrectArr = [];
-	 	if(incorrectKeys == ''){
+		if(incorrectKeys == ''){
 			incorrectText = '정확도 100%!';
-			
 		}else{
 			for(var i = 0; i < _incorrectKeys.length; i++){
 				current = _incorrectKeys[i];
@@ -629,7 +627,6 @@ input[type="text"] {
 				return(a.value < b.value) ? -1 : (a.value > b.value) ? 1 : 0;
 			});
 			incorrectArr.reverse();
-			console.log("length : " + incorrectArr);
 			for(var i = 0; i < 3; i++){
 				incorrectText += " " + incorrectArr[i].key + " : " + incorrectArr[i].value + ",";
 			}
@@ -657,7 +654,7 @@ input[type="text"] {
 	function setData(){
 		var param = window.location.search.split("=")[1];
 		$('#lang-selector').val(param).prop("selected, true");
-		$('#continue').attr('href', '/cota/sentence?lang_type='+param);
+		$('#continue').attr('href', '/cota/word?lang_type='+param);
 		replaceSentence();
 		changeFinger(getCharToTyping());
 	}

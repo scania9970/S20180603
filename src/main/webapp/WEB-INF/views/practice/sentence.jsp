@@ -38,7 +38,7 @@
 .fixed_width_wrapper {
 	margin: 0 30px;
 	display: inline-block;
-	width: 60%;
+	width: 765px;
 }
 
 .line {
@@ -58,7 +58,10 @@
 .line div {
 	display: inline-block;
 }
-
+#middle-wrapper{
+	width: 80%;
+	margin: auto;
+}
 .keyboard {
 	width: 100%;
 	background-color: #cccccc;
@@ -728,263 +731,265 @@ input[type="text"] {
 					<label id='typing-accuracy'>0 %</label>
 						
 			</div>
-			<div id="left-hand"></div>
-			<div class="fixed_width_wrapper">
-				<div class="keyboard">
-					<div class="line">
-						<div id="key_accent" class="key">
-							<div class="line1">~</div>
-							<div class="line2">`</div>
+			<div id="middle-wrapper">
+				<div id="left-hand"></div>
+				<div class="fixed_width_wrapper">
+					<div class="keyboard">
+						<div class="line">
+							<div id="key_accent" class="key">
+								<div class="line1">~</div>
+								<div class="line2">`</div>
+							</div>
+							<div id="key_one" class="key">
+								<div class="line1">!</div>
+								<div class="line2">1</div>
+							</div>
+							<div id="key_two" class="key">
+								<div class="line1">@</div>
+								<div class="line2">2</div>
+							</div>
+							<div id="key_three" class="key">
+								<div class="line1">#</div>
+								<div class="line2">3</div>
+							</div> 
+							<div id="key_four" class="key">
+								<div class="line1">$</div>
+								<div class="line2">4</div>
+							</div>
+							<div id="key_five" class="key">
+								<div class="line1">%</div>
+								<div class="line2">5</div>
+							</div>
+							<div id="key_six" class="key">
+								<div class="line1">^</div>
+								<div class="line2">6</div>
+							</div>
+							<div id="key_seven" class="key">
+								<div class="line1">&</div>
+								<div class="line2">7</div>
+							</div>
+							<div id="key_eight" class="key">
+								<div class="line1">*</div>
+								<div class="line2">8</div>
+							</div>
+							<div id="key_nine" class="key">
+								<div class="line1">(</div>
+								<div class="line2">9</div>
+							</div>
+							<div id="key_zero" class="key">
+								<div class="line1">)</div>
+								<div class="line2">0</div>
+							</div>
+							<div id="key_hyphen" class="key">
+								<div class="line1">_</div>
+								<div class="line2">-</div>
+							</div>
+							<div id="key_equals" class="key">
+								<div class="line1">+</div>
+								<div class="line2">=</div>
+							</div>
+							<div id="key_backspace" class="key wide_2">
+								<div class="line1">backspace</div>
+								<div class="line2">&nbsp;</div>
+							</div>
 						</div>
-						<div id="key_one" class="key">
-							<div class="line1">!</div>
-							<div class="line2">1</div>
+						<div class="line">
+							<div id="key_tab" class="key wide_2">
+								<div class="line1">tab</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_q" class="key single">
+								<div class="line1">Q</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_w" class="key single">
+								<div class="line1">W</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_e" class="key single">
+								<div class="line1">E</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_r" class="key single">
+								<div class="line1">R</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_t" class="key single">
+								<div class="line1">T</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_y" class="key single">
+								<div class="line1">Y</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_u" class="key single">
+								<div class="line1">U</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_i" class="key single">
+								<div class="line1">I</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_o" class="key single">
+								<div class="line1">O</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_p" class="key single">
+								<div class="line1">P</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_left_bracket" class="key">
+								<div class="line1">{</div>
+								<br>
+								<div class="line2">[</div>
+							</div>
+							<div id="key_right_bracket" class="key">
+								<div class="line1">}</div>
+								<br>
+								<div class="line2">]</div>
+							</div>
+							<div id="key_backslash" class="key">
+								<div class="line1">|</div>
+								<br>
+								<div class="line2">\</div>
+							</div>
 						</div>
-						<div id="key_two" class="key">
-							<div class="line1">@</div>
-							<div class="line2">2</div>
+						<div class="line">
+							<div id="key_capslock" class="key wide_3">
+								<div class="line1">caps lock</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_a" class="key single">
+								<div class="line1">A</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_s" class="key single">
+								<div class="line1">S</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_d" class="key single">
+								<div class="line1">D</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_f" class="key single">
+								<div class="line1">F</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_g" class="key single">
+								<div class="line1">G</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_h" class="key single">
+								<div class="line1">H</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_j" class="key single">
+								<div class="line1">J</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_k" class="key single">
+								<div class="line1">K</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_l" class="key single">
+								<div class="line1">L</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_semicolon" class="key">
+								<div class="line1">:</div>
+								<br>
+								<div>;</div>
+							</div>
+							<div id="key_apostrophe" class="key">
+								<div class="line1">"</div>
+								<br>
+								<div>'</div>
+							</div>
+							<div id="key_enter" class="key wide_3">
+								<div class="line1">enter</div>
+								<div class="line2">&nbsp;</div>
+							</div>
 						</div>
-						<div id="key_three" class="key">
-							<div class="line1">#</div>
-							<div class="line2">3</div>
-						</div> 
-						<div id="key_four" class="key">
-							<div class="line1">$</div>
-							<div class="line2">4</div>
+						<div class="line">
+							<div id="key_left_shift" class="key wide_4">
+								<div class="line1">shift</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_z" class="key single">
+								<div class="line1">Z</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_x" class="key single">
+								<div class="line1">X</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_c" class="key single">
+								<div class="line1">C</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_v" class="key single">
+								<div class="line1">V</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_b" class="key single">
+								<div class="line1">B</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_n" class="key single">
+								<div class="line1">N</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_m" class="key single">
+								<div class="line1">M</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_comma" class="key">
+								<div class="line1">&lt;</div>
+								<br>
+								<div>,</div>
+							</div>
+							<div id="key_period" class="key">
+								<div class="line1">&gt;</div>
+								<br>
+								<div>.</div>
+							</div>
+							<div id="key_forwardslash" class="key">
+								<div class="line1">?</div>
+								<br>
+								<div>/</div>
+							</div>
+							<div id="key_right_shift" class="key wide_4">
+								<div class="line1">shift</div>
+								<div class="line2">&nbsp;</div>
+							</div>
 						</div>
-						<div id="key_five" class="key">
-							<div class="line1">%</div>
-							<div class="line2">5</div>
-						</div>
-						<div id="key_six" class="key">
-							<div class="line1">^</div>
-							<div class="line2">6</div>
-						</div>
-						<div id="key_seven" class="key">
-							<div class="line1">&</div>
-							<div class="line2">7</div>
-						</div>
-						<div id="key_eight" class="key">
-							<div class="line1">*</div>
-							<div class="line2">8</div>
-						</div>
-						<div id="key_nine" class="key">
-							<div class="line1">(</div>
-							<div class="line2">9</div>
-						</div>
-						<div id="key_zero" class="key">
-							<div class="line1">)</div>
-							<div class="line2">0</div>
-						</div>
-						<div id="key_hyphen" class="key">
-							<div class="line1">_</div>
-							<div class="line2">-</div>
-						</div>
-						<div id="key_equals" class="key">
-							<div class="line1">+</div>
-							<div class="line2">=</div>
-						</div>
-						<div id="key_backspace" class="key wide_2">
-							<div class="line1">backspace</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_tab" class="key wide_2">
-							<div class="line1">tab</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_q" class="key single">
-							<div class="line1">Q</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_w" class="key single">
-							<div class="line1">W</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_e" class="key single">
-							<div class="line1">E</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_r" class="key single">
-							<div class="line1">R</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_t" class="key single">
-							<div class="line1">T</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_y" class="key single">
-							<div class="line1">Y</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_u" class="key single">
-							<div class="line1">U</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_i" class="key single">
-							<div class="line1">I</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_o" class="key single">
-							<div class="line1">O</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_p" class="key single">
-							<div class="line1">P</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_left_bracket" class="key">
-							<div class="line1">{</div>
-							<br>
-							<div class="line2">[</div>
-						</div>
-						<div id="key_right_bracket" class="key">
-							<div class="line1">}</div>
-							<br>
-							<div class="line2">]</div>
-						</div>
-						<div id="key_backslash" class="key">
-							<div class="line1">|</div>
-							<br>
-							<div class="line2">\</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_capslock" class="key wide_3">
-							<div class="line1">caps lock</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_a" class="key single">
-							<div class="line1">A</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_s" class="key single">
-							<div class="line1">S</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_d" class="key single">
-							<div class="line1">D</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_f" class="key single">
-							<div class="line1">F</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_g" class="key single">
-							<div class="line1">G</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_h" class="key single">
-							<div class="line1">H</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_j" class="key single">
-							<div class="line1">J</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_k" class="key single">
-							<div class="line1">K</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_l" class="key single">
-							<div class="line1">L</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_semicolon" class="key">
-							<div class="line1">:</div>
-							<br>
-							<div>;</div>
-						</div>
-						<div id="key_apostrophe" class="key">
-							<div class="line1">"</div>
-							<br>
-							<div>'</div>
-						</div>
-						<div id="key_enter" class="key wide_3">
-							<div class="line1">enter</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_left_shift" class="key wide_4">
-							<div class="line1">shift</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_z" class="key single">
-							<div class="line1">Z</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_x" class="key single">
-							<div class="line1">X</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_c" class="key single">
-							<div class="line1">C</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_v" class="key single">
-							<div class="line1">V</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_b" class="key single">
-							<div class="line1">B</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_n" class="key single">
-							<div class="line1">N</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_m" class="key single">
-							<div class="line1">M</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_comma" class="key">
-							<div class="line1">&lt;</div>
-							<br>
-							<div>,</div>
-						</div>
-						<div id="key_period" class="key">
-							<div class="line1">&gt;</div>
-							<br>
-							<div>.</div>
-						</div>
-						<div id="key_forwardslash" class="key">
-							<div class="line1">?</div>
-							<br>
-							<div>/</div>
-						</div>
-						<div id="key_right_shift" class="key wide_4">
-							<div class="line1">shift</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_left_ctrl" class="key wide_1">
-							<div class="line1">ctrl</div>
-						</div>
-						<div id="key_left_alt" class="key wide_1">
-							<div class="line1">alt</div>
-						</div>
-						<div id="key_left_cmd" class="key wide_1">
-							<div class="line1">cmd</div>
-						</div>
-						<div id="key_space" class="key wide_5">
-							<div class="line1">space</div>
-						</div>
-						<div id="key_right_cmd" class="key wide_1">
-							<div class="line1">cmd</div>
-						</div>
-						<div id="key_right_alt" class="key wide_1">
-							<div class="line1">alt</div>
-						</div>
-						<div id="key_right_ctrl" class="key wide_1">
-							<div class="line1">ctrl</div>
+						<div class="line">
+							<div id="key_left_ctrl" class="key wide_1">
+								<div class="line1">ctrl</div>
+							</div>
+							<div id="key_left_alt" class="key wide_1">
+								<div class="line1">alt</div>
+							</div>
+							<div id="key_left_cmd" class="key wide_1">
+								<div class="line1">cmd</div>
+							</div>
+							<div id="key_space" class="key wide_5">
+								<div class="line1">space</div>
+							</div>
+							<div id="key_right_cmd" class="key wide_1">
+								<div class="line1">cmd</div>
+							</div>
+							<div id="key_right_alt" class="key wide_1">
+								<div class="line1">alt</div>
+							</div>
+							<div id="key_right_ctrl" class="key wide_1">
+								<div class="line1">ctrl</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="right-hand"></div>
+				<div id="right-hand"></div>
+			</div>	
 			<div id="ad">
 			</div>
 		</div>

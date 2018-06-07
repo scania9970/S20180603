@@ -631,6 +631,9 @@ input[type="text"] {
 			incorrectArr.reverse();
 			console.log("length : " + incorrectArr);
 			for(var i = 0; i < 3; i++){
+				if(!incorrectArr[i]){
+					continue;
+				}
 				incorrectText += " " + incorrectArr[i].key + " : " + incorrectArr[i].value + ",";
 			}
 		}

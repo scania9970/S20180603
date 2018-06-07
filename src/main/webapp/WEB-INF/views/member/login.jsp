@@ -49,7 +49,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h2 class="panel-title" style="font-size: 20pt" align="center">회원가입</h2>
+                        <h2 class="panel-title" style="font-size: 20pt" align="center">로그인</h2>
                     </div>
                     <div class="panel-body">
                         <form role="form">
@@ -60,22 +60,9 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="비밀번호" name="password" type="password" required value="">
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="비밀번호 확인" name="passwordchk" type="password" required value="">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="닉네임" name="nickname" type="text" required value="">
-                                </div>
-                                 <div class="Image"><img id="" src="images/"></div>
-                                 <div class="divUpload"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url" class="inputFile"></div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="enterprise" type="checkbox" value="">기업회원 구분
-                                    </label>
-                                </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <!-- <a href="/cota/main" class="btn btn-lg btn-success btn-block">회원가입</a> -->
-                                <input class="joinbutton" type="submit" value="회원가입">
+                                <input class="joinbutton" type="submit" value="로그인">
                             </fieldset>
                         </form>
                     </div>

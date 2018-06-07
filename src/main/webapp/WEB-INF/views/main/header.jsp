@@ -32,7 +32,7 @@
 		</div>
 		<div class="member">
 			<a href="">로그인</a>
-			<a href="join">회원가입</a>
+			<a href="joinpage">회원가입</a>
 		</div>
 	</div>
 </body>

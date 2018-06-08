@@ -31,7 +31,7 @@
 			<div class="forum"><a href="#">개발자 포럼</a></div>
 		</div>
 		<div class="member">
-			<a href="">로그인</a>
+			<a href="login">로그인</a>
 			<a href="joinpage">회원가입</a>
 		</div>
 	</div>

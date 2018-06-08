@@ -8,28 +8,24 @@ body {
 		height: 400px;
 		background: url("../images/slider-1.jpg");
 		background-size: 100% 100%;
-		background-position: center;
 	}
 	.image2{
 		width: 100%;
 		height: 400px;
 		background: url("../images/slider-2.jpg");
 		background-size: 100% 100%;
-		background-position: center;
 	}
 	.image3{
 		width: 100%;
 		height: 400px;
 		background: url("../images/slider-3.jpg");
 		background-size: 100% 100%;
-		background-position: center;
 	}
 	.image4{
 		width: 100%;
 		height: 400px;
 		background: url("../images/slider-4.jpg");
 		background-size: 100% 100%;
-		background-position: center;
 	}
 	.slideshow-container{
 		position: relative;
@@ -42,11 +38,10 @@ body {
 		opacity: 0;
 		display: block;
 		position: absolute;
-		transition: 0.35s;
+		transition: 0.6s;
 	}	
 	
 	.text{
-		border: solid;
 		width: 100%;
 		height: 100%;
 		display: flex;

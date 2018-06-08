@@ -14,13 +14,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insert(Member member) {
-		System.out.println("dao");
-		System.out.println("email : " + member.getEmail());
-		System.out.println("password : " + member.getPassword());
-		System.out.println("nickname : " + member.getNickname());
-		System.out.println("profile_url : " + member.getProfile_url());
-		System.out.println("is_enterprise : " + member.getIs_enterprise());
-		return session.insert("insert", member);
+		return session.insert("insertmb", member);
 	}
 
 }

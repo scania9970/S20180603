@@ -124,8 +124,8 @@
     justify-content: center;
 }
 
-.logo a{
-	font-size: 25px;
+.logo > a{
+	font-size: 50px;
 	color: #00004B;
 	font-weight: bold;
 	font-style: italic;

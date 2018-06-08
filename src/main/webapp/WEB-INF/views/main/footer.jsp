@@ -16,12 +16,7 @@ body{
 	color: white;
 	width: 100%;
 	height: 250px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 50px;
 	padding: 15px 0;
-	position: fixed;
-	bottom: 0;
 	display: inline-block;
 }
 label{

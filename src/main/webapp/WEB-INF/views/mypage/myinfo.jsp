@@ -31,6 +31,21 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+<style type="text/css">
+	#output {
+		border: 1px solid #CCCCCC;
+		width: 150px;
+		margin-bottom: 10px;
+	}
+</style>
+
+<script type="text/javascript">
+	var loadFile = function(event) {
+		var output = document.getElementById('output');
+		output.src = URL.createObjectURL(event.target.files[0]);
+	};
+</script>
 </head>
 <body>
 
@@ -45,7 +60,7 @@
 						<li>
 							<a href="forms.html"><i class="fa fa-edit fa-fw"></i>내 정보 수정<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">개인 정보 수정</a></li>
+								<li><a href="myinfo?email=asd@asd.com">개인 정보 수정</a></li>
 								<li><a href="#">포트폴리오 수정</a></li>
 								<li><a href="#">비밀번호 변경</a></li>
 							</ul>
@@ -66,60 +81,74 @@
 		</nav>
 
 		<!-- Content -->
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">개인 정보 수정</h1>
+		<form role="form" action="myinfoProc" method="post" enctype="multipart/form-data">
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">개인 정보 수정</h1>
+					</div>
 				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">필수 입력 정보 수정</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-4">
-									<form role="form">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">필수 입력 정보 수정</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-4">
+
 										<div class="form-group">
 											<label>이메일 주소</label>
-                                            <p class="form-control-static">${member.email}</p>
+											<p class="form-control-static">${member.email}</p>
 										</div>
 										<div class="form-group">
-											<label>별명 수정</label><input class="form-control" placeholder="최대 10글자 입력 가능">
+											<label>별명 수정</label><input class="form-control"
+												value="${member.nickname}">
 											<p class="help-block">Example block-level help text here.</p>
 										</div>
-									</form>
+
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">선택 입력 정보 수정</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-4">
-									<form role="form">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">선택 입력 정보 수정</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-4">
+
 										<div class="form-group">
-											<label>프로필 사진 변경</label><input type="file">
+											<label>프로필 사진 변경</label><br> <img id="output"
+												src="${member.profile_url}"> <input type="file"
+												accept="image/*" onchange="loadFile(event)"
+												name="profile_url">
 										</div>
-									</form>
+
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<input type="submit" class="btn btn-outline btn-success btn-lg"
+							value="정보 수정">
+					</div>
+				</div>
+
 			</div>
-		</div>
-		
+		</form>
+
 	</div>
 
-		<!-- jQuery -->
+	<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/mypage/vendor/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->

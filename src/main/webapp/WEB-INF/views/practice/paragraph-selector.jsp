@@ -21,7 +21,7 @@
 	body{
 		overflow:hidden;
 		width: 100%;
-		height: 700px;
+		height: 800px;
 	}
 	#center{
 		margin: auto;
@@ -70,15 +70,7 @@
 		background-image: url(/cota/images/python.png);
 		background-size: 100% 100%;	
 	}
-	#practice-wrapper{
-		position:absolute;
-		top: 60px;
-		width: 0;
-		height: 0;
-		opacity: 0;
-		transition: 0.8s;
-	}
-	
+
 	#paragraphlist-wrapper{
 		margin: 20px auto;
 		overflow: hidden;
@@ -146,25 +138,103 @@
 	#top{
 		margin: 30px auto 10px auto;
 		width: 1000px;
-		height: 80px;
+		height: 50px;
 		opacity: 0;
 	}
 	#top-image{
 		background-size: 100% 100%;
-		width: 80px;
-		height: 80px;
+		width: 50px;
+		height: 50px;
 		margin-left: 30px;
 		float: left;
 		border-radius: 50%;
 	}
 	#top-desc{
 		width: 100px;
-		height: 80px;
+		height: 50px;
 		margin-left: 10px;
 		font-size: 2em;
 		float: left;
 	}
 	
+	#practice-wrapper{
+		margin: 0 auto;
+		width: 1200px;
+		height: 700px;
+	}
+	#practice-top{
+		width: 1200px;
+		height: 100px;
+		border: 1px solid gray;	
+	}
+	#practice-top-wrapper{
+		display: inline-block;
+		width: 400px;
+		height: 100px;
+		border: 1px solid gray;	
+	
+	}
+	#practice-top-image{
+		background-image: url(/cota/images/braket.png);
+		background-size: 100% 100%;
+		float: left;
+		width: 100px;
+		height: 100px;
+		display: inline-block;
+		border: 1px solid gray;	
+	
+	}
+	#practice-top-class{
+		float: left;
+		margin-left: 15px;
+		width: 280px;
+		height: 100px;
+		display: inline-block;
+		border: 1px solid gray;	
+	
+	}
+	#practice-top-time{
+		display: inline-block;
+		width: 300px;
+		height: 100px;
+		float: right;
+		border: 1px solid gray;	
+	
+	}
+	#practice-middle{
+		width: 1200px;
+		height: 500px;
+		border: 1px solid gray;	
+
+	}
+	#practice-paragraph{
+		float: left;
+		display: inline-block;
+		width: 900px;
+		height: 500px;
+		border: 1px solid gray;	
+	
+	}
+	#practice-lineresult{
+		float: left;
+		display: inline-block;
+		width: 290px;
+		height: 500px;
+		border: 1px solid gray;	
+	
+	}
+	#practice-bottom{
+		width: 1200px;
+		height: 100px;	
+		border: 1px solid gray;	
+	}
+	#practice-pages{
+		width: 300px;
+		height: 100px;
+		float: right;
+		border: 1px solid gray;	
+	
+	}
 	
 </style>
 <script>
@@ -217,16 +287,29 @@
 		var selectedParagraph = $this.attr('id');
 		console.log("selectedParagraph : " + selectedParagraph);
 		var sendData = 'para_title='+selectedParagraph;
+		var indentedData = "";
+		var linedData = [];
 		$.ajax({
 			url : '/cota/getParagraphContent',			// 전송할 URL
 			type : 'get',				// 전송 방식
 			data : sendData, 							// 전송할 데이터
 			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
+				
 				$('#paragraphlist-wrapper').css("opacity", '0');
-				setTimeout(function() {
+				$('#paragraphlist-wrapper').remove();
+				console.log('ajax ok');	
+				$('#class-name').text(selectedParagraph);
+				/*setTimeout(function() {
 					$('#paragraphlist-wrapper').remove();
-					$('body').append(data);
-				}, 500);
+					linedData = data.split('@)!*');
+					$.each(linedData, function(idx, val){
+						indentedData = val.replace(/\)\^\)\#/gi, '&nbsp;&nbsp;&nbsp;&nbsp;');
+						console.log('indentedData : ' + indentedData);
+						$('body').append(indentedData + '<br>');
+					});
+				}, 500); */
+				
+				
 			}
 		});
 	});
@@ -236,7 +319,6 @@
 <body>
 <div id="center">
 	<div id="wrapper">
-		
 		<div id="java" class="lang-wrapper">
 			<div id="javadiv" class="lang">
 			</div>
@@ -270,6 +352,36 @@
 	<div id="list-wrapper">
 	</div>
 </div>
+
+<div id="practice-wrapper"> <!-- 전체 -->
+	<div id="practice-top"> <!-- 상단 -->
+		<div id="practice-top-wrapper"> <!-- 이미지&클래스명 -->
+			<div id="practice-top-image"></div> <!-- 이미지 -->
+			<div id="practice-top-class">
+				<label id="class-name"></label>
+			</div> <!-- 클래스명 -->
+		</div>
+		<div id="practice-top-time"> <!-- 시간 -->
+			<label id="time-label"></label>
+			05:11
+		</div>
+	</div>
+	
+	<div id="practice-middle"> <!-- 중단 -->
+		<div id="practice-paragraph"> <!-- 문단연습 -->
+			public void static main(String[] args){}
+		</div>
+		<div id="practice-lineresult"> <!-- 중간결과 -->
+			<label id="line-result"></label>
+		</div>
+	</div>
+	
+	<div id="practice-bottom"> <!-- 하단 -->
+		<div id="practice-pages">1 / 9 Pages</div> <!-- 페이지 -->
+	</div>
+	
+</div>
+
 
 </body>
 </html>

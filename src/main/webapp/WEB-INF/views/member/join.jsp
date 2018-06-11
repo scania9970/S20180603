@@ -18,9 +18,9 @@
 $(function() {
 	$('#passwordChk').change(function() {
 		if ($('#password').val() != $('#passwordChk').val()) { 
-			$('#passwordChk').val("");
+			$('#passwordChk').val(""); // input 같은
 			$('#passwordChk').focus();
-			$('#spanPassword').html("※ 비밀번호가 일치하지 않습니다.");
+			$('#spanPassword').html("※ 비밀번호가 일치하지 않습니다."); // span 또는 text 같은 경우
 			
 			return;
 		} else {
@@ -75,6 +75,9 @@ $(function() {
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" required autofocus>
+                                    <input class="form-control" type="button" name="btnEmailChk" value="인증번호받기" onclick="emailCheck">
+                                    <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled">
+                                    <input type="button" id="btnConfirm" name="btnConfirm" class="form-control" value="인증하기" disabled="disabled">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="비밀번호" name="password" id="password" type="password" required>

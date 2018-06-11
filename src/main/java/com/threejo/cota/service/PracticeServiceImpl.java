@@ -1,5 +1,6 @@
 package com.threejo.cota.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,21 @@ public class PracticeServiceImpl implements PracticeService{
 	@Override
 	public List<String> getTypingDataWord(String lang_type) {
 		return pd.selectTypingDataWord(lang_type);
+	}
+
+	@Override
+	public List<String> getTypingDataParagraph(String lang_type) {
+		return pd.selectTypingDataParagraph(lang_type);
+	}
+
+	@Override
+	public List<String> getParagraphList(String lang_type) {
+		return pd.getParagraphList(lang_type);
+	}
+
+	@Override
+	public String getParagraphContent(String para_title) {
+		return pd.getParagraphContent(para_title);
 	}
 	
 }

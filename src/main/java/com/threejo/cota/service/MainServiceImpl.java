@@ -9,4 +9,9 @@ import com.threejo.cota.dao.MainDao;
 public class MainServiceImpl implements MainService{
 	@Autowired
 	MainDao mainDao;
+
+	@Override
+	public String selectDailyRanking() {
+		return mainDao.selectDailyRanking();
+	}
 }

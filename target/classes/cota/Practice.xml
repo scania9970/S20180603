@@ -12,7 +12,14 @@
 	<select id="selectTypingDataWord" parameterType="String" resultType="String">
  		select content from typing_data where lang_type=#{lang_type} and field_type='word'
 	</select>
-
-	
+	<select id="selectTypingDataParagraph" parameterType="String" resultType="String">
+ 		select content from typing_data where lang_type=#{lang_type} and field_type='paragraph'
+	</select>
+	<select id="selectParagraphList" parameterType="String" resultType="String">
+ 		select para_title from typing_data where lang_type=#{lang_type} and field_type='paragraph'
+	</select>
+	<select id="getParagraphContent" parameterType="String" resultType="String">
+ 		select content from typing_data where para_title=#{para_title}
+	</select>
 </mapper> 
 

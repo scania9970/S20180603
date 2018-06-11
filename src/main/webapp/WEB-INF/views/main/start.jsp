@@ -31,7 +31,7 @@
 					</svg>
 					<label class="site-name">COTA</label>
 				</div>
-				
+				<br>
 				<span><label class="s1" id="s1"></label><label class="s2" id="s2"></label></span>
 				<input type="text" id="typed" placeholder="Type the method above to enter" onkeyup="redirection(event)"/>
 				<div class="refresh-enter">

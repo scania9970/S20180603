@@ -10,6 +10,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style type="text/css">
 	*{
 		margin: 0;
@@ -17,6 +19,7 @@
 	}
 	
 	body{
+		overflow:hidden;
 		width: 100%;
 		height: 700px;
 	}
@@ -75,17 +78,23 @@
 		opacity: 0;
 		transition: 0.8s;
 	}
+	
 	#paragraphlist-wrapper{
-		display: none;
+		margin: 20px auto;
 		overflow: hidden;
+		transition: 0.5s;
+		opacity: 0;
 	}
+	
+	
 	#list-wrapper{
 		margin: auto;
 		width: 1000px;
 		height: 700px;
+		opacity: 0;
 	}
 	.list{
-		margin: 20px 45px;
+		margin: 10px 45px;
 		float: left;
 		width: 400px;
 		height: 100px;
@@ -99,27 +108,25 @@
 	
 	.list-desc{
 		display: inline-block;
-		margin-left: 20px;
+		margin-left: 30px;
+		margin-top: 10px;
 		width: 300px;
 		height: 100px;
-		border: 1px solid gray;	
 	}
 	
 	.list-title{
 		width: 300px;
 		height: 50px;
-		border: 1px solid gray;	
 	}
 	
 	.list-lines{
 		width: 300px;
 		height: 50px;
-		border: 1px solid gray;	
 	}
 	
 	.right-arrow{
-		opacity: 0.7;
-		margin: auto;
+		opacity: 0.5;
+		text-align: center;
 		display: inline-block;
 		width: 50px;
 		height: 50px;
@@ -137,9 +144,10 @@
 		margin: auto;
 	}
 	#top{
-		margin: 0 auto;
+		margin: 30px auto 10px auto;
 		width: 1000px;
 		height: 80px;
+		opacity: 0;
 	}
 	#top-image{
 		background-size: 100% 100%;
@@ -156,6 +164,8 @@
 		font-size: 2em;
 		float: left;
 	}
+	
+	
 </style>
 <script>
 	$(document).on('click', '.lang-wrapper', function() {
@@ -176,29 +186,30 @@
 		setTimeout(function() {
 		$('#paragraphlist-wrapper').css("height", '700px');
 		}, 100);
-		setTimeout(function() {
-		$('#paragraphlist-wrapper').css("opacity", '1');
-		}, 1001);
+		
 		$('#paragraphlist-wrapper').css("position", '');
 		$('#paragraphlist-wrapper').css("margin", '0 auto');
-		$('#paragraphlist-wrapper').css("display", 'block');
+
+		
+		$.ajax({
+			url : '/cota/paragraphlist',			// 전송할 URL
+			type : 'get',				// 전송 방식
+			data : sendData, 							// 전송할 데이터
+			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
+				$('#top-image').css('background-image', 'url(/cota/images/'+selectedLang+'.png)');
+				$('#top-desc').text(selectedLang);
+				$.each(data, function(idx, val){
+					$('#list-wrapper').append("<div class='list' id="+val+"><div class='list-desc'><div class='list-title'><label class='lbl-title'>"+val+"</label></div><div class='list-lines'><label class='lbl-lines'>"+val+"</label></div></div><div class='right-arrow'></div></div>")
+						
+				});
+			}
+		});
 		
 		setTimeout(function() {
-			$.ajax({
-				url : '/cota/paragraphlist',			// 전송할 URL
-				type : 'get',				// 전송 방식
-				data : sendData, 							// 전송할 데이터
-				success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-					$('#top-image').css('background-image', 'url(/cota/images/'+selectedLang+'.png)');
-					$('#top-desc').text(selectedLang);
-					$.each(data, function(idx, val){
-						$('#list-wrapper').append("<div class='list' id="+val+"><div class='list-desc'><div class='list-title'><label class='lbl-title'>"+val+"</label></div><div class='list-lines'><label class='lbl-lines'>"+val+"</label></div></div><div class='right-arrow'></div></div>")
-							
-					});
-				}
-			});
-		}, 1500);
-
+		$('#paragraphlist-wrapper').css("opacity", '1');
+		$('#list-wrapper').css("opacity", '1');
+		$('#top').css("opacity", '1');
+		}, 1000);
 	});
 	
 	$(document).on('click', '.list', function(){
@@ -211,10 +222,15 @@
 			type : 'get',				// 전송 방식
 			data : sendData, 							// 전송할 데이터
 			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-				alert(data);
+				$('#paragraphlist-wrapper').css("opacity", '0');
+				setTimeout(function() {
+					$('#paragraphlist-wrapper').remove();
+					$('body').append(data);
+				}, 500);
 			}
 		});
 	});
+	
 </script>
 </head>
 <body>
@@ -246,7 +262,7 @@
 		</div>
 	</div>
 </div>
-<div id="paragraphlist-wrapper">
+<div id="paragraphlist-wrapper" class='w3-animate-opacity'>
 	<div id='top'>
 		<div id='top-image'></div>
 		<div id='top-desc'></div>

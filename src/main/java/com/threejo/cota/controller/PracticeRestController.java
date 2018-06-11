@@ -16,14 +16,13 @@ public class PracticeRestController {
 	
 	@RequestMapping(value="/paragraphlist")
 	public ArrayList<String> getParagraphList(String lang_type){
-		System.out.println("lang_type : " + lang_type);
 		ArrayList<String> list = (ArrayList<String>)ps.getParagraphList(lang_type);
-		System.out.println("@@@@@@@@ list >> " + list.size());
 		return list;
 	}
 	
 	@RequestMapping(value="/getParagraphContent")
 	public String getParagraphContent(String para_title) {
+		System.out.println("@@@@@@@@@@@222 : " + ps.getParagraphContent(para_title)); 
 		return ps.getParagraphContent(para_title);
 	}
 }

@@ -26,13 +26,7 @@ public class MemberController {
 		
 		int result = ms.insert(member);
 
-		if (result <= 0) {
-			model.addAttribute("msg", "오류 : 회원 정보 입력 실패");
-			return "";
-		} else {
-
 			return "member/join"; // jsp
-		}
 
 	}
 

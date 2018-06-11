@@ -19,10 +19,10 @@
 }
 #selector{
 	margin:auto;
-	width: 80%;
+	width: 1200px;
 }
 #lang-selector{
-	width: 100%;
+	width: 1200px;
 	height: 30px;
 	margin-top: 10px;
 	background: #f3f3f3; /* Old browsers */
@@ -41,8 +41,8 @@
 }
 
 .fixed_width_wrapper {
-	overflow: hidden;
-	margin: 0 5%;
+	float: left;
+	margin: 0 15px;
 	display: inline-block;
 	width: 765px;
 }
@@ -57,7 +57,7 @@
 	margin: 10px auto;
 	border: 1px solid gray;
 	border-radius: 5px;
-	width: 80%;
+	width: 1200px;
 	text-align: center;
 }
 
@@ -66,11 +66,11 @@
 }
 #middle-wrapper{
 	overflow: hidden;
-	width: 80%;
+	width: 1200px;
 	margin: 20px auto;
 }
 .keyboard {
-	width: 100%;
+	width: 765px;
 	background-color: #cccccc;
 	border: 1px solid #cccccc;
 	border-radius: 25px;     
@@ -217,7 +217,7 @@ input[type="text"] {
 
 #status-div{
 	text-align: center;
-	width: 60%;
+	width: 1200px;
 	height: 30px;
 	border-radius: 5px;
 	margin: 0 auto;
@@ -248,6 +248,8 @@ input[type="text"] {
 	margin: auto;
 	background-image: url(${pageContext.request.contextPath}/images/ad.png);
 	background-size: 100% 100%;
+	display: none;
+	
 }
 
 .modal {
@@ -322,17 +324,16 @@ input[type="text"] {
 }
 
 #left-hand{
-	margin-left: 5%;
-	display: inline-block;
-	width: 15%;
+	float: left;
+	width: 200px;
 	height: 280px;
 	background-image: url(${pageContext.request.contextPath}/images/lefthand.png);
 	background-size: 100% 100%;
 }
 
 #right-hand{
-	display: inline-block;
-	width: 15%;
+	float: left;
+	width: 200px;
 	height: 280px;
 	background-image: url(${pageContext.request.contextPath}/images/righthand.png);
 	background-size: 100% 100%;

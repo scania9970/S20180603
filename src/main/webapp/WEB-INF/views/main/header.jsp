@@ -25,7 +25,7 @@
 			<div class="taja">
 				<a href="#" class="dropbtn">타자연습&nbsp;&nbsp;&#9662;</a>
 				<div class="dropdown-taja">
-					<a href="/cota/word?lang_type=java">낱말연습</a> <a href="/cota/sentence?lang_type=java">문장연습</a> <a href="#">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
+					<a href="/cota/word?lang_type=java">낱말연습</a> <a href="/cota/sentence?lang_type=java">문장연습</a> <a href="/cota/paragraph-selector">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
 				</div>
 			</div>
 			<div class="forum"><a href="#">개발자 포럼</a></div>

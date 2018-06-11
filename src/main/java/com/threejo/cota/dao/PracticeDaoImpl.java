@@ -16,15 +16,26 @@ public class PracticeDaoImpl implements PracticeDao{
 	
 	@Override
 	public List<String> selectTypingDataSentence(String lang_type) {
-		List<String> prac = null;
-		prac = session.selectList("selectTypingDataSentence", lang_type);
-		return prac;
+		return session.selectList("selectTypingDataSentence", lang_type);
 	}
 
 	@Override
 	public List<String> selectTypingDataWord(String lang_type) {
-		List<String> prac = null;
-		prac = session.selectList("selectTypingDataWord", lang_type);
-		return prac;
+		return session.selectList("selectTypingDataWord", lang_type);
+	}
+
+	@Override
+	public List<String> selectTypingDataParagraph(String lang_type) {
+		return session.selectList("selectTypingDataParagraph", lang_type);
+	}
+
+	@Override
+	public List<String> getParagraphList(String lang_type) {
+		return session.selectList("selectParagraphList", lang_type);
+	}
+
+	@Override
+	public String getParagraphContent(String para_title) {
+		return session.selectOne("getParagraphContent", para_title);
 	}
 }

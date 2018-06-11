@@ -17,7 +17,6 @@ public class Member {
    private Date join_date;
    
    
-   
    public String getEmail() {
       return email;
    }

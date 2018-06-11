@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-
+<%@ include file="/WEB-INF/views/main/header.jsp" %>
 <style>
 .joinbutton {
 	width : 100%;
@@ -9,6 +9,10 @@
 	color: white;
 	background-color:#FF0000;
 	border-color: transparent;
+}
+
+.container {
+	margin-top: 150px;
 }
 </style>
 <head>
@@ -46,13 +50,13 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-5 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h2 class="panel-title" style="font-size: 20pt" align="center">로그인</h2>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="main">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" required autofocus>

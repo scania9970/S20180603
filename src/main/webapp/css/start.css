@@ -61,6 +61,7 @@ span{
 	font-weight: lighter;
 	font-family: sans-serif;
 	display: inline-block;
+	border: solid;
 }
 
 input[type="text"]{

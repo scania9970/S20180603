@@ -15,7 +15,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-$(function() {
+$(function() { // 무조건 실행한다.
 	$('#passwordChk').change(function() {
 		if ($('#password').val() != $('#passwordChk').val()) { 
 			$('#passwordChk').val(""); // input 같은
@@ -28,6 +28,30 @@ $(function() {
 		}
 	});
 });
+
+
+$('#testButton').on('click', function() {
+	var sendData = 'email=' + $('#email').val();
+	/* alert($('#email').val()); */
+	$.ajax({
+		url : '/cota/emailCheck',
+		type : 'get',
+		data : sendData,
+		success : function(data) {
+			console.log("data : " + data );
+			if (data == 1) {
+				$('#email').val("");
+				$('#email').focus();
+				$('#spanemail').html("이미 가입된 이메일 입니다.");
+				
+				return;
+			} else {
+				$('#spanemail').html("사용해도 가능한 아이디 입니다");
+			}
+		}
+	});
+	
+})
 
 </script>
 <head>
@@ -74,7 +98,9 @@ $(function() {
                         <form role="form" action="/cota/insertmb" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" required autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>
+                                    <button id='testButton' class="form-control">중복확인</button>
+                                    <span id="spanemail"></span>
                                     <input class="form-control" type="button" name="btnEmailChk" value="인증번호받기" onclick="emailCheck">
                                     <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled">
                                     <input type="button" id="btnConfirm" name="btnConfirm" class="form-control" value="인증하기" disabled="disabled">

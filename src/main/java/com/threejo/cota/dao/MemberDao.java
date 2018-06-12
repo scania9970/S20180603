@@ -7,5 +7,7 @@ import com.threejo.cota.model.Member;
 public interface MemberDao {
 	
 	int insert(Member member);
+	
+	String emailCheck(String email);
 
 }

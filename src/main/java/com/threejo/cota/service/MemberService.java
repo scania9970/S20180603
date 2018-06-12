@@ -6,4 +6,7 @@ public interface MemberService {
 	
 	 int insert(Member member);
 	 
+	 //Ajax email Check
+	 int emailCheck(String email);
+	 
 }

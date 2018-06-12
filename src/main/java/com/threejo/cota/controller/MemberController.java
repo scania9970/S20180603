@@ -20,14 +20,11 @@ public class MemberController {
 
 		return "member/join";
 	}
-	
-/*	@RequestMapping(value = "emailCheck")*/
-	
 
 	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // 헤더 주소 회원가입
 	public String insertmb(Member member, Model model) {
 		
-		int result = ms.insert(member);
+		int result = ms.insert(member); // 받아올 데이터타입 앞에 선언 해줌
 
 			return "member/join"; // jsp
 

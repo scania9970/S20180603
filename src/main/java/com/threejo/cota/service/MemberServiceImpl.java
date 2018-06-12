@@ -17,5 +17,15 @@ public class MemberServiceImpl implements MemberService {
 	public int insert(Member member) {
 		return md.insert(member);
 	}
+	
+	@Override
+	public int emailCheck(String email) {
+		int result = 0;
+		if(md.emailCheck(email) != null) {
+			result = 1;
+		}
+		
+		return result;
+	}
 
 }

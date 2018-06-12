@@ -1,6 +1,5 @@
 package com.threejo.cota.service;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +15,24 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insert(Member member) {
-		System.out.println("service");
-		System.out.println("member id : " + member.getEmail());
-		System.out.println("member id : " + member.getPassword());
-		System.out.println("member id : " + member.getNickname());
-		System.out.println("member id : " + member.getProfile_url());
 		return md.insert(member);
+	}
+	
+	@Override
+	public int emailCheck(String email) {
+		int result = 0;
+		if(md.emailCheck(email) != null) {
+			result = 1;
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public String nicknameCheck(String nickname) {
+		md.nicknameCheck(nickname);
+		return md.nicknameCheck(nickname);
+		
 	}
 
 }

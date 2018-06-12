@@ -14,12 +14,17 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insert(Member member) {
-		System.out.println("dao");
-		System.out.println("member id : " + member.getEmail());
-		System.out.println("member id : " + member.getPassword());
-		System.out.println("member id : " + member.getNickname());
-		System.out.println("member id : " + member.getProfile_url());
-		return session.insert("insert", member);
+		return session.insert("insertmb", member);
+	}
+	
+	@Override
+	public String emailCheck(String email) {
+		return session.selectOne("emailCheck", email);
+	}
+	
+	@Override
+	public String nicknameCheck(String nickname) {
+		return session.selectOne("nicknameCheck", nickname);
 	}
 
 }

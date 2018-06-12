@@ -21,4 +21,11 @@ public class MypageController {
 		
 		return "mypage/myinfo";
 	}
+	
+	@RequestMapping(value = "myinfoProc")
+	public String myinfoProc(String email) {
+		System.out.println("응 꺼져");
+		
+		return "redirect:myinfo";
+	}
 }

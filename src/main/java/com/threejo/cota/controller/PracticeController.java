@@ -30,6 +30,18 @@ public class PracticeController {
 		return "practice/word";
 	}
 	
+	@RequestMapping(value="/paragraph-selector")
+	public String loadParaSelector() {
+		return "practice/paragraph-selector";
+	}
+	
+	@RequestMapping(value="/paragraph")
+	public String loadParaPrac(Model model, String lang_type) {
+		ArrayList<String> dataList = (ArrayList<String>)ps.getTypingDataParagraph(lang_type);
+		model.addAttribute("dataList", dataList);
+		return "practice/paragraph";
+	}
+	
 	@RequestMapping(value="/typingGame")
 	public String loadTypingGame() {
 		return "practice/typingGame";

@@ -22,9 +22,9 @@ public class MemberRestController {
 	
 	@RequestMapping(value = "nicknameCheck")
 	public String nicknameCheck(String nickname) {
-		String result = ms.nicknameCheck(nickname);
+		ms.nicknameCheck(nickname);
 		
-		return result;
+		return ms.nicknameCheck(nickname);
 	}
 
 }

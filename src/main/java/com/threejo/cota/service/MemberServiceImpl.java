@@ -31,8 +31,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String nicknameCheck(String nickname) {
 		md.nicknameCheck(nickname);
-		return md.nicknameCheck(nickname);
 		
+		return md.nicknameCheck(nickname);
 	}
 
 }

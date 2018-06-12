@@ -6,6 +6,8 @@ import com.threejo.cota.model.Member;
 
 public interface MemberService {
 	
-	List<Member> list(Member member);
+	
+	
+	int insert(Member member);
 
 }

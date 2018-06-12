@@ -1,40 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title></title>
+<title>COTA</title>
+<%@ include file="/WEB-INF/views/main/header.jsp" %>
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
 
+#selector{
+	margin:auto;
+	width: 80%;
+}
+#lang-selector{
+	width: 100%;
+	height: 30px;
+	margin-top: 10px;
+	background: #f3f3f3; /* Old browsers */
+	background: #fff -webkit-gradient(linear, left top, left bottom, from(#ffffff),to(#e5e5e5));
+	background: #fff linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+	border-radius: 5px;
+}
+
 #wrapper {
 	width: 100%;
-	height: 900px;
+	height: 700px;
 }
 
 #center {
 	width: 100%;
-	border: 1px solid gray;
 }
 
 .fixed_width_wrapper {
-	width: 80%;
-	margin: 20px auto;
+	overflow: hidden;
+	margin: 0 5%;
+	display: inline-block;
+	width: 765px;
 }
 
 .line {
-	width: 100%;
+	width: 100%; 
 	text-align: center;
 	margin: 10px auto;
 }
 
 #sentence-div {
-	margin: 20px auto;
+	margin: 10px auto;
 	border: 1px solid gray;
+	border-radius: 5px;
 	width: 80%;
 	text-align: center;
 }
@@ -42,21 +59,30 @@
 .line div {
 	display: inline-block;
 }
-
+#middle-wrapper{
+	overflow: hidden;
+	width: 80%;
+	margin: 20px auto;
+}
 .keyboard {
 	width: 100%;
+	background-color: #cccccc;
+	border: 1px solid #cccccc;
+	border-radius: 25px;     
 }
 
 .key {
-	border: 1px solid gray;
+	background-color: white;
+	color: #737373;
+	border: 1px solid #cccccc;
 	border-radius: 10px;
-	width: 50px;
+	width: 43px;
 	height: 52px;
 	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
 }
 
 .key.wide_1 {
-	width: 84px;
+	width: 66px;
 	height: 52px;
 }
 
@@ -66,12 +92,12 @@
 }
 
 .key.wide_3 {
-	width: 105px;
+	width: 96px;
 	height: 52px;
 }
 
 .key.wide_4 {
-	width: 134px;
+	width: 120px;
 	height: 52px;
 }
 
@@ -99,7 +125,6 @@ strong {
 }
 
 #s1 {
-	width: 500px;
 	height: 50px;
 }
 
@@ -119,11 +144,11 @@ input[type="text"] {
 	border-width: 0px 0px 2px 0px;
 	border-color: #CE3636;
 	font-size: 40px;
-	font-family: sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: lighter;
 	color: black;
 	outline: none;
-	width: 81%;
+	width: 10px;
 	display: inline-block;
 	transition: 0.1s;
 }
@@ -186,9 +211,10 @@ input[type="text"] {
 }
 
 #status-div{
-	width: 80%;
-	height: 150px;
-	border: 1px solid gray;
+	text-align: center;
+	width: 60%;
+	height: 30px;
+	border-radius: 5px;
 	margin: 0 auto;
 }
 
@@ -197,15 +223,20 @@ input[type="text"] {
 	width: 50%;
 	height: 150px;
 	border: 1px solid gray;
+	border-radius: 5px;
 }
 #acuuracy-divs{
 	float: left;
 	width: 50%;
 	height: 150px;
 	border: 1px solid gray;
+	border-radius: 5px;
 }
 
 #ad{
+	position: absolute;
+	bottom: 100px;
+	left: 390px;
 	border: 1px solid gray;
 	width: 60%;
 	height: 100px;
@@ -284,6 +315,22 @@ input[type="text"] {
     padding: 2px 16px;
 }
 
+#left-hand{
+	margin-left: 5%;
+	display: inline-block;
+	width: 15%;
+	height: 280px;
+	background-image: url(${pageContext.request.contextPath}/images/lefthand.png);
+	background-size: 100% 100%;
+}
+
+#right-hand{
+	display: inline-block;
+	width: 15%;
+	height: 280px;
+	background-image: url(${pageContext.request.contextPath}/images/righthand.png);
+	background-size: 100% 100%;
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -296,13 +343,7 @@ input[type="text"] {
 	var startDate = new Date();
 	var startTime = null;
 	var lapCnt = 0;
-	var sentences = [ 'System.out.println("Hello Java");',
-		'Connection conn = null;', 'int[] arr = new int[6];',
-		'int k = Integer.parseInt(str);',
-		'BigInteger a = BigInteger.ZERO;', 'Collections.sort(array);',
-		'if(p^q >= q);', 'double k = Math.sqrt(n);',
-		'thread.setPriority(10);', 'char c = string.charAt(14);',
-		'Welcome to JAVA TAJA', 'private long cyphertext;' ];
+	var sentences = ${dataList};
 	var correctHits = 0;
 	var incorrectHits = 0;
 	var typeableChars = 0;
@@ -316,62 +357,49 @@ input[type="text"] {
 	})
 	
 	
+	
 	function redirection(event) {
 		if (startTime === null) {
 			startDate = new Date();
 			startTime = startDate.getTime();
-			//console.log('startTime : ' + startTime);
-			//console.log('startTime milli : ' + startTime);
 		}
-		//console.log("totalHits : " + totalHits);
-		//console.log("2. redirection method");
-		//console.log($('#typed').prop("selectionStart")); //ƒøº≠ ∆˜¡ˆº«
-		var x = event.key; //¿‘∑¬∞™ ¿˙¿Â
-		var parsedKey = getParsedKey(x); // ≈∞∫∏µÂ css ƒ¡∆Æ∑—«“ element string
-		//console.log("x=" + x);
+		var x = event.key; //ÏûÖÎ†•Í∞í Ï†ÄÏû•
+		changeFinger(getCharToTyping());
+		var parsedKey = getParsedKey(x); // ÌÇ§Î≥¥Îìú css Ïª®Ìä∏Î°§Ìï† element string
 		var input_textfield = document.getElementById('typed');
 		var input = input_textfield.value;
 		var sentence = document.getElementById('sentence').value;
 		var sentence_obj = document.getElementById('sentence');
 		var cursorPosition = $('#typed').prop("selectionStart");
-		var progressbar = setProgressBar(sentence.length, input_textfield.value.length);
 
 		sentenceHits++;
 		if(x != 'Shift'){
 			totalHits++;
-			//console.log('totalHits++');
 		}
-		$('#meter-span').css('width', progressbar+"%");
-
-		//console.log("input=" + input); //¿‘∑¬∞™
-		//console.log("sentence=" + sentence); //¿‘∑¬«ÿæﬂ «“ πÆ¿Â
-		//console.log("===============================");
-		if (x === 'Enter') { //ø£≈Õ ≈∞ ¿‘∑¬ Ω√
+		getCharToTyping();
+		if (x === 'Enter') { //ÏóîÌÑ∞ ÌÇ§ ÏûÖÎ†• Ïãú
+			if(input.length == 0){
+				return;
+			}
 			var endDate = new Date();
 			var endTime = endDate.getTime();
-			//console.log('endTime : ' + endTime);
 			var ellapsedTime = endTime - startTime;
-			//console.log('ellapsedTime : ' + ellapsedTime);
-			//console.log('sentence length : ' + sentence.length);
 			typeableChars += sentence.length;
-			//console.log('sentence.length : ' + sentence.length);
-			//console.log('typeableChars : ' + typeableChars);
 			if (input.length == sentence.length) {
-				//console.log("3. enter pressed");
-				//console.log("ellapsed time : " + (endTime - startTime));
+				$('#typed').val('');
 				replaceSentence();
-				lapCnt++; // lapCnt ¡ı∞°
+				changeFinger(getCharToTyping());
+				lapCnt++; // lapCnt Ï¶ùÍ∞Ä
 				$('#s1').css('color', '#A6A6A6');
 				$('#s2').css('color', '#A6A6A6');
-				$('#typed').val('');
 				$('#typing-speed').text(getSpeed(sentenceHits, ellapsedTime));
 				$('#typing-accuracy').text(getAccuracy(sentence, input));
-				chkLapCnt(lapCnt); // lapCnt∏¶ √º≈©«œø© modal load
+				chkLapCnt(lapCnt); // lapCntÎ•º Ï≤¥ÌÅ¨ÌïòÏó¨ modal load
 				sentenceHits = 0;
 				$('#meter-span').css('width', 0+"%");
 				startTime = null;
 				return;
-			} else { // ¿‘∑¬∞™¿Ã ∆≤∏± ∂ß
+			} else { // ÏûÖÎ†•Í∞íÏù¥ ÌãÄÎ¶¥ Îïå
 				$(input_textfield).addClass('shakeIt');
 				$("input").css({
 					"color" : "#CE3636"
@@ -384,23 +412,23 @@ input[type="text"] {
 						});
 					}, 1000);
 				}, 100);
+				$('#typed').val('');
 				replaceSentence();
-				lapCnt++; // lapCnt ¡ı∞°
+				changeFinger(getCharToTyping());
+				lapCnt++; // lapCnt Ï¶ùÍ∞Ä
 				$('#s1').css('color', '#A6A6A6');
 				$('#s2').css('color', '#A6A6A6');
-				$('#typed').val('');
 				$('#typing-speed').text(getSpeed(sentenceHits, ellapsedTime));
 				$('#typing-accuracy').text(getAccuracy(sentence, input));
-				chkLapCnt(lapCnt); // lapCnt∏¶ √º≈©«œø© modal load
+				chkLapCnt(lapCnt); // lapCntÎ•º Ï≤¥ÌÅ¨ÌïòÏó¨ modal load
 				sentenceHits = 0;
 				$('#meter-span').css('width', 0+"%");
 				startTime = null;
 				return;
 			}
-		}3
+		}
 		if (sentence.substring(0,input.length) == input.substring(0,input.length)) {
 			correctHits++;
-			//console.log("correctHits : " + correctHits);
 			$(input_textfield).css({
 				"color" : "green"
 			});
@@ -419,7 +447,6 @@ input[type="text"] {
 		} else {
 			incorrectHits++;
 			incorrectKeys.push(x);
-			//console.log("incorrectHits : " + incorrectHits);
 			$(input_textfield).css({
 				"color" : "red"
 			});
@@ -437,42 +464,62 @@ input[type="text"] {
 			});
 		}
 	}
-
-	$(document).ready(function() {
-		replaceSentence();
-	});
+	
+	
+	function changeFinger(key){
+		// uppercase Í≥†Î†§ÌïòÍ∏∞
+		// uppercaseÎùºÎ©¥ shift
+		if(key == ''){
+			key = 'Enter';
+		}
+		var pasredCss = "";
+		var defaultLeft = "url(${pageContext.request.contextPath}/images/lefthand.png)";
+		var defaultRight = "url(${pageContext.request.contextPath}/images/righthand.png)";
+		var keyMap = new Map([
+			 [" ","l-thumb"],// l-thumb
+			 ["4","l-index"],["$","l-index"],["5","l-index"],["%","l-index"],["r","l-index"],["R","l-index"],["t","l-index"],["T","l-index"],["f","l-index"],["F","l-index"],["g","l-index"],["G","l-index"],["v","l-index"],["V","l-index"],["b","l-index"],["B","l-index"],// l-index
+			 ["3","l-middle"],["#","l-middle"],["e","l-middle"],["E","l-middle"],["d","l-middle"],["D","l-middle"],["c","l-middle"],["C","l-middle"],// l-middle
+			 ["2","l-ring"],["@","l-ring"],["w","l-ring"],["W","l-ring"],["s","l-ring"],["S","l-ring"],["x","l-ring"],["X","l-ring"],// l-ring
+			 ["1","l-little"],["!","l-little"],["q","l-little"],["Q","l-little"],["a","l-little"],["A","l-little"],["z","l-little"],["Z","l-little"],// l-little
+			 [" ","r-thumb"],// r-thumb
+			 ["6","r-index"],["^","r-index"],["7","r-index"],["&","r-index"],["y","r-index"],["Y","r-index"],["u","r-index"],["U","r-index"],["h","r-index"],["H","r-index"],["j","r-index"],["J","r-index"],["n","r-index"],["N","r-index"],["m","r-index"],["M","r-index"],// r-index
+			 ["8","r-middle"],["*","r-middle"],["i","r-middle"],["I","r-middle"],["k","r-middle"],["K","r-middle"],[",","r-middle"],["<","r-middle"],// r-middle
+			 ["9","r-ring"],["(","r-ring"],["o","r-ring"],["O","r-ring"],["l","r-ring"],["L","r-ring"],[".","r-ring"],[">","r-ring"],// r-ring
+			 ["0","r-little"],[")","r-little"],["p","r-little"],["P","r-little"],[";","r-little"],[":","r-little"],["/","r-little"],["?","r-little"],// r-little
+			 ["Enter", "r-middle"]
+		]);
+		//console.log("key : " +keyMap.get(key));
+		//console.log(key);
+		//console.log(keyMap.get(key));
+		var keyArr = keyMap.get(key).split('-');
+		parsedCss = "url(${pageContext.request.contextPath}/images/"+keyArr[0]+"-"+keyArr[1]+".png)";
+		 
+		if(keyArr[0] == 'l'){
+			$("#left-hand").css("background-image", parsedCss);
+			$("#right-hand").css("background-image", defaultRight);
+		}else{
+			$("#left-hand").css("background-image", defaultLeft);
+			$("#right-hand").css("background-image", parsedCss);
+			
+		}
+		//console.log("parsedCss : " + parsedCss);
+	};
+	
 	
 	function replaceSentence() {
-		//console.log('currentSentence.length before add : ' + typeableChars);
-		current = Math.floor(Math.random() * 12);
+		current = Math.floor(Math.random() * 10);
 		var currentSentence = sentences[current];
-		//console.log('currentSentence.length : ' + currentSentence.length);
-		//console.log('typeableChars : ' + typeableChars);
-		//console.log('totalHits : ' + totalHits);
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 		$('#s2').text('');
-	}
-	
-	function setProgressBar(totalLength, currLength){
-		var result = Math.round(currLength / totalLength * 100);
-		if(result >= 100){
-			return 100;
-		}
-		//console.log("totalLength : " + totalLength);
-		//console.log("currLength : " + currLength);
-		//console.log("progressbar : " + result);
-		return result;
+		var s1Width = $('#s1').css('width');
+		$('#typed').css('width', s1Width);
 	}
 	
 	function getSpeed(sentenceHits, ellapsedTime){
 		var seconds = ellapsedTime / 1000;
 		var speed = Math.round(sentenceHits / seconds * 60, 2);
 		speedArr.push(speed);
-		//console.log('seconds : ' + seconds);
-		//console.log('sentenceHits : ' + sentenceHits);
-		//console.log('speed : ' + speed);
-
 		return speed+' h/s';
 	}
 	
@@ -494,13 +541,11 @@ input[type="text"] {
 			}	
 		}
 		accuracy = Math.round(((sLength - incorrectChars) / sLength * 100));
-		//console.log("accuracy : " + accuracy);
 		accArr.push(accuracy);		
 		return accuracy+ ' %';
 	}
 	
 	function chkLapCnt(lCnt){
-		//console.log("lCnt : " + lCnt);
 		if(lCnt == 3){
 			lapCnt = 0;
 			showModal(speedArr, accArr, totalHits, typeableChars, correctHits, incorrectHits, incorrectKeys);
@@ -520,48 +565,37 @@ input[type="text"] {
 	    var mean = 0;
 	    var productivity = 0;
 	   
-		// ∆Ú±’ ≈∏ºˆ
+		// ÌèâÍ∑† ÌÉÄÏàò
 	    for(var i = 0; i < _speedArr.length; i++){
 	    	sum += _speedArr[i];
 	    }
-		//console.log('sArr length : ' + _speedArr.length);
-		//console.log("ssum : " + sum);
 		mean = Math.round(sum / _speedArr.length);
-		//console.log('smean : ' + mean);
 		$('#mspeed').text(mean);
 		sum = 0; mean = 0;
 		
-		// ∆Ú±’ ¡§»Æµµ
+		// ÌèâÍ∑† Ï†ïÌôïÎèÑ
 		for(var i = 0; i < _accArr.length; i++){
 	    	sum += _accArr[i];
 	    }
-		//console.log('aArr length : ' + _accArr.length);
-		//console.log("asum : " + sum);
 		mean = Math.round(sum / _accArr.length);
-		//console.log('amean : ' + mean);
 		$('#macc').text(mean);
 		sum = 0; mean = 0;
 		
 		
-		// ª˝ªÍº∫
+		// ÏÉùÏÇ∞ÏÑ±
 		if(_totalHits < _typeableChars){
-			//console.log("_totalHits : " + _totalHits);
-			//console.log("_typeableChars : " + _typeableChars);
-			productivity = 'ø¿≈∏∞° ≥ π´ ∏πΩ¿¥œ¥Ÿ.';
+			productivity = 'Ïò§ÌÉÄÍ∞Ä ÎÑàÎ¨¥ ÎßéÏäµÎãàÎã§.';
 			typeableChars = 0;
 			$('#prod').text(productivity);
 		}else{
 			productivity = Math.round((_totalHits - _typeableChars) / _totalHits * 100)+'%';
-			//console.log("prod : " + productivity);
-			//console.log("_totalHits : " + _totalHits);
-			//console.log("_typeableChars : " + _typeableChars);
 			$('#prod').text(productivity);
 			productivity = 0;
 			typeableChars = 0;
 		}
 		
 		
-		// ∏π¿Ã ∆≤∏∞ ≈∞
+		// ÎßéÏù¥ ÌãÄÎ¶∞ ÌÇ§
 		
 		incorrectKeys.sort();
 		var flag = _incorrectKeys[0];
@@ -569,30 +603,39 @@ input[type="text"] {
 		var times = 0;
 	 	var current = null;
 	 	var incorrectText = ' ';
-	 	//console.log('_incorrectKeys :' + _incorrectKeys);
-		
-		for(var i = 0; i < _incorrectKeys.length; i++){
-			//console.log('i :' + i);
-			//console.log('flag : ' + flag);
-			current = _incorrectKeys[i];
-			//console.log('current : ' + current);
-			if(_incorrectKeys[i] != 'Backspace' &&_incorrectKeys[i] != 'Shift' ){
-				if(flag == current){
-					times++;
-					incorrectJson[flag] = times;
-				}else{
-					//console.log('flag : ' + flag);
-					//console.log('incorrectJson[flag] : ' + incorrectJson[flag]);
-					flag = _incorrectKeys[i];
-					times = 1;
-					incorrectJson[flag] = times;
+		var incorrectArr = [];
+	 	if(incorrectKeys == ''){
+			incorrectText = 'Ï†ïÌôïÎèÑ 100%!';
+			
+		}else{
+			for(var i = 0; i < _incorrectKeys.length; i++){
+				current = _incorrectKeys[i];
+				if(_incorrectKeys[i] != 'Backspace' &&_incorrectKeys[i] != 'Shift' ){
+					if(flag == current){
+						times++;
+						incorrectJson[flag] = times;
+					}else{
+						flag = _incorrectKeys[i];
+						times = 1;
+						incorrectJson[flag] = times;
+					}
 				}
 			}
-		}
-		
-		// 
-		for(var i = 0; i < Object.keys(incorrectJson).length; i++){
-			incorrectText += Object.keys(incorrectJson)[i] + ' : ' + Object.values(incorrectJson)[i] + ', ';
+			
+			$.each(incorrectJson, function(index, value){ // incorrectJson ÏÉâÏù∏Î∞∞Ïó¥Ìôî(mapÏ≤òÎüº ÎßåÎì†Îã§Îäî ÏÜåÎ¶¨)
+		        incorrectArr.push({key: index, value: value});
+			});
+			incorrectArr.sort(function(a, b){ // valueÏóê Îî∞Îùº Ï†ïÎ†¨
+				return(a.value < b.value) ? -1 : (a.value > b.value) ? 1 : 0;
+			});
+			incorrectArr.reverse();
+			console.log("length : " + incorrectArr);
+			for(var i = 0; i < 3; i++){
+				if(!incorrectArr[i]){
+					continue;
+				}
+				incorrectText += " " + incorrectArr[i].key + " : " + incorrectArr[i].value + ",";
+			}
 		}
 		
 		$('#incorrect_keys').text(incorrectText);
@@ -600,11 +643,29 @@ input[type="text"] {
 		
 	}
 	
+	function getCharToTyping(){
+		var tText = $("#typed").val().length;
+		var sentence = $("#sentence").val();
+		var ch = sentence.substr(tText, 1);
+		//console.log("tText length : " + tText);
+		//console.log("sentence : " + sentence);
+		//console.log("ch : " + ch);
+		return ch;
+	}
 	
+	function getDataByLang(){
+		var lang_type = $('#lang-selector option:selected').val();
+		location.href = '/cota/sentence?lang_type='+lang_type;
+	}
+	function setData(){
+		var param = window.location.search.split("=")[1];
+		$('#lang-selector').val(param).prop("selected, true");
+		$('#continue').attr('href', '/cota/sentence?lang_type='+param);
+		replaceSentence();
+		changeFinger(getCharToTyping());
+	}
 	
 	function getParsedKey(key) {
-		//console.log("key in method : " + key);
-		//console.log("1. paint key method");
 		if (key === ' ') {
 			return "#key_space";
 		} else if (key === '0' || key === ')') {
@@ -660,44 +721,20 @@ input[type="text"] {
 		}
 	}
 
-	/* $(document).keyup(function(event) {
-		let key = event.key;
-		//console.log("key : " + key);
-		let parsedId = getParsedKey(key);
-		//console.log("parsedId : " + parsedId);
-		//console.log("selectedId : " + selectedId);
-		
-	});
-
-	$(document).keydown(function(event) {
-		let key = event.key;
-		//console.log("key : " + key);
-		let parsedId = getParsedKey(key);
-		//console.log("parsedId : " + parsedId);
-		let selectedObj = $(parsedId);
-		//console.log("selectedId : " + selectedId);
-		selectedObj.css("background-color", "red");
-	}); */
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<!-- 
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-	o ≈∏ºˆ πˆ±◊ »Æ¿Œ o
-	o arr æ»ø° ªı∑ŒøÓ arr∏¶ «“¥Á«œø© json «¸≈¬∑Œ ∏∏µÈ±‚  incorrect keyµÈ¿« »Ωºˆ ƒ´øÓ∆Æ«œø© «™Ω¨ o 
-	o ∏π¿Ã ∆≤∏∞ ¿⁄∏Æ, ∞Ëº”«œ±‚, ¡æ∑·«œ±‚ «•«ˆ«œ±‚  o
-	o modal º≥∞Ë«œ±‚ o
-	database ø¨µø«œ±‚
-	o git »Ø∞Ê∏∏µÈ±‚ o
-	o ∫Òª˝ªÍ¿˚ ≈∏¿⁄∞° 0¿œ∂ß πˆ±◊, ∫Òª˝ªÍ¿˚ ≈∏¿Ã«Œ ºˆøÕ ∆€ºæ∆Æ∞° ¿ﬂ ∏¬¡ˆ æ ¿Ω »Æ¿Œ«œ±‚	
-	∏π¿Ã ∆≤∏∞ ¿⁄∏Æ º¯º≠¥Î∑Œ, ªÛ¿ß 5∞≥∏∏
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////§µ§°////////////////////////////////////////
- -->
 
-<body oncopy="return false" oncut="return false" onpaste="return false">
+<body oncopy="return false" oncut="return false" onpaste="return false" onload="setData()">
+
+	<div id="selector">
+		<select id="lang-selector" onchange='getDataByLang()'>
+			<option value="java">JAVA</option>
+			<option value="python">PYTHON</option>
+			<option value="cdoubleplus">C++</option>
+		</select>
+	</div>
 	<div id="wrapper">
 		<div id="center">
 			<div id="sentence-div">
@@ -706,275 +743,273 @@ input[type="text"] {
 					onkeyup="redirection(event)" autofocus /> <input type="hidden"
 					class="sentence" id="sentence" />
 			</div>
-			<div class="meter">
-	  			<span id="meter-span"></span>
-			</div>
 			<div id="status-div">
-				<div id="speed-div">
-					<label>«ˆ¿Á≈∏ºˆ</label>
-					<label id='typing-speed'>0.0h/s</label>
-				</div>	
-				<div id="accuracy-div">
-					<label>¡§»Æµµ</label>
-					<label id='typing-accuracy'>0.0%</label>
-				</div>	
+					<label>ÌòÑÏû¨ÌÉÄÏàò</label>
+					<label id='typing-speed'>0 h/s</label>
+					&nbsp;&nbsp;&nbsp;
+					<label>Ï†ïÌôïÎèÑ</label>
+					<label id='typing-accuracy'>0 %</label>
 						
 			</div>
-			<div class="fixed_width_wrapper">
-				<div class="keyboard">
-					<div class="line">
-						<div id="key_accent" class="key">
-							<div class="line1">~</div>
-							<div class="line2">`</div>
+			<div id="middle-wrapper">
+				<div id="left-hand"></div>
+				<div class="fixed_width_wrapper">
+					<div class="keyboard">
+						<div class="line">
+							<div id="key_accent" class="key">
+								<div class="line1">~</div>
+								<div class="line2">`</div>
+							</div>
+							<div id="key_one" class="key">
+								<div class="line1">!</div>
+								<div class="line2">1</div>
+							</div>
+							<div id="key_two" class="key">
+								<div class="line1">@</div>
+								<div class="line2">2</div>
+							</div>
+							<div id="key_three" class="key">
+								<div class="line1">#</div>
+								<div class="line2">3</div>
+							</div> 
+							<div id="key_four" class="key">
+								<div class="line1">$</div>
+								<div class="line2">4</div>
+							</div>
+							<div id="key_five" class="key">
+								<div class="line1">%</div>
+								<div class="line2">5</div>
+							</div>
+							<div id="key_six" class="key">
+								<div class="line1">^</div>
+								<div class="line2">6</div>
+							</div>
+							<div id="key_seven" class="key">
+								<div class="line1">&</div>
+								<div class="line2">7</div>
+							</div>
+							<div id="key_eight" class="key">
+								<div class="line1">*</div>
+								<div class="line2">8</div>
+							</div>
+							<div id="key_nine" class="key">
+								<div class="line1">(</div>
+								<div class="line2">9</div>
+							</div>
+							<div id="key_zero" class="key">
+								<div class="line1">)</div>
+								<div class="line2">0</div>
+							</div>
+							<div id="key_hyphen" class="key">
+								<div class="line1">_</div>
+								<div class="line2">-</div>
+							</div>
+							<div id="key_equals" class="key">
+								<div class="line1">+</div>
+								<div class="line2">=</div>
+							</div>
+							<div id="key_backspace" class="key wide_2">
+								<div class="line1">backspace</div>
+								<div class="line2">&nbsp;</div>
+							</div>
 						</div>
-						<div id="key_one" class="key">
-							<div class="line1">!</div>
-							<div class="line2">1</div>
+						<div class="line">
+							<div id="key_tab" class="key wide_2">
+								<div class="line1">tab</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_q" class="key single">
+								<div class="line1">Q</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_w" class="key single">
+								<div class="line1">W</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_e" class="key single">
+								<div class="line1">E</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_r" class="key single">
+								<div class="line1">R</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_t" class="key single">
+								<div class="line1">T</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_y" class="key single">
+								<div class="line1">Y</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_u" class="key single">
+								<div class="line1">U</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_i" class="key single">
+								<div class="line1">I</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_o" class="key single">
+								<div class="line1">O</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_p" class="key single">
+								<div class="line1">P</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_left_bracket" class="key">
+								<div class="line1">{</div>
+								<br>
+								<div class="line2">[</div>
+							</div>
+							<div id="key_right_bracket" class="key">
+								<div class="line1">}</div>
+								<br>
+								<div class="line2">]</div>
+							</div>
+							<div id="key_backslash" class="key">
+								<div class="line1">|</div>
+								<br>
+								<div class="line2">\</div>
+							</div>
 						</div>
-						<div id="key_two" class="key">
-							<div class="line1">@</div>
-							<div class="line2">2</div>
+						<div class="line">
+							<div id="key_capslock" class="key wide_3">
+								<div class="line1">caps lock</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_a" class="key single">
+								<div class="line1">A</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_s" class="key single">
+								<div class="line1">S</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_d" class="key single">
+								<div class="line1">D</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_f" class="key single">
+								<div class="line1">F</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_g" class="key single">
+								<div class="line1">G</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_h" class="key single">
+								<div class="line1">H</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_j" class="key single">
+								<div class="line1">J</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_k" class="key single">
+								<div class="line1">K</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_l" class="key single">
+								<div class="line1">L</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_semicolon" class="key">
+								<div class="line1">:</div>
+								<br>
+								<div>;</div>
+							</div>
+							<div id="key_apostrophe" class="key">
+								<div class="line1">"</div>
+								<br>
+								<div>'</div>
+							</div>
+							<div id="key_enter" class="key wide_3">
+								<div class="line1">enter</div>
+								<div class="line2">&nbsp;</div>
+							</div>
 						</div>
-						<div id="key_three" class="key">
-							<div class="line1">#</div>
-							<div class="line2">3</div>
+						<div class="line">
+							<div id="key_left_shift" class="key wide_4">
+								<div class="line1">shift</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_z" class="key single">
+								<div class="line1">Z</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_x" class="key single">
+								<div class="line1">X</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_c" class="key single">
+								<div class="line1">C</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_v" class="key single">
+								<div class="line1">V</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_b" class="key single">
+								<div class="line1">B</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_n" class="key single">
+								<div class="line1">N</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_m" class="key single">
+								<div class="line1">M</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="key_comma" class="key">
+								<div class="line1">&lt;</div>
+								<br>
+								<div>,</div>
+							</div>
+							<div id="key_period" class="key">
+								<div class="line1">&gt;</div>
+								<br>
+								<div>.</div>
+							</div>
+							<div id="key_forwardslash" class="key">
+								<div class="line1">?</div>
+								<br>
+								<div>/</div>
+							</div>
+							<div id="key_right_shift" class="key wide_4">
+								<div class="line1">shift</div>
+								<div class="line2">&nbsp;</div>
+							</div>
 						</div>
-						<div id="key_four" class="key">
-							<div class="line1">$</div>
-							<div class="line2">4</div>
-						</div>
-						<div id="key_five" class="key">
-							<div class="line1">%</div>
-							<div class="line2">5</div>
-						</div>
-						<div id="key_six" class="key">
-							<div class="line1">^</div>
-							<div class="line2">6</div>
-						</div>
-						<div id="key_seven" class="key">
-							<div class="line1">&</div>
-							<div class="line2">7</div>
-						</div>
-						<div id="key_eight" class="key">
-							<div class="line1">*</div>
-							<div class="line2">8</div>
-						</div>
-						<div id="key_nine" class="key">
-							<div class="line1">(</div>
-							<div class="line2">9</div>
-						</div>
-						<div id="key_zero" class="key">
-							<div class="line1">)</div>
-							<div class="line2">0</div>
-						</div>
-						<div id="key_hyphen" class="key">
-							<div class="line1">_</div>
-							<div class="line2">-</div>
-						</div>
-						<div id="key_equals" class="key">
-							<div class="line1">+</div>
-							<div class="line2">=</div>
-						</div>
-						<div id="key_backspace" class="key wide_2">
-							<div class="line1">backspace</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_tab" class="key wide_2">
-							<div class="line1">tab</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_q" class="key single">
-							<div class="line1">Q</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_w" class="key single">
-							<div class="line1">W</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_e" class="key single">
-							<div class="line1">E</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_r" class="key single">
-							<div class="line1">R</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_t" class="key single">
-							<div class="line1">T</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_y" class="key single">
-							<div class="line1">Y</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_u" class="key single">
-							<div class="line1">U</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_i" class="key single">
-							<div class="line1">I</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_o" class="key single">
-							<div class="line1">O</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_p" class="key single">
-							<div class="line1">P</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_left_bracket" class="key">
-							<div class="line1">{</div>
-							<br>
-							<div class="line2">[</div>
-						</div>
-						<div id="key_right_bracket" class="key">
-							<div class="line1">}</div>
-							<br>
-							<div class="line2">]</div>
-						</div>
-						<div id="key_backslash" class="key">
-							<div class="line1">|</div>
-							<br>
-							<div class="line2">\</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_capslock" class="key wide_3">
-							<div class="line1">caps lock</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_a" class="key single">
-							<div class="line1">A</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_s" class="key single">
-							<div class="line1">S</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_d" class="key single">
-							<div class="line1">D</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_f" class="key single">
-							<div class="line1">F</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_g" class="key single">
-							<div class="line1">G</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_h" class="key single">
-							<div class="line1">H</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_j" class="key single">
-							<div class="line1">J</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_k" class="key single">
-							<div class="line1">K</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_l" class="key single">
-							<div class="line1">L</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_semicolon" class="key">
-							<div class="line1">:</div>
-							<br>
-							<div>;</div>
-						</div>
-						<div id="key_apostrophe" class="key">
-							<div class="line1">"</div>
-							<br>
-							<div>'</div>
-						</div>
-						<div id="key_enter" class="key wide_3">
-							<div class="line1">enter</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_left_shift" class="key wide_4">
-							<div class="line1">shift</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_z" class="key single">
-							<div class="line1">Z</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_x" class="key single">
-							<div class="line1">X</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_c" class="key single">
-							<div class="line1">C</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_v" class="key single">
-							<div class="line1">V</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_b" class="key single">
-							<div class="line1">B</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_n" class="key single">
-							<div class="line1">N</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_m" class="key single">
-							<div class="line1">M</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-						<div id="key_comma" class="key">
-							<div class="line1">&lt;</div>
-							<br>
-							<div>,</div>
-						</div>
-						<div id="key_period" class="key">
-							<div class="line1">&gt;</div>
-							<br>
-							<div>.</div>
-						</div>
-						<div id="key_forwardslash" class="key">
-							<div class="line1">?</div>
-							<br>
-							<div>/</div>
-						</div>
-						<div id="key_right_shift" class="key wide_4">
-							<div class="line1">shift</div>
-							<div class="line2">&nbsp;</div>
-						</div>
-					</div>
-					<div class="line">
-						<div id="key_left_ctrl" class="key wide_1">
-							<div class="line1">ctrl</div>
-						</div>
-						<div id="key_left_alt" class="key wide_1">
-							<div class="line1">alt</div>
-						</div>
-						<div id="key_left_cmd" class="key wide_1">
-							<div class="line1">cmd</div>
-						</div>
-						<div id="key_space" class="key wide_5">
-							<div class="line1">space</div>
-						</div>
-						<div id="key_right_cmd" class="key wide_1">
-							<div class="line1">cmd</div>
-						</div>
-						<div id="key_right_alt" class="key wide_1">
-							<div class="line1">alt</div>
-						</div>
-						<div id="key_right_ctrl" class="key wide_1">
-							<div class="line1">ctrl</div>
+						<div class="line">
+							<div id="key_left_ctrl" class="key wide_1">
+								<div class="line1">ctrl</div>
+							</div>
+							<div id="key_left_alt" class="key wide_1">
+								<div class="line1">alt</div>
+							</div>
+							<div id="key_left_cmd" class="key wide_1">
+								<div class="line1">cmd</div>
+							</div>
+							<div id="key_space" class="key wide_5">
+								<div class="line1">space</div>
+							</div>
+							<div id="key_right_cmd" class="key wide_1">
+								<div class="line1">cmd</div>
+							</div>
+							<div id="key_right_alt" class="key wide_1">
+								<div class="line1">alt</div>
+							</div>
+							<div id="key_right_ctrl" class="key wide_1">
+								<div class="line1">ctrl</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+				<div id="right-hand"></div>
+			</div>	
 			<div id="ad">
 			</div>
 		</div>
@@ -982,27 +1017,27 @@ input[type="text"] {
 	<div id="myModal" class="modal">
 	  <div class="modal-content">
 	    <div class="modal-header">
-	      <span class="close">&times;</span>
-	      <h2>ƒ⁄≈∏ ≈Î∞Ë</h2>
+	    
+	      <h2>ÏΩîÌÉÄ ÌÜµÍ≥Ñ</h2>
 	      <span></span>
 	    </div>
 	    <div class="modal-body">
 			<p>
-				<label class="stat">∆Ú±’≈∏ºˆ</label><label id="mspeed" class="statResult"></label>
+				<label class="stat">ÌèâÍ∑†ÌÉÄÏàò</label><label id="mspeed" class="statResult"></label>
 			</p>
 			<p>
-				<label class="stat">∆Ú±’¡§»Æµµ</label><label id="macc" class="statResult"></label>
+				<label class="stat">ÌèâÍ∑†Ï†ïÌôïÎèÑ</label><label id="macc" class="statResult"></label>
 			</p>
 			<p>
-				<label class="stat">∫Òª˝ªÍ¿˚ ≈∏¿Ã«Œ</label><label id="prod" class="statResult"></label>
+				<label class="stat">ÎπÑÏÉùÏÇ∞Ï†Å ÌÉÄÏù¥Ìïë</label><label id="prod" class="statResult"></label>
 			</p>
 			<p>
-				<label class="stat">∏π¿Ã ∆≤∏∞ ¿⁄∏Æ</label><label id="incorrect_keys" class="statResult"></label>
+				<label class="stat">ÎßéÏù¥ ÌãÄÎ¶∞ ÏûêÎ¶¨</label><label id="incorrect_keys" class="statResult"></label>
 			</p>
 	    </div>
 	    <div class="modal-footer">
-			<a href="/cota/sentence"><button>∞Ëº”«œ±‚</button></a>
-			<a href="/cota/main"><button>¡æ∑·«œ±‚</button></a>
+			<a id='continue'><button>Í≥ÑÏÜçÌïòÍ∏∞</button></a>
+			<a href="/cota/main"><button>Ï¢ÖÎ£åÌïòÍ∏∞</button></a>
 	    </div>
 	  </div>
 

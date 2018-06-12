@@ -1,14 +1,25 @@
 package com.threejo.cota.dao;
 
-import java.util.List;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.threejo.cota.model.Member;
 
+@Repository
 public class MemberDaoImpl implements MemberDao {
 	
+	@Autowired
+	private SqlSession session;
+
 	@Override
-	public List<Member> list(Member member) {
-		return null;
+	public int insert(Member member) {
+		System.out.println("dao");
+		System.out.println("member id : " + member.getEmail());
+		System.out.println("member id : " + member.getPassword());
+		System.out.println("member id : " + member.getNickname());
+		System.out.println("member id : " + member.getProfile_url());
+		return session.insert("insert", member);
 	}
 
 }

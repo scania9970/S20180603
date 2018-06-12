@@ -19,4 +19,14 @@ public class BoardDaoImpl implements BoardDao{
 		return session.selectList("Boardlist", board);
 	}
 
+	@Override
+	public int boardinsert(Board board) {
+		return session.insert("Boardinsert", board);
+	}
+
+	@Override
+	public Board post(int bnum) {
+		return session.selectOne("post", bnum);
+	}
+
 }

@@ -12,4 +12,9 @@ public interface BoardDao {
 
 	Board post(int bnum);
 
+	int boardupdate(Board board);
+
+	int boarddelete(int bnum);
+
+
 }

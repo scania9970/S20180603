@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
 <mapper namespace="Board">
 	<resultMap id="BoardResult" type="Board">
     <result property="bnum" column="bnum"/>
@@ -16,7 +15,7 @@
 	</resultMap>
 
 	<select id="Boardlist" parameterType="Board" resultMap="BoardResult">
-		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email
+		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email order by bnum desc
 	</select>
 	
 	<insert id="Boardinsert" parameterType="Board">
@@ -26,6 +25,10 @@
 	<select id="post" parameterType="int" resultType="Board">
 		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and bnum = #{bnum}
 	</select>
+	<update id="boardupdate">
+		update board set title = #{title}, content = #{content} where bnum = #{bnum}
+	</update>
+	<delete id="boarddelete">
+		delete from board where bnum = #{bnum}
+	</delete>
 </mapper>
-=======
->>>>>>> fd875ab75f46a8f1332d555729d9fd810a6f28df

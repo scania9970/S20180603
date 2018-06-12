@@ -8,7 +8,13 @@
 		SELECT email FROM MEMBER WHERE EMAIL = #{email}
 	]]>
 	</select>
-
+	
+	<select id="nicknameCheck" parameterType='String' resultType="String">
+	<![CDATA[
+		SELECT nickname FROM MEMBER WHERE NICKNAME = #{nickname}
+	]]>
+	</select>
+	
 	<insert id="insertmb" parameterType="Member">
 	<![CDATA[
 		INSERT INTO MEMBER (EMAIL, PASSWORD, NICKNAME, PROFILE_URL, IS_ENTERPRISE)

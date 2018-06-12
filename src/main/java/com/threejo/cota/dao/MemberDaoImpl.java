@@ -21,5 +21,10 @@ public class MemberDaoImpl implements MemberDao {
 	public String emailCheck(String email) {
 		return session.selectOne("emailCheck", email);
 	}
+	
+	@Override
+	public String nicknameCheck(String nickname) {
+		return session.selectOne("nicknameCheck", nickname);
+	}
 
 }

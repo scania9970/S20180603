@@ -19,5 +19,12 @@ public class MemberRestController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value = "nicknameCheck")
+	public String nicknameCheck(String nickname) {
+		String result = ms.nicknameCheck(nickname);
+		
+		return result;
+	}
 
 }

@@ -9,4 +9,6 @@ public interface MemberService {
 	 //Ajax email Check
 	 int emailCheck(String email);
 	 
+	 String nicknameCheck(String nickname);
+	 
 }

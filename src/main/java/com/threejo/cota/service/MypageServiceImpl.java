@@ -13,9 +13,14 @@ public class MypageServiceImpl implements MypageService {
 	private MypageDao md;
 
 	@Override
-	public Mypage viewMemberInfo(String email) {
+	public Mypage selectMyinfo(String email) {
 		
-		return md.viewMemberInfo(email);
+		return md.selectMyinfo(email);
+	}
+
+	@Override
+	public int updateMyinfo(Mypage member) {
+		return md.updateMyinfo(member);
 	}
 
 }

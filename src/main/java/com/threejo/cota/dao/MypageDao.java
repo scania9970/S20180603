@@ -4,6 +4,7 @@ import com.threejo.cota.model.Mypage;
 
 public interface MypageDao {
 
-	Mypage viewMemberInfo(String email);
+	Mypage selectMyinfo(String email);
+	int updateMyinfo(Mypage member);
 	
 }

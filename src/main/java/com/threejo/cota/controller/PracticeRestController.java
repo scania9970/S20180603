@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.threejo.cota.model.Statistics_Today;
 import com.threejo.cota.service.PracticeService;
 
 @RestController
@@ -22,7 +23,11 @@ public class PracticeRestController {
 	
 	@RequestMapping(value="/getParagraphContent")
 	public String getParagraphContent(String para_title) {
-		System.out.println("@@@@@@@@@@@222 : " + ps.getParagraphContent(para_title)); 
 		return ps.getParagraphContent(para_title);
+	}
+	
+	@RequestMapping(value="/insertStatistics")
+	public void insertStatistics(Statistics_Today statistics_Today) {
+		ps.insertStatistics(statistics_Today);
 	}
 }

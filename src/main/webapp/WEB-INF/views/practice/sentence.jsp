@@ -14,6 +14,9 @@
 	margin: 0;
 	padding: 0;
 }
+.header{
+	margin-bottom: 5%;
+}
 .checked {
     color: orange;
 }
@@ -23,7 +26,8 @@
 }
 #lang-selector{
 	width: 1200px;
-	height: 30px;
+	font-size: 25px;
+	height: 50px;
 	margin-top: 10px;
 	background: #f3f3f3; /* Old browsers */
 	background: #fff -webkit-gradient(linear, left top, left bottom, from(#ffffff),to(#e5e5e5));
@@ -724,6 +728,7 @@ input[type="text"] {
 				return(a.value < b.value) ? -1 : (a.value > b.value) ? 1 : 0;
 			});
 			incorrectArr.reverse();
+			console.log(incorrectArr);
 			for(var i = 0; i < 3; i++){
 				if(!incorrectArr[i]){
 					continue;
@@ -793,6 +798,16 @@ input[type="text"] {
 		
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
+		
+		var sendData = "incorrect_key="+incorrectArr.toString();
+		$.ajax({
+			url : '/cota/insertStatistics',			// 전송할 URL
+			type : 'get',				// 전송 방식
+			data : sendData, 							// 전송할 데이터
+			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
+					alert("success");					
+			}
+		});
 		
 		
 	}

@@ -75,7 +75,7 @@
 	
 	<!-- 랭킹 -->
 	<div class="ranking-wrapper">
-		<div class="card one">1</div>
+		<div class="card one">${email }</div>
 		<div class="card two">2</div>
 		<div class="card three">3</div>
 	</div>

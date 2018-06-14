@@ -16,5 +16,15 @@ public class MemberDaoImpl implements MemberDao {
 	public int insert(Member member) {
 		return session.insert("insertmb", member);
 	}
+	
+	@Override
+	public String emailCheck(String email) {
+		return session.selectOne("emailCheck", email);
+	}
+	
+	@Override
+	public String nicknameCheck(String nickname) {
+		return session.selectOne("nicknameCheck", nickname);
+	}
 
 }

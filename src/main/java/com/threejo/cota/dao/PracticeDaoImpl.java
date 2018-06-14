@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.threejo.cota.model.Practice;
-import com.threejo.cota.model.Statistics_Today;
 
 @Repository
 public class PracticeDaoImpl implements PracticeDao{
@@ -40,8 +39,4 @@ public class PracticeDaoImpl implements PracticeDao{
 		return session.selectOne("getParagraphContent", para_title);
 	}
 
-	@Override
-	public void insertStatistics(Statistics_Today statistics_Today) {
-		session.insert("insertStatistics", statistics_Today);
-	}
 }

@@ -3,11 +3,18 @@
 <mapper namespace="Member">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 
-<!-- 	<select id=""></select>
+ 	<select id="emailCheck" parameterType='String' resultType="String">
 	<![CDATA[
-		SELECT EMAIL FROM MEMBER WHERE EMAIL = #{email}
-	]]> -->
-
+		SELECT email FROM MEMBER WHERE EMAIL = #{email}
+	]]>
+	</select>
+	
+	<select id="nicknameCheck" parameterType='String' resultType="String">
+	<![CDATA[
+		SELECT nickname FROM MEMBER WHERE NICKNAME = #{nickname}
+	]]>
+	</select>
+	
 	<insert id="insertmb" parameterType="Member">
 	<![CDATA[
 		INSERT INTO MEMBER (EMAIL, PASSWORD, NICKNAME, PROFILE_URL, IS_ENTERPRISE)

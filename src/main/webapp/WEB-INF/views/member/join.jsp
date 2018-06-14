@@ -11,11 +11,38 @@
 	background-color:#FF0000;
 	border-color: transparent;
 }
+
+#emailChkbtn {
+	color: white;
+	background-color:#BDBDBD;
+	border-color: transparent;
+}
+
+#btnConfirm {
+	color: white;
+	background-color:#BDBDBD;
+	border-color: transparent;
+}
+
+#btnEmailChk {
+	color: white;
+	background-color:#BDBDBD;
+	border-color: transparent;
+}
+
+#nicknameChkbtn {
+	color: white;
+	background-color:#BDBDBD;
+	border-color: transparent;
+}
+
+
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-$(function() {
+$(function() { // 무조건 실행한다.
 	$('#passwordChk').change(function() {
 		if ($('#password').val() != $('#passwordChk').val()) { 
 			$('#passwordChk').val(""); // input 같은
@@ -27,6 +54,52 @@ $(function() {
 			$('#spanPassword').html("　");
 		}
 	});
+});
+
+
+$(document).on('click', '#emailChkbtn', function() {
+	var sendData = 'email=' + $('#email').val();
+	/* alert($('#email').val()); */
+	$.ajax ({
+		url : '/cota/emailCheck',
+		type : 'get',
+		data : sendData,
+		success : function(data) {
+			console.log("data : " + data );
+			if (data == 1) {
+				$('#email').val("");
+				$('#email').focus();
+				$('#spanemail').html("이미 가입된 이메일 입니다.");
+
+				return;
+			} else {
+				$('#spanemail').html("사용 가능한 이메일 입니다");
+			}
+		}
+	});
+	
+});
+
+$(document).on('click', '#nicknameChkbtn', function() {
+	var sendData = 'nickname=' + $('#nickname').val();
+	$.ajax ({
+		url : '/cota/nicknameCheck',
+		type : 'get',
+		data : sendData,
+		success : function(data) {
+			console.log("data : " + data );
+			if (data) {
+				$('#nickname').val("");
+				$('#nickname').focus();
+				$('#spannickname').html("이미 가입된 닉네임 입니다.");
+
+				return;
+			} else {
+				$('#spannickname').html("사용 가능한 닉네임 입니다");
+			}
+		}
+	});
+	
 });
 
 </script>
@@ -74,10 +147,17 @@ $(function() {
                         <form role="form" action="/cota/insertmb" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" required autofocus>
-                                    <input class="form-control" type="button" name="btnEmailChk" value="인증번호받기" onclick="emailCheck">
+                                    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>
+                                    <button id='emailChkbtn' class="form-control">이메일 중복확인</button>
+                                    <span id="spanemail"></span>
+                                    <input class="form-control" type="button" name="btnEmailChk" id='btnEmailChk' value="인증번호받기" onclick="emailCheck">
                                     <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled">
                                     <input type="button" id="btnConfirm" name="btnConfirm" class="form-control" value="인증하기" disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="닉네임" name="nickname" id="nickname" type="text" required>
+                                    <button id='nicknameChkbtn' class="form-control">닉네임 중복확인</button>
+                                    <span id="spannickname"></span>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="비밀번호" name="password" id="password" type="password" required>
@@ -86,14 +166,11 @@ $(function() {
                                     <input class="form-control" placeholder="비밀번호 확인" name="passwordChk" id="passwordChk" type="password" required >
                                     <span id="spanPassword"></span>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="닉네임" name="nickname" type="text" required>
-                                </div>
                                  <div class="Image"><img id="" src="images/"></div>
                                  <div class="divUpload"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url" class="inputFile"></div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="enterprise" type="checkbox" id="checkbox" value="기업여부">기업회원 구분
+                                        <input name="enterprise" type="checkbox" id="checkbox" value="1">기업회원 구분
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

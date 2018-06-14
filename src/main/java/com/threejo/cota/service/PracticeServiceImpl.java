@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.threejo.cota.dao.PracticeDao;
 import com.threejo.cota.model.Practice;
-import com.threejo.cota.model.Statistics_Today;
 @Service
 public class PracticeServiceImpl implements PracticeService{
 	
@@ -40,9 +39,5 @@ public class PracticeServiceImpl implements PracticeService{
 		return pd.getParagraphContent(para_title);
 	}
 
-	@Override
-	public void insertStatistics(Statistics_Today statistics_Today) {
-		pd.insertStatistics(statistics_Today);
-	}
 	
 }

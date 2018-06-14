@@ -12,7 +12,7 @@
 		<td>${board.title }</td><td>${board.board_date }</td>	
 	</tr>
 	<tr> 
-		<td>${board.nickname}</td><td><a href="#">수정 </a>| <a href="#"> 삭제</a></td>
+		<td>${board.nickname}</td><td><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></td>
 	 </tr>
 	<tr>
 		<td colspan="2"> ${board.content } </td>

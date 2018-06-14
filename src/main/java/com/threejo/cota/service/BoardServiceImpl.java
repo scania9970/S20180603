@@ -30,4 +30,15 @@ public class BoardServiceImpl implements BoardService{
 		return bd.post(bnum);
 	}
 
+	@Override
+	public int boardupdate(Board board) {
+		return bd.boardupdate(board);
+	}
+
+	@Override
+	public int boarddelete(int bnum) {
+		return bd.boarddelete(bnum);
+	}
+
+
 }

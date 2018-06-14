@@ -45,14 +45,29 @@ public class BoardController {
 		int result = bs.boardinsert(board);
 		if(result > 0) {
 			model.addAttribute("msg", "포스팅 성공");
-			List<Board> list = bs.list(board);
-			model.addAttribute("list", list);
-			return "board/Boardlist";
+			return "redirect:list";
 		} else {
 			model.addAttribute("msg", "포스팅 실패");
 			return "board/boardposting";
 		}
 	}
-	
+	@RequestMapping(value="boardupdateForm")
+	public String boardupdateForm(int bnum, Model model) {
+		Board board = bs.post(bnum);
+		model.addAttribute("board", board);
+		return "board/boardupdateForm";
+	}
+	@RequestMapping(value="/boardupdate")
+	public String boardupdate(Board board, Model model) {
+		int a = bs.boardupdate(board);
+		return "board/boardpost";
+	}
+	@RequestMapping(value="boarddelete")
+	public String boarddelete(int bnum, Model model) {
+		bs.boarddelete(bnum);
+		
+		return "redirect:list";
+		
+	}
 	
 }

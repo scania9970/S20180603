@@ -29,4 +29,15 @@ public class BoardDaoImpl implements BoardDao{
 		return session.selectOne("post", bnum);
 	}
 
+	@Override
+	public int boardupdate(Board board) {
+		return session.update("boardupdate", board);
+	}
+
+	@Override
+	public int boarddelete(int bnum) {
+		return session.delete("boarddelete", bnum);
+	}
+
+
 }

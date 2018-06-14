@@ -270,6 +270,7 @@
 <script>
 var currPage = 1;
 var paragraphLength = 0;
+var typeableChars = 0;
 	$(document).on('click', '.lang-wrapper', function() {
 		var $this = $(this);
 		//console.log("$this : " + $this);
@@ -373,10 +374,11 @@ var paragraphLength = 0;
 							$(parsedLineDiv).prepend("<div class='space'>&nbsp;&nbsp;&nbsp;&nbsp;</div>"); // numOfTabs에 맞게 prepend
 						}
 					}
-					
-					$(parsedLineLbl).text(val.replace(/\)\^\)\#/gi, "").trim());  //  tab을 표시하는 문자열 제거
+					var text = val.replace(/\)\^\)\#/gi, "").trim();
+					$(parsedLineLbl).text(text);  //  tab을 표시하는 문자열 제거
 					$(parsedLineIpt).css('width', $(parsedLineLbl).css('width')); // 문장의 길이와 입력할 input태그의 width를 동일하게 지정
-					$(parsedLineSentence).val(val.replace(/\)\^\)\#/gi, "").trim());
+					$(parsedLineSentence).val(text);
+					typeableChars += text.length;
 				});
 					getPage(currPage, paragraphLength);
 			}
@@ -558,7 +560,7 @@ var paragraphLength = 0;
 		}
 	} 	
 	
-	function showModal(_speedArr, _accArr, _totalHits, _typeableChars, _correctHits, _incorrectHits, _incorrectKeys){
+	function showModal(_speedArr, _totalHits, _typeableChars, _correctHits, _incorrectHits, _incorrectKeys){
 		var modal = document.getElementById('myModal');
 	    var speedSum = 0;
 	    var speedMean = 0;
@@ -728,16 +730,7 @@ var paragraphLength = 0;
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
 		
-		var sendData = "incorrect_key="+incorrectArr.toString();
-		$.ajax({
-			url : '/cota/insertStatistics',			// 전송할 URL
-			type : 'get',				// 전송 방식
-			data : sendData, 							// 전송할 데이터
-			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-					alert("success");					
-			}
-		});
-		
+	
 		
 	}
 	

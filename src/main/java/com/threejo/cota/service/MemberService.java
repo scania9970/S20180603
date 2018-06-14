@@ -8,7 +8,11 @@ public interface MemberService {
 	 
 	 //Ajax email Check
 	 int emailCheck(String email);
-	 
+	 //Ajax nicknameCheck
 	 String nicknameCheck(String nickname);
+	 
+	 int select(String email);
+	 
+	 int selectPassword(String email, String password);
 	 
 }

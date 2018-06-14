@@ -170,7 +170,7 @@ $(document).on('click', '#nicknameChkbtn', function() {
                                  <div class="divUpload"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url" class="inputFile"></div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="enterprise" type="checkbox" id="checkbox" value="1">기업회원 구분
+                                        <input name="is_enterprise" type="checkbox" id="checkbox" value="true">기업회원 구분
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

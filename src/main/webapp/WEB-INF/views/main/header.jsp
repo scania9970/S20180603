@@ -30,10 +30,16 @@
 			</div>
 			<div class="forum"><a href="#">개발자 포럼</a></div>
 		</div>
+		<%
+		 if (session.getAttribute("email") == null) {
+		%>
 		<div class="member">
-			<a href="login">로그인</a>
+			<a href="loginpage">로그인</a>
 			<a href="joinpage">회원가입</a>
 		</div>
+		<% } else if (session.getAttribute("email") != null) { %>
+		<span>zzzzzzzzzzzzz</span>
+		<% } %>
 	</div>
 </body>
 </html>

@@ -13,8 +13,13 @@ public class MypageDaoImpl implements MypageDao {
 	private SqlSession session;
 
 	@Override
-	public Mypage viewMemberInfo(String email) {
-		return session.selectOne("selectMember", email);
+	public Mypage selectMyinfo(String email) {
+		return session.selectOne("selectMyinfo", email);
+	}
+
+	@Override
+	public int updateMyinfo(Mypage member) {
+		return session.update("updateMyinfo", member);
 	}
 	
 }

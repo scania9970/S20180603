@@ -38,4 +38,5 @@ public class PracticeDaoImpl implements PracticeDao{
 	public String getParagraphContent(String para_title) {
 		return session.selectOne("getParagraphContent", para_title);
 	}
+
 }

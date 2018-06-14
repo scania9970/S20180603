@@ -28,7 +28,7 @@
 					<a href="/cota/word?lang_type=java">낱말연습</a> <a href="/cota/sentence?lang_type=java">문장연습</a> <a href="/cota/paragraph-selector">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
 				</div>
 			</div>
-			<div class="forum"><a href="#">개발자 포럼</a></div>
+			<div class="forum"><a href="/cota/list">개발자 포럼</a></div>
 		</div>
 		<%
 		 if (session.getAttribute("email") == null) {

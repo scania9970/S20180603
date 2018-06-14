@@ -99,10 +99,11 @@
 
 										<div class="form-group">
 											<label>이메일 주소</label>
+											<input type="hidden" name="email" value="${member.email}">
 											<p class="form-control-static">${member.email}</p>
 										</div>
 										<div class="form-group">
-											<label>별명 수정</label><input class="form-control"
+											<label>별명 수정</label><input class="form-control" name="nickname"
 												value="${member.nickname}">
 											<p class="help-block">Example block-level help text here.</p>
 										</div>

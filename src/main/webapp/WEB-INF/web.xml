@@ -15,7 +15,6 @@
 	</listener>
 	
 	<!-- 한글 입력 -->
-<<<<<<< HEAD
    <filter>
       <filter-name>CharacterEncodingFilter</filter-name>
       <filter-class>org.springframework.web.filter.CharacterEncodingFilter
@@ -34,7 +33,6 @@
       <filter-name>CharacterEncodingFilter</filter-name>
       <url-pattern>/*</url-pattern> 
    </filter-mapping>
-=======
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
@@ -53,7 +51,6 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern> 
 	</filter-mapping>
->>>>>>> 80166838fc71e2175af57073d5a1d459fcb887fd
 
 	<!-- Processes application requests -->
 	<servlet>

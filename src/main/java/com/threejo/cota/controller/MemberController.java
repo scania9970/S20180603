@@ -28,7 +28,7 @@ public class MemberController {
 		
 		ms.insert(member); // 받아올 데이터타입 앞에 선언 해줌
 		System.out.println("checkbox : " + member.getIs_enterprise());
-		return "member/login"; // jsp
+		return "member/joinPro"; // jsp
 
 	}
 	

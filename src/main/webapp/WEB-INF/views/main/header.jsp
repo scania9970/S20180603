@@ -43,6 +43,8 @@
 		<div class="member">
 		    <div><%=member.getProfile_url()%></div>
 		    <div><%=member.getNickname()%></div>
+		    <a>마이페이지</a>
+		    <a>로그아웃</a>
 		</div>
 		<% } %>
 	</div>

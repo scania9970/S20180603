@@ -10,8 +10,6 @@ public interface MemberDao {
 	
 	String nicknameCheck(String nickname);
 	
-	String select(String email);
+	Member select(Member member);
 	
-	String selectPassword(String email, String password);
-
 }

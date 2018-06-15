@@ -60,7 +60,7 @@
 						<li>
 							<a href="forms.html"><i class="fa fa-edit fa-fw"></i>내 정보 수정<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="myinfo?email=asd@asd.com">개인 정보 수정</a></li>
+								<li><a href="myinfo?email=${member.email}">개인 정보 수정</a></li>
 								<li><a href="#">포트폴리오 수정</a></li>
 								<li><a href="#">비밀번호 변경</a></li>
 							</ul>
@@ -68,7 +68,7 @@
 						<li>
 							<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>활동 내역 통계<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">타자 연습 통계</a></li>
+								<li><a href="statisticsTyping?email=${member.email}">타자 연습 통계</a></li>
 								<li><a href="#">작성한 글 통계</a></li>
 							</ul>
 						</li>
@@ -124,6 +124,7 @@
 									<div class="col-lg-4">
 
 										<div class="form-group">
+											<input type="hidden" name="original_url" value="${member.profile_url}">
 											<label>프로필 사진 변경</label><br> <img id="output"
 												src="${member.profile_url}"> <input type="file"
 												accept="image/*" onchange="loadFile(event)"

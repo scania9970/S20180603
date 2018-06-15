@@ -26,5 +26,18 @@ public class MemberDaoImpl implements MemberDao {
 	public String nicknameCheck(String nickname) {
 		return session.selectOne("nicknameCheck", nickname);
 	}
+	
+	@Override
+	public String select(String email) {
+		return session.selectOne("login", email);
+	}
+	
+	@Override
+	public String selectPassword(String email, String password) {
+		Member member = new Member();
+		member.setEmail(email);
+		member.setPassword(password);
+		return session.selectOne("loginPassword", member);
+	}
 
 }

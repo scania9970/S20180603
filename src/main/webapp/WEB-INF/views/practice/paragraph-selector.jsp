@@ -266,6 +266,117 @@
 		border: 1px solid gray;
 		height: 62px;
 	}
+	/* Modal Content */
+.modal-content {
+	font-family: 'NanumSquareRound',sans-serif;
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: #A6A6A6;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+	maring: 10px 0;
+    padding: 2px 16px;
+    background-color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+}
+#onestar{
+	font-size: 2em;
+	transition: 1s;
+}
+#twostar{
+	font-size: 2em;
+	transition: 1s;
+}
+
+#threestar{
+	font-size: 2em;
+	transition: 1s;
+}
+
+#fourstar{
+	font-size: 2em;
+	transition: 1s;
+}
+
+#fivestar{
+	font-size: 2em;
+	transition: 1s;
+} 
+
+.fa fa-star{
+}
+#statTable{
+	margin: auto;
+	font-family: 'NanumSquareRound',sans-serif;
+	text-align: center;
+	color: gray;
+}
+.stat{
+	font-family: 'NanumSquareRound',sans-serif;
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+}
+.statResult{
+	font-family: 'NanumSquareRound',sans-serif;
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+}
+.buttons{
+	font-family: 'NanumSquareRound',sans-serif;
+	font-size: 20px;
+	margin-left: 5px;
+	width: 48%;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	background-color: white;
+	color: gray;
+}
 </style>
 <script>
 var currPage = 1;
@@ -802,7 +913,50 @@ var typeableChars = 0;
 	</div>
 	
 </div>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header" style="background-color:gray;color:white;font-size:25px;">
+		통계
+    </div>
+    <div class="modal-body">
+    	<table id='statTable'>
+    		<!-- <tr>
+    			<td colspan='2' style="font-size:25px;">통계</td>
+    		</tr> -->
+    		<tr>
+    			<td colspan='2'>	
+	    			<span id="onestar" class="fa fa-star"></span>
+					<span id="twostar" class="fa fa-star"></span>
+					<span id="threestar" class="fa fa-star"></span>
+					<span id="fourstar" class="fa fa-star"></span>
+					<span id="fivestar" class="fa fa-star"></span>
+				</td>
+    		</tr>
+    		<tr>
+    			<td class='stat'>평균타수</td>
+    			<td id="mspeed" class='statResult'></td>
+    		</tr>
+    		<tr>
+    			<td class='stat'>평균정확도</td>
+    			<td id="macc" class='statResult'></td>
+    		</tr>
+    		<tr>
+    			<td class='stat'>비생산적 타이핑</td>
+    			<td id="prod" class='statResult'></td>
+    		</tr>
+    		<tr>
+    			<td class='stat'>많이 틀린 자리</td>
+    			<td id="incorrect_keys" class='statResult'></td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="modal-footer">
+		<a id='continue'><button class="buttons">계속하기</button></a>
+		<a href="/cota/main"><button class="buttons">종료하기</button></a>
+    </div>
+  </div>
 
+</div>
 
 </body>
 </html>

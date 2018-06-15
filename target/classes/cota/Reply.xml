@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reply">
+	<resultMap id="ReplyResult" type="Reply">
+	<result property="rnum" column="rnum"/>
+	<result property="bnum" column="bnum"/>
+	<result property="email" column="email"/>
+	<result property="content" column="content"/>
+	<result property="reply_date" column="reply_date"/>
+	<result property="nickname" column="nickname"/>
+	
+	</resultMap>
+	
+	<insert id="Replyinsert"  parameterType="Reply">
+		insert into reply(rnum, bnum, email, content) values ( RNUM_SEQ.NEXTVAL, #{bnum}, #{email}, #{content})
+	</insert>
+	<select id="Replylist" parameterType='Reply' resultMap="ReplyResult">
+		select  r.* , m.NICKNAME  from reply r , member m where r.email = m.email and bnum = #{bnum} order by bnum desc
+	</select>
+	<delete id="replydelete">
+		delete from reply where bnum = #{bnum}
+	</delete>
+</mapper>

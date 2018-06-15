@@ -11,7 +11,7 @@ public class Member {
    private int exp;
    private String grade;
    private String external_join;
-   private int is_enterprise;
+   private boolean is_enterprise;
    private int is_admin;
    private int is_leave;
    private Date join_date;
@@ -59,10 +59,10 @@ public class Member {
    public void setExternal_join(String external_join) {
       this.external_join = external_join;
    }
-   public int getIs_enterprise() {
+   public boolean getIs_enterprise() {
       return is_enterprise;
    }
-   public void setIs_enterprise(int is_enterprise) {
+   public void setIs_enterprise(Boolean is_enterprise) {
       this.is_enterprise = is_enterprise;
    }
    public int getIs_admin() {

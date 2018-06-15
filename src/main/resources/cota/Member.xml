@@ -21,4 +21,11 @@
 		VALUES (#{email}, #{password}, #{nickname}, '1234', #{is_enterprise})
 	]]>
 	</insert>	
+	
+ 	<select id="login" resultType="Member">
+	<![CDATA[
+		SELECT * FROM MEMBER WHERE EMAIL = #{email} and PASSWORD = #{password}
+	]]>
+	</select>
+	
 </mapper>

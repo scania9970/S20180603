@@ -1,13 +1,11 @@
 package com.threejo.cota.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.threejo.cota.dao.PracticeDao;
-import com.threejo.cota.model.Practice;
 @Service
 public class PracticeServiceImpl implements PracticeService{
 	
@@ -38,5 +36,6 @@ public class PracticeServiceImpl implements PracticeService{
 	public String getParagraphContent(String para_title) {
 		return pd.getParagraphContent(para_title);
 	}
+
 	
 }

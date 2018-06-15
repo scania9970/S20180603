@@ -2,9 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Mypage">
 
-	<select id="selectMember" resultType="Mypage">
+	<select id="selectMyinfo" resultType="Mypage">
 		<![CDATA[
 			SELECT * FROM MEMBER WHERE EMAIL = #{email}
+		]]>
+	</select>
+	
+	<update id="updateMyinfo" parameterType="Mypage">
+		<![CDATA[
+			UPDATE MEMBER SET NICKNAME = #{nickname}, PROFILE_URL = #{profile_url} WHERE EMAIL = #{email}
+		]]>
+	</update>
+	
+	<select id="selectListStatToday" resultType="Statistics_TODAY">
+		<![CDATA[
+			SELECT * FROM STATISTICS_TODAY WHERE EMAIL = #{email}
 		]]>
 	</select>
 	

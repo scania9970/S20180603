@@ -8,7 +8,9 @@ public interface MemberService {
 	 
 	 //Ajax email Check
 	 int emailCheck(String email);
-	 
+	 //Ajax nicknameCheck
 	 String nicknameCheck(String nickname);
+	 
+	 Member select(Member member);
 	 
 }

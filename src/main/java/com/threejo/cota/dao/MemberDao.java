@@ -9,5 +9,7 @@ public interface MemberDao {
 	String emailCheck(String email);
 	
 	String nicknameCheck(String nickname);
-
+	
+	Member select(Member member);
+	
 }

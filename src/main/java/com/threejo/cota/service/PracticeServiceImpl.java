@@ -38,5 +38,6 @@ public class PracticeServiceImpl implements PracticeService{
 	public String getParagraphContent(String para_title) {
 		return pd.getParagraphContent(para_title);
 	}
+
 	
 }

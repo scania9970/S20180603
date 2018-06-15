@@ -14,16 +14,20 @@
 	margin: 0;
 	padding: 0;
 }
+.header{
+	margin-bottom: 5%;
+}
 .checked {
     color: orange;
 }
 #selector{
-	margin:auto;
+	margin: auto;
 	width: 1200px;
 }
 #lang-selector{
 	width: 1200px;
-	height: 30px;
+	height: 50px;
+	font-size: 25px;
 	margin-top: 10px;
 	background: #f3f3f3; /* Old browsers */
 	background: #fff -webkit-gradient(linear, left top, left bottom, from(#ffffff),to(#e5e5e5));

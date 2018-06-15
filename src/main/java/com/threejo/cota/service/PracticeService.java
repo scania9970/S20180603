@@ -15,4 +15,5 @@ public interface PracticeService {
 	List<String> getParagraphList(String lang_type);
 
 	String getParagraphContent(String para_title);
+
 }

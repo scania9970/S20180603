@@ -24,17 +24,34 @@ public class MemberController {
 	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // 헤더 주소 회원가입
 	public String insertmb(Member member, Model model) {
 		
-		int result = ms.insert(member); // 받아올 데이터타입 앞에 선언 해줌
+		ms.insert(member); // 받아올 데이터타입 앞에 선언 해줌
 		System.out.println("checkbox : " + member.getIs_enterprise());
-			return "member/join"; // jsp
+		return "member/login"; // jsp
 
 	}
-
-	@RequestMapping(value = "login") // 로그인 창
-	public String login(Member member, Model model) {
+	
+	@RequestMapping(value = "loginpage")
+	public String loginpage() {
 		
-		
+		return "member/login";
+	}
 
+	@RequestMapping(value = "login", method = RequestMethod.POST) // 로그인 창
+	public String login(String email, String password, Model model) {
+		
+		int resultEmail = ms.select(email);
+		
+		if (resultEmail == 1) {
+			int resultPassword = ms.selectPassword(email, password);
+			
+			if (resultPassword == 1) {
+				System.out.println(email);
+				System.out.println(password);
+				// 성공
+				return "main/main";
+			}
+		}
+		// 실패
 		return "member/login";
 	}
 

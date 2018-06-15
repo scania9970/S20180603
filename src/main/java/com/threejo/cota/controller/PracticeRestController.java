@@ -22,7 +22,7 @@ public class PracticeRestController {
 	
 	@RequestMapping(value="/getParagraphContent")
 	public String getParagraphContent(String para_title) {
-		System.out.println("@@@@@@@@@@@222 : " + ps.getParagraphContent(para_title)); 
 		return ps.getParagraphContent(para_title);
 	}
+	
 }

@@ -21,5 +21,8 @@
 	<select id="getParagraphContent" parameterType="String" resultType="String">
  		select content from typing_data where para_title=#{para_title}
 	</select>
+	<insert id="insertStatistics" parameterType="Statistics_TODAY">
+		insert into Statistics_TODAY values(#{email},#{lang_type},#{field_type},#{speed},#{accuracy},#{interrupt},#{incorrect_key},sysdate)
+	</insert>
 </mapper> 
 

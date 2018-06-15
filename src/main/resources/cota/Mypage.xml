@@ -14,4 +14,10 @@
 		]]>
 	</update>
 	
+	<select id="selectListStatToday" resultType="Statistics_TODAY">
+		<![CDATA[
+			SELECT * FROM STATISTICS_TODAY WHERE EMAIL = #{email}
+		]]>
+	</select>
+	
 </mapper> 

@@ -556,7 +556,6 @@ var typeableChars = 0;
 		console.log("length : " + _paragraphLength);
 		if(idx == _paragraphLength){
 			stopTimer();
-			showModal(speedArr, )
 		}
 	} 	
 	

@@ -24,7 +24,7 @@
 	
  	<select id="login" resultType="Member">
 	<![CDATA[
-		SELECT * FROM MEMBER WHERE EMAIL = #{email}
+		SELECT * FROM MEMBER WHERE EMAIL = #{email} and PASSWORD = #{password}
 	]]>
 	</select>
 	

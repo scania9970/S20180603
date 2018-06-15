@@ -29,6 +29,12 @@
     <![endif]-->
 
 <style type="text/css">
+
+.incorrect_key {
+	visibility: hidden;
+	font-size: 0px;
+}
+
 .fixed_width_wrapper {
 	float: left;
 	margin: 0 15px;
@@ -124,25 +130,52 @@
 		// now generate some random data
 		var points = [];
 		var max = 0;
-		var width = 840;
-		var height = 400;
-		var len = 200;
+		var width = 765;
+		var height = 322;
 
-		while (len--) {
-			var val = Math.floor(Math.random() * 100);
+		var incorrect_total = $('.incorrect_key').html();
+		alert(incorrect_total);
+		var count = (incorrect_total.match(/,/g) || []).length;
+
+		var start = 0;
+		var end = 1;
+		var current_count = 0;
+		var current_key = '';
+		
+		while (count--) {
+			current_key = incorrect_total.substring(start, end);
+			start += 2;
+			end += 2;
+			current_count = incorrect_total.substring(start, end);
+			start += 2;
+			end += 2;
+			
+			var positions = $('#key_' + current_key).position();
+			var width_half = $('#key_' + current_key).width() / 2;
+			var height_half = $('#key_' + current_key).height() / 2;
+			var key_x = Math.floor(positions.left);
+			var key_y = Math.floor(positions.top);
+			var center_x = key_x + Math.floor(width_half);
+			var center_y = key_y + Math.floor(height_half);
+			
+			var val = current_count;
 			max = Math.max(max, val);
+			
 			var point = {
-				x : Math.floor(Math.random() * width),
-				y : Math.floor(Math.random() * height),
+				x : center_x,
+				y : center_y,
 				value : val
 			};
+			
 			points.push(point);
 		}
+		
 		// heatmap data format
 		var data = {
 			max : max,
 			data : points
 		};
+		
 		// if you have a set of datapoints always use setData instead of addData
 		// for data initialization
 		heatmapInstance.setData(data);
@@ -191,13 +224,15 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">많이 틀린 자리</div>
+						<div class="panel-heading">많이 틀린 키</div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<c:forEach items="${listStatToday}" var="list">
-										<p>${list.incorrect_key}</p>
-									</c:forEach>
+									<div class="incorrect_key">
+										<c:forEach items="${listStatToday}" var="list">
+											${list.incorrect_key}
+										</c:forEach>
+									</div>
 									<div class="fixed_width_wrapper">
 										<div class="keyboard">
 											<div class="line">

@@ -28,16 +28,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public String select(String email) {
-		return session.selectOne("login", email);
+	public Member select(Member member) {
+		return session.selectOne("login", member);
 	}
-	
-	@Override
-	public String selectPassword(String email, String password) {
-		Member member = new Member();
-		member.setEmail(email);
-		member.setPassword(password);
-		return session.selectOne("loginPassword", member);
-	}
-
 }

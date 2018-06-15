@@ -1,5 +1,7 @@
 package com.threejo.cota.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ public class MemberController {
 		
 		ms.insert(member); // 받아올 데이터타입 앞에 선언 해줌
 		System.out.println("checkbox : " + member.getIs_enterprise());
-		return "member/login"; // jsp
+		return "member/joinPro"; // jsp
 
 	}
 	
@@ -36,21 +38,19 @@ public class MemberController {
 		return "member/login";
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.POST) // 로그인 창
-	public String login(String email, String password, Model model) {
+	@RequestMapping(value = "login") // 로그인 창
+	public String login(HttpSession session, Member member, Model model) {
 		
-		int resultEmail = ms.select(email);
+		Member resultMember = ms.select(member);
 		
-		if (resultEmail == 1) {
-			int resultPassword = ms.selectPassword(email, password);
-			
-			if (resultPassword == 1) {
-				System.out.println(email);
-				System.out.println(password);
+		if (resultMember != null) {
 				// 성공
+				System.out.println(member);
+				System.out.println("여기냐 ?");
+				
+				session.setAttribute("member", resultMember); // session 에 email    jsppage 참고
 				return "main/main";
 			}
-		}
 		// 실패
 		return "member/login";
 	}

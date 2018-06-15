@@ -11,8 +11,6 @@ public interface MemberService {
 	 //Ajax nicknameCheck
 	 String nicknameCheck(String nickname);
 	 
-	 int select(String email);
-	 
-	 int selectPassword(String email, String password);
+	 Member select(Member member);
 	 
 }

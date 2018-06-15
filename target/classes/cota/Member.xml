@@ -22,14 +22,10 @@
 	]]>
 	</insert>	
 	
- 	<select id="login" resultType="String">
+ 	<select id="login" resultType="Member">
 	<![CDATA[
 		SELECT * FROM MEMBER WHERE EMAIL = #{email}
 	]]>
 	</select>
-	<select id="loginPassword" parameterType="Member" resultType="String">
-	<![CDATA[
-		SELECT * FROM MEMBER WHERE PASSWORD = #{password}
-	]]>
-	</select>
+	
 </mapper>

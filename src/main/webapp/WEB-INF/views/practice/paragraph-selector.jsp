@@ -605,7 +605,8 @@ var typeableChars = 0;
 	    	s2elem.text(s2);
 	    }else{
 	    	incorrectHits++;
-	    	incorrect_keys.push(x);
+	    	incorrect_keys.push(sentence.substr(input.length-1,1));
+
 	    	$(this).css({"color":"red"});
 	    	var s1 = sentence.substring(0, input.length);
 	    	var s2 = sentence.substring(input.length, sentence.length);

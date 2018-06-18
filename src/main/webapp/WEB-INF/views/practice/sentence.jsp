@@ -517,7 +517,8 @@ input[type="text"] {
 			$('#s2').text(s2);
 		} else {
 			incorrectHits++;
-			incorrectKeys.push(x);
+			incorrectKeys.push(sentence.substr(input.length-1,1));
+			console.log("incorrectKeys : " + incorrectKeys);
 			$(input_textfield).css({
 				"color" : "red"
 			});

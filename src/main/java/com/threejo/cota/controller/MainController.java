@@ -1,5 +1,7 @@
 package com.threejo.cota.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,7 @@ public class MainController {
 	}
 	@RequestMapping("/main")
 	public String toMain(Model theModel) {
-		String email = mainService.selectDailyRanking();
+		ArrayList<String> email = (ArrayList<String>)mainService.selectDailyRanking();
 		theModel.addAttribute("email", email);
 		return "main/main";
 	}

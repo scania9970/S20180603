@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -75,7 +76,11 @@
 	
 	<!-- 랭킹 -->
 	<div class="ranking-wrapper">
-		<div class="card one">${email }</div>
+		<div class="card one">
+			<c:forEach var="id" items="${email}" >
+				${id} <br>
+			</c:forEach>
+		</div>
 		<div class="card two">2</div>
 		<div class="card three">3</div>
 	</div>

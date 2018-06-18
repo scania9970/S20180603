@@ -11,13 +11,17 @@
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <style type="text/css">
 	*{
 		margin: 0;
 		padding: 0;
 	}
-	
+	.header{
+		margin-bottom: 40px;
+	}
 	body{
 		overflow:hidden;
 		width: 100%;
@@ -159,83 +163,80 @@
 	
 	#practice-wrapper{
 		margin: 0 auto;
-		width: 1200px;
+		width: 80%;
 		height: 700px;
+		transition: 0.5s;
+		opacity: 0;
 	}
 	#practice-top{
-		width: 1200px;
-		height: 100px;
-		border: 1px solid gray;	
+		width: 100%;
+		height: 50px;
 	}
 	#practice-top-wrapper{
 		display: inline-block;
-		width: 400px;
-		height: 100px;
-		border: 1px solid gray;	
+		width: 30%;
+		height: 50px;
 	
 	}
 	#practice-top-image{
 		background-image: url(/cota/images/braket.png);
 		background-size: 100% 100%;
 		float: left;
-		width: 100px;
-		height: 100px;
-		display: inline-block;
-		border: 1px solid gray;	
+		width: 20%;
+		height: 45px;
 	
 	}
 	#practice-top-class{
 		float: left;
 		margin-left: 15px;
-		width: 280px;
-		height: 100px;
-		display: inline-block;
-		border: 1px solid gray;	
+		width: 70%;
+		height: 50px;
+		font-size: 2em;
 	
 	}
 	#practice-top-time{
 		display: inline-block;
-		width: 300px;
+		width: 25%;
 		height: 100px;
 		float: right;
-		border: 1px solid gray;	
-	
+		font-size: 2em;
+	}
+	#time-label{
+		float: right;
 	}
 	#practice-middle{
-		width: 1200px;
+		width: 100%;
 		height: 500px;
-		border: 1px solid gray;	
-
 	}
 	#practice-paragraph{
 		overflow: hidden;
 		float: left;
 		display: inline-block;
 		font-size: 20px;
-		width: 900px;
+		width: 100%;
 		height: 500px;
-		border: 1px solid gray;	
-	
+		border: 1px solid gray;
+		border-radius: 10px;
 	}
 	#practice-lineresult{
 		float: left;
 		display: inline-block;
-		width: 290px;
 		height: 500px;
-		border: 1px solid gray;	
 		overflow: hidden;
 	
 	}
 	#practice-bottom{
-		width: 1200px;
+		width: 100%;
 		height: 100px;	
-		border: 1px solid gray;	
+	}
+	#lbl-pages{
+		float: right;
 	}
 	#practice-pages{
-		width: 300px;
+		width: 35%;
 		height: 100px;
 		float: right;
-		border: 1px solid gray;	
+		font-size: 2em;
 	
 	}
 	#class-name{
@@ -243,8 +244,7 @@
 	}
 	.line-divs{
 		height: 62px;
-		width: 900px;
-		border-bottom: 1px solid gray;
+		width: 100%;
 	}
 	.space{
 		display: inline-block;
@@ -263,9 +263,24 @@
 		display: inline-block;
 	}
 	.line-result-divs{
-		border: 1px solid gray;
 		height: 62px;
 	}
+	
+	
+	
+	.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 	/* Modal Content */
 .modal-content {
 	font-family: 'NanumSquareRound',sans-serif;
@@ -346,8 +361,6 @@
 	transition: 1s;
 } 
 
-.fa fa-star{
-}
 #statTable{
 	margin: auto;
 	font-family: 'NanumSquareRound',sans-serif;
@@ -376,6 +389,9 @@
 	border: 1px solid gray;
 	background-color: white;
 	color: gray;
+}
+.checked {
+    color: orange;
 }
 </style>
 <script>
@@ -432,7 +448,9 @@ var typeableChars = 0;
 		
 		// paragraph 선택 시 없어질 css 컨트롤
 		$('#paragraphlist-wrapper').css("opacity", '0');
-		$('#paragraphlist-wrapper').remove();
+		setTimeout(function(){
+			$('#paragraphlist-wrapper').remove();
+		},500);
 		$('#class-name').text(selectedParagraph);  // 클래스명 설정
 		
 		parseParagraphData(selectedParagraph);
@@ -462,8 +480,7 @@ var typeableChars = 0;
 				paragraphLength = linedData.length;
 				$.each(linedData, function(idx, val){
 					//console.log('val : ' + idx + ", "+ val )
-					$('#practice-paragraph').append("<div id='line-div"+(idx+1)+"' class='line-divs'><span><label id='lbl-line"+(idx+1)+"' class='lbl-lines'></label><label id='s2' class='s2'></label></span><br><div id='ipt-line"+(idx+1)+"-div' class='ipt-line-divs'><input type='text' id='ipt-line"+(idx+1)+"' class='ipt-lines' index="+(idx+1)+"><input type='hidden' id='sentence"+(idx+1)+"'></div></div>")
-					$('#practice-lineresult').append("<div id='line-result-div"+(idx+1)+"' class='line-result-divs'>")///////////////
+					$('#practice-paragraph').append("<div id='line-div"+(idx+1)+"' class='line-divs'><span><label id='lbl-line"+(idx+1)+"' class='lbl-lines'></label><label id='s2' class='s2'></label><label id='result"+(idx+1)+"'></label></span><br><div id='ipt-line"+(idx+1)+"-div' class='ipt-line-divs'><input type='text' id='ipt-line"+(idx+1)+"' class='ipt-lines' index="+(idx+1)+"><input type='hidden' id='sentence"+(idx+1)+"'></div></div>")
 				});
 				
 				$.each(linedData, function(idx, val){
@@ -492,6 +509,9 @@ var typeableChars = 0;
 					typeableChars += text.length;
 				});
 					getPage(currPage, paragraphLength);
+					setTimeout(function(){
+						$("#practice-wrapper").css('opacity', '1');
+					}, 1000);
 			}
 		});
 	}
@@ -518,6 +538,8 @@ var typeableChars = 0;
 	var typealbeChars = 0;
 	var incorrectHits = 0;
 	var timerOn = 0;
+	var totalHits = 0;
+	var incorrect_keys = [];
 	$(document).on('keyup', '.ipt-lines', function(event){
 		var x = event.key;	//입력값 저장
 		if(timerOn == 0){
@@ -542,6 +564,7 @@ var typeableChars = 0;
 		
 	
 		if(x != 'Enter' && x != 'Shift'){
+			totalHits++;
 			sentenceHits++; // enter 와 shift를 제외한 key typing만을 인정
 		}
 		
@@ -551,9 +574,7 @@ var typeableChars = 0;
 	    	if(inputIdx % 8 == 0){
 	    		for(var i = inputIdx-7; i <= inputIdx; i++ ){
 				    var parsedId1 = "#line-div"+i;
-				    var parsedId2= "#line-result-div"+i;
 	    			$(parsedId1).remove();
-	    			$(parsedId2).remove();
 	    		}
 	    			currPage++;
 	    			getPage(currPage, paragraphLength);
@@ -565,11 +586,12 @@ var typeableChars = 0;
 			endTime = endDate.getTime();
 			ellapsedTime = endTime - startTime; 
 			speed = getSpeed(sentenceHits, ellapsedTime);
+			acc = getAccuracy(sentence, input);
 			startDate = null; // 시간 초기화
 			sentenceHits = 0; // 문장 타이핑 수 초기화;
-			var parsedResultDiv = "#line-result-div"+index;
-			$(parsedResultDiv).append("<label>"+speed+"</label>");
-			speedArr.push(speed);
+			var result = "#result"+index;
+			$(result).text(" // " + speed + ", " + acc);
+			$(result).css('color', 'blue');
 			
 	    }
 		
@@ -583,6 +605,8 @@ var typeableChars = 0;
 	    	s2elem.text(s2);
 	    }else{
 	    	incorrectHits++;
+	    	incorrect_keys.push(sentence.substr(input.length-1,1));
+
 	    	$(this).css({"color":"red"});
 	    	var s1 = sentence.substring(0, input.length);
 	    	var s2 = sentence.substring(input.length, sentence.length);
@@ -597,7 +621,7 @@ var typeableChars = 0;
 		var seconds = ellapsedTime / 1000;
 		var speed = Math.round(sentenceHits / seconds * 60, 2);
 		speedArr.push(speed);
-		
+		console.log("speed : " + speed);
 		return speed+' h/s';
 	}
 	
@@ -619,7 +643,9 @@ var typeableChars = 0;
 			}	
 		}
 		accuracy = Math.round(((sLength - incorrectChars) / sLength * 100));
-		accArr.push(accuracy);		
+		console.log('acc : ' + accuracy);
+		accArr.push(accuracy);	
+	
 		return accuracy+ ' %';
 	}
 
@@ -667,10 +693,11 @@ var typeableChars = 0;
 		console.log("length : " + _paragraphLength);
 		if(idx == _paragraphLength){
 			stopTimer();
+			showModal(speedArr, accArr, totalHits, typeableChars, incorrect_keys);
 		}
 	} 	
 	
-	function showModal(_speedArr, _totalHits, _typeableChars, _correctHits, _incorrectHits, _incorrectKeys){
+	function showModal(_speedArr, _accArr, _totalHits, _typeableChars, _incorrectKeys){
 		var modal = document.getElementById('myModal');
 	    var speedSum = 0;
 	    var speedMean = 0;
@@ -738,14 +765,15 @@ var typeableChars = 0;
 
 		console.log('accscore : ' + accScore);
 		// 많이 틀린 키
-		incorrectKeys.sort();
+		_incorrectKeys.sort();
 		var flag = _incorrectKeys[0];
 	    var incorrectJson = new Object();
 		var times = 0;
 	 	var current = null;
 	 	var incorrectText = ' ';
 		var incorrectArr = [];
-		if(incorrectKeys == ''){
+		var incorrect = "";
+		if(_incorrectKeys == ''){
 			incorrectText = '정확도 100%!';
 		}else{
 			for(var i = 0; i < _incorrectKeys.length; i++){
@@ -775,6 +803,9 @@ var typeableChars = 0;
 					continue;
 				}
 				incorrectText += " " + incorrectArr[i].key + " : " + incorrectArr[i].value + ",";
+			}
+			for(var i = 0; i < incorrectArr.length; i++){
+				incorrect += incorrectArr[i].key + ":" + incorrectArr[i].value+",";
 			}
 		}
 		
@@ -840,7 +871,23 @@ var typeableChars = 0;
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
 		
-	
+		var lang_type = $('#lang-selector option:selected').val();
+		var sendData = "email=aa@aa.com&lang_type="+lang_type
+						+"&field_type=paragraph"
+						+"&speed="+speedMean
+						+"&accuracy="+accMean
+						+"&interrupt="+productivity
+						+"&incorrect_key="+incorrect;
+						
+		
+		$.ajax({
+			url : '/cota/insertStatistics',			// 전송할 URL
+			type : 'post',				// 전송 방식
+			data : sendData, 							// 전송할 데이터
+			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
+					alert("success");					
+			}
+		});
 		
 	}
 	
@@ -901,9 +948,6 @@ var typeableChars = 0;
 	<div id="practice-middle"> <!-- 중단 -->
 		<div id="practice-paragraph"> <!-- 문단연습 -->
 		</div>
-		<div id="practice-lineresult"> <!-- 중간결과 -->
-			<label id="line-result"></label>
-		</div>
 	</div>
 	
 	<div id="practice-bottom"> <!-- 하단 -->
@@ -920,9 +964,6 @@ var typeableChars = 0;
     </div>
     <div class="modal-body">
     	<table id='statTable'>
-    		<!-- <tr>
-    			<td colspan='2' style="font-size:25px;">통계</td>
-    		</tr> -->
     		<tr>
     			<td colspan='2'>	
 	    			<span id="onestar" class="fa fa-star"></span>
@@ -951,7 +992,7 @@ var typeableChars = 0;
     	</table>
     </div>
     <div class="modal-footer">
-		<a id='continue'><button class="buttons">계속하기</button></a>
+		<a href='/cota/paragraph-selector'><button class="buttons">계속하기</button></a>
 		<a href="/cota/main"><button class="buttons">종료하기</button></a>
     </div>
   </div>

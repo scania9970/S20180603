@@ -41,7 +41,30 @@
     	#dataTables-example{
     		width: 800px;
     	}
-    	
+    	* {
+		   margin: 0px;
+		   padding: 0px;
+		}
+		
+		li {
+		   list-style: none;
+		}
+		
+		a {
+		   text-decoration: none;
+		}
+		
+		a:LINK {
+		   color: black;
+		}
+		
+		a:VISITED {
+		   color: black;
+		}
+    	#main{
+    		width: 1000px;
+    		margin: 0 auto;
+    	}
     	#boardmenu {
     		border: 1px solid black;
     		width: 150px;
@@ -58,32 +81,34 @@
     </style>
 </head>
 <body>
-	<div id="boardmenu">
-		<ul>
-			<li> <a href="/cota/list1"> 자유 게시판 </a></li>
-			<li> <a href="/cota/list2">질문답 </a></li>
-		</ul>	
-	</div>
+	<div id="main">
 	
-	<div id="boardlist">
-	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-		<tr>
-			<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
-		</tr>
-		<c:forEach var="board" items="${list }">
-		<tr>
-			<td>${board.bnum}</td>
-			<td><a href="postform1?bnum=${board.bnum }">${board.title}</a></td>
-			<td>${board.nickname}</td>
-			<td>${board.view_count}</td>
-			<td>${board.board_date}</td>
-		</tr>
-		</c:forEach>
+		<div id="boardmenu">
+			<ul>
+				<li> <a href="/cota/list1"> 자유 게시판 </a></li>
+				<li> <a href="/cota/list2">질문답 </a></li>
+			</ul>	
+		</div>
 		
-	</table>
-	<input type="button" value="글쓰기" onclick="location.href='postingform'">
+		<div id="boardlist">
+		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+			<tr>
+				<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
+			</tr>
+			<c:forEach var="board" items="${list }">
+			<tr>
+				<td>${board.bnum}</td>
+				<td><a href="postform1?bnum=${board.bnum }">${board.title}</a></td>
+				<td>${board.nickname}</td>
+				<td>${board.view_count}</td>
+				<td>${board.board_date}</td>
+			</tr>
+			</c:forEach>
+			
+		</table>
+		<input type="button" value="글쓰기" onclick="location.href='postingform'">
+		</div>
 	</div>
-		
 				<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/mypage/vendor/jquery/jquery.min.js"></script>
 

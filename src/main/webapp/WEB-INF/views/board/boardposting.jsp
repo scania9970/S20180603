@@ -7,16 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글쓰기</title>
 <style type="text/css">
-
+<%
+	String email = (String)session.getAttribute("email");
+%>
 
 </style>
 </head>
 
 <body>
-	<% 
-		String email = (String)session.getAttribute("email"); 
-	%>
-	
 	<div>
 	<form action="posting">
 		<table>
@@ -27,7 +25,7 @@
 				<td>내용</td> <td><input type="text" name="content"></td>
 			</tr>
 			<tr>
-				<td>이메일</td><td><input type="text" name="email"> </td>
+				<td>이메일</td><td><input type="hidden" name="email" value=""> </td>
 			</tr>
 		</table>
 		<input type="submit" value="완료">

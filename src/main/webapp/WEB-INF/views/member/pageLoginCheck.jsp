@@ -7,8 +7,8 @@
 </head>
 <body>
 	<%
-		String email = (String)session.getAttribute("email");
-	
+		String email = (String)session.getAttribute("member");
+
 		if (email == null || email.equals("")) {
 			response.sendRedirect("loginpage");
 		}

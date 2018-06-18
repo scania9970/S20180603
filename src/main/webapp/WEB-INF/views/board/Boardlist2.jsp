@@ -99,6 +99,13 @@
 			    background-color: #ddd;
 			    border-radius: 5px;
 			}
+			#postingbtn{
+				float: right;
+			}
+			table th {
+				background-color: #5bc0de;
+			}
+			
     </style>
 </head>
 <body>
@@ -130,6 +137,7 @@
 				</c:forEach>
 				
 			</table>
+		<input type="button" value="글쓰기" id="postingbtn" class="btn btn-primary" onclick="location.href='postingform2'">
 			<center>
 			<div class="pagination" >
 			<c:if test="${pg.startPage > pg.pageBlock}">
@@ -145,7 +153,6 @@
 			</center>
 		</div>
 		</div>
-		<input type="button" value="글쓰기" onclick="location.href='postingform2'">
 		</div>
 	</div>
 				<!-- jQuery -->

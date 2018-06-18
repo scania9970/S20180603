@@ -9,7 +9,7 @@
 <title>글쓰기</title>
 <style type="text/css">
 <%
-	String email = (String)session.getAttribute("email");
+	/* String email = (String)session.getAttribute("email"); */
 %>
 	
 	#main{

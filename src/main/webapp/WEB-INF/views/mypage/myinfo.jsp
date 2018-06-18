@@ -73,7 +73,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="#" onclick="alert('좆까');"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a>
+							<a href="#"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a>
 						</li>
 					</ul>
 				</div>

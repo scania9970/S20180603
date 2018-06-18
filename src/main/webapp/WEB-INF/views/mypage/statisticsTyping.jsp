@@ -29,11 +29,10 @@
     <![endif]-->
 
 <style type="text/css">
-
-/* .incorrect_key {
+.incorrect_key {
 	visibility: hidden;
 	font-size: 0px;
-} */
+}
 
 .fixed_width_wrapper {
 	float: left;
@@ -189,8 +188,6 @@
 				current_key = "backslash";
 			}
 			
-			alert(current_key);
-			
 			start = end + 1;
 			end = incorrect_total.indexOf(',', end);
 			
@@ -254,8 +251,7 @@
 								<li><a href="statisticsTyping?email=${email}">타자 연습 통계</a></li>
 								<li><a href="#">작성한 글 통계</a></li>
 							</ul></li>
-						<li><a href="#" onclick="alert('좆까');"><i
-								class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a></li>
+						<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a></li>
 					</ul>
 				</div>
 			</div>

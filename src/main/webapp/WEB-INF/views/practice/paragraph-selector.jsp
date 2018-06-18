@@ -171,16 +171,20 @@
 	#practice-top{
 		width: 100%;
 		height: 50px;
+		
 	}
 	#practice-top-wrapper{
 		display: inline-block;
 		width: 30%;
 		height: 50px;
-	
+		border: 1px solid gray;
+		border-bottom: none;
+		border-radius: 5px 20px 0 0;
 	}
 	#practice-top-image{
 		background-image: url(/cota/images/braket.png);
-		background-size: 100% 100%;
+		background-size: 90% 90%;
+		background-repeat: none;
 		float: left;
 		width: 20%;
 		height: 45px;
@@ -207,16 +211,17 @@
 	#practice-middle{
 		width: 100%;
 		height: 500px;
+		border: 1px solid gray;
+		border-radius: 0 10px;
 	}
 	#practice-paragraph{
+		margin: 10px 10px;
 		overflow: hidden;
 		float: left;
 		display: inline-block;
 		font-size: 20px;
 		width: 100%;
 		height: 500px;
-		border: 1px solid gray;
-		border-radius: 10px;
 	}
 	#practice-lineresult{
 		float: left;
@@ -498,8 +503,8 @@ var typeableChars = 0;
 					parsedLineSentence = "#sentence"+(idx+1);
 					if(numOfTabs != 0){ // indent 처리가 필요할 경우
 						for(var i = 0; i < numOfTabs; i++){ // numOfTabs에 맞게 prepend
-							$(parsedDiv).prepend("<div class='space'>&nbsp;&nbsp;&nbsp;&nbsp;</div>"); // numOfTabs에 맞게 prepend
-							$(parsedLineDiv).prepend("<div class='space'>&nbsp;&nbsp;&nbsp;&nbsp;</div>"); // numOfTabs에 맞게 prepend
+							$(parsedDiv).prepend("<div class='space'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>"); // numOfTabs에 맞게 prepend
+							$(parsedLineDiv).prepend("<div class='space'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>"); // numOfTabs에 맞게 prepend
 						}
 					}
 					var text = val.replace(/\)\^\)\#/gi, "").trim();

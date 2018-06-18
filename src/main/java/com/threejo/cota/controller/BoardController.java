@@ -22,25 +22,40 @@ public class BoardController {
 	@Autowired
 	private ReplyService rs;
 	
-	@RequestMapping(value="/list")  /* 게시판 목록*/
+	@RequestMapping(value="/list1")  /* 게시판 목록*/
 	public String listvalue(Board board, Model model) {
 		List<Board> list = bs.list(board);
 		
 		model.addAttribute("list", list);
-		System.out.println("list"+ list);
 		return "board/Boardlist";
+	}
+	@RequestMapping(value="/list2")  /* 게시판 목록*/
+	public String list2value(Board board, Model model) {
+		List<Board> list2 = bs.list2(board);
+		
+		model.addAttribute("list2", list2);
+		return "board/Boardlist2";
 	}
 	@RequestMapping(value="/postingform")  /* 게시판 글쓰는 폼*/
 	public String postingform() {
 		
 		return "board/boardposting";
 	}
+	@RequestMapping(value="/postingform2")  /* 게시판 글쓰는 폼*/
+	public String postingform2() {
+		
+		return "board/boardposting2";
+	}
 	
-	@RequestMapping(value="/postform")    
+	@RequestMapping(value="/postform1")    
 	public String postform(int bnum,Reply reply, Model model) {
+
+		/*조회수 업데이트*/
+		int a = bs.view_countupdate(bnum);
 		
 		Board board = bs.post(bnum);
 		model.addAttribute("board", board);
+		
 		
 		List<Reply> replylist = rs.rlist(reply);
 		model.addAttribute("rlist", replylist);
@@ -48,15 +63,43 @@ public class BoardController {
 		return "board/boardpost";
 	}
 	
+	@RequestMapping(value="/postform2")    
+	public String postform2(int bnum,Reply reply, Model model) {
+
+		/*조회수 업데이트*/
+		int a = bs.view_countupdate(bnum);
+		
+		Board board = bs.post(bnum);
+		model.addAttribute("board", board);
+		
+		
+		List<Reply> replylist = rs.rlist(reply);
+		model.addAttribute("rlist", replylist);
+		System.out.println("rlist" + replylist);
+		return "board/boardpost2";
+	}
+	
 	@RequestMapping(value="/posting")
 	public String posting(Board board, Model model) {
 		int result = bs.boardinsert(board);
 		if(result > 0) {
 			model.addAttribute("msg", "포스팅 성공");
-			return "redirect:list";
+			return "redirect:list1";
 		} else {
 			model.addAttribute("msg", "포스팅 실패");
 			return "board/boardposting";
+		}
+	}
+	
+	@RequestMapping(value="/posting2")
+	public String posting2(Board board, Model model) {
+		int result = bs.boardinsert2(board);
+		if(result > 0) {
+			model.addAttribute("msg", "포스팅 성공");
+			return "redirect:list2";
+		} else {
+			model.addAttribute("msg", "포스팅 실패");
+			return "board/boardposting2";
 		}
 	}
 	@RequestMapping(value="boardupdateForm")
@@ -78,16 +121,28 @@ public class BoardController {
 		return "redirect:list";
 	}
 
-	@RequestMapping(value="replyPosting")
-	public String replyPosting(Reply reply, Model model) {
+	@RequestMapping(value="replyPosting1")
+	public String replyPosting1(Reply reply, Model model) {
 		int result = rs.replyinsert(reply);
 		if(result > 0) {
 			model.addAttribute("msg", "댓글입력 성공");
-			return "redirect:list";
+			return "redirect:list1";
 			
 		} else {
 			model.addAttribute("msg", "댓글입력 실패");
-			return "redirect:list";
+			return "redirect:list1";
+		}
+	}
+	@RequestMapping(value="replyPosting2")
+	public String replyPosting2(Reply reply, Model model) {
+		int result = rs.replyinsert(reply);
+		if(result > 0) {
+			model.addAttribute("msg", "댓글입력 성공");
+			return "redirect:list2";
+			
+		} else {
+			model.addAttribute("msg", "댓글입력 실패");
+			return "redirect:list2";
 		}
 	}
 }

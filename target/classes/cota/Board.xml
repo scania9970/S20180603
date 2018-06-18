@@ -15,11 +15,19 @@
 	</resultMap>
 
 	<select id="Boardlist" parameterType="Board" resultMap="BoardResult">
-		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email order by bnum desc
+		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 1 order by bnum desc
+	</select>
+	
+	<select id="Boardlist2" parameterType="Board" resultMap="BoardResult">
+		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum desc
 	</select>
 	
 	<insert id="Boardinsert" parameterType="Board">
 		 insert into board(bnum, email, board_type, title, content) values ( BNUM_SEQ.NEXTVAL,#{email},1,#{title},#{content}) 
+	</insert>
+	
+	<insert id="Boardinsert2" parameterType="Board">
+		 insert into board(bnum, email, board_type, title, content) values ( BNUM_SEQ.NEXTVAL,#{email},2,#{title},#{content}) 
 	</insert>
 	
 	<select id="post" parameterType="int" resultType="Board">
@@ -31,4 +39,7 @@
 	<delete id="boarddelete">
 		delete from board where bnum = #{bnum}
 	</delete>
+	<update id="view_countupdate">
+		update board set view_count = view_count + 1 where bnum = #{bnum}
+	</update>
 </mapper>

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../member/pageLoginCheck.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -74,7 +73,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="#" onclick="alert('좆까');"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a>
+							<a href="#"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a>
 						</li>
 					</ul>
 				</div>

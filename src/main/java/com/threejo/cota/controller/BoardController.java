@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.threejo.cota.model.Board;
 import com.threejo.cota.model.Reply;
 import com.threejo.cota.service.BoardService;
+import com.threejo.cota.service.Paging;
 import com.threejo.cota.service.ReplyService;
+
 
 
 @Controller
@@ -23,17 +25,23 @@ public class BoardController {
 	private ReplyService rs;
 	
 	@RequestMapping(value="/list1")  /* 게시판 목록*/
-	public String listvalue(Board board, Model model) {
+	public String listvalue(Board board,String currentPage, Model model) {
+		int total = bs.total();
+		Paging pg = new Paging(total, currentPage);
 		List<Board> list = bs.list(board);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("pg", pg);
 		return "board/Boardlist";
 	}
 	@RequestMapping(value="/list2")  /* 게시판 목록*/
-	public String list2value(Board board, Model model) {
+	public String list2value(Board board,String currentPage, Model model) {
+		int total = bs.total2();
+		Paging pg = new Paging(total, currentPage);
 		List<Board> list2 = bs.list2(board);
 		
 		model.addAttribute("list2", list2);
+		model.addAttribute("pg", pg);
 		return "board/Boardlist2";
 	}
 	@RequestMapping(value="/postingform")  /* 게시판 글쓰는 폼*/

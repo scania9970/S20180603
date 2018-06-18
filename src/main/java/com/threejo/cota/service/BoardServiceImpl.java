@@ -55,6 +55,15 @@ public class BoardServiceImpl implements BoardService{
 		return bd.view_countupdate(bnum);
 	}
 
+	@Override
+	public int total() {
+		return bd.total();
+	}
+	
+	@Override
+	public int total2() {
+		return bd.total2();
+	}
 
 
 

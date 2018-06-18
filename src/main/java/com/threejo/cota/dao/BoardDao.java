@@ -22,6 +22,10 @@ public interface BoardDao {
 
 	int view_countupdate(int bnum);
 
+	int total();
+
+	int total2();
+
 
 
 }

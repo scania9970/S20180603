@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.threejo.cota.dao.PracticeDao;
+import com.threejo.cota.model.Statistics_TODAY;
 @Service
 public class PracticeServiceImpl implements PracticeService{
 	
@@ -35,6 +36,11 @@ public class PracticeServiceImpl implements PracticeService{
 	@Override
 	public String getParagraphContent(String para_title) {
 		return pd.getParagraphContent(para_title);
+	}
+
+	@Override
+	public void insertStatistics(Statistics_TODAY statistics_TODAY) {
+		pd.insertStatistics(statistics_TODAY);
 	}
 
 	

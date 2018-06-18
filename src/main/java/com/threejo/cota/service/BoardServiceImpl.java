@@ -21,10 +21,20 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
+	public List<Board> list2(Board board) {
+		return bd.list2(board);
+	}
+	
+	@Override
 	public int boardinsert(Board board) {
 		return bd.boardinsert(board);
 	}
 
+	@Override
+	public int boardinsert2(Board board) {
+		return bd.boardinsert2(board);
+	}
+	
 	@Override
 	public Board post(int bnum) {
 		return bd.post(bnum);
@@ -39,6 +49,13 @@ public class BoardServiceImpl implements BoardService{
 	public int boarddelete(int bnum) {
 		return bd.boarddelete(bnum);
 	}
+
+	@Override
+	public int view_countupdate(int bnum) {
+		return bd.view_countupdate(bnum);
+	}
+
+
 
 
 }

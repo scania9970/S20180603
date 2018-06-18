@@ -8,6 +8,7 @@
 <%@ include file="/WEB-INF/views/main/header.jsp" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <style>
 * {
@@ -516,7 +517,8 @@ input[type="text"] {
 			$('#s2').text(s2);
 		} else {
 			incorrectHits++;
-			incorrectKeys.push(x);
+			incorrectKeys.push(sentence.substr(input.length-1,1));
+			console.log("incorrectKeys : " + incorrectKeys);
 			$(input_textfield).css({
 				"color" : "red"
 			});
@@ -704,6 +706,7 @@ input[type="text"] {
 	 	var current = null;
 	 	var incorrectText = ' ';
 		var incorrectArr = [];
+		var incorrect = "";
 		if(incorrectKeys == ''){
 			incorrectText = '정확도 100%!';
 		}else{
@@ -734,6 +737,9 @@ input[type="text"] {
 					continue;
 				}
 				incorrectText += " " + incorrectArr[i].key + " : " + incorrectArr[i].value + ",";
+			}
+			for(var i = 0; i < incorrectArr.length; i++){
+				incorrect += incorrectArr[i].key + ":" + incorrectArr[i].value+",";
 			}
 		}
 		
@@ -798,11 +804,18 @@ input[type="text"] {
 		
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
+		var lang_type = $('#lang-selector option:selected').val();
+		var sendData = "email=aa@aa.com&lang_type="+lang_type
+						+"&field_type=sentence"
+						+"&speed="+speedMean
+						+"&accuracy="+accMean
+						+"&interrupt="+productivity
+						+"&incorrect_key="+incorrect;
+						
 		
-		var sendData = "incorrect_key="+incorrectArr.toString();
 		$.ajax({
 			url : '/cota/insertStatistics',			// 전송할 URL
-			type : 'get',				// 전송 방식
+			type : 'post',				// 전송 방식
 			data : sendData, 							// 전송할 데이터
 			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
 					alert("success");					
@@ -1190,9 +1203,6 @@ input[type="text"] {
 	    </div>
 	    <div class="modal-body">
 	    	<table id='statTable'>
-	    		<!-- <tr>
-	    			<td colspan='2' style="font-size:25px;">통계</td>
-	    		</tr> -->
 	    		<tr>
 	    			<td colspan='2'>	
 		    			<span id="onestar" class="fa fa-star"></span>

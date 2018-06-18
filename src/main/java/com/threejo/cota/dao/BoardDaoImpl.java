@@ -19,9 +19,20 @@ public class BoardDaoImpl implements BoardDao{
 		return session.selectList("Boardlist", board);
 	}
 
+	
+	@Override
+	public List<Board> list2(Board board) {
+		return session.selectList("Boardlist2", board);
+	}
+	
 	@Override
 	public int boardinsert(Board board) {
 		return session.insert("Boardinsert", board);
+	}
+	
+	@Override
+	public int boardinsert2(Board board) {
+		return session.insert("Boardinsert2", board);
 	}
 
 	@Override
@@ -38,6 +49,13 @@ public class BoardDaoImpl implements BoardDao{
 	public int boarddelete(int bnum) {
 		return session.delete("boarddelete", bnum);
 	}
+
+
+	@Override
+	public int view_countupdate(int bnum) {
+		return session.update("view_countupdate", bnum);
+	}
+
 
 
 }

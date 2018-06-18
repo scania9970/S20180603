@@ -18,7 +18,7 @@
 	%>
 	
 	<div>
-	<form action="posting">
+	<form action="posting2">
 		<table>
 			<tr>
 				<td>제목</td><td> <input type="text" name="title"> </td>

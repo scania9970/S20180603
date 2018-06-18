@@ -519,7 +519,10 @@ input[type="text"] {
 			$('#s2').text(s2);
 		} else {
 			incorrectHits++;
-			incorrectKeys.push(sentence.substr(input.length-1,1));
+			if(x != 'ArrowUp' && x != 'ArrowDown' && x != 'ArrowLeft' && x != 'ArrowRight'){
+				incorrectKeys.push(sentence.substr(input.length-1,1));
+				
+			}
 			console.log("incorrectKeys : " + incorrectKeys);
 			$(input_textfield).css({
 				"color" : "red"
@@ -744,6 +747,7 @@ input[type="text"] {
 				var currKey = incorrectArr[i].key;
 				var parsedKey = _getParsedKey(currKey);
 				var curr = $(parsedKey);
+				console.log("currKey : " + currKey);
 				console.log("currVal : " + currVal);
 				console.log(typeof currVal)
 				
@@ -851,11 +855,11 @@ input[type="text"] {
 		}
 		
 		
-		
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
 		var lang_type = $('#lang-selector option:selected').val();
-		var sendData = "email=aa@aa.com&lang_type="+lang_type
+		var sendData = "email=<%=member.getEmail()%>"
+						+"&lang_type="+lang_type
 						+"&field_type=sentence"
 						+"&speed="+speedMean
 						+"&accuracy="+accMean

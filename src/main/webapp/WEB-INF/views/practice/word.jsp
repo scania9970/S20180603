@@ -852,7 +852,8 @@ input[type="text"] {
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
 		var lang_type = $('#lang-selector option:selected').val();
-		var sendData = "email=aa@aa.com&lang_type="+lang_type
+		var sendData = "email=<%=member.getEmail()%>"
+						+"&lang_type="+lang_type
 						+"&field_type=word"
 						+"&speed="+speedMean
 						+"&accuracy="+accMean
@@ -1558,29 +1559,37 @@ input[type="text"] {
 							<div id="_key_right_shift" class="key wide_4">
 								<div class="line1">shift</div>
 								<div class="line2">&nbsp;</div>
+
 							</div>
 						</div>
 						<div class="line">
 							<div id="_key_left_ctrl" class="key wide_1">
 								<div class="line1">ctrl</div>
+								<div class="line2">&nbsp;</div>
 							</div>
 							<div id="_key_left_alt" class="key wide_1">
 								<div class="line1">alt</div>
+								<div class="line2">&nbsp;</div>
 							</div>
 							<div id="_key_left_cmd" class="key wide_1">
 								<div class="line1">cmd</div>
+								<div class="line2">&nbsp;</div>
 							</div>
 							<div id="_key_space" class="key wide_5">
 								<div class="line1">space</div>
+								<div class="line2">&nbsp;</div>
 							</div>
 							<div id="_key_right_cmd" class="key wide_1">
 								<div class="line1">cmd</div>
+								<div class="line2">&nbsp;</div>
 							</div>
 							<div id="_key_right_alt" class="key wide_1">
 								<div class="line1">alt</div>
+								<div class="line2">&nbsp;</div>
 							</div>
 							<div id="_key_right_ctrl" class="key wide_1">
 								<div class="line1">ctrl</div>
+								<div class="line2">&nbsp;</div>
 							</div>
 						</div>
 					</div>

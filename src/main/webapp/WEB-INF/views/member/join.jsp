@@ -151,7 +151,7 @@ var loadFile = function(event) {
                         <h2 class="panel-title" style="font-size: 20pt" align="center">회원가입</h2>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="insertmb" method="post" enctype="multipart/form-data">
+                        <form role="form" action="insertmb" name="join" method="post" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>

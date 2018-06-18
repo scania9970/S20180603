@@ -33,13 +33,13 @@ public class MemberController {
 						   @RequestParam("email") String email,
 						   @RequestParam("password") String password,
 						   @RequestParam("nickname") String nickname,
-						   @RequestParam("is_enterprise") Boolean is_enterprise,
+						   boolean is_enterprise,       // boolean은 예외
 						   HttpServletRequest request, Model model) throws Exception {
 		String fileName = "";
 		String fileSave = request.getSession().getServletContext().getRealPath("/upload/");
 		File fileDirectory = new File(fileSave);
 		Member member = new Member();
-		
+		System.out.println("으하하하" + is_enterprise);
 		if (!uploadfile.isEmpty()) {
 			
 			if (!fileDirectory.exists()) {

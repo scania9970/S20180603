@@ -8,9 +8,9 @@
 </head>
 <body>
 	<%
-		Member member = (Member)session.getAttribute("member");
+		Member membercheck = (Member)session.getAttribute("membercheck");
 
-		if (member.getEmail() == null || member.getEmail().equals("")) {
+		if (membercheck.getEmail() == null || membercheck.getEmail().equals("")) {
 			response.sendRedirect("loginpage");
 		}
 	%>

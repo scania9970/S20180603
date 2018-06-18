@@ -1,5 +1,8 @@
 package com.threejo.cota.controller;
 
+import java.io.File;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.threejo.cota.model.Member;
 import com.threejo.cota.service.MemberService;
@@ -24,11 +29,43 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // 헤더 주소 회원가입
-	public String insertmb(Member member, Model model) {
+	public String insertmb(@RequestParam("profile_url") MultipartFile uploadfile,
+						   @RequestParam("email") String email,
+						   @RequestParam("password") String password,
+						   @RequestParam("nickname") String nickname,
+						   @RequestParam("is_enterprise") Boolean is_enterprise,
+						   HttpServletRequest request, Model model) throws Exception {
+		String fileName = "";
+		String fileSave = request.getSession().getServletContext().getRealPath("/upload/");
+		File fileDirectory = new File(fileSave);
+		Member member = new Member();
+		
+		if (!uploadfile.isEmpty()) {
+			
+			if (!fileDirectory.exists()) {
+				fileDirectory.mkdirs();
+				System.out.println("업로드 폴더 생성 : " + fileSave);
+			}
+			
+			fileName = uploadfile.getOriginalFilename();
+			member.setProfile_url("/cota/upload/" + fileName);
+			uploadfile.transferTo(new File(fileSave + fileName));
+			System.out.println("프로필 사진 업로드 성공 : " + fileName);
+			
+		} else {
+			member.setProfile_url("images/no_profile_image.png");
+		}
+		
+		member.setEmail(email);
+		member.setPassword(password);
+		member.setNickname(nickname);
+		member.setIs_enterprise(is_enterprise);
 		
 		ms.insert(member); // 받아올 데이터타입 앞에 선언 해줌
 		model.addAttribute("member", member);
 		System.out.println("checkbox : " + member.getIs_enterprise());
+		System.out.println("profile_url : " + member.getProfile_url());
+		
 		return "member/joinPro"; // jsp
 
 	}
@@ -53,7 +90,7 @@ public class MemberController {
 				return "main/main";
 			}
 		// 실패
-		return "member/login";
+		return "member/loginPro";
 	}
 
 }

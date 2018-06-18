@@ -12,10 +12,6 @@ public class PortfolioDaoImpl implements PortfolioDao{
 	@Autowired
 	private SqlSession session;
 
-	@Override
-	public int insert(Portfolio portfolio) {
-		return session.insert("insert",portfolio);
-	}
 	
 	
 }

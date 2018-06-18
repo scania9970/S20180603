@@ -57,5 +57,17 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 
+	@Override
+	public int total() {
+		return session.selectOne("total");
+	}
+
+
+	@Override
+	public int total2() {
+		return session.selectOne("total2");
+	}
+
+
 
 }

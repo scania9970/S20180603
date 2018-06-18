@@ -22,6 +22,14 @@
 		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum desc
 	</select>
 	
+	<select id="total" resultType="int">
+  	select count(*) from BOARD
+  	</select>
+	
+	<select id="total2" resultType="int">
+  	select count(*) from BOARD
+  	</select>
+	
 	<insert id="Boardinsert" parameterType="Board">
 		 insert into board(bnum, email, board_type, title, content) values ( BNUM_SEQ.NEXTVAL,#{email},1,#{title},#{content}) 
 	</insert>

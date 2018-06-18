@@ -90,22 +90,36 @@
 			</ul>	
 		</div>
 		
-		<div id="boardlist">
-		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-			<tr>
-				<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
-			</tr>
-			<c:forEach var="board" items="${list }">
-			<tr>
-				<td>${board.bnum}</td>
-				<td><a href="postform1?bnum=${board.bnum }">${board.title}</a></td>
-				<td>${board.nickname}</td>
-				<td>${board.view_count}</td>
-				<td>${board.board_date}</td>
-			</tr>
+		<div id="boardlist">             
+		<div class="panel-body">
+		<div class="table-reble-responsive">
+			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+				<tr>
+					<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
+				</tr>
+				<c:forEach var="board" items="${list }">
+				<tr>
+					<td>${board.bnum}</td>
+					<td><a href="postform1?bnum=${board.bnum }">${board.title}</a></td>
+					<td>${board.nickname}</td>
+					<td>${board.view_count}</td>
+					<td>${board.board_date}</td>
+				</tr>
+				<c:set var="num" value="${num - 1}" />
+				</c:forEach>
+				
+			</table>
+			<c:if test="${pg.startPage > pg.pageBlock}">
+				<a href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">[이전]</a>
+			</c:if>
+			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+				<a href="/cota/list1?currentPage=${i}">[${i}]</a>
 			</c:forEach>
-			
-		</table>
+			<c:if test="${pg.endPage < pg.totalPage}">
+				<a href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
+			</c:if>
+		</div>
+		</div>
 		<input type="button" value="글쓰기" onclick="location.href='postingform'">
 		</div>
 	</div>

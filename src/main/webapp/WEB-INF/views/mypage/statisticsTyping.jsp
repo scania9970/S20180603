@@ -228,11 +228,11 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<div class="incorrect_key">
+									
 										<c:forEach items="${listStatToday}" var="list">
-											${list.incorrect_key}
+											<span class="incorrect_key">${list.incorrect_key}</span>
 										</c:forEach>
-									</div>
+									
 									<div class="fixed_width_wrapper">
 										<div class="keyboard">
 											<div class="line">

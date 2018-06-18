@@ -76,7 +76,28 @@
     		border: 1px solid black; 
     		float: left;
     	}
-    
+    	.pagination {
+				clear: both;
+			    margin: 0 auto;
+			    margin: 50px 0 35px 0;
+			}
+						
+			.pagination .a {
+				color:black;
+			    padding: 8px 16px;
+			    font-size:20px;
+			    text-decoration: none;
+			}
+			
+			.pagination .a.active {
+			    background-color: #4CAF50;
+			    color: white;
+			}
+			
+			.pagination .a:hover:not(.active) {
+			    background-color: #ddd;
+			    border-radius: 5px;
+			}
     
     </style>
 </head>
@@ -109,15 +130,19 @@
 				</c:forEach>
 				
 			</table>
+			<center>
+			<div class="pagination" >
 			<c:if test="${pg.startPage > pg.pageBlock}">
-				<a href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">[이전]</a>
+				<a class="a" href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">[이전]</a>
 			</c:if>
 			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-				<a href="/cota/list1?currentPage=${i}">[${i}]</a>
+				<a class="a" href="/cota/list1?currentPage=${i}">[${i}]</a>
 			</c:forEach>
 			<c:if test="${pg.endPage < pg.totalPage}">
-				<a href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
+				<a class="a" href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
 			</c:if>
+			</div>
+			</center>
 		</div>
 		</div>
 		<input type="button" value="글쓰기" onclick="location.href='postingform'">

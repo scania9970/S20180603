@@ -36,7 +36,10 @@
 	border-color: transparent;
 }
 
-
+#output {
+	width : 200px;
+	height : 200px;
+}
 
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -102,6 +105,10 @@ $(document).on('click', '#nicknameChkbtn', function() {
 	
 });
 
+var loadFile = function(event) {
+	var output = document.getElementById('output');
+	output.src = URL.createObjectURL(event.target.files[0]);
+};
 </script>
 <head>
 
@@ -144,7 +151,7 @@ $(document).on('click', '#nicknameChkbtn', function() {
                         <h2 class="panel-title" style="font-size: 20pt" align="center">회원가입</h2>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="/cota/insertmb" method="post">
+                        <form role="form" action="insertmb" method="post" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>
@@ -166,8 +173,8 @@ $(document).on('click', '#nicknameChkbtn', function() {
                                     <input class="form-control" placeholder="비밀번호 확인" name="passwordChk" id="passwordChk" type="password" required >
                                     <span id="spanPassword"></span>
                                 </div>
-                                 <div class="Image"><img id="" src="images/"></div>
-                                 <div class="divUpload"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url" class="inputFile"></div>
+                                 <div class="form-group"><img id="output" src="images/no_profile_image.png"></div>
+                                 <div class="form-group"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url"></div>
                                 <div class="checkbox">
                                     <label>
                                         <input name="is_enterprise" type="checkbox" id="checkbox" value="true">기업회원 구분

@@ -70,10 +70,10 @@
 		<tr>
 			<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
 		</tr>
-		<c:forEach var="board" items="${list }">
+		<c:forEach var="board" items="${list2 }">
 		<tr>
 			<td>${board.bnum}</td>
-			<td><a href="postform1?bnum=${board.bnum }">${board.title}</a></td>
+			<td><a href="postform2?bnum=${board.bnum }">${board.title}</a></td>
 			<td>${board.nickname}</td>
 			<td>${board.view_count}</td>
 			<td>${board.board_date}</td>
@@ -81,7 +81,7 @@
 		</c:forEach>
 		
 	</table>
-	<input type="button" value="글쓰기" onclick="location.href='postingform'">
+	<input type="button" value="글쓰기" onclick="location.href='postingform2'">
 	</div>
 		
 				<!-- jQuery -->

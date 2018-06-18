@@ -27,6 +27,7 @@ public class MemberController {
 	public String insertmb(Member member, Model model) {
 		
 		ms.insert(member); // 받아올 데이터타입 앞에 선언 해줌
+		model.addAttribute("member", member);
 		System.out.println("checkbox : " + member.getIs_enterprise());
 		return "member/joinPro"; // jsp
 

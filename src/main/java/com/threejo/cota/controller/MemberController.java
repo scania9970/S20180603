@@ -92,5 +92,10 @@ public class MemberController {
 		// 실패
 		return "member/loginPro";
 	}
+	
+	@RequestMapping(value="logout")
+	public String logout() {
+		return "member/logout";
+	}
 
 }

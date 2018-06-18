@@ -5,8 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
+	<%
+		session.invalidate();
+	%>
+
+<script type="text/javascript">
+window.onload = function() { // 버튼없이 바로 실행
+	alert("꺼져.");
+	location.href="loginpage";  /*  main page로 이동     jsp에서 이동시  */    <%-- <% response.sendRedirect("start"); 자바시 이동%>  --%>
+}
+</script>
+
 
 </body>
 </html>

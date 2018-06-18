@@ -81,7 +81,7 @@
 		    <div><img id="image" src="<%=member.getProfile_url()%>"></div>
 		    <div id="nicknamearea"><%=member.getNickname()%> 님<br> 환영합니다</div>
 		    <a class="mypage" href="myinfo?email=<%=member.getEmail() %>">마이페이지</a>
-		    <a class="logout">로그아웃</a>
+		    <a class="logout" href="logout">로그아웃</a>
 		</div>
 		<% } %>
 	</div>

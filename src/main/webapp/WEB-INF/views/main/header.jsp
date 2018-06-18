@@ -29,7 +29,7 @@
 					<a href="/cota/word?lang_type=java">낱말연습</a> <a href="/cota/sentence?lang_type=java">문장연습</a> <a href="/cota/paragraph-selector">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
 				</div>
 			</div>
-			<div class="forum"><a href="/cota/list">개발자 포럼</a></div>
+			<div class="forum"><a href="/cota/list1">개발자 포럼</a></div>
 		</div>
 		<% Member member = (Member)session.getAttribute("member"); %>   <%-- <%=member %> 자바 변수를 사용하기위해 다음과 같은 코드를 사욜해 준다. email을 받아오는 경로가 없기때문 생성해줌 --%>
 		<%

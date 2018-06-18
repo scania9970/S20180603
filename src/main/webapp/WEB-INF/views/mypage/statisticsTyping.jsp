@@ -29,7 +29,6 @@
     <![endif]-->
 
 <style type="text/css">
-
 .incorrect_key {
 	visibility: hidden;
 	font-size: 0px;
@@ -134,21 +133,67 @@
 		var height = 322;
 
 		var incorrect_total = $('.incorrect_key').html();
-		alert(incorrect_total);
 		var count = (incorrect_total.match(/,/g) || []).length;
-
-		var start = 0;
-		var end = 1;
+		
+		var start = incorrect_total.indexOf(':') - 1;
+		var end = incorrect_total.indexOf(':');
+		
 		var current_count = 0;
 		var current_key = '';
 		
 		while (count--) {
-			current_key = incorrect_total.substring(start, end);
-			start += 2;
-			end += 2;
+			current_key = incorrect_total.substring(start, end).toLowerCase();
+			
+			if (current_key == ' ') {
+				current_key = "space";
+			} else if (current_key == '[' || current_key == '{') {
+				current_key = "left_bracket";
+			} else if (current_key == ']' || current_key == '}') {
+				current_key = "right_bracket";
+			} else if (current_key == '1' || current_key == '!') {
+				current_key = "one";
+			} else if (current_key == '2' || current_key == '@') {
+				current_key = "two";
+			} else if (current_key == '3' || current_key == '#') {
+				current_key = "three";
+			} else if (current_key == '4' || current_key == '$') {
+				current_key = "four";
+			} else if (current_key == '5' || current_key == '%') {
+				current_key = "five";
+			} else if (current_key == '6' || current_key == '^') {
+				current_key = "six";
+			} else if (current_key == '7' || current_key == '&') {
+				current_key = "seven";
+			} else if (current_key == '8' || current_key == '*') {
+				current_key = "eight";
+			} else if (current_key == '9' || current_key == '(') {
+				current_key = "nine";
+			} else if (current_key == '0' || current_key == ')') {
+				current_key = "zero";
+			} else if (current_key == '-' || current_key == '_') {
+				current_key = "hyphen";
+			} else if (current_key == '=' || current_key == '+') {
+				current_key = "equals";
+			} else if (current_key == ';') {
+				current_key = "semicolon";
+			} else if (current_key == '\'' || current_key == '\"') {
+				current_key = "apostrophe";
+			} else if (current_key == ',' || current_key == '<') {
+				current_key = "comma";
+			} else if (current_key == '.' || current_key == '>') {
+				current_key = "period";
+			} else if (current_key == '/' || current_key == '?') {
+				current_key = "forwardslash";
+			} else if (current_key == '\\' || current_key == '|') {
+				current_key = "backslash";
+			}
+			
+			start = end + 1;
+			end = incorrect_total.indexOf(',', end);
+			
 			current_count = incorrect_total.substring(start, end);
-			start += 2;
-			end += 2;
+			start = incorrect_total.indexOf(':', end) - 1;
+			end = incorrect_total.indexOf(':', end);
 			
 			var positions = $('#key_' + current_key).position();
 			var width_half = $('#key_' + current_key).width() / 2;
@@ -206,8 +251,7 @@
 								<li><a href="statisticsTyping?email=${email}">타자 연습 통계</a></li>
 								<li><a href="#">작성한 글 통계</a></li>
 							</ul></li>
-						<li><a href="#" onclick="alert('좆까');"><i
-								class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a></li>
+						<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a></li>
 					</ul>
 				</div>
 			</div>
@@ -228,11 +272,11 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									
+									<div class="incorrect_key">
 										<c:forEach items="${listStatToday}" var="list">
-											<span class="incorrect_key">${list.incorrect_key}</span>
+											${list.incorrect_key}
 										</c:forEach>
-									
+									</div>
 									<div class="fixed_width_wrapper">
 										<div class="keyboard">
 											<div class="line">

@@ -6,6 +6,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
+<style >
+.member {
+	display: flex;
+	float: right;
+	align-items: center;
+    justify-content: flex-start;
+    widht : 400px;
+}
+.login {
+	margin : 15px 0 0 0;
+	}
+
+.join {
+	margin : 15px 0 0 0;
+}
+
+#image {
+	margin : 5px 0 0 0;
+	width : 50px;
+	height : 50px;
+	border-radius: 25%;
+}
+
+#nicknamearea {
+	font-size : 15px;
+	padding : 0 0 15px 7px;
+	width : 150px;
+	height : 30px;
+	margin : 0 10px 0 0;
+}
+
+.mypage {
+	magin : 0 30px 0 0;
+}
+
+
+</style>
 <link type="text/css" rel="stylesheet" 
 		  href="${pageContext.request.contextPath}/css/header.css" />
 <body>
@@ -36,15 +73,15 @@
 		 if (session.getAttribute("member") == null) {
 		%>
 		<div class="member">
-			<a href="loginpage">로그인</a>
-			<a href="joinpage">회원가입</a>
+			<a class="login" href="loginpage">로그인</a>
+			<a class="join" href="joinpage">회원가입</a>
 		</div>
 		<% } else if (session.getAttribute("member") != null) { %>
 		<div class="member">
-		    <div><%=member.getProfile_url()%></div>
-		    <div><%=member.getNickname()%></div>
-		    <a>마이페이지</a>
-		    <a>로그아웃</a>
+		    <div><img id="image" src="<%=member.getProfile_url()%>"></div>
+		    <div id="nicknamearea"><%=member.getNickname()%> 님<br> 환영합니다</div>
+		    <a class="mypage" href="myinfo?email=<%=member.getEmail() %>">마이페이지</a>
+		    <a class="logout" href="logout">로그아웃</a>
 		</div>
 		<% } %>
 	</div>

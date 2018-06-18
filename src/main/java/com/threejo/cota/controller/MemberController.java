@@ -28,7 +28,7 @@ public class MemberController {
 		return "member/join";
 	}
 
-	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // 헤더 주소 회원가입
+	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // 헤더 주소 회원가입 (insert)
 	public String insertmb(@RequestParam("profile_url") MultipartFile uploadfile,
 						   @RequestParam("email") String email,
 						   @RequestParam("password") String password,
@@ -70,7 +70,7 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping(value = "loginpage")
+	@RequestMapping(value = "loginpage") // 로그인 페이지
 	public String loginpage() {
 		
 		return "member/login";
@@ -91,6 +91,11 @@ public class MemberController {
 			}
 		// 실패
 		return "member/loginPro";
+	}
+	
+	@RequestMapping(value="logout") // 로그아웃
+	public String logout() {
+		return "member/logout";
 	}
 
 }

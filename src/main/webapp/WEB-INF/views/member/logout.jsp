@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%
-		session.invalidate();
+		session.invalidate(); // session 종료
 	%>
 
 <script type="text/javascript">

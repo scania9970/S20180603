@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.threejo.cota.model.Member;
 import com.threejo.cota.model.Mypage;
+import com.threejo.cota.model.Portfolio;
 import com.threejo.cota.model.Statistics_TODAY;
 import com.threejo.cota.service.MypageService;
 
@@ -24,8 +27,10 @@ public class MypageController {
 	
 	// 내 정보 수정 화면
 	@RequestMapping(value = "myinfo")
-	public String myinfo(String email, Model model) {
-		Mypage memberInfo = ms.selectMyinfo(email);
+	public String myinfo(HttpSession session, Model model) {
+		Member member = (Member)session.getAttribute("member");
+		
+		Mypage memberInfo = ms.selectMyinfo(member.getEmail());
 		model.addAttribute("member", memberInfo);
 		
 		return "mypage/myinfo";
@@ -72,12 +77,24 @@ public class MypageController {
 		return "redirect:myinfo";
 	}
 	
+	// 포트폴리오 수정
+	@RequestMapping(value = "myinfoPort")
+	public String myinfoPort(HttpSession session, Model model) {
+		Member member = (Member)session.getAttribute("member");
+		Portfolio portfolio = ms.selectMyinfoPort(member.getEmail());
+		
+		model.addAttribute("portfolio", portfolio);
+		
+		return "mypage/myinfoPort";
+	}
+	
 	// 타자 연습 통계
 	@RequestMapping(value = "statisticsTyping")
-	public String statisticsTyping(String email, Model model) {
-		List<Statistics_TODAY> listStatToday = ms.selectListStatToday(email);
+	public String statisticsTyping(HttpSession session, Model model) {
+		Member member = (Member)session.getAttribute("member");
+		List<Statistics_TODAY> listStatToday = ms.selectListStatToday(member.getEmail());
 		
-		model.addAttribute("email", email);
+		model.addAttribute("email", member.getEmail());
 		model.addAttribute("listStatToday", listStatToday);
 		
 		return "mypage/statisticsTyping";

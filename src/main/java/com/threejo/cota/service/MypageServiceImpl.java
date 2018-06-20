@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.threejo.cota.dao.MypageDao;
 import com.threejo.cota.model.Mypage;
+import com.threejo.cota.model.Portfolio;
 import com.threejo.cota.model.Statistics_TODAY;
 
 @Service
@@ -29,6 +30,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<Statistics_TODAY> selectListStatToday(String email) {
 		return md.selectListStatToday(email);
+	}
+
+	@Override
+	public Portfolio selectMyinfoPort(String email) {
+		return md.selectMyinfoPort(email);
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.threejo.cota.model.Mypage;
+import com.threejo.cota.model.Portfolio;
 import com.threejo.cota.model.Statistics_TODAY;
 
 @Repository
@@ -28,6 +29,11 @@ public class MypageDaoImpl implements MypageDao {
 	@Override
 	public List<Statistics_TODAY> selectListStatToday(String email) {
 		return session.selectList("selectListStatToday", email);
+	}
+
+	@Override
+	public Portfolio selectMyinfoPort(String email) {
+		return session.selectOne("selectMyinfoPort", email);
 	}
 	
 }

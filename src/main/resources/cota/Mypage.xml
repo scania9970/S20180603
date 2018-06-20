@@ -14,6 +14,12 @@
 		]]>
 	</update>
 	
+	<select id="selectMyinfoPort" resultType="Portfolio">
+		<![CDATA[
+			SELECT * FROM PORTFOLIO
+		]]>
+	</select>
+	
 	<select id="selectListStatToday" resultType="Statistics_TODAY">
 		<![CDATA[
 			SELECT * FROM STATISTICS_TODAY WHERE EMAIL = #{email}

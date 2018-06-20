@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
 <style >
+.header {
+	background-color: #F8F8F8;
+}
 .member {
 	display: flex;
 	float: right;
@@ -80,7 +83,7 @@
 		<div class="member">
 		    <div><img id="image" src="<%=member.getProfile_url()%>"></div>
 		    <div id="nicknamearea"><%=member.getNickname()%> 님<br> 환영합니다</div>
-		    <a class="mypage" href="myinfo?email=<%=member.getEmail() %>">마이페이지</a>
+		    <a class="mypage" href="myinfo">마이페이지</a>
 		    <a class="logout" href="logout">로그아웃</a>
 		</div>
 		<% } %>

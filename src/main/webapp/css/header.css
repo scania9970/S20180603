@@ -125,10 +125,10 @@
 }
 
 .logo > a{
-	font-size: 50px;
-	color: #00004B;
-	font-weight: bold;
-	font-style: italic;
+	font-size: 35px !important;
+	color: #00004B !important;
+	font-weight: bold !important;
+	font-style: italic !important;
 }
 
 .header a {
@@ -195,4 +195,20 @@
 
 .taja:hover .dropdown-taja {
     display: block;
+}
+
+.login:hover {
+	color: green;
+}
+
+.join:hover {
+	color: green;
+}
+
+.forum:hover {
+	color: green;
+}
+
+.dropbtn:hover {
+	color: green;
 }

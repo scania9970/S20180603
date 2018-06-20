@@ -55,7 +55,7 @@ body {
 	justify-content: center;
 	font-size: 30px;
 	width: 100%;
-	flex-flow:column;
+	flex-flow: column;
 }
 
 .text > label {

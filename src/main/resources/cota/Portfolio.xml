@@ -3,4 +3,8 @@
 <mapper namespace="Portfolio">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	
+	<select id="getPortfolio" parameterType="Portfolio" resultType="Portfolio">
+		select * from portfolio where email = #{email}
+	</select>
+	
 </mapper> 

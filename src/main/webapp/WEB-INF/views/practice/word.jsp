@@ -855,11 +855,13 @@ input[type="text"] {
 		var email = null;
 		<%
 			if(member != null){
+				
 				%>
+				var email = "<%=member.getEmail()%>"
 				var lang_type = $('#lang-selector option:selected').val();
 				var sendData = "email="+email
 								+"&lang_type="+lang_type
-								+"&field_type=word"
+								+"&field_type=sentence"
 								+"&speed="+speedMean
 								+"&accuracy="+accMean
 								+"&interrupt="+productivity
@@ -870,10 +872,7 @@ input[type="text"] {
 					type : 'post',				// 전송 방식
 					data : sendData, 			// 전송할 데이터
 					success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-					
-					},
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						
+						console.log("success");
 					}
 				});	
 			

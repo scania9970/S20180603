@@ -43,7 +43,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">HYUN SANG HUN</a>
+                <a class="navbar-brand" href="#page-top">${port.email }</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,6 +61,14 @@
                     <li class="page-scroll">
                         <a href="#contact">Contact</a>
                     </li>
+                    <li class="page-scroll">
+                        <a href="">
+                        	<c:if test="${port.is_search == 1}">
+                        		<span class="glyphicon glyphicon-ok"></span>
+                        		구직중
+                        	</c:if>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -73,7 +81,7 @@
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="/cota/images/python.png" alt="">
+                    <img class="img-responsive" style="width:230px; height:230px;" src="/cota/images/python.png" alt="">
                     <div class="intro-text">
                         <h1 class="name">현상훈</h1>
                         <span class="skills">${port.job}</span>
@@ -106,10 +114,30 @@
 			                          <i class="fa fa-search-plus fa-3x"></i>
 			                      </div>
 			                  </div>
-			                  <img src="${project.project_url}" class="img-responsive" alt="Cabin">
+			                  <img src="${project.project_url}" class="img-responsive" alt="Cabin" style="width:360px; height:360px;">
 			              </a>
 			          </div>
    			 </c:forEach>
+            </div>
+        </div>
+    </section>
+    
+    
+      <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                   <br>
+                    <p>
+                         ${port.introduction }
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -122,19 +150,13 @@
                     <br>
                 </div>
             </div>
-            <div class="row">
-					<div class="col-sm-4 portfolio-item">
-			              <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-			                  <div class="caption">
-			                      <div class="caption-content">
-			                          <i class="fa fa-search-plus fa-3x"></i>
-			                      </div>
-			                  </div>
-							<table>
-								<tr>
-									<th>회사명</th><th>입사일</th><th>퇴사일</th><th>직급</th><th>담당업무</th>
-								</tr>								
-			                 <c:forEach var="career" items="${careers }">
+	            <div class="row">
+					<div class="row">
+						<table class="table table-striped">
+							<tr>
+								<th>회사명</th><th>입사일</th><th>퇴사일</th><th>직급</th><th>담당업무</th>
+							</tr>								
+			                 <c:forEach var="career" items="${careers}">
 			                 	<tr>
 			                 		<td>${career.company}</td>
 			                 		<td>${career.date_start}</td>
@@ -143,39 +165,13 @@
 			                 		<td>${career.detail}</td>
 			                 	</tr>
 				   			 </c:forEach>
-							</table>
-			              </a>
-			          </div>
+						</table>
+	     			</div>
+			    </div>
             </div>
-        </div>
     </section>
 
-    <!-- About Section -->
-    <section class="success" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>About</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                   <br>
-                    <p>
-                         ㅎㅇㅎㅇ
-                    </p>
-                </div>
-                <div class="col-lg-4">
-                   <br>
-                    <p>
-                        ㅎㅇㅎㅇ
-                    </p>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
+  
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">

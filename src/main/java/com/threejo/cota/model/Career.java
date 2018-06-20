@@ -8,8 +8,17 @@ public class Career {
 	private String company;
 	private Date date_start;
 	private Date date_end;
+	private String rank;
 	private String detail;
-	
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
 	@Override
 	public String toString() {
 		return "Career [cnum=" + cnum + ", email=" + email + ", company=" + company + ", date_start=" + date_start

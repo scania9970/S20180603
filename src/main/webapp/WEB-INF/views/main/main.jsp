@@ -23,7 +23,8 @@
 				<div class="text" style="color:white;">
 					<label>오직 개발자를 위한 타이핑 연습 사이트 COTA</label>
 					<label>지금 바로 무료가입 후, 이용해 보세요.</label>
-					<input type="button" class="signin" value="가입하기"></input>
+					<input type="button" class="signup" value="가입하기" 
+						   onclick="window.location='joinpage';" ></input>
 				</div>
 			</div>
 		</div>

@@ -546,7 +546,7 @@ input[type="text"] {
 		var defaultLeft = "url(${pageContext.request.contextPath}/images/lefthand.png)";
 		var defaultRight = "url(${pageContext.request.contextPath}/images/righthand.png)";
 		var keyMap = new Map([
-			 [" ","l-thumb"],// l-thumb
+			[" ","l-thumb"],// l-thumb
 			 ["4","l-index"],["$","l-index"],["5","l-index"],["%","l-index"],["r","l-index"],["R","l-index"],["t","l-index"],["T","l-index"],["f","l-index"],["F","l-index"],["g","l-index"],["G","l-index"],["v","l-index"],["V","l-index"],["b","l-index"],["B","l-index"],// l-index
 			 ["3","l-middle"],["#","l-middle"],["e","l-middle"],["E","l-middle"],["d","l-middle"],["D","l-middle"],["c","l-middle"],["C","l-middle"],// l-middle
 			 ["2","l-ring"],["@","l-ring"],["w","l-ring"],["W","l-ring"],["s","l-ring"],["S","l-ring"],["x","l-ring"],["X","l-ring"],// l-ring
@@ -556,6 +556,8 @@ input[type="text"] {
 			 ["8","r-middle"],["*","r-middle"],["i","r-middle"],["I","r-middle"],["k","r-middle"],["K","r-middle"],[",","r-middle"],["<","r-middle"],// r-middle
 			 ["9","r-ring"],["(","r-ring"],["o","r-ring"],["O","r-ring"],["l","r-ring"],["L","r-ring"],[".","r-ring"],[">","r-ring"],// r-ring
 			 ["0","r-little"],[")","r-little"],["p","r-little"],["P","r-little"],[";","r-little"],[":","r-little"],["/","r-little"],["?","r-little"],// r-little
+			 ["-","r-little"],["_","r-little"],["=","r-little"],["+","r-little"],["[","r-little"],["{","r-little"],["]","r-little"],["}","r-little"],// r-little
+			 [";","r-little"],[":","r-little"],["'","r-little"],['"',"r-little"],["[","r-little"],["{","r-little"],["]","r-little"],["}","r-little"],// r-little
 			 ["Enter", "r-middle"]
 		]);
 		//console.log("key : " +keyMap.get(key));
@@ -861,7 +863,7 @@ input[type="text"] {
 				var lang_type = $('#lang-selector option:selected').val();
 				var sendData = "email="+email
 								+"&lang_type="+lang_type
-								+"&field_type=sentence"
+								+"&field_type=word"
 								+"&speed="+speedMean
 								+"&accuracy="+accMean
 								+"&interrupt="+productivity

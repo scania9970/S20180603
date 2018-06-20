@@ -36,7 +36,7 @@
 <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 
     <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom" style="background-color: ${port.color_back}; color: ${port.color_font}">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -77,8 +77,8 @@
     </nav>
 
     <!-- Header -->
-    <header>
-        <div class="container" id="maincontent" tabindex="-1" style="background-color: ${port.color_back}; color: ${port.color_font}">
+    <header  style="background-color: ${port.color_back}; color: ${port.color_font}">
+        <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
                     <img class="img-responsive" style="width:230px; height:230px;" src="/cota/images/python.png" alt="">
@@ -97,7 +97,7 @@
 
     <!-- Portfolio Grid Section -->
    
-    <section id="portfolio">
+    <section id="portfolio" style="background-color:${port.color_font}; color:${port.color_back}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -142,7 +142,7 @@
         </div>
     </section>
     
-    <section id="Careers">
+    <section id="Careers"  style="background-color:${port.color_font}; color:${port.color_back}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -219,7 +219,7 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg" style="background-color:${port.color_font}; color:${port.color_back };">Send</button>
+                                <button type="submit" class="btn btn-success btn-lg" style="border-color:${port.color_back }; background-color:${port.color_font}; color:${port.color_back };">Send</button>
                             </div>
                         </div>
                     </form>

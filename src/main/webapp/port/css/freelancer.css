@@ -213,7 +213,7 @@ section.success {
   -moz-transition: all ease 0.5s;
 }
 #portfolio .portfolio-item .portfolio-link .caption:hover {
-  opacity: 0.2;
+  opacity: 0.3;
 }
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
   position: absolute;

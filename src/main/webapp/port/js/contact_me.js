@@ -17,20 +17,21 @@ $(function() {
             var message = $("textarea#message").val();
             var firstName = name; // For Success/Failure Message
             var sendEmail = $("#sendEmail").val();
+            console.log("sendEmail : " + sendEmail)
             // Check for white space in name for Success/Fail message
+            var sendData = "name="+name
+            				+"&email="+email
+            				+"&phone="+phone
+            				+"&message="+message
+            				+"&sendEmail="+"scania9970@gmail.com";
+            				
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
-                type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message,
-                    sEmail: sendEmail
-                },
+                url: "/cota/port/mail/contact_me.php",
+                type: "GET",
+                data: sendData,
                 cache: false,
                 success: function() {
                     // Enable button & show success message

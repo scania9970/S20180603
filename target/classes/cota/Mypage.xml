@@ -32,6 +32,18 @@
 		]]>
 	</update>
 	
+	<select id="selectMyinfoCareer" resultType="Career">
+		<![CDATA[
+			SELECT * FROM CAREER WHERE EMAIL = #{email}
+		]]>
+	</select>
+	
+	<insert id="insertMyinfoCareer" parameterType="Career">
+		<![CDATA[
+			INSERT INTO CAREER VALUES(CNUM.NEXTVAL, #{email}, #{company}, #{date_start}, #{date_end}, #{rank}, #{detail})
+		]]>
+	</insert>
+	
 	<select id="selectListStatToday" resultType="Statistics_TODAY">
 		<![CDATA[
 			SELECT * FROM STATISTICS_TODAY WHERE EMAIL = #{email}

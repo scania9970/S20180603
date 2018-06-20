@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.threejo.cota.model.Career;
 import com.threejo.cota.model.Member;
 import com.threejo.cota.model.Mypage;
 import com.threejo.cota.model.Portfolio;
@@ -82,8 +83,10 @@ public class MypageController {
 	public String myinfoPort(HttpSession session, Model model) {
 		Member member = (Member)session.getAttribute("member");
 		Portfolio portfolio = ms.selectMyinfoPort(member.getEmail());
+		List<Career> career = ms.selectMyinfoCareer(member.getEmail());
 		
 		model.addAttribute("portfolio", portfolio);
+		model.addAttribute("career", career);
 		
 		return "mypage/myinfoPort";
 	}
@@ -130,6 +133,12 @@ public class MypageController {
 
 		if (result <= 0) {
 			System.out.println("포트폴리오 정보 수정 실패!");
+		}
+		
+		List<Career> career = ms.selectMyinfoCareer(request.getParameter("email"));
+		
+		if (career == null) {
+			result = ms.insertMyinfoCareer(career);
 		}
 		
 		return "redirect:myinfoPort";

@@ -39,6 +39,12 @@
 		width: 150px;
 		margin-bottom: 10px;
 	}
+	
+	.div_career_add {
+		border-top: 1px solid #CCCCCC;
+		text-align: right;
+		padding-top: 10px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -109,48 +115,38 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-lg-4">
-										<div class="form-group">
-											<label>생년월일</label>
-											<input type="hidden" name="email" value="${member.email}">
-											<input class="form-control" type="date" name="birth" value="${portfolio.birth}">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">프로젝트 정보 수정</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label>생년월일</label>
-											<input type="hidden" name="email" value="${member.email}">
-											<input class="form-control" type="date" name="birth" value="${portfolio.birth}">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">포트폴리오 설정</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label>생년월일</label>
-											<input type="hidden" name="email" value="${member.email}">
-											<input class="form-control" type="date" name="birth" value="${portfolio.birth}">
+										<input type="hidden" name="cnum" value="${career.cnum}">
+										<c:if test="${career == null}">
+											<div class="form-group">
+												<label>회사명</label>
+												<input class="form-control" name="company" value="${career.company}">
+											</div>
+											<div class="form-group">
+												<label>입사일</label>
+												<input class="form-control" type="date" name="data_start" value="${career.data_start}">
+											</div>
+											<div class="form-group">
+												<label>퇴사일</label>
+												<input class="form-control" type="date" name="data_end" value="${career.data_end}">
+											</div>
+											<div class="form-group">
+												<label>직급</label>
+												<input class="form-control" name="rank" value="${career.rank}">
+											</div>
+											<div class="form-group">
+												<label>업무설명</label>
+												<textarea class="form-control" name="detail" rows="3">${career.detail}</textarea>
+											</div>
+										</c:if>
+										<c:if test="${career != null}">
+											<c:forEach items="career" var="career">
+												<p>${career.company}</p>
+											</c:forEach>
+										</c:if>
+										<div class="div_career_add">
+											<button type="button" class="btn btn-default btn-circle btn-lg">
+												<i class="fa fa-plus"></i>
+											</button>
 										</div>
 									</div>
 								</div>

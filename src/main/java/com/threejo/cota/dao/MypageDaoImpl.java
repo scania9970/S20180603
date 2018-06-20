@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.threejo.cota.model.Career;
 import com.threejo.cota.model.Mypage;
 import com.threejo.cota.model.Portfolio;
 import com.threejo.cota.model.Statistics_TODAY;
@@ -44,6 +45,22 @@ public class MypageDaoImpl implements MypageDao {
 	@Override
 	public int updateMyinfoPort(Portfolio portfolio) {
 		return session.update("updateMyinfoPort", portfolio);
+	}
+
+	@Override
+	public List<Career> selectMyinfoCareer(String email) {
+		return session.selectOne("selectMyinfoCareer", email);
+	}
+
+	@Override
+	public int insertMyinfoCareer(List<Career> career) {
+		int result = 0;
+		
+		for (Career listCareer : career) {
+			result = session.insert("insertMyinfoCareer", listCareer);
+		}
+		
+		return result;
 	}
 	
 }

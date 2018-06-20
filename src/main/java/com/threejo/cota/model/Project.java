@@ -1,11 +1,20 @@
 package com.threejo.cota.model;
 
+import java.util.Date;
+
 public class Project {
 	private int pnum;
 	private String email;
 	private String title;
 	private String content;
 	private String project_url;
+	private String project_date;
+	public String getProject_date() {
+		return project_date;
+	}
+	public void setProject_date(String project_date) {
+		this.project_date = project_date;
+	}
 	@Override
 	public String toString() {
 		return "Project [pnum=" + pnum + ", email=" + email + ", title=" + title + ", content=" + content

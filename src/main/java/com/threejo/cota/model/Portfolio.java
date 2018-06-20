@@ -5,16 +5,36 @@ import java.sql.Date;
 public class Portfolio {
 	
 	private String email;
+	private String name;
 	private Date birth;
 	private String image_url;
 	private String job;
 	private String introduction;
-	private String comment;
+	private String color_back;
+	private String color_font;
 	private int is_search;
 	private int is_visible;
 	private Date write_date;
 	
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getColor_back() {
+		return color_back;
+	}
+	public void setColor_back(String color_back) {
+		this.color_back = color_back;
+	}
+	public String getColor_font() {
+		return color_font;
+	}
+	public void setColor_font(String color_font) {
+		this.color_font = color_font;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -44,12 +64,6 @@ public class Portfolio {
 	}
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 	public int getIs_search() {
 		return is_search;

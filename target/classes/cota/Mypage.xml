@@ -20,6 +20,18 @@
 		]]>
 	</select>
 	
+	<insert id="insertMyinfoPort" parameterType="Portfolio">
+		<![CDATA[
+			INSERT INTO PORTFOLIO VALUES(#{email}, #{birth}, #{image_url}, #{job}, #{introduction}, null, 0, 0, SYSDATE)
+		]]>
+	</insert>
+	
+	<update id="updateMyinfoPort" parameterType="Mypage">
+		<![CDATA[
+			UPDATE PORTFOLIO SET BIRTH = #{birth}, IMAGE_URL = #{image_url}, JOB = #{job}, INTRODUCTION = #{introduction} WHERE EMAIL = #{email}
+		]]>
+	</update>
+	
 	<select id="selectListStatToday" resultType="Statistics_TODAY">
 		<![CDATA[
 			SELECT * FROM STATISTICS_TODAY WHERE EMAIL = #{email}

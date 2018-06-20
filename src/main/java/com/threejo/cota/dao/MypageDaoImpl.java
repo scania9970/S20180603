@@ -35,5 +35,15 @@ public class MypageDaoImpl implements MypageDao {
 	public Portfolio selectMyinfoPort(String email) {
 		return session.selectOne("selectMyinfoPort", email);
 	}
+
+	@Override
+	public int insertMyinfoPort(Portfolio portfolio) {
+		return session.insert("insertMyinfoPort", portfolio);
+	}
+
+	@Override
+	public int updateMyinfoPort(Portfolio portfolio) {
+		return session.update("updateMyinfoPort", portfolio);
+	}
 	
 }

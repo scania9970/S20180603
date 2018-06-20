@@ -56,7 +56,7 @@
 		<jsp:include page="myinfoNav.jsp" />
 
 		<!-- Content -->
-		<form role="form" action="myinfoProc" method="post" enctype="multipart/form-data">
+		<form role="form" action="myinfoPortUpdate" method="post" enctype="multipart/form-data">
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
@@ -78,6 +78,7 @@
 										</div>
 										<div class="form-group">
 											<label>사진</label><br>
+											<input type="hidden" name="original_url" value="${portfolio.image_url}">
 											<c:if test="${portfolio.image_url == null}">
 												<img id="output" src="images/no_profile_image.png">
 											</c:if>
@@ -92,7 +93,64 @@
 										</div>
 										<div class="form-group">
 											<label>자기소개</label>
-											<textarea class="form-control" rows="5">${portfolio.introduction}</textarea>
+											<textarea class="form-control" name="introduction" rows="5">${portfolio.introduction}</textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">경력 정보 수정</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label>생년월일</label>
+											<input type="hidden" name="email" value="${member.email}">
+											<input class="form-control" type="date" name="birth" value="${portfolio.birth}">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">프로젝트 정보 수정</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label>생년월일</label>
+											<input type="hidden" name="email" value="${member.email}">
+											<input class="form-control" type="date" name="birth" value="${portfolio.birth}">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">포트폴리오 설정</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label>생년월일</label>
+											<input type="hidden" name="email" value="${member.email}">
+											<input class="form-control" type="date" name="birth" value="${portfolio.birth}">
 										</div>
 									</div>
 								</div>

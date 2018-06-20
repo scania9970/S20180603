@@ -81,7 +81,7 @@
 							</fieldset>
 						</form>
 						<p class="">
-							<a href="">비밀번호 찾기</a>
+							<a href="">비밀번호 찾기</a> | <a href="joinpage">회원가입</a>
 					</div>
 				</div>
 			</div>

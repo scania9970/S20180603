@@ -41,7 +41,30 @@
     	#dataTables-example{
     		width: 800px;
     	}
-    	
+    	* {
+		   margin: 0px;
+		   padding: 0px;
+		}
+		
+		li {
+		   list-style: none;
+		}
+		
+		a {
+		   text-decoration: none;
+		}
+		
+		a:LINK {
+		   color: black;
+		}
+		
+		a:VISITED {
+		   color: black;
+		}
+    	#main{
+    		width: 1000px;
+    		margin: 0 auto;
+    	}
     	#boardmenu {
     		border: 1px solid black;
     		width: 150px;
@@ -53,37 +76,84 @@
     		border: 1px solid black; 
     		float: left;
     	}
-    
+    	.pagination {
+				clear: both;
+			    margin: 0 auto;
+			    margin: 50px 0 35px 0;
+			}
+						
+			.pagination .a {
+				color:black;
+			    padding: 8px 16px;
+			    font-size:20px;
+			    text-decoration: none;
+			}
+			
+			.pagination .a.active {
+			    background-color: #4CAF50;
+			    color: white;
+			}
+			
+			.pagination .a:hover:not(.active) {
+			    background-color: #ddd;
+			    border-radius: 5px;
+			}
+			#postingbtn{
+				float: right;
+			}
+			table th {
+				background-color: #5bc0de;
+			}
     
     </style>
 </head>
 <body>
-	<div id="boardmenu">
-		<ul>
-			<li> <a href="/cota/list1"> 자유 게시판 </a></li>
-			<li> <a href="/cota/list2">질문답 </a></li>
-		</ul>	
-	</div>
+	<div id="main">
 	
-	<div id="boardlist">
-	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-		<tr>
-			<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
-		</tr>
-		<c:forEach var="board" items="${list }">
-		<tr>
-			<td>${board.bnum}</td>
-			<td><a href="postform1?bnum=${board.bnum }">${board.title}</a></td>
-			<td>${board.nickname}</td>
-			<td>${board.view_count}</td>
-			<td>${board.board_date}</td>
-		</tr>
-		</c:forEach>
+		<div id="boardmenu">
+			<ul>
+				<li> <a href="/cota/list1"> 자유 게시판 </a></li>
+				<li> <a href="/cota/list2">질문답 </a></li>
+			</ul>	
+		</div>
 		
-	</table>
-	<input type="button" value="글쓰기" onclick="location.href='postingform'">
+		<div id="boardlist">             
+		<div class="panel-body">
+		<div class="table-reble-responsive">
+			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+				<tr>
+					<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
+				</tr>
+				<c:forEach var="board" items="${list }">
+				<tr>
+					<td>${board.bnum}</td>
+					<td><a href="postform1?bnum=${board.bnum }">${board.title}</a></td>
+					<td>${board.nickname}</td>
+					<td>${board.view_count}</td>
+					<td>${board.board_date}</td>
+				</tr>
+				<c:set var="num" value="${num - 1}" />
+				</c:forEach>
+				
+			</table>
+			<input type="button" value="글쓰기" id="postingbtn" class="btn btn-primary" onclick="location.href='postingform'">
+			<center>
+			<div class="pagination" >
+			<c:if test="${pg.startPage > pg.pageBlock}">
+				<a class="a" href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">[이전]</a>
+			</c:if>
+			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+				<a class="a" href="/cota/list1?currentPage=${i}">[${i}]</a>
+			</c:forEach>
+			<c:if test="${pg.endPage < pg.totalPage}">
+				<a class="a" href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
+			</c:if>
+			</div>
+			</center>
+		</div>
+		</div>
+		</div>
 	</div>
-		
 				<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/mypage/vendor/jquery/jquery.min.js"></script>
 

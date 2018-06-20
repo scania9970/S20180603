@@ -1,3 +1,4 @@
+<%@page import="com.threejo.cota.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -7,9 +8,9 @@
 </head>
 <body>
 	<%
-		String email = (String)session.getAttribute("email");
-	
-		if (email == null || email.equals("")) {
+		Member membercheck = (Member)session.getAttribute("member");
+
+		if (membercheck == null) {
 			response.sendRedirect("loginpage");
 		}
 	%>

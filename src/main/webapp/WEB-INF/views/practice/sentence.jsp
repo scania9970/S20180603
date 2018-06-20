@@ -408,6 +408,14 @@ input[type="text"] {
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
 
+<%-- <%
+	String sessionEmail = null;
+	if(member.getEmail() != null){
+		sessionEmail = member.getEmail();
+	}
+%> --%>
+
+
 <script type="text/javascript">
 	var totalHits = 0;
 	var sentenceHits = 0;
@@ -857,24 +865,30 @@ input[type="text"] {
 		
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
-		var lang_type = $('#lang-selector option:selected').val();
-		var sendData = "email=<%=member.getEmail()%>"
-						+"&lang_type="+lang_type
-						+"&field_type=sentence"
-						+"&speed="+speedMean
-						+"&accuracy="+accMean
-						+"&interrupt="+productivity
-						+"&incorrect_key="+incorrect;
-						
 		
-		$.ajax({
-			url : '/cota/insertStatistics',			// 전송할 URL
-			type : 'post',				// 전송 방식
-			data : sendData, 							// 전송할 데이터
-			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-			}
-		});
-		
+		var email = null;
+		if("<%=member%>"){
+			var lang_type = $('#lang-selector option:selected').val();
+			var sendData = "email="+<%=member.getEmail()%>
+							+"&lang_type="+lang_type
+							+"&field_type=sentence"
+							+"&speed="+speedMean
+							+"&accuracy="+accMean
+							+"&interrupt="+productivity
+							+"&incorrect_key="+incorrect;
+			
+			$.ajax({
+				url : '/cota/insertStatistics',			// 전송할 URL
+				type : 'post',				// 전송 방식
+				data : sendData, 			// 전송할 데이터
+				success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
+				
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					
+				}
+			});	
+		}
 		
 	}
 	

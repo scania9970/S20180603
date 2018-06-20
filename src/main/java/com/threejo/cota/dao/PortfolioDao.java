@@ -4,6 +4,5 @@ import com.threejo.cota.model.Portfolio;
 
 public interface PortfolioDao {
 
-	int insert(Portfolio portfolio);
 
 }

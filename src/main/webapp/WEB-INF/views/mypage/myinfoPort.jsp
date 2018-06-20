@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>마이 페이지</title>
+<title>포트폴리오 수정</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="${pageContext.request.contextPath}/mypage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +32,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
 <style type="text/css">
 	#output {
 		border: 1px solid #CCCCCC;
@@ -59,29 +60,40 @@
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">개인 정보 수정</h1>
+						<h1 class="page-header">포트폴리오 수정</h1>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">필수 입력 정보 수정</div>
+							<div class="panel-heading">기본 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-lg-4">
-
 										<div class="form-group">
-											<label>이메일 주소</label>
+											<label>생년월일</label>
 											<input type="hidden" name="email" value="${member.email}">
-											<p class="form-control-static">${member.email}</p>
+											<input class="form-control" type="date" name="birth" value="${portfolio.birth}">
 										</div>
 										<div class="form-group">
-											<label>별명 수정</label><input class="form-control" name="nickname"
-												value="${member.nickname}">
-											<p class="help-block">Example block-level help text here.</p>
+											<label>사진</label><br>
+											<c:if test="${portfolio.image_url == null}">
+												<img id="output" src="images/no_profile_image.png">
+											</c:if>
+											<c:if test="${portfolio.image_url != null}">
+												<img id="output" src="${portfolio.image_url}">
+											</c:if>
+											<input type="file" accept="image/*" onchange="loadFile(event)" name="image_url">
 										</div>
-
+										<div class="form-group">
+											<label>희망직무</label>
+											<input class="form-control" name="job" value="${portfolio.job}">
+										</div>
+										<div class="form-group">
+											<label>자기소개</label>
+											<textarea class="form-control" rows="5">${portfolio.introduction}</textarea>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -91,30 +103,7 @@
 
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">선택 입력 정보 수정</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-lg-4">
-
-										<div class="form-group">
-											<input type="hidden" name="original_url" value="${member.profile_url}">
-											<label>프로필 사진 변경</label><br>
-											<img id="output" src="${member.profile_url}">
-											<input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url">
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-lg-12">
-						<input type="submit" class="btn btn-outline btn-success btn-lg"
-							value="수정하기">
+						<input type="submit" class="btn btn-outline btn-success btn-lg" value="수정하기">
 					</div>
 				</div>
 
@@ -139,8 +128,5 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="${pageContext.request.contextPath}/mypage/dist/js/sb-admin-2.js"></script>
-
 </body>
-
 </html>
-

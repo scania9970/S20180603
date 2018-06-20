@@ -11,6 +11,8 @@ public interface MypageDao {
 	Mypage selectMyinfo(String email);
 	int updateMyinfo(Mypage member);
 	Portfolio selectMyinfoPort(String email);
+	int insertMyinfoPort(Portfolio portfolio);
+	int updateMyinfoPort(Portfolio portfolio);
 	
 	List<Statistics_TODAY> selectListStatToday(String email);
 	

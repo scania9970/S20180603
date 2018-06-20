@@ -37,4 +37,14 @@ public class MypageServiceImpl implements MypageService {
 		return md.selectMyinfoPort(email);
 	}
 
+	@Override
+	public int insertMyinfoPort(Portfolio portfolio) {
+		return md.insertMyinfoPort(portfolio);
+	}
+
+	@Override
+	public int updateMyinfoPort(Portfolio portfolio) {
+		return md.updateMyinfoPort(portfolio);
+	}
+
 }

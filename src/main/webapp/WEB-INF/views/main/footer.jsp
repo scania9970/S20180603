@@ -11,24 +11,64 @@ body{
 }
 .footer {
 	font-family: 'NanumSquareRound', sans-serif;
-	font-size: 70px;
-	background-color: #003B4D;
+	font-size: 20px;
+	background-color: #161616;
 	color: white;
 	width: 100%;
-	height: 250px;
-	padding: 15px 0;
+	height: 220px;
+	padding: 20px 0;
 	display: inline-block;
 }
 label{
 	display: block;
 	text-align: center;
 }
+
+.footer-info{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle {
+	margin: 0 20px;
+}
+
+#cota-info{
+	font-size: 25px;
+	color: #BDBDBD;
+}
+
+#cota-info:hover {
+	color: #FFE400;
+	cursor: pointer;
+}
+
+.partition-l{
+	margin-left: 20px;
+}
+
+.partition-r{
+	margin-right: 20px;
+}
 </style>
 </head>
 <body>
 	<div class="footer">
-		<label>COTA</label>
-		<label style="font-size: 40px;">Typing practice only for programmers</label>
+		<label style="font-size: 60px;">COTA</label>
+		<label style="color: #D5D5D5;">&#169;2018</label>
+		<label style="font-size: 30px;">Typing practice only for programmers</label>
+		<div class="footer-info">
+			<a id="cota-info">about</a>
+			<a id="cota-info" class="middle"> | </a>
+			<a id="cota-info">contract</a>
+			<a id="cota-info" class="partition-l"> | </a>
+			<a id="cota-info" class="middle">terms</a>
+			<a id="cota-info" class="partition-r"> | </a>
+			<a id="cota-info">privacy</a>
+			<a id="cota-info" class="middle"> | </a>
+			<a id="cota-info">help</a>
+		</div>
 	</div>
 </body>
 </html>

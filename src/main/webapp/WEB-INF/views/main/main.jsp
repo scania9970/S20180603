@@ -6,9 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
-<link type="text/css" rel="stylesheet" 
-		  href="${pageContext.request.contextPath}/css/main.css" />
-	<jsp:include page="header.jsp"/>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
+<jsp:include page="header.jsp"/>
 <style type="text/css">
 	.header{
 		border: 1px solid gray;

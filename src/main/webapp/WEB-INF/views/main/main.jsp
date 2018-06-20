@@ -20,7 +20,11 @@
 	<div class="slideshow-container">
 		<div class="slides">
 			<div class="image1">
-				<div class="text">Caption 1</div>
+				<div class="text" style="color:white;">
+					<label>오직 개발자를 위한 타이핑 연습 사이트 COTA</label>
+					<label>지금 바로 무료가입 후, 이용해 보세요.</label>
+					<input type="button" class="signin" value="가입하기"></input>
+				</div>
 			</div>
 		</div>
 		<div class="slides">

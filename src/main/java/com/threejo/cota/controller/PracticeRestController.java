@@ -28,6 +28,7 @@ public class PracticeRestController {
 	
 	@RequestMapping(value="/insertStatistics")
 	public void insertStatistics(Statistics_TODAY statistics_TODAY) {
+		System.out.println("toString : " + statistics_TODAY.toString());
 		ps.insertStatistics(statistics_TODAY);
 	}
 	

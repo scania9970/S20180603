@@ -6,11 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
-<link type="text/css" rel="stylesheet" 
-		  href="${pageContext.request.contextPath}/css/main.css" />
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
+<jsp:include page="header.jsp"/>
+<style type="text/css">
+	.header{
+		border: 1px solid gray;
+	}
+</style>
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
 	
 	<!-- 최상단 슬라이더 -->
 	<div class="slideshow-container">
@@ -78,7 +82,7 @@
 	<div class="ranking-wrapper">
 		<div class="card one">
 			<c:forEach var="id" items="${email}" >
-				${id} <br>
+				<a href="/cota/viewPortfolio?email=${id}">${id}</a> <br>
 			</c:forEach>
 		</div>
 		<div class="card two">2</div>

@@ -13,6 +13,12 @@ public class Statistics_TODAY {
 	private String incorrect_key;
 	private Date today_date;
 	
+	@Override
+	public String toString() {
+		return "Statistics_TODAY [email=" + email + ", lang_type=" + lang_type + ", field_type=" + field_type
+				+ ", speed=" + speed + ", accuracy=" + accuracy + ", interrupt=" + interrupt + ", incorrect_key="
+				+ incorrect_key + ", today_date=" + today_date + "]";
+	}
 	public String getEmail() {
 		return email;
 	}

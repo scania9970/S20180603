@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.threejo.cota.dao.MypageDao;
+import com.threejo.cota.model.Career;
 import com.threejo.cota.model.Mypage;
+import com.threejo.cota.model.Portfolio;
 import com.threejo.cota.model.Statistics_TODAY;
 
 @Service
@@ -29,6 +31,31 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<Statistics_TODAY> selectListStatToday(String email) {
 		return md.selectListStatToday(email);
+	}
+
+	@Override
+	public Portfolio selectMyinfoPort(String email) {
+		return md.selectMyinfoPort(email);
+	}
+
+	@Override
+	public int insertMyinfoPort(Portfolio portfolio) {
+		return md.insertMyinfoPort(portfolio);
+	}
+
+	@Override
+	public int updateMyinfoPort(Portfolio portfolio) {
+		return md.updateMyinfoPort(portfolio);
+	}
+
+	@Override
+	public List<Career> selectMyinfoCareer(String email) {
+		return md.selectMyinfoCareer(email);
+	}
+
+	@Override
+	public int insertMyinfoCareer(List<Career> career) {
+		return md.insertMyinfoCareer(career);
 	}
 
 }

@@ -14,6 +14,36 @@
 		]]>
 	</update>
 	
+	<select id="selectMyinfoPort" resultType="Portfolio">
+		<![CDATA[
+			SELECT * FROM PORTFOLIO
+		]]>
+	</select>
+	
+	<insert id="insertMyinfoPort" parameterType="Portfolio">
+		<![CDATA[
+			INSERT INTO PORTFOLIO VALUES(#{email}, #{birth}, #{image_url}, #{job}, #{introduction}, null, 0, 0, SYSDATE)
+		]]>
+	</insert>
+	
+	<update id="updateMyinfoPort" parameterType="Mypage">
+		<![CDATA[
+			UPDATE PORTFOLIO SET BIRTH = #{birth}, IMAGE_URL = #{image_url}, JOB = #{job}, INTRODUCTION = #{introduction} WHERE EMAIL = #{email}
+		]]>
+	</update>
+	
+	<select id="selectMyinfoCareer" resultType="Career">
+		<![CDATA[
+			SELECT * FROM CAREER WHERE EMAIL = #{email}
+		]]>
+	</select>
+	
+	<insert id="insertMyinfoCareer" parameterType="Career">
+		<![CDATA[
+			INSERT INTO CAREER VALUES(CNUM.NEXTVAL, #{email}, #{company}, #{date_start}, #{date_end}, #{rank}, #{detail})
+		]]>
+	</insert>
+	
 	<select id="selectListStatToday" resultType="Statistics_TODAY">
 		<![CDATA[
 			SELECT * FROM STATISTICS_TODAY WHERE EMAIL = #{email}

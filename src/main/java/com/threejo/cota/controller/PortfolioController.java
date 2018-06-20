@@ -20,4 +20,10 @@ public class PortfolioController {
 		
 		return "portfolio/portfolio";
 	}
+	
+	@RequestMapping(value="/showPortfolio")
+	public String showPortfolio(String email, Model model) {
+
+		return "portfolio/portfolioView";
+	}
 }

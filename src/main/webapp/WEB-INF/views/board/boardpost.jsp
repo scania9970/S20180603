@@ -117,9 +117,16 @@
 		<div id="reply">             
 		<form action="replyPosting1">
 			<input type="hidden" value="${board.bnum }" name="bnum">
-			<input type="hidden" value="test1@email" name="email">
-			<input type="text" id="replyPosting" name="content">
-			<input type="submit" value="댓글입력" >
+			<input type="hidden" value="${member.email }" name="email">
+			
+			<c:if test="${member.email == null}">
+				<input type="text" id="replyPosting" name="content" disabled="disabled">
+			</c:if>
+			<c:if test="${member.email != null}">
+				<input type="text" id="replyPosting" name="content">
+				<input type="submit" value="댓글입력" >
+			</c:if>
+			
 		</form>
 		</div>
 	</div>

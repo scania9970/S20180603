@@ -131,6 +131,7 @@ public class BoardController {
 
 	@RequestMapping(value="replyPosting1")
 	public String replyPosting1(Reply reply, Model model) {
+		
 		int result = rs.replyinsert(reply);
 		if(result > 0) {
 			model.addAttribute("msg", "댓글입력 성공");

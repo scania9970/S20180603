@@ -1,5 +1,6 @@
 package com.threejo.cota.controller;
 
+
 import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,15 +32,15 @@ public class MemberController {
 	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // 헤더 주소 회원가입 (insert)
 	public String insertmb(@RequestParam("profile_url") MultipartFile uploadfile,
 						   @RequestParam("email") String email,
-						   @RequestParam("password") String password,
 						   @RequestParam("nickname") String nickname,
 						   boolean is_enterprise,       // boolean은 예외
 						   HttpServletRequest request, Model model) throws Exception {
+		
 		String fileName = "";
 		String fileSave = request.getSession().getServletContext().getRealPath("/upload/");
 		File fileDirectory = new File(fileSave);
 		Member member = new Member();
-		System.out.println("으하하하" + is_enterprise);
+		
 		if (!uploadfile.isEmpty()) {
 			
 			if (!fileDirectory.exists()) {
@@ -55,6 +56,9 @@ public class MemberController {
 		} else {
 			member.setProfile_url("images/no_profile_image.png");
 		}
+		// 사용자 비밀번호 암호화 (SHA-256)
+		SecurityUtil securityUtil = new SecurityUtil();
+		String password = securityUtil.encryptSHA256(request.getParameter("password")); // 입력한 password 데이터 oracle로 슝슝 하기전
 		
 		member.setEmail(email);
 		member.setPassword(password);
@@ -77,10 +81,19 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "login") // 로그인 창
-	public String login(HttpSession session, Member member, Model model) {
+	public String login(HttpSession session, Member member, Model model, HttpServletRequest request) {
 		
-		Member resultMember = ms.select(member);
+		// 사용자 비밀번호 암호화 (SHA-256)
+		SecurityUtil securityUtil = new SecurityUtil();
+		String password = securityUtil.encryptSHA256(request.getParameter("password")); // 입력한 password 암호화
 		
+		System.out.println("pasword : " + member.getPassword());
+		System.out.println(password);
+
+		member.setPassword(password);  // 위 암호화 과정 가공한 데이터 set
+		
+		Member resultMember = ms.select(member);  // oracle과 입력한 값 (암호화값 비교)
+		System.out.println(member.getPassword());
 		if (resultMember != null) {
 				// 성공
 				System.out.println(member);

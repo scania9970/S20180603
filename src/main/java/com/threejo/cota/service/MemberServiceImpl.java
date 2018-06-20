@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao md;
 
 	@Override
-	public int insert(Member member) {
+	public int insert(Member member) { // insert 회원가입
 		return md.insert(member);
 	}
 
@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member select(Member member) {
+	public Member select(Member member) { // select 로그인
 		md.select(member);
 		
 		return md.select(member);

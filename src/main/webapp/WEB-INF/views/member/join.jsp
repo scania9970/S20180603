@@ -105,7 +105,7 @@ $(document).on('click', '#nicknameChkbtn', function() {
 	
 });
 
-var loadFile = function(event) {
+var loadFile = function(event) { // image file 선택시 바로 보여주기 위한 코드
 	var output = document.getElementById('output');
 	output.src = URL.createObjectURL(event.target.files[0]);
 };

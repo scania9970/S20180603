@@ -279,7 +279,7 @@ input[type="text"] {
     padding: 0;
     border: 1px solid #888;
     border-radius: 10px;
-    width: 50%;
+    width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -852,25 +852,34 @@ input[type="text"] {
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
 		
-		if("<%=member.getEmail()%>"){
-			var lang_type = $('#lang-selector option:selected').val();
-			var sendData = "email=<%=member.getEmail()%>"
-							+"&lang_type="+lang_type
-							+"&field_type=word"
-							+"&speed="+speedMean
-							+"&accuracy="+accMean
-							+"&interrupt="+productivity
-							+"&incorrect_key="+incorrect;
-							
+		var email = null;
+		<%
+			if(member != null){
+				%>
+				var lang_type = $('#lang-selector option:selected').val();
+				var sendData = "email="+email
+								+"&lang_type="+lang_type
+								+"&field_type=word"
+								+"&speed="+speedMean
+								+"&accuracy="+accMean
+								+"&interrupt="+productivity
+								+"&incorrect_key="+incorrect;
+				
+				$.ajax({
+					url : '/cota/insertStatistics',			// 전송할 URL
+					type : 'post',				// 전송 방식
+					data : sendData, 			// 전송할 데이터
+					success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
+					
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						
+					}
+				});	
 			
-			$.ajax({
-				url : '/cota/insertStatistics',			// 전송할 URL
-				type : 'post',				// 전송 방식
-				data : sendData, 			// 전송할 데이터
-				success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-				}
-			});	
-		}
+				<%
+			}
+		%>
 	}
 	
 	function getCharToTyping(){

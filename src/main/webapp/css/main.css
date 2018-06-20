@@ -1,7 +1,6 @@
 @charset "EUC-KR";
 body {
 	margin: 0;
-	font-family: sans-serif;
 }
 
 .image1 {
@@ -62,7 +61,7 @@ body {
 .text > label {
 }
 
-.signin{
+.signup{
 	width: 150px;
 	height: 60px;
 	color: #860000;
@@ -70,6 +69,7 @@ body {
 	background: #FFE400;
 	margin-top: 20px;
 	border-radius: 10px;
+	z-index: 1;
 }
 
 .prev, .next {

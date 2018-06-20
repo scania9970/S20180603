@@ -5,31 +5,31 @@ body {
 	}
 	.image1{
 		width: 100%;
-		height: 550px;
+		height: 450px;
 		background: url("../images/slider-1.jpg");
 		background-size: 100% 100%;
 	}
 	.image2{
 		width: 100%;
-		height: 550px;
+		height: 450px;
 		background: url("../images/slider-2.jpg");
 		background-size: 100% 100%;
 	}
 	.image3{
 		width: 100%;
-		height: 550px;
+		height: 450px;
 		background: url("../images/slider-3.jpg");
 		background-size: 100% 100%;
 	}
 	.image4{
 		width: 100%;
-		height: 550px;
+		height: 450px;
 		background: url("../images/slider-4.jpg");
 		background-size: 100% 100%;
 	}
 	.slideshow-container{
 		position: relative;
-		height: 550px;
+		height: 450px;
 	}
 	.slides{
 		width: 100%;
@@ -149,3 +149,4 @@ body {
 		border: solid;
 		display: flex;
 	}
+	

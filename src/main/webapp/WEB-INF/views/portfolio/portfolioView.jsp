@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -72,13 +73,13 @@
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="img/523395.jpg" alt="">
+                    <img class="img-responsive" src="/cota/images/python.png" alt="">
                     <div class="intro-text">
                         <h1 class="name">현상훈</h1>
-                        <span class="skills">Web Developer </span>
-                        <h5> 1992.07.05</h5>
-                        <h5> 010-4391-0826</h5>
-                        <h5> scania9970@naver.com</h5>
+                        <span class="skills">${port.job}</span>
+                        <h5> ${port.birth }</h5>
+                        <!-- <h5> 010-4391-0826</h5> -->
+                        <h5> ${port.email }</h5>
                         
                     </div>
                 </div>
@@ -87,6 +88,7 @@
     </header>
 
     <!-- Portfolio Grid Section -->
+   
     <section id="portfolio">
         <div class="container">
             <div class="row">
@@ -96,36 +98,54 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="/cota/images/python.png" class="img-responsive" alt="Cabin">
-                    </a>
+                 <c:forEach var="project" items="${projects }">
+					<div class="col-sm-4 portfolio-item">
+			              <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+			                  <div class="caption">
+			                      <div class="caption-content">
+			                          <i class="fa fa-search-plus fa-3x"></i>
+			                      </div>
+			                  </div>
+			                  <img src="${project.project_url}" class="img-responsive" alt="Cabin">
+			              </a>
+			          </div>
+   			 </c:forEach>
+            </div>
+        </div>
+    </section>
+    
+    <section id="Careers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Careers</h2>
+                    <br>
                 </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="/cota/images/python.png" class="img-responsive" alt="Cabin">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="/cota/images/python.png" class="img-responsive" alt="Cabin">
-                    </a>
-                </div>
+            </div>
+            <div class="row">
+					<div class="col-sm-4 portfolio-item">
+			              <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+			                  <div class="caption">
+			                      <div class="caption-content">
+			                          <i class="fa fa-search-plus fa-3x"></i>
+			                      </div>
+			                  </div>
+							<table>
+								<tr>
+									<th>회사명</th><th>입사일</th><th>퇴사일</th><th>직급</th><th>담당업무</th>
+								</tr>								
+			                 <c:forEach var="career" items="${careers }">
+			                 	<tr>
+			                 		<td>${career.company}</td>
+			                 		<td>${career.date_start}</td>
+			                 		<td>${career.date_end}</td>
+			                 		<td>${career.rank}</td>
+			                 		<td>${career.detail}</td>
+			                 	</tr>
+				   			 </c:forEach>
+							</table>
+			              </a>
+			          </div>
             </div>
         </div>
     </section>
@@ -210,8 +230,8 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
+<!-- 
+    Footer
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
@@ -244,7 +264,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
@@ -254,7 +274,8 @@
     </div>
 
     <!-- Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <c:forEach var="projectDesc" items="${projects }">
+    	<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -266,13 +287,11 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>BBS</h2>
+                            <h2>${projectDesc.title }</h2>
                             <br>
-                            <img src="/cota/images/python.png" class="img-responsive img-centered" alt="">
+                            <img src="${projectDesc.project_url }" class="img-responsive img-centered" alt="">
                             <p>
-                                Bootstrap으로 레이아웃을 구성하고,
-                                <br>
-                                JSP로 기능을 구현한 간단한 게시판입니다. 
+                               ${projectDesc.content }
                             </p>
                             <ul class="list-inline item-details">
                                 
@@ -292,79 +311,8 @@
             </div>
         </div>
     </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Workloud</h2>
-                            <img src="/cota/images/python.png" class="img-responsive img-centered" alt="">
-                            <p>
-                                Workloud는 협업 웹 어플리케이션입니다. 각 구성원이 완료한 일을 게시판 글처럼 업로드 할 수 있고, 관리자는 완료 체크박스를 통해 컨펌할 수 있습니다.
-                                Bootstrap으로 레이아웃을 구성했고,
-                                node.js를 사용에 서버를 구현했습니다.
-                                
-                            </p>
-                            <ul class="list-inline item-details">
-                                
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">July 2017</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Todolist</h2>
-                            <img src="/cota/images/python.png" class="img-responsive img-centered" alt="">
-                            <p>
-                                Naver Boostcamp에 지원할 때 수행했던 사전과제입니다. 개인 다이어리 웹 어플리케이션입니다. spring framework를 이용했습니다. AJAX 통신으로 화면의 새로고침없이 등록하고 삭제할 수 있는 특징이 있습니다.
-                            </p>
-                            <ul class="list-inline item-details">
-                                
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">June 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </c:forEach>
+
     
     <!-- jQuery -->
     <script src="/cota/port/vendor/jquery/jquery.min.js"></script>

@@ -12,10 +12,5 @@ public class PortfolioServiceImpl implements PortfolioService{
 	@Autowired
 	private PortfolioDao pd;
 	
-	@Override
-	public int insert(Portfolio portfolio) {
-
-		return pd.insert(portfolio);
-	}
 
 }

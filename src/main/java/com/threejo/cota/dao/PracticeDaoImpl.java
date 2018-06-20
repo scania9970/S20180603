@@ -6,7 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.threejo.cota.model.Practice;
+import com.threejo.cota.model.Statistics_TODAY;
+
 
 @Repository
 public class PracticeDaoImpl implements PracticeDao{
@@ -38,4 +39,10 @@ public class PracticeDaoImpl implements PracticeDao{
 	public String getParagraphContent(String para_title) {
 		return session.selectOne("getParagraphContent", para_title);
 	}
+
+	@Override
+	public void insertStatistics(Statistics_TODAY statistics_TODAY) {
+		session.insert("insertStatistics", statistics_TODAY);
+	}
+
 }

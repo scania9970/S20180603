@@ -15,7 +15,6 @@
 </head>
 <body>
 	<form action="poupdate">
-		<input type="file" name="imagf_url"><br>
 		<input type="text" name="job"><br>
 		<input type="text" name="introduction"><br>
 		<input type="text" name="comment"><br>

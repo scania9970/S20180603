@@ -1,7 +1,6 @@
 package com.threejo.cota.model;
 
 import java.sql.Date;
-import java.util.List;
 
 public class Board {
 	private int bnum;
@@ -14,6 +13,9 @@ public class Board {
 	private int vote_count;
 	private Date board_date;
 	
+	// member 닉네임
+	private String nickname;
+	
 	// 조회용
 		private String search;
 		private String keyword;
@@ -22,6 +24,13 @@ public class Board {
 		private int end;
 		
 		
+		
+		public String getNickname() {
+			return nickname;
+		}
+		public void setNickname(String nickname) {
+			this.nickname = nickname;
+		}
 		public int getBnum() {
 			return bnum;
 		}

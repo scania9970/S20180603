@@ -1,3 +1,4 @@
+<%@page import="com.threejo.cota.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -5,6 +6,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
+<style >
+.header {
+	background-color: #F8F8F8;
+}
+.member {
+	display: flex;
+	float: right;
+	align-items: center;
+    justify-content: flex-start;
+    widht : 400px;
+}
+.login {
+	margin : 15px 0 0 0;
+	}
+
+.join {
+	margin : 15px 0 0 0;
+}
+
+#image {
+	margin : 5px 0 0 0;
+	width : 50px;
+	height : 50px;
+	border-radius: 25%;
+}
+
+#nicknamearea {
+	font-size : 15px;
+	padding : 0 0 15px 7px;
+	width : 150px;
+	height : 30px;
+	margin : 0 10px 0 0;
+}
+
+.mypage {
+	magin : 0 30px 0 0;
+}
+
+
+</style>
 <link type="text/css" rel="stylesheet" 
 		  href="${pageContext.request.contextPath}/css/header.css" />
 <body>
@@ -28,12 +69,24 @@
 					<a href="/cota/word?lang_type=java">낱말연습</a> <a href="/cota/sentence?lang_type=java">문장연습</a> <a href="/cota/paragraph-selector">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
 				</div>
 			</div>
-			<div class="forum"><a href="#">개발자 포럼</a></div>
+			<div class="forum"><a href="/cota/list1">개발자 포럼</a></div>
 		</div>
+		<% Member member = (Member)session.getAttribute("member"); %>   <%-- <%=member %> 자바 변수를 사용하기위해 다음과 같은 코드를 사욜해 준다. email을 받아오는 경로가 없기때문 생성해줌 --%>
+		<%
+		 if (session.getAttribute("member") == null) {
+		%>
 		<div class="member">
-			<a href="login">로그인</a>
-			<a href="joinpage">회원가입</a>
+			<a class="login" href="loginpage">로그인</a>
+			<a class="join" href="joinpage">회원가입</a>
 		</div>
+		<% } else if (session.getAttribute("member") != null) { %>
+		<div class="member">
+		    <div><img id="image" src="<%=member.getProfile_url()%>"></div>
+		    <div id="nicknamearea"><%=member.getNickname()%> 님<br> 환영합니다</div>
+		    <a class="mypage" href="myinfo">마이페이지</a>
+		    <a class="logout" href="logout">로그아웃</a>
+		</div>
+		<% } %>
 	</div>
 </body>
 </html>

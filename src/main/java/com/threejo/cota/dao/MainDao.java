@@ -1,7 +1,9 @@
 package com.threejo.cota.dao;
 
+import java.util.List;
+
 public interface MainDao {
 
-	String selectDailyRanking();
+	List<String> selectDailyRanking();
 
 }

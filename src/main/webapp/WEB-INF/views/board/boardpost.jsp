@@ -94,8 +94,9 @@
 		<c:if test="${email } ne ${board.email }">
 			<td colspan="2">${board.nickname}</td>
 		</c:if> --%>
+		
 	<div id="feplyall">
-	
+		
 		<div id="replyform">
 			
 			<c:forEach var="reply" items="${rlist }">

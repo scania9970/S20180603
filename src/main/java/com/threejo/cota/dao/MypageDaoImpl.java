@@ -49,7 +49,7 @@ public class MypageDaoImpl implements MypageDao {
 
 	@Override
 	public List<Career> selectMyinfoCareer(String email) {
-		return session.selectOne("selectMyinfoCareer", email);
+		return session.selectList("selectMyinfoCareer", email);
 	}
 
 	@Override

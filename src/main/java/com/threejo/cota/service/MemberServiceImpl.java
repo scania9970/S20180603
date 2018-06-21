@@ -29,15 +29,19 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override // ajax
 	public String nicknameCheck(String nickname) {
-		md.nicknameCheck(nickname);
 
 		return md.nicknameCheck(nickname);
 	}
 
 	@Override
 	public Member select(Member member) { // select 로그인
-		md.select(member);
 		
 		return md.select(member);
+	}
+	
+	@Override // ajax
+	public String EmailConfirmPro(String email) {
+		EmailConfirm confirm = new EmailConfirm();
+		return confirm.connectEmail(email, 0);
 	}
 }

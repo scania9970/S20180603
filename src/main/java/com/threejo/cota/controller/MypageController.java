@@ -86,7 +86,7 @@ public class MypageController {
 		List<Career> career = ms.selectMyinfoCareer(member.getEmail());
 		
 		model.addAttribute("portfolio", portfolio);
-		model.addAttribute("career", career);
+		model.addAttribute("listCareer", career);
 		
 		return "mypage/myinfoPort";
 	}
@@ -134,6 +134,8 @@ public class MypageController {
 		if (result <= 0) {
 			System.out.println("포트폴리오 정보 수정 실패!");
 		}
+		
+		
 		
 		List<Career> career = ms.selectMyinfoCareer(request.getParameter("email"));
 		

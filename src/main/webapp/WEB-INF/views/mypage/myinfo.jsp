@@ -69,7 +69,7 @@
 							<div class="panel-heading">필수 입력 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-6">
 
 										<div class="form-group">
 											<label>이메일 주소</label>
@@ -95,7 +95,7 @@
 							<div class="panel-heading">선택 입력 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-6">
 
 										<div class="form-group">
 											<input type="hidden" name="original_url" value="${member.profile_url}">

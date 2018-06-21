@@ -490,7 +490,7 @@ input[type="text"]{
 </head>
 <body onload="start()" oncopy="return false" oncut="return false" onpaste="return false" onload="replaceSentence()">
 	<jsp:include page="/WEB-INF/views/main/header.jsp" />
-	<div class="fake-div"></div>
+	<!-- <div class="fake-div"></div> -->
 	
 	<audio id="audio-attack">
 		<source src="${pageContext.request.contextPath}/audios/pikachu-thunderbolt.mp3" type="audio/mpeg">
@@ -578,7 +578,7 @@ input[type="text"]{
 		</div>
 	</div>
 	
-	<jsp:include page="/WEB-INF/views/main/footer.jsp"/>
+	<!-- <jsp:include page="/WEB-INF/views/main/footer.jsp"/> -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">

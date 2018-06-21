@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
 <style >
+.header {
+	background-color: #F8F8F8;
+}
 .member {
 	display: flex;
 	float: right;
@@ -66,7 +69,7 @@
 					<a href="/cota/word?lang_type=java">낱말연습</a> <a href="/cota/sentence?lang_type=java">문장연습</a> <a href="/cota/paragraph-selector">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
 				</div>
 			</div>
-			<div class="forum"><a href="/cota/list1">개발자 포럼</a></div>
+			<div><a href="/cota/list1" class="forum">개발자 포럼</a></div>
 		</div>
 		<% Member member = (Member)session.getAttribute("member"); %>   <%-- <%=member %> 자바 변수를 사용하기위해 다음과 같은 코드를 사욜해 준다. email을 받아오는 경로가 없기때문 생성해줌 --%>
 		<%
@@ -80,7 +83,7 @@
 		<div class="member">
 		    <div><img id="image" src="<%=member.getProfile_url()%>"></div>
 		    <div id="nicknamearea"><%=member.getNickname()%> 님<br> 환영합니다</div>
-		    <a class="mypage" href="myinfo?email=<%=member.getEmail() %>">마이페이지</a>
+		    <a class="mypage" href="myinfo">마이페이지</a>
 		    <a class="logout" href="logout">로그아웃</a>
 		</div>
 		<% } %>

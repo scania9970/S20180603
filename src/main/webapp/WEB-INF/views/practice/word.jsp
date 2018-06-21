@@ -279,7 +279,7 @@ input[type="text"] {
     padding: 0;
     border: 1px solid #888;
     border-radius: 10px;
-    width: 30%;
+    width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -546,7 +546,7 @@ input[type="text"] {
 		var defaultLeft = "url(${pageContext.request.contextPath}/images/lefthand.png)";
 		var defaultRight = "url(${pageContext.request.contextPath}/images/righthand.png)";
 		var keyMap = new Map([
-			 [" ","l-thumb"],// l-thumb
+			[" ","l-thumb"],// l-thumb
 			 ["4","l-index"],["$","l-index"],["5","l-index"],["%","l-index"],["r","l-index"],["R","l-index"],["t","l-index"],["T","l-index"],["f","l-index"],["F","l-index"],["g","l-index"],["G","l-index"],["v","l-index"],["V","l-index"],["b","l-index"],["B","l-index"],// l-index
 			 ["3","l-middle"],["#","l-middle"],["e","l-middle"],["E","l-middle"],["d","l-middle"],["D","l-middle"],["c","l-middle"],["C","l-middle"],// l-middle
 			 ["2","l-ring"],["@","l-ring"],["w","l-ring"],["W","l-ring"],["s","l-ring"],["S","l-ring"],["x","l-ring"],["X","l-ring"],// l-ring
@@ -556,6 +556,8 @@ input[type="text"] {
 			 ["8","r-middle"],["*","r-middle"],["i","r-middle"],["I","r-middle"],["k","r-middle"],["K","r-middle"],[",","r-middle"],["<","r-middle"],// r-middle
 			 ["9","r-ring"],["(","r-ring"],["o","r-ring"],["O","r-ring"],["l","r-ring"],["L","r-ring"],[".","r-ring"],[">","r-ring"],// r-ring
 			 ["0","r-little"],[")","r-little"],["p","r-little"],["P","r-little"],[";","r-little"],[":","r-little"],["/","r-little"],["?","r-little"],// r-little
+			 ["-","r-little"],["_","r-little"],["=","r-little"],["+","r-little"],["[","r-little"],["{","r-little"],["]","r-little"],["}","r-little"],// r-little
+			 [";","r-little"],[":","r-little"],["'","r-little"],['"',"r-little"],["[","r-little"],["{","r-little"],["]","r-little"],["}","r-little"],// r-little
 			 ["Enter", "r-middle"]
 		]);
 		//console.log("key : " +keyMap.get(key));
@@ -694,9 +696,13 @@ input[type="text"] {
 		}else{
 			accScore = 1;	
 		}
-
+		
 		console.log('accscore : ' + accScore);
 		// 많이 틀린 키
+		
+		if(incorrectKeys == null){
+			return;
+		}
 		incorrectKeys.sort();
 		var flag = _incorrectKeys[0];
 	    var incorrectJson = new Object();
@@ -729,12 +735,58 @@ input[type="text"] {
 				return(a.value < b.value) ? -1 : (a.value > b.value) ? 1 : 0;
 			});
 			incorrectArr.reverse();
-			for(var i = 0; i < 3; i++){
+			
+			
+			for(var i = 0; i < incorrectArr.length; i++){
+				var currVal = incorrectArr[i].value * 1;
+				var currKey = incorrectArr[i].key;
+				var parsedKey = _getParsedKey(currKey);
+				var curr = $(parsedKey);
+				console.log("currVal : " + currVal);
+				console.log(typeof currVal)
+				
+				
+				if(currVal == 1){
+					console.log('1');
+					$(parsedKey).css('background-color', 'green');
+					$(parsedKey).css('color', 'white');
+					$(parsedKey).children().eq(1).text("");
+					$(parsedKey).children().eq(1).text(currVal);
+				}else if(currVal == 2){
+					console.log('2');
+					$(parsedKey).css('background-color', '#a3f441');
+					$(parsedKey).css('color', 'white');
+					$(parsedKey).children().eq(1).text("");
+					$(parsedKey).children().eq(1).text(currVal);
+				}else if(currVal == 3){
+					console.log('3');
+					$(parsedKey).css('background-color', 'yellow');
+					$(parsedKey).css('color', 'white');
+					$(parsedKey).children().eq(1).text("");
+					$(parsedKey).children().eq(1).text(currVal);
+				}else if(currVal == 4){
+					console.log('4');
+					$(parsedKey).css('background-color', 'orange');
+					$(parsedKey).css('color', 'white');
+					$(parsedKey).children().eq(1).text("");
+					$(parsedKey).children().eq(1).text(currVal);
+				}else if(currVal >= 5){
+					console.log('5');
+					$(parsedKey).css('background-color', 'red');
+					$(parsedKey).css('color', 'white');
+					$(parsedKey).children().eq(1).text("");
+					$(parsedKey).children().eq(1).text(currVal);
+				}
+				
+			}
+			
+			
+			/* for(var i = 0; i < 3; i++){
 				if(!incorrectArr[i]){
 					continue;
 				}
 				incorrectText += " " + incorrectArr[i].key + " : " + incorrectArr[i].value + ",";
-			}
+			} */
 			for(var i = 0; i < incorrectArr.length; i++){
 				incorrect += incorrectArr[i].key + ":" + incorrectArr[i].value+",";
 			}
@@ -801,24 +853,34 @@ input[type="text"] {
 		
 		$('#incorrect_keys').text(incorrectText);
 		modal.style.display = "block";
-		var lang_type = $('#lang-selector option:selected').val();
-		var sendData = "email=aa@aa.com&lang_type="+lang_type
-						+"&field_type=word"
-						+"&speed="+speedMean
-						+"&accuracy="+accMean
-						+"&interrupt="+productivity
-						+"&incorrect_key="+incorrect;
-						
 		
-		$.ajax({
-			url : '/cota/insertStatistics',			// 전송할 URL
-			type : 'post',				// 전송 방식
-			data : sendData, 							// 전송할 데이터
-			success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-					alert("success");					
+		var email = null;
+		<%
+			if(member != null){
+				
+				%>
+				var email = "<%=member.getEmail()%>"
+				var lang_type = $('#lang-selector option:selected').val();
+				var sendData = "email="+email
+								+"&lang_type="+lang_type
+								+"&field_type=word"
+								+"&speed="+speedMean
+								+"&accuracy="+accMean
+								+"&interrupt="+productivity
+								+"&incorrect_key="+incorrect;
+				
+				$.ajax({
+					url : '/cota/insertStatistics',			// 전송할 URL
+					type : 'post',				// 전송 방식
+					data : sendData, 			// 전송할 데이터
+					success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
+						console.log("success");
+					}
+				});	
+			
+				<%
 			}
-		});
-		
+		%>
 	}
 	
 	function getCharToTyping(){
@@ -896,6 +958,61 @@ input[type="text"] {
 			return "#key_right_shift";
 		} else {
 			return "#key_" + key.toLowerCase();
+		}
+	}
+	function _getParsedKey(key) {
+		if (key === ' ') {
+			return "#_key_space";
+		} else if (key === '0' || key === ')') {
+			return "#_key_zero";
+		} else if (key === '1' || key === '!') {
+			return "#_key_one";
+		} else if (key === '2' || key === '@') {
+			return "#_key_two";
+		} else if (key === '3' || key === '#') {
+			return "#_key_three";
+		} else if (key === '4' || key === '$') {
+			return "#_key_four";
+		} else if (key === '5' || key === '%') {
+			return "#_key_five";
+		} else if (key === '6' || key === '^') {
+			return "#_key_six";
+		} else if (key === '7' || key === '&') {
+			return "#_key_seven";
+		} else if (key === '8' || key === '*') {
+			return "#_key_eight";
+		} else if (key === '9' || key === '(') {
+			return "#_key_nine";
+		} else if (key === '`' || key === '~') {
+			return "#_key_accent";
+		} else if (key === '-' || key === '_') {
+			return "#_key_hyphen";
+		} else if (key === '=' || key === '+') {
+			return "#_key_equals";
+		} else if (key === '[' || key === '{') {
+			return "#_key_left_bracket";
+		} else if (key === ']' || key === '}') {
+			return "#_key_right_bracket";
+		} else if (key === '\\' || key === '|') {
+			return "#_key_backslash";
+		} else if (key === ';' || key === ':') {
+			return "#_key_semicolon";
+		} else if (key === "'" || key === '"') {
+			return "#_key_apostrophe";
+		} else if (key === ',' || key === '<') {
+			return "#_key_comma";
+		} else if (key === '.' || key === '>') {
+			return "#_key_period";
+		} else if (key === '/' || key === '?') {
+			return "#_key_forwardslash";
+		} else if (key === 'Control') {
+			return "#_key_right_ctrl";
+		} else if (key === 'Alt') {
+			return "#_key_right_alt";
+		} else if (key === 'Shift') {
+			return "#_key_right_shift";
+		} else {
+			return "#_key_" + key.toLowerCase();
 		}
 	}
 
@@ -1223,9 +1340,273 @@ input[type="text"] {
 	    			<td class='stat'>비생산적 타이핑</td>
 	    			<td id="prod" class='statResult'></td>
 	    		</tr>
-	    		<tr>
+	    		<!-- <tr>
 	    			<td class='stat'>많이 틀린 자리</td>
 	    			<td id="incorrect_keys" class='statResult'></td>
+	    		</tr> -->
+	    		<tr>
+	    			<td colspan="2">
+	    				<div class="fixed_width_wrapper">
+					<div class="keyboard">
+						<div class="line">
+							<div id="_key_accent" class="key">
+								<div class="line1">~</div>
+								<div class="line2">`</div>
+							</div>
+							<div id="_key_one" class="key">
+								<div class="line1">!</div>
+								<div class="line2">1</div>
+							</div>
+							<div id="_key_two" class="key">
+								<div class="line1">@</div>
+								<div class="line2">2</div>
+							</div>
+							<div id="_key_three" class="key">
+								<div class="line1">#</div>
+								<div class="line2">3</div>
+							</div> 
+							<div id="_key_four" class="key">
+								<div class="line1">$</div>
+								<div class="line2">4</div>
+							</div>
+							<div id="_key_five" class="key">
+								<div class="line1">%</div>
+								<div class="line2">5</div>
+							</div>
+							<div id="_key_six" class="key">
+								<div class="line1">^</div>
+								<div class="line2">6</div>
+							</div>
+							<div id="_key_seven" class="key">
+								<div class="line1">&</div>
+								<div class="line2">7</div>
+							</div>
+							<div id="_key_eight" class="key">
+								<div class="line1">*</div>
+								<div class="line2">8</div>
+							</div>
+							<div id="_key_nine" class="key">
+								<div class="line1">(</div>
+								<div class="line2">9</div>
+							</div>
+							<div id="_key_zero" class="key">
+								<div class="line1">)</div>
+								<div class="line2">0</div>
+							</div>
+							<div id="_key_hyphen" class="key">
+								<div class="line1">_</div>
+								<div class="line2">-</div>
+							</div>
+							<div id="_key_equals" class="key">
+								<div class="line1">+</div>
+								<div class="line2">=</div>
+							</div>
+							<div id="_key_backspace" class="key wide_2">
+								<div class="line1">backspace</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+						</div>
+						<div class="line">
+							<div id="_key_tab" class="key wide_2">
+								<div class="line1">tab</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_q" class="key single">
+								<div class="line1">Q</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_w" class="key single">
+								<div class="line1">W</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_e" class="key single">
+								<div class="line1">E</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_r" class="key single">
+								<div class="line1">R</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_t" class="key single">
+								<div class="line1">T</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_y" class="key single">
+								<div class="line1">Y</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_u" class="key single">
+								<div class="line1">U</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_i" class="key single">
+								<div class="line1">I</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_o" class="key single">
+								<div class="line1">O</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_p" class="key single">
+								<div class="line1">P</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_left_bracket" class="key">
+								<div class="line1">{</div>
+								<div class="line2">[</div>
+							</div>
+							<div id="_key_right_bracket" class="key">
+								<div class="line1">}</div>
+								<div class="line2">]</div>
+							</div>
+							<div id="_key_backslash" class="key">
+								<div class="line1">|</div>
+								<div class="line2">\</div>
+							</div>
+						</div>
+						<div class="line">
+							<div id="_key_capslock" class="key wide_3">
+								<div class="line1">caps lock</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_a" class="key single">
+								<div class="line1">A</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_s" class="key single">
+								<div class="line1">S</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_d" class="key single">
+								<div class="line1">D</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_f" class="key single">
+								<div class="line1">F</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_g" class="key single">
+								<div class="line1">G</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_h" class="key single">
+								<div class="line1">H</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_j" class="key single">
+								<div class="line1">J</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_k" class="key single">
+								<div class="line1">K</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_l" class="key single">
+								<div class="line1">L</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_semicolon" class="key">
+								<div class="line1">:</div>
+								
+								<div>;</div>
+							</div>
+							<div id="_key_apostrophe" class="key">
+								<div class="line1">"</div>
+								
+								<div>'</div>
+							</div>
+							<div id="_key_enter" class="key wide_3">
+								<div class="line1">enter</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+						</div>
+						<div class="line">
+							<div id="_key_left_shift" class="key wide_4">
+								<div class="line1">shift</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_z" class="key single">
+								<div class="line1">Z</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_x" class="key single">
+								<div class="line1">X</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_c" class="key single">
+								<div class="line1">C</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_v" class="key single">
+								<div class="line1">V</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_b" class="key single">
+								<div class="line1">B</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_n" class="key single">
+								<div class="line1">N</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_m" class="key single">
+								<div class="line1">M</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_comma" class="key">
+								<div class="line1">&lt;</div>
+								
+								<div>,</div>
+							</div>
+							<div id="_key_period" class="key">
+								<div class="line1">&gt;</div>
+								
+								<div>.</div>
+							</div>
+							<div id="_key_forwardslash" class="key">
+								<div class="line1">?</div>
+								
+								<div>/</div>
+							</div>
+							<div id="_key_right_shift" class="key wide_4">
+								<div class="line1">shift</div>
+								<div class="line2">&nbsp;</div>
+
+							</div>
+						</div>
+						<div class="line">
+							<div id="_key_left_ctrl" class="key wide_1">
+								<div class="line1">ctrl</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_left_alt" class="key wide_1">
+								<div class="line1">alt</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_left_cmd" class="key wide_1">
+								<div class="line1">cmd</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_space" class="key wide_5">
+								<div class="line1">space</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_right_cmd" class="key wide_1">
+								<div class="line1">cmd</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_right_alt" class="key wide_1">
+								<div class="line1">alt</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+							<div id="_key_right_ctrl" class="key wide_1">
+								<div class="line1">ctrl</div>
+								<div class="line2">&nbsp;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	    			</td>
 	    		</tr>
 	    	</table>
 	    </div>

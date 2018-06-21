@@ -7,10 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글쓰기</title>
+
 <style type="text/css">
-<%
-	/* String email = (String)session.getAttribute("email"); */
-%>
+
 	
 	#main{
 		margin: 0 auto;
@@ -55,10 +54,8 @@
 			<tr>
 				<td>내용 </td>              <td><input type="text" name="content" id="content"></td>
 			</tr>
-			<tr>
-				<td>이메일</td>             <td><input type="text" name="email" > </td>
-			</tr>
 		</table>
+				<input type="hidden" name="email" value="${member.email }" >
 		<input type="submit" value="완료">
 		</div>
 	</form>

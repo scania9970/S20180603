@@ -52,36 +52,10 @@
 	<div id="wrapper">
 	
 		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-			<jsp:include page="../main/header.jsp"/>
-			<div class="navbar-default sidebar" role="navigation">
-				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id="side-menu">
-						<li>
-							<a href="forms.html"><i class="fa fa-edit fa-fw"></i>내 정보 수정<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="myinfo?email=${member.email}">개인 정보 수정</a></li>
-								<li><a href="#">포트폴리오 수정</a></li>
-								<li><a href="#">비밀번호 변경</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>활동 내역 통계<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="statisticsTyping?email=${member.email}">타자 연습 통계</a></li>
-								<li><a href="#">작성한 글 통계</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<jsp:include page="myinfoNav.jsp" />
 
 		<!-- Content -->
-		<form role="form" action="myinfoProc" method="post" enctype="multipart/form-data">
+		<form role="form" action="myinfoUpdate" method="post" enctype="multipart/form-data">
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
@@ -95,7 +69,7 @@
 							<div class="panel-heading">필수 입력 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-6">
 
 										<div class="form-group">
 											<label>이메일 주소</label>
@@ -121,14 +95,13 @@
 							<div class="panel-heading">선택 입력 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-6">
 
 										<div class="form-group">
 											<input type="hidden" name="original_url" value="${member.profile_url}">
-											<label>프로필 사진 변경</label><br> <img id="output"
-												src="${member.profile_url}"> <input type="file"
-												accept="image/*" onchange="loadFile(event)"
-												name="profile_url">
+											<label>프로필 사진 변경</label><br>
+											<img id="output" src="${member.profile_url}">
+											<input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url">
 										</div>
 
 									</div>
@@ -141,7 +114,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<input type="submit" class="btn btn-outline btn-success btn-lg"
-							value="정보 수정">
+							value="수정하기">
 					</div>
 				</div>
 

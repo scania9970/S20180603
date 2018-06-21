@@ -22,7 +22,7 @@
 			<div class="image1">
 				<div class="text" style="color:white;">
 					<label>오직 개발자를 위한 타이핑 연습 사이트 COTA</label>
-					<label>지금 바로 무료가입 후, 이용해 보세요.</label>
+					<label>지금 바로 무료가입 후, 이용해 보세요</label>
 					<input type="button" class=slider-btn value="가입하기" 
 						   onclick="window.location='joinpage';" ></input>
 				</div>
@@ -32,8 +32,8 @@
 			<div class="image2">
 				<div class="text" style="color:white;">
 					<label>개발자들의, 개발자에 의한, 개발자를 위한 포럼</label>
-					<label>line2</label>
-					<input type="button" class=slider-btn value="바로가기" 
+					<label>지금 포럼에서 자신의 지식을 공유하세요</label>
+					<input type="button" class=slider-btn value="포럼 바로가기" 
 						   onclick="window.location='list2';" ></input>
 				</div>
 			</div>
@@ -41,9 +41,10 @@
 		<div class="slides">
 			<div class="image3">
 				<div class="text">
-					<label>line1</label>
-					<label>line2</label>
-					<input type="button" class=slider-btn value="바로가기" 
+					<label>COTA에서는 자신의 포트폴리오를 작성, 관리하고</label>
+					<label>다른 사람들의 포트폴리오도 열람할 수 있습니다</label>
+					<label>지금 바로 확인해보세요</label>
+					<input type="button" class=slider-btn value="포트폴리오 작성" 
 						   onclick="window.location='myinfoPort';" style="background-color: black; color: white;"></input>
 				</div>
 			</div>
@@ -51,8 +52,8 @@
 		<div class="slides">
 			<div class="image4">
 				<div class="text">
-					<label>구인, 구직</label>
-					<label>line2</label>
+					<label>COTA는 한국 최대의 구인, 구직사이트입니다.</label>
+					<label>누적 채용 건수 5449건의 COTA에서 커리어를 개발하세요</label>
 					<input type="button" class=slider-btn value="바로가기" 
 						   onclick="window.location='list2';" ></input>
 				</div>

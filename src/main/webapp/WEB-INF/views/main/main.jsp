@@ -30,12 +30,16 @@
 		</div>
 		<div class="slides">
 			<div class="image2">
-				<div class="text">Caption 2</div>
+				<div class="text" style="color:white;">
+					<label>개발자들의, 개발자에 의한, 개발자를 위한 포럼</label>
+				</div>
 			</div>
 		</div>
 		<div class="slides">
 			<div class="image3">
-				<div class="text">Caption 3</div>
+				<div class="text">
+					<label>포트폴리오</label>
+				</div>
 			</div>
 		</div>
 		<div class="slides">
@@ -87,17 +91,17 @@
 	<div class="ranking-header">
 		<div class="card one">
 			<div class="card-row">
-				<div class="card-cell rank">오늘의 랭킹</div>
+				<div class="card-cell today">오늘의 랭킹</div>
 			</div>
 		</div>
 		<div class="card two">
 			<div class="card-row">
-				<div class="card-cell rank">주간 랭킹</div>
+				<div class="card-cell weekly">주간 랭킹</div>
 			</div>
 		</div>
 		<div class="card three">
 			<div class="card-row">
-				<div class="card-cell rank">월간 랭킹</div>
+				<div class="card-cell monthly">월간 랭킹</div>
 			</div>
 		</div>
 	</div>
@@ -258,7 +262,7 @@
 			dot[slideIndex-1].style.background = "red";
 			dot[slideIndex-1].style.border = "3px solid red";
 			
-			setTimeout(function(){ slide[cur].style.left = "0%"; }, 100);
+			setTimeout(function(){ slide[cur].style.left = "0%"; }, 300);
 			
 			
 		}
@@ -280,7 +284,7 @@
 			dot[slideIndex-1].style.background = "red";
 			dot[slideIndex-1].style.border = "3px solid red";
 			
-			setTimeout(function(){ slide[cur].style.left = "0%"; }, 100);
+			setTimeout(function(){ slide[cur].style.left = "0%"; }, 300);
 			
 			
 		}
@@ -328,6 +332,14 @@
 		        }
 		    });
 		});
+		
+		var intervalId = setInterval(sliderChange, 5000);
+		function sliderChange(){
+			slideIndex += 1;
+			if(slideIndex > 4)
+				slideIndex = 1;
+			showImage(slideIndex);
+		}
 		
 	</script>
 </body>

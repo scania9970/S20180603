@@ -162,8 +162,6 @@ body {
 	margin: 0 auto;
 	align-items: center;
 	justify-content: center;
-	border: solid;
-	border-collapse: collapse;
 }
 
 .ranking-wrapper {
@@ -174,8 +172,6 @@ body {
 	margin: 0 auto 30px auto;
 	align-items: center;
 	justify-content: center;
-	border: solid;
-	border-collapse: collapse;
 	margin-bottom: 50px;
 }
 
@@ -201,6 +197,24 @@ body {
 	padding-left: 10px;
 	display: table-cell;
 	vertical-align: middle;
+}
+
+.today{
+	text-align: center;
+	background-color: #86E57F;
+	color: white;
+}
+
+.weekly{
+	background-color: #2478FF;
+	text-align: center;
+	color: white;
+}
+
+.monthly{
+	background-color: #BC2424;
+	text-align: center;
+	color: white;
 }
 
 .rank {

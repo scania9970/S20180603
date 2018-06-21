@@ -131,7 +131,7 @@ body {
 .info {
 	width: 15%;
 	height: 100%;
-	margin-left: 2.3%;
+	margin-left: 2%;
 	position: relative;
 }
 
@@ -159,10 +159,11 @@ body {
 	position: relative;
 	width: 90%;
 	height: 50px;
-	margin: 30px auto;
+	margin: 0 auto;
 	align-items: center;
 	justify-content: center;
 	border: solid;
+	border-collapse: collapse;
 }
 
 .ranking-wrapper {
@@ -170,10 +171,11 @@ body {
 	position: relative;
 	width: 90%;
 	height: 500px;
-	margin: 30px auto;
+	margin: 0 auto 30px auto;
 	align-items: center;
 	justify-content: center;
 	border: solid;
+	border-collapse: collapse;
 	margin-bottom: 50px;
 }
 

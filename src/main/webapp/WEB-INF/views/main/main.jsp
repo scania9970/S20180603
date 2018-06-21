@@ -63,7 +63,7 @@
 				<label class="digit-info">COTA를 사용하는 사람</label>
 			</div>
 		</div>
-		<div class="info two">
+		<div class="info twoo">
 			<div class="digit-wrapper">
 				<label class="digit">11</label>
 				<label class="digit-info">사용가능한 언어</label>
@@ -85,9 +85,21 @@
 	
 	<!-- 랭킹 -->
 	<div class="ranking-header">
-		<div class="card one"></div>
-		<div class="card two"></div>
-		<div class="card three"></div>
+		<div class="card one">
+			<div class="card-row">
+				<div class="card-cell rank">오늘의 랭킹</div>
+			</div>
+		</div>
+		<div class="card two">
+			<div class="card-row">
+				<div class="card-cell rank">주간 랭킹</div>
+			</div>
+		</div>
+		<div class="card three">
+			<div class="card-row">
+				<div class="card-cell rank">월간 랭킹</div>
+			</div>
+		</div>
 	</div>
 	<div class="ranking-wrapper">
 		<div class="card one">

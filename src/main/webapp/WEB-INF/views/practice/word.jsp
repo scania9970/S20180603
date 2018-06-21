@@ -579,7 +579,7 @@ input[type="text"] {
 	
 	
 	function replaceSentence() {
-		current = Math.floor(Math.random() * 10);
+		current = Math.floor(Math.random() * sentences.length);
 		var currentSentence = sentences[current];
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
@@ -592,7 +592,7 @@ input[type="text"] {
 		var seconds = ellapsedTime / 1000;
 		var speed = Math.round(sentenceHits / seconds * 60, 2);
 		speedArr.push(speed);
-		return speed+' h/s';
+		return speed+' h/m';
 	}
 	
 	function getAccuracy(sentence, input){
@@ -618,7 +618,7 @@ input[type="text"] {
 	}
 	
 	function chkLapCnt(lCnt){
-		if(lCnt == 3){
+		if(lCnt == 30){
 			lapCnt = 0;
 			showModal(speedArr, accArr, totalHits, typeableChars, correctHits, incorrectHits, incorrectKeys);
 			speedArr = [];
@@ -647,7 +647,7 @@ input[type="text"] {
 	    	speedSum += _speedArr[i];
 	    }
 	    speedMean = Math.round(speedSum / _speedArr.length);
-		$('#mspeed').text(speedMean);
+		$('#mspeed').text(speedMean + " h/m");
 		
 		if(speedMean > 600){
 			speedScore = 5;	
@@ -669,7 +669,7 @@ input[type="text"] {
 			accSum += _accArr[i];
 	    }
 		accMean = Math.round(accSum / _accArr.length);
-		$('#macc').text(accMean);
+		$('#macc').text(accMean + " %");
 		
 		// 생산성
 		console.log("_totalHits : " + _totalHits);
@@ -748,31 +748,30 @@ input[type="text"] {
 				
 				if(currVal == 1){
 					console.log('1');
-					$(parsedKey).css('background-color', 'green');
-					$(parsedKey).css('color', 'white');
+					$(parsedKey).css('background-color', '#fffc00');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 2){
 					console.log('2');
-					$(parsedKey).css('background-color', '#a3f441');
+					$(parsedKey).css('background-color', '#fda500');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 3){
 					console.log('3');
-					$(parsedKey).css('background-color', 'yellow');
+					$(parsedKey).css('background-color', '#e66c0f');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 4){
 					console.log('4');
-					$(parsedKey).css('background-color', 'orange');
+					$(parsedKey).css('background-color', '#ff0000');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal >= 5){
 					console.log('5');
-					$(parsedKey).css('background-color', 'red');
+					$(parsedKey).css('background-color', '#cf1a1a');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
@@ -1035,7 +1034,7 @@ input[type="text"] {
 			<div id="sentence-div">
 				<span id='sentence-span'><label class="s1" id="s1"></label><label class="s2"
 					id="s2"></label></span><br> <input type="text" id="typed"
-					onkeyup="redirection(event)" autofocus /> <input type="hidden"
+					onkeyup="redirection(event)" spellcheck="false" autofocus /> <input type="hidden"
 					class="sentence" id="sentence" />
 			</div>
 			<div id="status-div">

@@ -69,6 +69,11 @@
                         	</c:if>
                         </a>
                     </li>
+                    <li>
+                    	<a href="/cota/main">
+	       					<span class="glyphicon glyphicon-home"></span> COTA Home
+                    	</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

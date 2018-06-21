@@ -443,8 +443,8 @@ input[type="text"] {
 			startTime = startDate.getTime();
 		}
 		var x = event.key; //입력값 저장
-		console.log("x : " + x);
-		console.log("xx : " + _getParsedKey(x));
+		//console.log("x : " + x);
+		//console.log("xx : " + _getParsedKey(x));
 		changeFinger(getCharToTyping());
 		var parsedKey = getParsedKey(x); // 키보드 css 컨트롤할 element string
 		var input_textfield = document.getElementById('typed');
@@ -594,9 +594,9 @@ input[type="text"] {
 	
 	
 	function replaceSentence() {
-		current = Math.floor(Math.random() * 10);
+		current = Math.floor(Math.random() * sentences.length);
 		var currentSentence = sentences[current];
-		console.log("curr sentence : " + currentSentence);
+		//console.log("curr sentence : " + currentSentence);
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 		$('#s2').text('');
@@ -608,7 +608,7 @@ input[type="text"] {
 		var seconds = ellapsedTime / 1000;
 		var speed = Math.round(sentenceHits / seconds * 60, 2);
 		speedArr.push(speed);
-		return speed+' h/s';
+		return speed+' h/m';
 	}
 	
 	function getAccuracy(sentence, input){
@@ -634,7 +634,7 @@ input[type="text"] {
 	}
 	
 	function chkLapCnt(lCnt){
-		if(lCnt == 3){
+		if(lCnt == 10){
 			lapCnt = 0;
 			showModal(speedArr, accArr, totalHits, typeableChars, correctHits, incorrectHits, incorrectKeys);
 			speedArr = [];
@@ -663,7 +663,7 @@ input[type="text"] {
 	    	speedSum += _speedArr[i];
 	    }
 	    speedMean = Math.round(speedSum / _speedArr.length);
-		$('#mspeed').text(speedMean);
+		$('#mspeed').text(speedMean + " h/m");
 		
 		if(speedMean > 600){
 			speedScore = 5;	
@@ -677,7 +677,7 @@ input[type="text"] {
 			speedScore = 1;	
 		}
 		
-		console.log('speedScore : ' + speedScore);
+		//console.log('speedScore : ' + speedScore);
 		
 		
 		// 평균 정확도
@@ -685,11 +685,11 @@ input[type="text"] {
 			accSum += _accArr[i];
 	    }
 		accMean = Math.round(accSum / _accArr.length);
-		$('#macc').text(accMean);
+		$('#macc').text(accMean + " %");
 		
 		// 생산성
-		console.log("_totalHits : " + _totalHits);
-		console.log("_typeableChars : " + _typeableChars);
+		//console.log("_totalHits : " + _totalHits);
+		//console.log("_typeableChars : " + _typeableChars);
 		if(_totalHits < _typeableChars){
 			productivity = '오타가 너무 많습니다.';
 			typeableChars = 0;
@@ -713,7 +713,7 @@ input[type="text"] {
 			accScore = 1;	
 		}
 
-		console.log('accscore : ' + accScore);
+		//console.log('accscore : ' + accScore);
 		// 많이 틀린 키
 		
 		if(_incorrectKeys == null){
@@ -752,44 +752,43 @@ input[type="text"] {
 				return(a.value < b.value) ? -1 : (a.value > b.value) ? 1 : 0;
 			});
 			incorrectArr.reverse();
-			console.log(incorrectArr);
+			//console.log(incorrectArr);
 			for(var i = 0; i < incorrectArr.length; i++){
 				var currVal = incorrectArr[i].value * 1;
 				var currKey = incorrectArr[i].key;
 				var parsedKey = _getParsedKey(currKey);
 				var curr = $(parsedKey);
-				console.log("currKey : " + currKey);
-				console.log("currVal : " + currVal);
-				console.log(typeof currVal)
+				//console.log("currKey : " + currKey);
+				//console.log("currVal : " + currVal);
+				//console.log(typeof currVal)
 				
 				
 				if(currVal == 1){
-					console.log('1');
-					$(parsedKey).css('background-color', 'green');
-					$(parsedKey).css('color', 'white');
+					//console.log('1');
+					$(parsedKey).css('background-color', '#fffc00');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 2){
-					console.log('2');
-					$(parsedKey).css('background-color', '#a3f441');
+					//console.log('2');
+					$(parsedKey).css('background-color', '#fda500');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 3){
-					console.log('3');
-					$(parsedKey).css('background-color', 'yellow');
+					//console.log('3');
+					$(parsedKey).css('background-color', '#e66c0f');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 4){
-					console.log('4');
-					$(parsedKey).css('background-color', 'orange');
+					//console.log('4');
+					$(parsedKey).css('background-color', '#ff0000');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal >= 5){
-					console.log('5');
-					$(parsedKey).css('background-color', 'red');
+					//console.log('5');
+					$(parsedKey).css('background-color', '#cf1a1a');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
@@ -811,7 +810,7 @@ input[type="text"] {
 		
 		
 		var starScore = Math.round((speedScore+accScore)/2);
-		console.log("starScore : " + starScore); 
+		//console.log("starScore : " + starScore); 
 		
 		if(starScore == 1){
 			setInterval(function() {
@@ -889,14 +888,14 @@ input[type="text"] {
 					type : 'post',				// 전송 방식
 					data : sendData, 			// 전송할 데이터
 					success : function(data) {  // 통신이 성공했다면 수행할 콜백메서드
-						console.log("success");
+						//console.log("success");
 					}
 				});	
 			
 				<%
 			}
 		%>
-			console.log("email : " + email);
+			//console.log("email : " + email);
 	}
 	
 	function getCharToTyping(){
@@ -1051,7 +1050,7 @@ input[type="text"] {
 			<div id="sentence-div">
 				<span id='sentence-span'><label class="s1" id="s1"></label><label class="s2"
 					id="s2"></label></span><br> <input type="text" id="typed"
-					onkeyup="redirection(event)" autofocus /> <input type="hidden"
+					onkeyup="redirection(event)" spellcheck="false" autofocus /> <input type="hidden"
 					class="sentence" id="sentence" />
 			</div>
 			<div id="status-div">

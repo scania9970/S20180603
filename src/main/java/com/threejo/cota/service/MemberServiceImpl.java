@@ -40,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override // ajax
-	public String EmailConfirmPro(String email) {
+	public String EmailConfirmPro(String email) { // EmailConfirm java 파일 ajax 구현
 		EmailConfirm confirm = new EmailConfirm();
 		return confirm.connectEmail(email, 0);
 	}

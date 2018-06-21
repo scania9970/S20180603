@@ -32,8 +32,4 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("login", member);
 	}
 	
-/*	@Override
-	public String EmailConfirmPro(String email) {
-		return session.selectOne("EmailConfirmPro", email);
-	}*/
 }

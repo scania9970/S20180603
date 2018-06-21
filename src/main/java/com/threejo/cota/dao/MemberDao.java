@@ -11,7 +11,5 @@ public interface MemberDao {
 	String nicknameCheck(String nickname);
 	
 	Member select(Member member);
-
-//	String EmailConfirmPro(String email);
 	
 }

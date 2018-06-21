@@ -13,6 +13,12 @@
 	border-collapse: collapse;
 }
 
+html, body{
+	width: 100%;
+	height: 100%;
+	color: white; 
+}
+
 #start-frame{
 	top: 0;
 	right: 0;
@@ -23,7 +29,9 @@
 	width: 80%;
 	position: absolute;
 	display: inline-block;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
+	background-color: #161616;
 }
 
 #start-wrapper{
@@ -31,14 +39,26 @@
 	font-size: 70px;
 	text-align: center;
 	position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-	border: solid;
+	border-collapse: collapse;
+	background-color: #161616;
+	margin: 20px 0;
 }
 
 #start-btn{
-	width: 100px;
-	height: 50px;
+	width: 170px;
+	height: 80px;
+	border-radius: 10px;
+	font-size: 35px;
+	font-weight: bold;
+	background: #FFE400;
+	color: black;
+	border: none;
+	cursor: pointer;
+	transition: 0.6s;
+}
+
+#start-btn:hover{
+	background: #FAED7D;
 }
 
 #frame {
@@ -51,7 +71,9 @@
 	width: 80%;
 	position: absolute;
 	display: none;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
+	background-color: #161616;
 }
 
 #shop{
@@ -64,15 +86,17 @@
 	width: 40%;
 	position: absolute;
 	display: none;
-	border: solid;
-	background-color: white;
+	border: 1px solid;
+	border-collapse: collapse;
+	background-color: #161616;
 	z-index: 1;
 }
 
 #title {
 	width: 80%;
 	height: 100px;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	margin-top: 25px;
 	margin-left: auto;
 	margin-right: auto;
@@ -83,7 +107,7 @@
 
 #inner-frame{
 	width: 80%;
-	height: 80%;
+	height: 90%;
 	margin-left: auto;
 	margin-right: auto;
 	display: flex;
@@ -110,7 +134,8 @@
 #blank {
 	width: 100%;
 	height: 10%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	display:flex;
 	align-items: center;
     justify-content: center;
@@ -119,7 +144,8 @@
 #user-id, #com-id{
 	width: 100%;
 	height: 15%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	font-size: 20px;
 	display: flex;
     align-items: center;
@@ -129,9 +155,13 @@
 #user-info, #com-info{
 	width: 100%;
 	height: 15%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	font-size: 20px;
-	display: inline-block;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
 	padding-top: 3%;
 }
 
@@ -142,7 +172,8 @@
 	display: flex;
     align-items: center;
     justify-content: center;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 }
 
 #user-hp-left, #user-damage, #com-hp-left, #com-damage{
@@ -155,13 +186,15 @@
 #user-image, #com-image{
 	width: 100%;
 	height: 35%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 }
 
 #level{
 	width: 100%;
 	height: 10%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	font-size: 25px;
 	display: flex;
     align-items: center;
@@ -171,7 +204,8 @@
 #typing-area{
 	width: 100%;
 	height: 35%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	display: flex;
     align-items: center;
 }
@@ -179,7 +213,8 @@
 #attack-command, #defense-command{
 	width: 100%;
 	height: 15%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	font-size: 25px;
 	display: flex;
     align-items: center;
@@ -189,7 +224,8 @@
 #menu {
 	width: 100%;
 	height: 15%;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 	font-size: 25px;
 	display: flex;
     align-items: center;
@@ -299,7 +335,8 @@ input[type="text"]{
 	width: 100%;
 	height: 50%;
 	display: block;
-	border: solid;
+	border: 1px solid;
+	border-collapse: collapse;
 }
 
 #shop-items-desc{
@@ -381,6 +418,12 @@ input[type="text"]{
 	width: 150px;
 }
 
+.fake-div{
+	position: relative;
+	width: 100%;
+	height: 90%;
+}
+
 @keyframes shake {
   0% { transform: translate(1px, 1px) scaleX(-1) rotate(0deg); }
   10% { transform: translate(-1px, -2px) scaleX(-1) rotate(-1deg); }
@@ -409,10 +452,18 @@ input[type="text"]{
   100% { transform: translate(1px, -2px) rotate(-1deg); }
  }
  
+.pokeball-img{
+	width: 250px;
+	height: 250px;
+	background: url("${pageContext.request.contextPath}/images/pokeball.svg") no-repeat;
+	margin: 120px auto 10px auto;
+}
+ 
 </style>
 </head>
 <body onload="start()">
 	<jsp:include page="/WEB-INF/views/main/header.jsp" />
+	<div class="fake-div"></div>
 	
 	<audio id="audio-attack">
 		<source src="${pageContext.request.contextPath}/audios/pikachu-thunderbolt.mp3" type="audio/mpeg">
@@ -421,7 +472,8 @@ input[type="text"]{
 		<source src="${pageContext.request.contextPath}/audios/pikachu-start.mp3" type="audio/mpeg">
 	</audio>
 	
-	<div id="start-frame">	
+	<div id="start-frame">
+		<label class="pokeball-img"></label>
 		<div id="start-wrapper">Pokemon Typing</div>
 		<div id="start-wrapper"><button id="start-btn">시작하기</button></div>
 	</div>
@@ -541,7 +593,7 @@ input[type="text"]{
 			
 				if(input_sentence == attack_sentence){
 					
-					attack_sound();
+					//attack_sound();
 					com_hp -= user_damage;
 					document.getElementById("com-meter").value = com_hp;
 					

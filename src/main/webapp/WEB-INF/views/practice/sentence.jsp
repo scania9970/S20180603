@@ -45,18 +45,6 @@
 	width: 100%;
 }
 
-.fixed_width_wrapper {
-	float: left;
-	margin: 0 15px;
-	display: inline-block;
-	width: 765px;
-}
-
-.line {
-	width: 100%; 
-	text-align: center;
-	margin: 10px auto;
-}
 
 #sentence-div {
 	margin: 10px auto;
@@ -66,13 +54,25 @@
 	text-align: center;
 }
 
-.line div {
-	display: inline-block;
-}
 #middle-wrapper{
 	overflow: hidden;
 	width: 1200px;
 	margin: 20px auto;
+}
+.fixed_width_wrapper {
+	float: left;
+	margin: 0 15px;
+	display: inline-block;
+	width: 765px;
+}
+
+.line div {
+	display: inline-block;
+}
+.line {
+	width: 100%; 
+	text-align: center;
+	margin: 10px auto;
 }
 .keyboard {
 	width: 765px;
@@ -571,6 +571,8 @@ input[type="text"] {
 			 ["8","r-middle"],["*","r-middle"],["i","r-middle"],["I","r-middle"],["k","r-middle"],["K","r-middle"],[",","r-middle"],["<","r-middle"],// r-middle
 			 ["9","r-ring"],["(","r-ring"],["o","r-ring"],["O","r-ring"],["l","r-ring"],["L","r-ring"],[".","r-ring"],[">","r-ring"],// r-ring
 			 ["0","r-little"],[")","r-little"],["p","r-little"],["P","r-little"],[";","r-little"],[":","r-little"],["/","r-little"],["?","r-little"],// r-little
+			 ["-","r-little"],["_","r-little"],["=","r-little"],["+","r-little"],["[","r-little"],["{","r-little"],["]","r-little"],["}","r-little"],// r-little
+			 [";","r-little"],[":","r-little"],["'","r-little"],['"',"r-little"],["[","r-little"],["{","r-little"],["]","r-little"],["}","r-little"],// r-little
 			 ["Enter", "r-middle"]
 		]);
 		//console.log("key : " +keyMap.get(key));
@@ -594,6 +596,7 @@ input[type="text"] {
 	function replaceSentence() {
 		current = Math.floor(Math.random() * 10);
 		var currentSentence = sentences[current];
+		console.log("curr sentence : " + currentSentence);
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 		$('#s2').text('');
@@ -713,11 +716,11 @@ input[type="text"] {
 		console.log('accscore : ' + accScore);
 		// 많이 틀린 키
 		
-		if(incorrectKeys == null){
+		if(_incorrectKeys == null){
 			return;
 		}
 		
-		incorrectKeys.sort();
+		_incorrectKeys.sort();
 		var flag = _incorrectKeys[0];
 	    var incorrectJson = new Object();
 		var times = 0;
@@ -725,7 +728,7 @@ input[type="text"] {
 	 	var incorrectText = ' ';
 		var incorrectArr = [];
 		var incorrect = "";
-		if(incorrectKeys == ''){
+		if(_incorrectKeys == ''){
 			incorrectText = '정확도 100%!';
 		}else{
 			for(var i = 0; i < _incorrectKeys.length; i++){
@@ -1225,12 +1228,10 @@ input[type="text"] {
 							</div>
 							<div id="key_semicolon" class="key">
 								<div class="line1">:</div>
-								<br>
 								<div>;</div>
 							</div>
 							<div id="key_apostrophe" class="key">
 								<div class="line1">"</div>
-								<br>
 								<div>'</div>
 							</div>
 							<div id="key_enter" class="key wide_3">
@@ -1586,24 +1587,31 @@ input[type="text"] {
 						<div class="line">
 							<div id="_key_left_ctrl" class="key wide_1">
 								<div class="line1">ctrl</div>
+								<div class="line2"></div>
 							</div>
 							<div id="_key_left_alt" class="key wide_1">
 								<div class="line1">alt</div>
+								<div class="line2"></div>
 							</div>
 							<div id="_key_left_cmd" class="key wide_1">
 								<div class="line1">cmd</div>
+								<div class="line2"></div>
 							</div>
 							<div id="_key_space" class="key wide_5">
 								<div class="line1">space</div>
+								<div class="line2"></div>
 							</div>
 							<div id="_key_right_cmd" class="key wide_1">
 								<div class="line1">cmd</div>
+								<div class="line2"></div>
 							</div>
 							<div id="_key_right_alt" class="key wide_1">
 								<div class="line1">alt</div>
+								<div class="line2"></div>
 							</div>
 							<div id="_key_right_ctrl" class="key wide_1">
 								<div class="line1">ctrl</div>
+								<div class="line2"></div>
 							</div>
 						</div>
 					</div>

@@ -36,7 +36,7 @@
 <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 
     <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom" style="background-color: ${port.color_back}; color: ${port.color_font}">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -77,13 +77,13 @@
     </nav>
 
     <!-- Header -->
-    <header>
+    <header  style="background-color: ${port.color_back}; color: ${port.color_font}">
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
                     <img class="img-responsive" style="width:230px; height:230px;" src="/cota/images/python.png" alt="">
                     <div class="intro-text">
-                        <h1 class="name">Çö»óÈÆ</h1>
+                        <h1 class="name">${port.name }</h1>
                         <span class="skills">${port.job}</span>
                         <h5> ${port.birth }</h5>
                         <!-- <h5> 010-4391-0826</h5> -->
@@ -97,7 +97,7 @@
 
     <!-- Portfolio Grid Section -->
    
-    <section id="portfolio">
+    <section id="portfolio" style="background-color:${port.color_font}; color:${port.color_back}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -124,7 +124,7 @@
     
     
       <!-- About Section -->
-    <section class="success" id="about">
+    <section class="success" id="about" style="background-color: ${port.color_back}; color: ${port.color_font}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -142,7 +142,7 @@
         </div>
     </section>
     
-    <section id="Careers">
+    <section id="Careers"  style="background-color:${port.color_font}; color:${port.color_back}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -173,7 +173,7 @@
 
   
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" style="background-color: ${port.color_back}; color: ${port.color_font};">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -186,31 +186,32 @@
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="sentMessage" id="contactForm" novalidate>
+                        <input type="hidden" id="sendEmail" value="${port.email }">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                                <input style="color:${port.color_font};" type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="email">Email Address</label>
-                                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+                                <input style="color:${port.color_font};" type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="phone">Phone Number</label>
-                                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <input style="color:${port.color_font};" type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="message">Message</label>
-                                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <textarea style="color:${port.color_font};" rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -218,7 +219,7 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Send</button>
+                                <button type="submit" class="btn btn-success btn-lg" style="border-color:${port.color_back }; background-color:${port.color_font}; color:${port.color_back };">Send</button>
                             </div>
                         </div>
                     </form>

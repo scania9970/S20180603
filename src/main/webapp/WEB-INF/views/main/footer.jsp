@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +15,7 @@ body{
 	background-color: #161616;
 	color: white;
 	width: 100%;
-	height: 220px;
+	height: 250px;
 	padding: 20px 0;
 	display: inline-block;
 }
@@ -55,13 +55,14 @@ label{
 </head>
 <body>
 	<div class="footer">
-		<label style="font-size: 60px;">COTA</label>
+		<label style="font-size: 70px; font-style: italic;">COTA</label>
 		<label style="color: #D5D5D5;">&#169;2018</label>
+		<label style="color: #D5D5D5;"><a href="mailto:info@cota.com" style="color: white">info@cota.com</a></label>
 		<label style="font-size: 30px;">Typing practice only for programmers</label>
 		<div class="footer-info">
 			<a id="cota-info">about</a>
 			<a id="cota-info" class="middle"> | </a>
-			<a id="cota-info">contract</a>
+			<a id="cota-info">contact</a>
 			<a id="cota-info" class="partition-l"> | </a>
 			<a id="cota-info" class="middle">terms</a>
 			<a id="cota-info" class="partition-r"> | </a>

@@ -15,6 +15,10 @@
 .container {
 	margin-top: 150px;
 }
+
+#join_password {
+	float:right;
+}
 </style>
 <head>
 
@@ -81,7 +85,7 @@
 							</fieldset>
 						</form>
 						<p class="">
-					    	<a href="">비밀번호 찾기</a> | <a href="joinpage">회원가입</a>
+					    	<a href="" id="join_password" class="panel-heading">비밀번호 찾기</a><a href="joinpage" id="join_password" class="panel-heading">회원가입</a>
 					</div>
 				</div>
 			</div>

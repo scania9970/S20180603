@@ -62,148 +62,9 @@
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var confirmNum = "";
-
-$(function() { // 무조건 실행한다.
-	$('#passwordChk').change(function() {
-		if ($('#password').val() != $('#passwordChk').val()) { 
-			$('#passwordChk').val(""); // input 같은
-			$('#passwordChk').focus();
-			$('#spanPassword').html("※ 비밀번호가 일치하지 않습니다."); // span 또는 text 같은 경우
-			
-			return;
-		} else {
-			$('#spanPassword').html("　");
-		}
-	});
-});
 
 
-$(document).on('click', '#emailChkbtn', function() {
-	var sendData = 'email=' + $('#email').val();
-	/* alert($('#email').val()); */
-	$.ajax ({
-		url : '/cota/emailCheck',
-		type : 'get',
-		data : sendData,
-		success : function(data) {
-			console.log("data : " + data );
-			if (data == 1) {
-				$('#email').val("");
-				$('#email').focus();
-				$('#spanemail').html("이미 가입된 이메일 입니다.");
 
-				return;
-			} else {
-				$('#spanemail').html("사용 가능한 이메일 입니다");
-			}
-		}
-	});
-	
-});
-
-$(document).on('click', '#nicknameChkbtn', function() {
-	var sendData = 'nickname=' + $('#nickname').val();
-	$.ajax ({
-		url : '/cota/nicknameCheck',
-		type : 'get',
-		data : sendData,
-		success : function(data) {
-			console.log("data : " + data );
-			if (data) {
-				$('#nickname').val("");
-				$('#nickname').focus();
-				$('#spannickname').html("이미 가입된 닉네임 입니다.");
-
-				return;
-			} else {
-				$('#spannickname').html("사용 가능한 닉네임 입니다");
-			}
-		}
-	});
-	
-});
-function emailCheck(){
-	if (!join.email.value) { 
-		alert("이메일 주소를 입력하세요.");
-		join.email.focus();
-		
-		return;
-	} else if(join.email.value.indexOf('@') < 0 || join.email.value.indexOf('.') < 0) {
-		alert("이메일 주소가 올바르지 않습니다.");
-		join.email.focus();
-		
-		return;
-	}
-	
-	join.btnConfirm.value = "확인";
-	$("#confirmCode").prop('disabled', false);
-	$("#btnConfirm").prop('disabled', false);
-	$("#btnConfirm").css('color', 'white');
-	$("#btnConfirm").css('background-color', '#2B2B2B');
-	
-	var sendData = 'email=' + $('#email').val();
-	console.log("sendData : " + sendData);
-	$.post(
-		'/cota/EmailConfirmPro',
-		sendData,
-		function(result) {
-			console.log("authNum : " + result);
-			confirmNum = result;
-			console.log("confirmNum : " + confirmNum);
-	});
-	
-	alert("해당 이메일로 인증번호가 발송되었습니다.");
-};
-
-$(function() {
-	$('#btnConfirm').click(function() {
-		if (!join.confirmCode.value) { 
-			alert("인증번호를 입력해주세요.");
-			join.confirmCode.focus();
-			
-			return;
-		}
-		
-		confirmEmail(join.confirmCode.value, confirmNum);
-	});
-});
-
-function confirmEmail(emailconfirm_value, authNum){
-	console.log("emailconfirm_value : " + emailconfirm_value);
-	console.log("authNum : " + authNum);
-	if(!emailconfirm_value || emailconfirm_value != authNum){	// 인증코드가 일치하지 않을 경우
-		alert("인증번호가 일치하지 않습니다!");
-		join.confirmCode.value = "";
-		join.confirmCode.focus();
-	} else if(emailconfirm_value == authNum){	// 일치할 경우
-		alert("인증에 성공하였습니다.");
-		join.btnConfirm.value = "인증완료";
-		$("#confirmCode").prop('disabled', true);
-		$("#btnConfirm").prop('disabled', true);
-		$("#btnConfirm").css('color', '#808080');
-		$("#btnConfirm").css('background-color', '#DDDDDD');
-	}
-	
-	return;
-};
-
-function chk() {
-	
-	if (join.btnConfirm.value.indexOf("인증완료") < 0 ) {
-		alert("이메일 인증이 처리되지 않았습니다.");
-		joinForm.email.focus();
-		
-		return false;
-	}
-	return true;
-};
-
-
-var loadFile = function(event) { // image file 선택시 바로 보여주기 위한 코드
-	var output = document.getElementById('output');
-	output.src = URL.createObjectURL(event.target.files[0]);
-};
 </script>
 <head>
 
@@ -243,7 +104,7 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
             <div class="col-md-5 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h2 class="panel-title" style="font-size: 20pt" align="center">회원가입</h2>
+                        <h2 class="panel-title" style="font-size: 20pt" align="center">비밀번호 찾기</h2>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="insertmb" name="join" method="post" enctype="multipart/form-data" onsubmit="return chk()">

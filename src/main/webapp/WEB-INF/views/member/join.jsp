@@ -8,37 +8,55 @@
 	width : 100%;
 	height: 40px;
 	color: white;
-	background-color:#FF0000;
+	background-color:#000000;
 	border-color: transparent;
 }
 
 #emailChkbtn {
 	color: white;
-	background-color:#BDBDBD;
+	background-color:#2B2B2B;
 	border-color: transparent;
 }
 
 #btnConfirm {
 	color: white;
-	background-color:#BDBDBD;
+	background-color:#2B2B2B;
 	border-color: transparent;
 }
 
 #btnEmailChk {
 	color: white;
-	background-color:#BDBDBD;
+	background-color:#2B2B2B;
 	border-color: transparent;
 }
 
 #nicknameChkbtn {
 	color: white;
-	background-color:#BDBDBD;
+	background-color:#2B2B2B;
 	border-color: transparent;
 }
 
 #output {
-	width : 200px;
-	height : 200px;
+	width : 150px;
+	height : 150px;
+}
+
+.test {
+	height:13px;
+}
+
+.test1 {
+	height:2px;
+}
+
+#image_select {
+	padding : 0 0 0 50px;
+	margin : 0 0 0 20px;
+}
+
+#content {
+	font-size: 13px;
+	color : #FF3636;
 }
 
 </style>
@@ -122,16 +140,17 @@ function emailCheck(){
 	$("#confirmCode").prop('disabled', false);
 	$("#btnConfirm").prop('disabled', false);
 	$("#btnConfirm").css('color', 'white');
-	$("#btnConfirm").css('background-color', '#1A7AD9');
+	$("#btnConfirm").css('background-color', '#2B2B2B');
 	
 	var sendData = 'email=' + $('#email').val();
-	console.log("sendData : " + sendData)
+	console.log("sendData : " + sendData);
 	$.post(
 		'/cota/EmailConfirmPro',
 		sendData,
 		function(result) {
 			console.log("authNum : " + result);
-			confirmNum = result.substr(result.indexOf("authNum:")+8, 6);
+			confirmNum = result;
+			console.log("confirmNum : " + confirmNum);
 	});
 	
 	alert("해당 이메일로 인증번호가 발송되었습니다.");
@@ -150,12 +169,14 @@ $(function() {
 	});
 });
 
-function confirmEmail(Emailconfirm_value, authNum){
-	if(!Emailconfirm_value || Emailconfirm_value != authNum){ // 인증코드가 일치하지 않을 경우
+function confirmEmail(emailconfirm_value, authNum){
+	console.log("emailconfirm_value : " + emailconfirm_value);
+	console.log("authNum : " + authNum);
+	if(!emailconfirm_value || emailconfirm_value != authNum){	// 인증코드가 일치하지 않을 경우
 		alert("인증번호가 일치하지 않습니다!");
 		join.confirmCode.value = "";
 		join.confirmCode.focus();
-	} else if(Emailconfirm_value == authNum){	// 일치할 경우
+	} else if(emailconfirm_value == authNum){	// 일치할 경우
 		alert("인증에 성공하였습니다.");
 		join.btnConfirm.value = "인증완료";
 		$("#confirmCode").prop('disabled', true);
@@ -163,11 +184,20 @@ function confirmEmail(Emailconfirm_value, authNum){
 		$("#btnConfirm").css('color', '#808080');
 		$("#btnConfirm").css('background-color', '#DDDDDD');
 	}
-
+	
 	return;
 };
 
-
+function chk() {
+	
+	if (join.btnConfirm.value.indexOf("인증완료") < 0 ) {
+		alert("이메일 인증이 처리되지 않았습니다.");
+		joinForm.email.focus();
+		
+		return false;
+	}
+	return true;
+};
 
 
 var loadFile = function(event) { // image file 선택시 바로 보여주기 위한 코드
@@ -210,7 +240,7 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-5 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h2 class="panel-title" style="font-size: 20pt" align="center">회원가입</h2>
@@ -219,11 +249,15 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
                         <form role="form" action="insertmb" name="join" method="post" enctype="multipart/form-data" onsubmit="return chk()">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>
+                              	    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>
                                     <button id='emailChkbtn' class="form-control">이메일 중복확인</button>
+                                   	
+                                   	<div class="test"></div>
+
                                     <span id="spanemail"></span>
+                                    <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled" required>
                                     <input class="form-control" type="button" name="btnEmailChk" id='btnEmailChk' value="인증번호받기" onclick="emailCheck(join.email.value)">
-                                    <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled">
+                                    <div class="test1"></div>
                                     <input type="button" id="btnConfirm" name="btnConfirm" class="form-control" value="인증하기" disabled="disabled">
                                 </div>
                                 <div class="form-group">
@@ -238,11 +272,11 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
                                     <input class="form-control" placeholder="비밀번호 확인" name="passwordChk" id="passwordChk" type="password" required >
                                     <span id="spanPassword"></span>
                                 </div>
-                                 <div class="form-group"><img id="output" src="images/no_profile_image.png"></div>
-                                 <div class="form-group"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url"></div>
+                                 <div class="form-group" align="center"><img id="output" src="images/no_profile_image.png"></div>
+                                 <div class="form-group" align="center" id="image_select"><input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url"></div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="is_enterprise" type="checkbox" id="checkbox" value="true">기업회원 구분
+                                        <input name="is_enterprise" type="checkbox" id="checkbox" value="true">기업회원 구분 &nbsp;&nbsp;<span id="content"> ※ 기업회원 구분 어쩌고 응 쌸라쌸라입니다. 참고해라</span>
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

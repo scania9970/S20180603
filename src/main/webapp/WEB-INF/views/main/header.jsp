@@ -7,8 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
 <style >
+*{
+	style : text-decoration:none;
+}
 .header {
 	background-color: #F8F8F8;
+	sty
 }
 .member {
 	display: flex;
@@ -49,7 +53,7 @@
 <link type="text/css" rel="stylesheet" 
 		  href="${pageContext.request.contextPath}/css/header.css" />
 <body>
-	<div class="header">
+	<div class="header" style="text-decoration:none">
 		<div class="logo">
 			<svg class="eclipse" viewBox="0 0 160 160" width="160" height="160"> 
 				<circle cx="80" cy="80" r="50" /> 
@@ -60,24 +64,24 @@
 				</g>
 				<path d="M 50,0 A 50,50 0 0,0 -50,0Z" transform="matrix(0.866, -0.5, 0.5, 0.866, 80, 80)" /> 
 			</svg>
-			<a href="main">COTA</a>
+			<a href="main" style="text-decoration:none">COTA</a>
 		</div>
 		<div class="categories">
 			<div class="taja">
-				<a href="#" class="dropbtn"><i class="taja"></i>타자연습&nbsp;&nbsp;&#9662;</a>
+				<a href="#" class="dropbtn" style="text-decoration:none"><i class="taja"  style="text-decoration:none"></i>타자연습&nbsp;&nbsp;&#9662;</a>
 				<div class="dropdown-taja">
-					<a href="/cota/word?lang_type=java">낱말연습</a> <a href="/cota/sentence?lang_type=java">문장연습</a> <a href="/cota/paragraph-selector">긴글연습</a> <a href="/cota/typingGame">타자게임</a>
+					<a href="/cota/word?lang_type=java" style="text-decoration:none">낱말연습</a> <a href="/cota/sentence?lang_type=java" style="text-decoration:none">문장연습</a> <a href="/cota/paragraph-selector" style="text-decoration:none">긴글연습</a> <a href="/cota/typingGame" style="text-decoration:none">타자게임</a>
 				</div>
 			</div>
-			<div><a href="/cota/list1" class="forum">개발자 포럼</a></div>
+			<div><a href="/cota/list1" class="forum" style="text-decoration:none">개발자 포럼</a></div>
 		</div>
 		<% Member member = (Member)session.getAttribute("member"); %>   <%-- <%=member %> 자바 변수를 사용하기위해 다음과 같은 코드를 사욜해 준다. email을 받아오는 경로가 없기때문 생성해줌 --%>
 		<%
 		 if (session.getAttribute("member") == null) {
 		%>
 		<div class="member">
-			<a class="login" href="loginpage">로그인</a>
-			<a class="join" href="joinpage">회원가입</a>
+			<a class="login" href="loginpage" style="text-decoration:none">로그인</a>
+			<a class="join" href="joinpage" style="text-decoration:none">회원가입</a>
 		</div>
 		<% } else if (session.getAttribute("member") != null) { %>
 		<div class="member">

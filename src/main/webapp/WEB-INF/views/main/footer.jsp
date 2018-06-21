@@ -62,7 +62,7 @@ label{
 		<div class="footer-info">
 			<a id="cota-info">about</a>
 			<a id="cota-info" class="middle"> | </a>
-			<a id="cota-info">contract</a>
+			<a id="cota-info">contact</a>
 			<a id="cota-info" class="partition-l"> | </a>
 			<a id="cota-info" class="middle">terms</a>
 			<a id="cota-info" class="partition-r"> | </a>

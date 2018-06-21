@@ -99,6 +99,129 @@
 		</div>
 	</div>
 	
+	<!-- 최신글  -->
+	<div class="ranking-header">
+		<div class="card one">
+			<div class="card-row">
+				<div class="card-cell today">자유게시판</div>
+			</div>
+		</div>
+		<div class="card two">
+			<div class="card-row">
+				<div class="card-cell weekly">Q&A</div>
+			</div>
+		</div>
+		<div class="card three">
+			<div class="card-row">
+				<div class="card-cell monthly">소모임</div>
+			</div>
+		</div>
+	</div>
+	<div class="ranking-wrapper">
+		<div class="card one">
+			<div class="card-row">
+				<div class="card-cell rank">1</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">2</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">3</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">4</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">5</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">6</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">7</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">8</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">9</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">10</div>
+			</div>
+		</div>
+		
+			<div class="card two">
+			<div class="card-row">
+				<div class="card-cell rank">1</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">2</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">3</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">4</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">5</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">6</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">7</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">8</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">9</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">10</div>
+			</div>
+		</div>
+		
+			<div class="card three">
+			<div class="card-row">
+				<div class="card-cell rank">1</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">2</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">3</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">4</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">5</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">6</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">7</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">8</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">9</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">10</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 인포 -->
+	<div class="info-wrapper" style="height: 100px">
+	</div>
+	
 	<!-- 랭킹 -->
 	<div class="ranking-header">
 		<div class="card one">

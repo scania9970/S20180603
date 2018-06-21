@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,9 +49,51 @@
 </style>
 
 <script type="text/javascript">
+	var career_count = 0;
+	
+	window.onload = function() {
+		career_count = $(".career_cnt").length;
+	};
+
 	var loadFile = function(event) {
 		var output = document.getElementById('output');
 		output.src = URL.createObjectURL(event.target.files[0]);
+	};
+	
+	function btn_career_add() {
+		career_count += 1;
+		
+		var input_career = '<div class="div_wrapper' + career_count + '">' +
+						       '<div style="border-top: 1px solid #CCCCCC; padding-top: 10px;"></div>' +
+						       '<div class="form-group">' +
+						           '<label>회사명</label>' +
+						           '<input class="form-control" name="company' + career_count + '">' +
+						       '</div>' +
+						       '<div class="form-group">' +
+						           '<label>입사일</label>' +
+						           '<input class="form-control" type="date" name="data_start' + career_count + '">' +
+						       '</div>' +
+							   '<div class="form-group">' +
+							       '<label>퇴사일</label>' +
+							       '<input class="form-control" type="date" name="data_end' + career_count + '">' +
+							   '</div>' +
+							   '<div class="form-group">' +
+							       '<label>직급</label>' +
+								   '<input class="form-control" name="rank' + career_count + '">' +
+							   '</div>' +
+							   '<div class="form-group">' +
+							       '<label>업무설명</label>' +
+								   '<textarea class="form-control" rows="3" name="detail' + career_count + '"></textarea>' +
+							   '</div>' +
+						   '</div>';
+		
+		$('.div_career_add').before(input_career);
+	};
+	
+	function btn_career_del() {
+		$('.div_wrapper' + career_count).remove();
+		
+		career_count -= 1;
 	};
 </script>
 </head>
@@ -76,7 +119,7 @@
 							<div class="panel-heading">기본 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-6">
 										<div class="form-group">
 											<label>생년월일</label>
 											<input type="hidden" name="email" value="${member.email}">
@@ -114,38 +157,24 @@
 							<div class="panel-heading">경력 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-lg-4">
-										<input type="hidden" name="cnum" value="${career.cnum}">
-										<c:if test="${career == null}">
-											<div class="form-group">
-												<label>회사명</label>
-												<input class="form-control" name="company" value="${career.company}">
-											</div>
-											<div class="form-group">
-												<label>입사일</label>
-												<input class="form-control" type="date" name="data_start" value="${career.data_start}">
-											</div>
-											<div class="form-group">
-												<label>퇴사일</label>
-												<input class="form-control" type="date" name="data_end" value="${career.data_end}">
-											</div>
-											<div class="form-group">
-												<label>직급</label>
-												<input class="form-control" name="rank" value="${career.rank}">
-											</div>
-											<div class="form-group">
-												<label>업무설명</label>
-												<textarea class="form-control" name="detail" rows="3">${career.detail}</textarea>
-											</div>
+									<div class="col-lg-6">
+										<c:if test="${fn:length(listCareer) <= 0}">
+											<p>경력 없음</p>
 										</c:if>
-										<c:if test="${career != null}">
-											<c:forEach items="career" var="career">
-												<p>${career.company}</p>
+										<c:if test="${fn:length(listCareer) > 0}">
+											<c:forEach items="${listCareer}" var="career" varStatus="status">
+												<input type="hidden" name="cnum" value="${career.cnum}">
+												<div class="div_wrapper${status.index}">
+													<p class="career_cnt">${career.company}</p>
+												</div>
 											</c:forEach>
 										</c:if>
 										<div class="div_career_add">
-											<button type="button" class="btn btn-default btn-circle btn-lg">
+											<button type="button" class="btn btn-default btn-circle btn-lg" onclick="btn_career_add()">
 												<i class="fa fa-plus"></i>
+											</button>
+											<button type="button" class="btn btn-default btn-circle btn-lg" onclick="btn_career_del()">
+												<i class="fa fa-minus"></i>
 											</button>
 										</div>
 									</div>

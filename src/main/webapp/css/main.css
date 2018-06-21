@@ -154,20 +154,57 @@ body {
 	font-weight: lighter;
 }
 
+.ranking-header{
+	display: flex;
+	position: relative;
+	width: 90%;
+	height: 50px;
+	margin: 30px auto;
+	align-items: center;
+	justify-content: center;
+	border: solid;
+}
+
 .ranking-wrapper {
 	display: flex;
 	position: relative;
 	width: 90%;
-	height: 400px;
-	border: solid;
+	height: 500px;
 	margin: 30px auto;
 	align-items: center;
 	justify-content: center;
+	border: solid;
+	margin-bottom: 50px;
 }
 
 .card {
 	width: 30%;
 	height: 100%;
+	border-collapse: collapse;
+	display: table;
+}
+
+.two {
+	margin: 0 50px;
+}
+
+.card-row{
 	border: solid;
-	display: flex;
+	border-collapse: collapse;
+	display: table-row;
+	width: 100%;
+}
+
+.card-cell{
+	padding-left: 10px;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.rank {
+	padding-left: 0px;
+	width: 10%;
+	border: solid;
+	border-collapse: collapse;
+	text-align: center;
 }

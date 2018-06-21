@@ -84,14 +84,140 @@
 	</div>
 	
 	<!-- 랭킹 -->
+	<div class="ranking-header">
+		<div class="card one"></div>
+		<div class="card two"></div>
+		<div class="card three"></div>
+	</div>
 	<div class="ranking-wrapper">
 		<div class="card one">
-			<c:forEach var="id" items="${email}" >
-				<a href="/cota/viewPortfolio?email=${id}">${id}</a> <br>
-			</c:forEach>
+			<div class="card-row">
+				<div class="card-cell rank">1</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">2</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">3</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">4</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">5</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">6</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">7</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">8</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">9</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">10</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
 		</div>
-		<div class="card two">2</div>
-		<div class="card three">3</div>
+		
+		<div class="card two">
+			<div class="card-row">
+				<div class="card-cell rank">1</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">2</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">3</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">4</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">5</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">6</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">7</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">8</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">9</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">10</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+		</div>
+		
+		<div class="card three">
+			<div class="card-row">
+				<div class="card-cell rank">1</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">2</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">3</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">4</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">5</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">6</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">7</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">8</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">9</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+			<div class="card-row">
+				<div class="card-cell rank">10</div>
+				<div class="card-cell">endorphin / 990타 / 100%</div>
+			</div>
+		</div>
 	</div>
 	
 	<jsp:include page="footer.jsp"/>

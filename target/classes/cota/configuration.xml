@@ -22,5 +22,6 @@
 		<mapper resource="cota/Reply.xml" />
 		<mapper resource="cota/Project.xml" />
 		<mapper resource="cota/Career.xml" />
+		<mapper resource="cota/Group.xml" />
 	</mappers>
 </configuration>

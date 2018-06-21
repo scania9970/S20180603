@@ -23,7 +23,7 @@
 				<div class="text" style="color:white;">
 					<label>오직 개발자를 위한 타이핑 연습 사이트 COTA</label>
 					<label>지금 바로 무료가입 후, 이용해 보세요.</label>
-					<input type="button" class="signup" value="가입하기" 
+					<input type="button" class=slider-btn value="가입하기" 
 						   onclick="window.location='joinpage';" ></input>
 				</div>
 			</div>
@@ -32,19 +32,30 @@
 			<div class="image2">
 				<div class="text" style="color:white;">
 					<label>개발자들의, 개발자에 의한, 개발자를 위한 포럼</label>
+					<label>line2</label>
+					<input type="button" class=slider-btn value="바로가기" 
+						   onclick="window.location='list2';" ></input>
 				</div>
 			</div>
 		</div>
 		<div class="slides">
 			<div class="image3">
 				<div class="text">
-					<label>포트폴리오</label>
+					<label>line1</label>
+					<label>line2</label>
+					<input type="button" class=slider-btn value="바로가기" 
+						   onclick="window.location='myinfoPort';" style="background-color: black; color: white;"></input>
 				</div>
 			</div>
 		</div>
 		<div class="slides">
 			<div class="image4">
-				<div class="text">Caption 4</div>
+				<div class="text">
+					<label>구인, 구직</label>
+					<label>line2</label>
+					<input type="button" class=slider-btn value="바로가기" 
+						   onclick="window.location='list2';" ></input>
+				</div>
 			</div>
 		</div>
 		

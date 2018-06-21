@@ -15,7 +15,7 @@ body{
 	background-color: #161616;
 	color: white;
 	width: 100%;
-	height: 240px;
+	height: 250px;
 	padding: 20px 0;
 	display: inline-block;
 }
@@ -55,7 +55,7 @@ label{
 </head>
 <body>
 	<div class="footer">
-		<label style="font-size: 60px;">COTA</label>
+		<label style="font-size: 70px; font-style: italic;">COTA</label>
 		<label style="color: #D5D5D5;">&#169;2018</label>
 		<label style="color: #D5D5D5;"><a href="mailto:info@cota.com" style="color: white">info@cota.com</a></label>
 		<label style="font-size: 30px;">Typing practice only for programmers</label>

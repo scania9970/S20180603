@@ -6,46 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
-<style >
-.header {
-	background-color: #F8F8F8;
-}
-.member {
-	display: flex;
-	float: right;
-	align-items: center;
-    justify-content: flex-start;
-    widht : 400px;
-}
-.login {
-	margin : 15px 0 0 0;
-	}
-
-.join {
-	margin : 15px 0 0 0;
-}
-
-#image {
-	margin : 5px 0 0 0;
-	width : 50px;
-	height : 50px;
-	border-radius: 25%;
-}
-
-#nicknamearea {
-	font-size : 15px;
-	padding : 0 0 15px 7px;
-	width : 150px;
-	height : 30px;
-	margin : 0 10px 0 0;
-}
-
-.mypage {
-	magin : 0 30px 0 0;
-}
-
-
-</style>
 <link type="text/css" rel="stylesheet" 
 		  href="${pageContext.request.contextPath}/css/header.css" />
 <body>

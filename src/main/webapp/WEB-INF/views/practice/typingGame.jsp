@@ -34,14 +34,26 @@ html, body{
 	background-color: #161616;
 }
 
-#start-wrapper{
+.start-wrapper{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	display: flex;
+	flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#start-label{
 	width: 100%;
 	font-size: 70px;
 	text-align: center;
 	position: relative;
 	border-collapse: collapse;
 	background-color: #161616;
-	margin: 20px 0;
+	margin: 15px 0;
 }
 
 #start-btn{
@@ -67,7 +79,7 @@ html, body{
 	bottom: 0;
 	left: 0;
 	margin: auto;
-	height: 80%;
+	height: 85%;
 	width: 80%;
 	position: absolute;
 	display: none;
@@ -456,7 +468,7 @@ input[type="text"]{
 	width: 250px;
 	height: 250px;
 	background: url("${pageContext.request.contextPath}/images/pokeball.svg") no-repeat;
-	margin: 120px auto 10px auto;
+	margin: 0 auto;
 }
  
 </style>
@@ -473,9 +485,11 @@ input[type="text"]{
 	</audio>
 	
 	<div id="start-frame">
-		<label class="pokeball-img"></label>
-		<div id="start-wrapper">Pokemon Typing</div>
-		<div id="start-wrapper"><button id="start-btn">시작하기</button></div>
+		<div class="start-wrapper">
+			<label class="pokeball-img"></label>
+			<div id="start-label">Pokemon Typing</div>
+			<div id="start-label"><button id="start-btn">시작하기</button></div>
+		</div>
 	</div>
 	
 	<div id="shop">

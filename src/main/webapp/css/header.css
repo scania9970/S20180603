@@ -113,6 +113,7 @@
     padding: 0;
     border-bottom: 2px solid;
     border-color: #CE3636;
+	background-color: #F8F8F8;
 }
 
 .logo{
@@ -207,6 +208,48 @@
 	color: green;
 }
 
+.mypage:hover{
+	color: green;
+}
+
+.logout:hover{
+	color: green;
+}
+
 .dropbtn:hover {
 	color: green;
+}
+
+.member {
+	display: flex;
+	float: right;
+	align-items: center;
+    justify-content: flex-start;
+    widht : 400px;
+}
+.login {
+	margin : 15px 0 0 0;
+	}
+
+.join {
+	margin : 15px 0 0 0;
+}
+
+#image {
+	margin : 5px 0 0 0;
+	width : 50px;
+	height : 50px;
+	border-radius: 25%;
+}
+
+#nicknamearea {
+	font-size : 15px;
+	padding : 0 0 15px 7px;
+	width : 150px;
+	height : 30px;
+	margin : 0 10px 0 0;
+}
+
+.mypage {
+	magin : 0 30px 0 0;
 }

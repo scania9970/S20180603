@@ -44,6 +44,7 @@
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+var confirmNum = "";
 
 $(function() { // 무조건 실행한다.
 	$('#passwordChk').change(function() {
@@ -104,6 +105,68 @@ $(document).on('click', '#nicknameChkbtn', function() {
 	});
 	
 });
+function emailCheck(){
+	if (!join.email.value) { 
+		alert("이메일 주소를 입력하세요.");
+		join.email.focus();
+		
+		return;
+	} else if(join.email.value.indexOf('@') < 0 || join.email.value.indexOf('.') < 0) {
+		alert("이메일 주소가 올바르지 않습니다.");
+		join.email.focus();
+		
+		return;
+	}
+	
+	join.btnConfirm.value = "확인";
+	$("#confirmCode").prop('disabled', false);
+	$("#btnConfirm").prop('disabled', false);
+	$("#btnConfirm").css('color', 'white');
+	$("#btnConfirm").css('background-color', '#1A7AD9');
+	
+	var sendData = 'email=' + $('#email').val();
+	console.log("sendData : " + sendData)
+	$.post(
+		'/cota/EmailConfirmPro',
+		sendData,
+		function(result) {
+			console.log("authNum : " + result);
+			confirmNum = result.substr(result.indexOf("authNum:")+8, 6);
+	});
+	
+	alert("해당 이메일로 인증번호가 발송되었습니다.");
+};
+
+$(function() {
+	$('#btnConfirm').click(function() {
+		if (!join.confirmCode.value) { 
+			alert("인증번호를 입력해주세요.");
+			join.confirmCode.focus();
+			
+			return;
+		}
+		
+		confirmEmail(join.confirmCode.value, confirmNum);
+	});
+});
+
+function confirmEmail(Emailconfirm_value, authNum){
+	if(!Emailconfirm_value || Emailconfirm_value != authNum){ // 인증코드가 일치하지 않을 경우
+		alert("인증번호가 일치하지 않습니다!");
+		join.confirmCode.value = "";
+		join.confirmCode.focus();
+	} else if(Emailconfirm_value == authNum){	// 일치할 경우
+		alert("인증에 성공하였습니다.");
+		join.btnConfirm.value = "인증완료";
+		$("#confirmCode").prop('disabled', true);
+		$("#btnConfirm").prop('disabled', true);
+		$("#btnConfirm").css('color', '#808080');
+		$("#btnConfirm").css('background-color', '#DDDDDD');
+	}
+
+	return;
+};
+
 
 var loadFile = function(event) { // image file 선택시 바로 보여주기 위한 코드
 	var output = document.getElementById('output');
@@ -157,7 +220,7 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
                                     <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>
                                     <button id='emailChkbtn' class="form-control">이메일 중복확인</button>
                                     <span id="spanemail"></span>
-                                    <input class="form-control" type="button" name="btnEmailChk" id='btnEmailChk' value="인증번호받기" onclick="emailCheck">
+                                    <input class="form-control" type="button" name="btnEmailChk" id='btnEmailChk' value="인증번호받기" onclick="emailCheck(join.email.value)">
                                     <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled">
                                     <input type="button" id="btnConfirm" name="btnConfirm" class="form-control" value="인증하기" disabled="disabled">
                                 </div>

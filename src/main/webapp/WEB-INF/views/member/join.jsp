@@ -168,6 +168,8 @@ function confirmEmail(Emailconfirm_value, authNum){
 };
 
 
+
+
 var loadFile = function(event) { // image file 선택시 바로 보여주기 위한 코드
 	var output = document.getElementById('output');
 	output.src = URL.createObjectURL(event.target.files[0]);
@@ -214,7 +216,7 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
                         <h2 class="panel-title" style="font-size: 20pt" align="center">회원가입</h2>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="insertmb" name="join" method="post" enctype="multipart/form-data">
+                        <form role="form" action="insertmb" name="join" method="post" enctype="multipart/form-data" onsubmit="return chk()">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>

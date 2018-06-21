@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>COTA</title>
+<<<<<<< HEAD
 <style >
 *{
 	style : text-decoration:none;
@@ -50,6 +51,8 @@
 
 
 </style>
+=======
+>>>>>>> 5486255bc22876176c6b568c1ffd165511042e6c
 <link type="text/css" rel="stylesheet" 
 		  href="${pageContext.request.contextPath}/css/header.css" />
 <body>
@@ -68,12 +71,20 @@
 		</div>
 		<div class="categories">
 			<div class="taja">
+<<<<<<< HEAD
 				<a href="#" class="dropbtn" style="text-decoration:none"><i class="taja"  style="text-decoration:none"></i>타자연습&nbsp;&nbsp;&#9662;</a>
+=======
+				<a href="#" class="dropbtn">&nbsp;&nbsp;타자연습&nbsp;&nbsp;&#9662;</a>
+>>>>>>> 5486255bc22876176c6b568c1ffd165511042e6c
 				<div class="dropdown-taja">
 					<a href="/cota/word?lang_type=java" style="text-decoration:none">낱말연습</a> <a href="/cota/sentence?lang_type=java" style="text-decoration:none">문장연습</a> <a href="/cota/paragraph-selector" style="text-decoration:none">긴글연습</a> <a href="/cota/typingGame" style="text-decoration:none">타자게임</a>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<div><a href="/cota/list1" class="forum" style="text-decoration:none">개발자 포럼</a></div>
+=======
+			<div class="taja"><a href="/cota/list1" class="forum">개발자 포럼</a></div>
+>>>>>>> 5486255bc22876176c6b568c1ffd165511042e6c
 		</div>
 		<% Member member = (Member)session.getAttribute("member"); %>   <%-- <%=member %> 자바 변수를 사용하기위해 다음과 같은 코드를 사욜해 준다. email을 받아오는 경로가 없기때문 생성해줌 --%>
 		<%

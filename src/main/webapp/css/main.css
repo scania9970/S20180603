@@ -48,28 +48,39 @@ body {
 }
 
 .text {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 	width: 100%;
-	height: 100%;
+	height: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-size: 30px;
 	width: 100%;
 	flex-flow: column;
+	margin: auto;
 }
 
 .text > label {
 }
 
-.signup{
-	width: 150px;
+.slider-btn{
+	width: 200px;
 	height: 60px;
-	color: #860000;
+	color: black;
 	font-size: 25px;
-	background: #FFE400;
+	background: white;
 	margin-top: 20px;
-	border-radius: 10px;
+	border-radius: 8px;
 	z-index: 1;
+	border: none;
+}
+
+.slider-btn:hover{
+	font-weight: bold;
 }
 
 .prev, .next {
@@ -79,6 +90,7 @@ body {
 	position: absolute;
 	font-weight: bold;
 	font-size: 35px;
+	color: white;
 	cursor: pointer;
 	top: 0;
 	bottom: 0;
@@ -131,7 +143,7 @@ body {
 .info {
 	width: 15%;
 	height: 100%;
-	margin-left: 2.3%;
+	margin-left: 2%;
 	position: relative;
 }
 
@@ -159,10 +171,9 @@ body {
 	position: relative;
 	width: 90%;
 	height: 50px;
-	margin: 30px auto;
+	margin: 0 auto;
 	align-items: center;
 	justify-content: center;
-	border: solid;
 }
 
 .ranking-wrapper {
@@ -170,10 +181,9 @@ body {
 	position: relative;
 	width: 90%;
 	height: 500px;
-	margin: 30px auto;
+	margin: 0 auto 30px auto;
 	align-items: center;
 	justify-content: center;
-	border: solid;
 	margin-bottom: 50px;
 }
 
@@ -199,6 +209,24 @@ body {
 	padding-left: 10px;
 	display: table-cell;
 	vertical-align: middle;
+}
+
+.today{
+	text-align: center;
+	background-color: #86E57F;
+	color: white;
+}
+
+.weekly{
+	background-color: #2478FF;
+	text-align: center;
+	color: white;
+}
+
+.monthly{
+	background-color: #BC2424;
+	text-align: center;
+	color: white;
 }
 
 .rank {

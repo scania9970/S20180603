@@ -65,7 +65,7 @@
 		   color: black;
 		}
 		body {
-		
+			overflow: scroll;
 		}
     	#main{
 			position : absolute;

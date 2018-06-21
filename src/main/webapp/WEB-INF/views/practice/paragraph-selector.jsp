@@ -87,9 +87,11 @@
 		margin: auto;
 		width: 1000px;
 		height: 700px;
+		transition: 0.5s;
 		opacity: 0;
 	}
 	.list{
+		transition: 0.5s;
 		margin: 10px 45px;
 		float: left;
 		width: 400px;
@@ -483,13 +485,12 @@ var selectedLang = null;
 			$('#center').children().remove();
 		}, 1000);
 		setTimeout(function() {
-		$('#paragraphlist-wrapper').css("width", '1200px');
+			$('#paragraphlist-wrapper').css("width", '1200px');
 		}, 100);
 		setTimeout(function() {
-		$('#paragraphlist-wrapper').css("height", '700px');
+			$('#paragraphlist-wrapper').css("height", '700px');
 		}, 100);
 		
-		$('#paragraphlist-wrapper').css("position", '');
 		$('#paragraphlist-wrapper').css("margin", '0 auto');
 
 		
@@ -522,7 +523,7 @@ var selectedLang = null;
 		$('#paragraphlist-wrapper').css("opacity", '0');
 		setTimeout(function(){
 			$('#paragraphlist-wrapper').remove();
-		},500);
+		},1000);
 		$('#class-name').text(selectedParagraph);  // 클래스명 설정
 		
 		parseParagraphData(selectedParagraph);
@@ -553,9 +554,9 @@ var selectedLang = null;
 				$.each(linedData, function(idx, val){
 					//console.log('val : ' + idx + ", "+ val )
 					if(idx == 0){
-						$('#practice-paragraph').append("<div id='line-div"+(idx+1)+"' class='line-divs'><span><label id='lbl-line"+(idx+1)+"' class='lbl-lines'></label><label id='s2' class='s2'></label><label id='result"+(idx+1)+"'></label></span><br><div id='ipt-line"+(idx+1)+"-div' class='ipt-line-divs'><input type='text' id='ipt-line"+(idx+1)+"' class='ipt-lines' index="+(idx+1)+" autofocus><input type='hidden' id='sentence"+(idx+1)+"'></div></div>")
+						$('#practice-paragraph').append("<div id='line-div"+(idx+1)+"' class='line-divs'><span><label id='lbl-line"+(idx+1)+"' class='lbl-lines'></label><label id='s2' class='s2'></label><label id='result"+(idx+1)+"'></label></span><br><div id='ipt-line"+(idx+1)+"-div' class='ipt-line-divs'><input type='text' id='ipt-line"+(idx+1)+"' class='ipt-lines' spellcheck='false' index="+(idx+1)+"><input type='hidden' id='sentence"+(idx+1)+"'></div></div>")
 					}else{
-						$('#practice-paragraph').append("<div id='line-div"+(idx+1)+"' class='line-divs'><span><label id='lbl-line"+(idx+1)+"' class='lbl-lines'></label><label id='s2' class='s2'></label><label id='result"+(idx+1)+"'></label></span><br><div id='ipt-line"+(idx+1)+"-div' class='ipt-line-divs'><input type='text' id='ipt-line"+(idx+1)+"' class='ipt-lines' index="+(idx+1)+"><input type='hidden' id='sentence"+(idx+1)+"'></div></div>")
+						$('#practice-paragraph').append("<div id='line-div"+(idx+1)+"' class='line-divs'><span><label id='lbl-line"+(idx+1)+"' class='lbl-lines'></label><label id='s2' class='s2'></label><label id='result"+(idx+1)+"'></label></span><br><div id='ipt-line"+(idx+1)+"-div' class='ipt-line-divs'><input type='text' id='ipt-line"+(idx+1)+"' class='ipt-lines' spellcheck='false' index="+(idx+1)+"><input type='hidden' id='sentence"+(idx+1)+"'></div></div>")
 					}
 				});
 				
@@ -588,6 +589,10 @@ var selectedLang = null;
 					setTimeout(function(){
 						$("#practice-wrapper").css('opacity', '1');
 					}, 1000);
+					setTimeout(function(){
+						$('#ipt-line1').focus();
+					}, 1600);
+					
 			}
 		});
 	}
@@ -702,7 +707,7 @@ var selectedLang = null;
 		var speed = Math.round(sentenceHits / seconds * 60, 2);
 		speedArr.push(speed);
 		console.log("speed : " + speed);
-		return speed+' h/s';
+		return speed+' h/m';
 	}
 	
 	function getAccuracy(sentence, input){
@@ -793,7 +798,7 @@ var selectedLang = null;
 	    	speedSum += _speedArr[i];
 	    }
 	    speedMean = Math.round(speedSum / _speedArr.length);
-		$('#mspeed').text(speedMean);
+		$('#mspeed').text(speedMean + " h/m");
 		
 		if(speedMean > 600){
 			speedScore = 5;	
@@ -815,7 +820,7 @@ var selectedLang = null;
 			accSum += _accArr[i];
 	    }
 		accMean = Math.round(accSum / _accArr.length);
-		$('#macc').text(accMean);
+		$('#macc').text(accMean + " %");
 		
 		// 생산성
 		console.log("_totalHits : " + _totalHits);
@@ -895,31 +900,30 @@ var selectedLang = null;
 				
 				if(currVal == 1){
 					console.log('1');
-					$(parsedKey).css('background-color', 'green');
-					$(parsedKey).css('color', 'white');
+					$(parsedKey).css('background-color', '#fffc00');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 2){
 					console.log('2');
-					$(parsedKey).css('background-color', '#a3f441');
+					$(parsedKey).css('background-color', '#fda500');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 3){
 					console.log('3');
-					$(parsedKey).css('background-color', 'yellow');
+					$(parsedKey).css('background-color', '#e66c0f');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal == 4){
 					console.log('4');
-					$(parsedKey).css('background-color', 'orange');
+					$(parsedKey).css('background-color', '#ff0000');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
 				}else if(currVal >= 5){
 					console.log('5');
-					$(parsedKey).css('background-color', 'red');
+					$(parsedKey).css('background-color', '#cf1a1a');
 					$(parsedKey).css('color', 'white');
 					$(parsedKey).children().eq(1).text("");
 					$(parsedKey).children().eq(1).text(currVal);
@@ -1116,7 +1120,7 @@ var selectedLang = null;
 		</div>
 	</div>
 </div>
-<div id="paragraphlist-wrapper" class='w3-animate-opacity'>
+<div id="paragraphlist-wrapper">
 	<div id='top'>
 		<div id='top-image'></div>
 		<div id='top-desc'></div>

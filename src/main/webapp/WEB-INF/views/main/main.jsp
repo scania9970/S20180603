@@ -22,25 +22,41 @@
 			<div class="image1">
 				<div class="text" style="color:white;">
 					<label>오직 개발자를 위한 타이핑 연습 사이트 COTA</label>
-					<label>지금 바로 무료가입 후, 이용해 보세요.</label>
-					<input type="button" class="signup" value="가입하기" 
+					<label>지금 바로 무료가입 후, 이용해 보세요</label>
+					<input type="button" class=slider-btn value="가입하기" 
 						   onclick="window.location='joinpage';" ></input>
 				</div>
 			</div>
 		</div>
 		<div class="slides">
 			<div class="image2">
-				<div class="text">Caption 2</div>
+				<div class="text" style="color:white;">
+					<label>개발자들의, 개발자에 의한, 개발자를 위한 포럼</label>
+					<label>지금 포럼에서 자신의 지식을 공유하세요</label>
+					<input type="button" class=slider-btn value="포럼 바로가기" 
+						   onclick="window.location='list2';" ></input>
+				</div>
 			</div>
 		</div>
 		<div class="slides">
 			<div class="image3">
-				<div class="text">Caption 3</div>
+				<div class="text">
+					<label>COTA에서는 자신의 포트폴리오를 작성, 관리하고</label>
+					<label>다른 사람들의 포트폴리오도 열람할 수 있습니다</label>
+					<label>지금 바로 확인해보세요</label>
+					<input type="button" class=slider-btn value="포트폴리오 작성" 
+						   onclick="window.location='myinfoPort';" style="background-color: black; color: white;"></input>
+				</div>
 			</div>
 		</div>
 		<div class="slides">
 			<div class="image4">
-				<div class="text">Caption 4</div>
+				<div class="text">
+					<label>COTA는 한국 최대의 구인, 구직사이트입니다.</label>
+					<label>누적 채용 건수 5449건의 COTA에서 커리어를 개발하세요</label>
+					<input type="button" class=slider-btn value="바로가기" 
+						   onclick="window.location='list2';" ></input>
+				</div>
 			</div>
 		</div>
 		
@@ -63,7 +79,7 @@
 				<label class="digit-info">COTA를 사용하는 사람</label>
 			</div>
 		</div>
-		<div class="info two">
+		<div class="info twoo">
 			<div class="digit-wrapper">
 				<label class="digit">11</label>
 				<label class="digit-info">사용가능한 언어</label>
@@ -85,9 +101,21 @@
 	
 	<!-- 랭킹 -->
 	<div class="ranking-header">
-		<div class="card one"></div>
-		<div class="card two"></div>
-		<div class="card three"></div>
+		<div class="card one">
+			<div class="card-row">
+				<div class="card-cell today">오늘의 랭킹</div>
+			</div>
+		</div>
+		<div class="card two">
+			<div class="card-row">
+				<div class="card-cell weekly">주간 랭킹</div>
+			</div>
+		</div>
+		<div class="card three">
+			<div class="card-row">
+				<div class="card-cell monthly">월간 랭킹</div>
+			</div>
+		</div>
 	</div>
 	<div class="ranking-wrapper">
 		<div class="card one">
@@ -246,7 +274,7 @@
 			dot[slideIndex-1].style.background = "red";
 			dot[slideIndex-1].style.border = "3px solid red";
 			
-			setTimeout(function(){ slide[cur].style.left = "0%"; }, 100);
+			setTimeout(function(){ slide[cur].style.left = "0%"; }, 300);
 			
 			
 		}
@@ -268,7 +296,7 @@
 			dot[slideIndex-1].style.background = "red";
 			dot[slideIndex-1].style.border = "3px solid red";
 			
-			setTimeout(function(){ slide[cur].style.left = "0%"; }, 100);
+			setTimeout(function(){ slide[cur].style.left = "0%"; }, 300);
 			
 			
 		}
@@ -316,6 +344,14 @@
 		        }
 		    });
 		});
+		
+		var intervalId = setInterval(sliderChange, 5000);
+		function sliderChange(){
+			slideIndex += 1;
+			if(slideIndex > 4)
+				slideIndex = 1;
+			showImage(slideIndex);
+		}
 		
 	</script>
 </body>

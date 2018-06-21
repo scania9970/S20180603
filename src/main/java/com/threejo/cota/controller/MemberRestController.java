@@ -26,5 +26,10 @@ public class MemberRestController {
 		
 		return ms.nicknameCheck(nickname);
 	}
+	
+	@RequestMapping(value = "EmailConfirmPro")
+	public String EmailConfirmPro(String email) {
+		return ms.EmailConfirmPro(email);
+	}
 
 }

@@ -184,11 +184,9 @@
 }
 
 .dropdown-taja a {
-    color: black;
-    padding: 0 16px;
-    display: block;
-    text-align: right;
-    font-weight: normal;
+	display: block;
+	text-align: left;
+	padding: 0 13px;
 }
 
 .dropdown-taja a:hover {background-color: #f1f1f1;}

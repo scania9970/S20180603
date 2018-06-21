@@ -65,7 +65,7 @@
 		   color: black;
 		}
 		body {
-		
+			overflow: scroll;
 		}
     	#main{
 			position : absolute;
@@ -137,10 +137,10 @@
     		
     		#side_advertising{
     			position : absolute;
-    			width: 15%;
-    			height: 80%;
-    			top: 14.5%;
-    			right: 5%;
+    			width: 240px;
+    			height: 590px;
+    			top: 110px;
+    			right:  70px;
     			
     			background: blue;
     		}

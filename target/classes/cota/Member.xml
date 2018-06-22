@@ -28,4 +28,10 @@
 	]]>
 	</select>
 	
+	<select id="passwordchange" resultType="Member">
+	<![CDATA[
+		SELECT * FROM MEMBER WHERE EMAIL = #{email}
+	]]>
+	</select>
+	
 </mapper>

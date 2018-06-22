@@ -8,7 +8,7 @@
 	width: 100%;
 	height: 40px;
 	color: white;
-	background-color: #FF0000;
+	background-color: #000000;
 	border-color: transparent;
 }
 
@@ -79,13 +79,11 @@
 									<input class="form-control" placeholder="비밀번호" name="password"
 										type="password" required value="">
 								</div>
-								<!-- Change this to a button or input when using this as a form -->
-								<!-- <a href="/cota/main" class="btn btn-lg btn-success btn-block">회원가입</a> -->
 								<input class="joinbutton" type="submit" value="로그인">
 							</fieldset>
 						</form>
 						<p class="">
-					    	<a href="" id="join_password" class="panel-heading">비밀번호 찾기</a><a href="joinpage" id="join_password" class="panel-heading">회원가입</a>
+					    	<a href="findPassword" id="join_password" class="panel-heading">비밀번호 찾기</a><a href="joinpage" id="join_password" class="panel-heading">회원가입</a>
 					</div>
 				</div>
 			</div>

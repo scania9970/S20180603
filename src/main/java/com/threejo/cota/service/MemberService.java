@@ -16,4 +16,6 @@ public interface MemberService {
 
 	String EmailConfirmPro(String email);
 
+	Member passwordchange(Member member);
+
 }

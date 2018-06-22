@@ -44,4 +44,10 @@ public class MemberServiceImpl implements MemberService {
 		EmailConfirm confirm = new EmailConfirm();
 		return confirm.connectEmail(email, 0);
 	}
+	
+	@Override
+	public Member passwordchange(Member member) {
+		
+		return md.passwordchange(member);
+	}
 }

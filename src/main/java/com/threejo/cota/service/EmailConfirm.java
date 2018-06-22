@@ -26,7 +26,7 @@ public class EmailConfirm {
 			subject = "cota 회원가입 이메일 인증번호 발송";
 			authNum = EmailConfirm.authNum(0);
 			content =
-				"<img alt='미소플랜' src='https://i.imgur.com/HftX1AR.png'>" +
+				"<img alt='COTA' src='https://i.imgur.com/GRMdaaM.png'>" +
 				"<p>안녕하세요. 'cota' 입니다.</p>" +
 				"<p>귀하의 이메일 주소 인증번호는 아래와 같습니다. 해당 번호를 입력란에 입력해주세요.</p>" +
 				"<h2>인증번호 [" + authNum + "]</h2>" +

@@ -11,5 +11,7 @@ public interface MemberDao {
 	String nicknameCheck(String nickname);
 	
 	Member select(Member member);
-	
+
+	Member passwordchange(Member member);
+
 }

@@ -110,5 +110,22 @@ public class MemberController {
 	public String logout() {
 		return "member/logout";
 	}
+	
+	@RequestMapping(value="findPassword") // 비밀번호 찾기
+	public String findPassword() {
+		return "member/findPassword";
+	}
+	
+	@RequestMapping(value="passwordchange")
+	public String passwordchange(HttpSession session, Member member, Model model, HttpServletRequest request) {
+		Member emailChk = ms.passwordchange(member);
+		
+		if(emailChk != null) {
+			
+			session.setAttribute("member", emailChk);
+			return "main/main";
+		}
+		return "member/findpasswordPro";
+	}
 
 }

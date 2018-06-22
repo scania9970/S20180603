@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.threejo.cota.service.EmailConfirm"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -62,7 +63,6 @@
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var confirmNum = "";
 
 $(function() { // 무조건 실행한다.
 	$('#passwordChk').change(function() {
@@ -73,7 +73,7 @@ $(function() { // 무조건 실행한다.
 			
 			return;
 		} else {
-			$('#spanPassword').html("　");
+			$('#spanPassword').html("비밀번호가 일치합니다.");
 		}
 	});
 });
@@ -192,7 +192,7 @@ function chk() {
 	
 	if (join.btnConfirm.value.indexOf("인증완료") < 0 ) {
 		alert("이메일 인증이 처리되지 않았습니다.");
-		joinForm.email.focus();
+		join.email.focus();
 		
 		return false;
 	}

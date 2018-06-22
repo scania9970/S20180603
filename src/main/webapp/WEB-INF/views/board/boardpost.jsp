@@ -176,6 +176,13 @@
     	bottom: -30px;
     	right: 20px;
     }
+    #nickname{
+		width: 450px;
+		float: left;
+    }
+    #ud{
+    	text-align: right;
+    }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -226,18 +233,22 @@
 				<input type="hidden" name="email" value="${board.email }">
 			
 				<div id="title">${board.title } | 자유 게시판</div><div id="date">${board.board_date }</div>
-				<pre id="content">
-					${board.content }
-				</pre>
+				
+				<c:set var="MEmail" value="${member.email }"/>
+				 <c:if test="${board.email eq MEmail }">
+					<div id="nickname">${board.nickname}</div><div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
+				</c:if>
+				<c:if test="${board.email ne MEmail }">
+					<div>${board.nickname}</div>
+				</c:if> 
+				<div>
+					<pre id="content">
+						${board.content }
+					</pre>
+				</div>
 				
 			</div>
-			
-				<%-- <c:if test="${email }  eq ${board.email }">
-					<td>${board.nickname}</td><td><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></td>
-				</c:if>
-				<c:if test="${email } ne ${board.email }">
-					<td colspan="2">${board.nickname}</td>
-				</c:if> --%>
+				
 				
 			 <div id="feplyall">
 				

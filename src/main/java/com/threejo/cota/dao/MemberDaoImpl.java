@@ -32,4 +32,9 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("login", member);
 	}
 	
+	@Override
+	public Member passwordchange(Member member) {
+		return session.selectOne("passwordchange", member);
+	}
+	
 }

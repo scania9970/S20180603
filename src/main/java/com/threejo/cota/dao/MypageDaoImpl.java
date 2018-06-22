@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.threejo.cota.model.Career;
 import com.threejo.cota.model.Mypage;
 import com.threejo.cota.model.Portfolio;
+import com.threejo.cota.model.Project;
 import com.threejo.cota.model.Statistics_TODAY;
 
 @Repository
@@ -53,14 +54,28 @@ public class MypageDaoImpl implements MypageDao {
 	}
 
 	@Override
-	public int insertMyinfoCareer(List<Career> career) {
-		int result = 0;
-		
-		for (Career listCareer : career) {
-			result = session.insert("insertMyinfoCareer", listCareer);
-		}
-		
-		return result;
+	public int insertMyinfoCareer(Career career) {
+		return session.insert("insertMyinfoCareer", career);
+	}
+
+	@Override
+	public int deleteMyinfoCareer(int cnum) {
+		return session.delete("deleteMyinfoCareer", cnum);
+	}
+
+	@Override
+	public List<Project> selectMyinfoProject(String email) {
+		return session.selectList("selectMyinfoProject", email);
+	}
+
+	@Override
+	public int insertMyinfoProject(Project project) {
+		return session.insert("insertMyinfoProject", project);
+	}
+
+	@Override
+	public int deleteMyinfoProject(int pnum) {
+		return session.delete("deleteMyinfoProject", pnum);
 	}
 	
 }

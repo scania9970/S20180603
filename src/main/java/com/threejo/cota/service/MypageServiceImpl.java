@@ -9,6 +9,7 @@ import com.threejo.cota.dao.MypageDao;
 import com.threejo.cota.model.Career;
 import com.threejo.cota.model.Mypage;
 import com.threejo.cota.model.Portfolio;
+import com.threejo.cota.model.Project;
 import com.threejo.cota.model.Statistics_TODAY;
 
 @Service
@@ -54,8 +55,28 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public int insertMyinfoCareer(List<Career> career) {
+	public int insertMyinfoCareer(Career career) {
 		return md.insertMyinfoCareer(career);
+	}
+
+	@Override
+	public int deleteMyinfoCareer(int cnum) {
+		return md.deleteMyinfoCareer(cnum);
+	}
+
+	@Override
+	public List<Project> selectMyinfoProject(String email) {
+		return md.selectMyinfoProject(email);
+	}
+
+	@Override
+	public int insertMyinfoProject(Project project) {
+		return md.insertMyinfoProject(project);
+	}
+
+	@Override
+	public int deleteMyinfoProject(int pnum) {
+		return md.deleteMyinfoProject(pnum);
 	}
 
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 window.onload = function() { // 버튼없이 바로 실행
-	alert("회갑완료 가서 타자나해.. 꺼져.");
+	alert("니모를 찾아서 떠나볼까요 ? 준비 되셨죠 !!?? 갑니다? 가요 ? 뀨뀨~");
 	location.href="loginpage";  /*  main page로 이동     jsp에서 이동시  */    <%-- <% response.sendRedirect("start"); 자바시 이동%>  --%>
 }
 </script>

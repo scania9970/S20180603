@@ -65,6 +65,7 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+
 	$(document).on('click', function() {
 		var sendData = 'email=' + $('#email').val();
 		/* alert($('#email').val()); */
@@ -207,10 +208,9 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-4">
 				<div class="login-panel panel panel-default"
-					style="margin-top: 300px;">
+					style="margin-top: 270px;">
 					<div class="panel-heading">
-						<h2 class="panel-title" style="font-size: 20pt" align="center">비밀번호
-							찾기</h2>
+						<h2 class="panel-title" style="font-size: 20pt" align="center">비밀번호 찾기</h2>
 					</div>
 					<div class="panel-body">
 						<form role="form" action="passwordchange" name="findPassword"

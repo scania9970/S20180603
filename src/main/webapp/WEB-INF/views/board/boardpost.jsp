@@ -226,18 +226,24 @@
 				<input type="hidden" name="email" value="${board.email }">
 			
 				<div id="title">${board.title } | 자유 게시판</div><div id="date">${board.board_date }</div>
+				
+				<c:set var="MEmail" value="${member.email }"/>
+				 <c:if test="${board.email eq MEmail }">
+					<td>${board.nickname}</td><td><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></td>
+				</c:if>
+				<c:if test="${board.email ne MEmail }">
+					<td colspan="2">${board.nickname}</td>
+				</c:if> 
+				
 				<pre id="content">
-					${board.content }
+					${board.content }<br>
+					
+					${member.email }<br>
+					${board.email }
 				</pre>
 				
 			</div>
-			
-				<%-- <c:if test="${email }  eq ${board.email }">
-					<td>${board.nickname}</td><td><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></td>
-				</c:if>
-				<c:if test="${email } ne ${board.email }">
-					<td colspan="2">${board.nickname}</td>
-				</c:if> --%>
+				
 				
 			 <div id="feplyall">
 				

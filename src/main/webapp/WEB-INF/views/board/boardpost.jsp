@@ -176,6 +176,13 @@
     	bottom: -30px;
     	right: 20px;
     }
+    #nickname{
+		width: 450px;
+		float: left;
+    }
+    #ud{
+    	text-align: right;
+    }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -229,18 +236,16 @@
 				
 				<c:set var="MEmail" value="${member.email }"/>
 				 <c:if test="${board.email eq MEmail }">
-					<td>${board.nickname}</td><td><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></td>
+					<div id="nickname">${board.nickname}</div><div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
 				</c:if>
 				<c:if test="${board.email ne MEmail }">
-					<td colspan="2">${board.nickname}</td>
+					<div>${board.nickname}</div>
 				</c:if> 
-				
-				<pre id="content">
-					${board.content }<br>
-					
-					${member.email }<br>
-					${board.email }
-				</pre>
+				<div>
+					<pre id="content">
+						${board.content }
+					</pre>
+				</div>
 				
 			</div>
 				

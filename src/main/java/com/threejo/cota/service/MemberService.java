@@ -18,4 +18,6 @@ public interface MemberService {
 
 	Member passwordchange(Member member);
 
+	String FindPasswordPro(String email);
+
 }

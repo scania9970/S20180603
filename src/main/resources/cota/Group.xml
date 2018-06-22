@@ -13,6 +13,16 @@
     <result property="board_date" column="board_date"/>
     <result property="nickname" column="nickname"/>
 	</resultMap>
+	
+	<resultMap id="ReplyResult" type="Reply">
+	<result property="rnum" column="rnum"/>
+	<result property="bnum" column="bnum"/>
+	<result property="email" column="email"/>
+	<result property="content" column="content"/>
+	<result property="reply_date" column="reply_date"/>
+	<result property="nickname" column="nickname"/>
+	
+	</resultMap>
 
 	<select id="getPosts" parameterType="Board" resultMap="BoardResult">
 		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 3 order by bnum desc
@@ -23,7 +33,39 @@
 	</insert>
 	
 	<select id="getGroupPost" parameterType="int" resultType="Board">
-		select * from board where bnum = #{bnum}
+		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and bnum = #{bnum}
 	</select>
+	
+	<select id="getReplyCount" parameterType="int" resultType="int">
+		select count(*) from reply where bnum = #{bnum}
+	</select>
+	
+	<insert id="insertGroupReply" parameterType="Reply">
+		insert into reply values (RNUM_SEQ.NEXTVAL, #{bnum}, #{email}, #{content}, sysdate)
+	</insert>
+	
+	<select id="getReplys" parameterType="Reply" resultType="Reply">
+		select  r.* , m.NICKNAME, m.profile_url  from reply r , member m where r.email = m.email and bnum = #{bnum} order by rnum
+	</select>
+	
+	<delete id="deleteGroupReply" parameterType="int">
+		delete from reply where bnum = #{bnum}
+	</delete>
+	
+	<delete id="deleteGroupPost" parameterType="int">
+		delete from board where bnum = #{bnum}
+	</delete>
+	
+	<update id="updateGroupPost" parameterType="Board">
+		update board set title = #{title}, content = #{content} where bnum = #{bnum}
+	</update>
+	
+	<update id="updateViewCount" parameterType="int">
+		update board set view_count = view_count + 1 where bnum = #{bnum}
+	</update>
+	
+	<update id="updateJoinStatus" parameterType="Board">
+		update board set join_status = #{join_status} where bnum = #{bnum}
+	</update>
 	
 </mapper>

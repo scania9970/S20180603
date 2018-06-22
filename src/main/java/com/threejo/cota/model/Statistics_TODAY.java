@@ -12,13 +12,22 @@ public class Statistics_TODAY {
 	private int interrupt;
 	private String incorrect_key;
 	private Date today_date;
+	private String nickname;
 	
 	@Override
 	public String toString() {
 		return "Statistics_TODAY [email=" + email + ", lang_type=" + lang_type + ", field_type=" + field_type
 				+ ", speed=" + speed + ", accuracy=" + accuracy + ", interrupt=" + interrupt + ", incorrect_key="
-				+ incorrect_key + ", today_date=" + today_date + "]";
+				+ incorrect_key + ", today_date=" + today_date + ", nickname=" + nickname + "]";
 	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

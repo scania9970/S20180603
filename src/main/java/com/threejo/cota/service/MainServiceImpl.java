@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.threejo.cota.dao.MainDao;
+import com.threejo.cota.model.Statistics_TODAY;
 
 @Service
 public class MainServiceImpl implements MainService{
@@ -13,7 +14,7 @@ public class MainServiceImpl implements MainService{
 	MainDao mainDao;
 
 	@Override
-	public List<String> selectDailyRanking() {
+	public List<Statistics_TODAY> selectDailyRanking() {
 		return mainDao.selectDailyRanking();
 	}
 }

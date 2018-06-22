@@ -6,13 +6,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.threejo.cota.model.Statistics_TODAY;
+
 @Repository
 public class MainDaoImpl implements MainDao{
 	@Autowired
 	SqlSession session;
 
 	@Override
-	public List<String> selectDailyRanking() {
+	public List<Statistics_TODAY> selectDailyRanking() {
 		return session.selectList("selectDailyRanking");
 	}
 }

@@ -81,7 +81,7 @@
 		</div>
 		<div class="info twoo">
 			<div class="digit-wrapper">
-				<label class="digit">11</label>
+				<label class="digit">3</label>
 				<label class="digit-info">사용가능한 언어</label>
 			</div>
 		</div>
@@ -242,46 +242,30 @@
 	</div>
 	<div class="ranking-wrapper">
 		<div class="card one">
-			<div class="card-row">
-				<div class="card-cell rank">1</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">2</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">3</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">4</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">5</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">6</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">7</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">8</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">9</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">10</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
+			<c:set var="count" value="1" />
+			<c:forEach var="rank" items="${ranks_today}" begin="0" end="9" step="1">
+				<div class="card-row">
+					<c:if test="${count == 1 }">
+						<div class="card-cell rank"><i class="crown"></i></div>
+					</c:if>
+					<c:if test="${count != 1 }">
+						<div class="card-cell rank">${count }</div>
+					</c:if>
+					
+					<c:if test="${rank.lang_type == 'java'}">
+						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'python'}">
+						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'c++'}">
+						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+				</div>
+			</c:forEach>
 		</div>
 		
 		<div class="card two">

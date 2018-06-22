@@ -2,8 +2,10 @@ package com.threejo.cota.service;
 
 import java.util.List;
 
+import com.threejo.cota.model.Statistics_TODAY;
+
 public interface MainService {
 
-	List<String> selectDailyRanking();
+	List<Statistics_TODAY> selectDailyRanking();
 
 }

@@ -176,9 +176,10 @@
     	bottom: -30px;
     	right: 20px;
     }
-    #nickname{
+    .nickname{
 		width: 450px;
 		float: left;
+		text-align: left;
     }
     #ud{
     	text-align: right;
@@ -236,10 +237,10 @@
 				
 				<c:set var="MEmail" value="${member.email }"/>
 				 <c:if test="${board.email eq MEmail }">
-					<div id="nickname">${board.nickname}</div><div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
+					<div class="nickname">${board.nickname}</div><div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
 				</c:if>
 				<c:if test="${board.email ne MEmail }">
-					<div>${board.nickname}</div>
+					<div class="nickname">${board.nickname}</div>
 				</c:if> 
 				<div>
 					<pre id="content">
@@ -279,14 +280,6 @@
 						<input type="hidden" value="${member.email }" name="email">
 						<input type="text" id="replyPosting" name="content">
 							<input type="submit" id="replyPosting_btn" value="댓글입력" >
-						<%-- <c:if test="${member.email == null}">
-							<input type="text" id="replyPosting" name="content" disabled="disabled">
-						</c:if>
-						<c:if test="${member.email != null}">
-							<input type="text" id="replyPosting" name="content">
-							<input type="submit" value="댓글입력" >
-						</c:if> --%>
-						
 					</form>
 				</div> 
 				

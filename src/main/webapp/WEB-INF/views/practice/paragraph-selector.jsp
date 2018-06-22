@@ -177,7 +177,7 @@
 	}
 	#practice-top-wrapper{
 		display: inline-block;
-		width: 30%;
+		width: 50%;
 		height: 50px;
 		border: 3px solid gray;
 		border-bottom: none;
@@ -187,7 +187,7 @@
 		background-image: url(/cota/images/document.png);
 		background-size: 100% 100%;
 		float: left;
-		width: 20%;
+		width: 10%;
 		height: 45px;
 	
 	}
@@ -206,9 +206,21 @@
 		float: right;
 		font-size: 2em;
 	}
-	#time-label{
+	#sandglass{
+		display:inline-block;
+		width: 10%;
+		height: 50px;
+		background-image: url(/cota/images/sandglass.png);
+		background-size: 100% 100%;
 		float: right;
 	}
+	
+	#time-label{
+		display:inline-block;
+		float: right;
+		margin-left: 10px;
+	}
+	
 	#practice-middle{
 		width: 100%;
 		height: 630px;
@@ -1138,7 +1150,8 @@ var selectedLang = null;
 			</div> <!-- 클래스명 -->
 		</div>
 		<div id="practice-top-time"> <!-- 시간 -->
-			<label id="time-label"></label>
+			<label id="time-label">00 : 00</label>
+			<div id="sandglass"></div>
 		</div>
 	</div>
 	

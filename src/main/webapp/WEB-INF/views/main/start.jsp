@@ -122,29 +122,31 @@
 		  $(".spinner").css({"display": "block"});
 	}
 	
-	var sentences = ['test'];
+	var sentences = ['char c = String.charAt(14);'
+					,'BigInteger a = BigInteger.ZERO;'
+					,'int[] arr = new int[6];'
+					,'double k = Math.sqrt(n);'
+					,'thread.setPriority(10);'
+					,'private long cyphertext;'
+					,'Collections.sort(array);'
+					,'System.out.println("Hello Java");'];
 	
 	//문장 랜덤으로 뿌려주기
 	var current = 0;
 	function replaceSentence() {
-		while(true){
-			var a = Math.ceil(Math.random()*12);
-			if(a != current){
-				current = a;
-				break;
-			}
-		} 
-		var currentSentence = sentences[0];
+		var current = Math.floor(Math.random()*8);
+		var currentSentence = sentences[current];
 		$('#sentence').val(currentSentence);
 		$('#s1').text(currentSentence);
 	}
 	
+	var a;
 	function refresh(){
 		
 		$('#refresh').addClass('spin-refresh');
 		
 		while(true){
-			var a = Math.ceil(Math.random()*12);
+			a = Math.floor(Math.random()*8);
 			if(a != current){
 				current = a;
 				break;

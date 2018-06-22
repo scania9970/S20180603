@@ -254,24 +254,34 @@ input[type="text"]{
 }
 
 #toShop{
-	width: 100px;
+	width: 150px;
 	height: 70%;;
 	border-radius: 10%;
+	font-size: 25px;
+	background-color: #59DA50;
+	border: none;
+	color: white;
 }
 
 #resume{
 	float: right;
-	width: 25px;
-	height: 25px;
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
 	margin-top: 3px;
 }
 
 #buy-item{
 	float: right;
-	width: 70px;
-	height: 35px;
-	margin-right: 10px;
+	width: 120px;
+	height: 50px;
+	margin: 10px auto;
+	font-size: 25px;
 	display: none;
+	border-radius: 10px;
+	border: none;
+	background-color: #FF1212;
+	color: white;
 }
 
 #potion{
@@ -303,8 +313,6 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/potion.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 20px;
-	margin-top: 10px;
 }
 
 #strength-shop{
@@ -315,8 +323,7 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/strength.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 20px;
-	margin-top: 5px;
+	margin-left: 60px;
 }
 
 #hp-shop{
@@ -327,8 +334,7 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/hp.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 20px;
-	margin-top: 5px;
+	margin-left: 60px;
 }
 
 #thunderbolt-shop{
@@ -339,22 +345,27 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/thunderbolt.svg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	margin-left: 20px;
-	margin-top: 5px;
+	margin-left: 60px;
 }
 
 #shop-items{
 	width: 100%;
 	height: 50%;
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid;
+	border-top: none;
 	border-collapse: collapse;
 }
 
 #shop-items-desc{
 	width: 100%;
 	height: 45%;
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column;
 	padding: 10px 10px;
 }
 
@@ -470,12 +481,16 @@ input[type="text"]{
 	background: url("${pageContext.request.contextPath}/images/pokeball.svg") no-repeat;
 	margin: 0 auto;
 }
+
+#item-desc{
+	font-size: 20px;
+}
  
 </style>
 </head>
-<body onload="start()">
+<body onload="start()" oncopy="return false" oncut="return false" onpaste="return false" onload="replaceSentence()">
 	<jsp:include page="/WEB-INF/views/main/header.jsp" />
-	<div class="fake-div"></div>
+	<!-- <div class="fake-div"></div> -->
 	
 	<audio id="audio-attack">
 		<source src="${pageContext.request.contextPath}/audios/pikachu-thunderbolt.mp3" type="audio/mpeg">
@@ -493,7 +508,7 @@ input[type="text"]{
 	</div>
 	
 	<div id="shop">
-		<button id ="resume" onclick="shop()">X</button>
+			<button id ="resume" onclick="shop()">X</button>
 			<div id="shop-items">
 				<label id="potion-shop"></label>
 				<label id="strength-shop"></label>
@@ -563,7 +578,7 @@ input[type="text"]{
 		</div>
 	</div>
 	
-	<jsp:include page="/WEB-INF/views/main/footer.jsp"/>
+	<!-- <jsp:include page="/WEB-INF/views/main/footer.jsp"/> -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">

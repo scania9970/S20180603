@@ -155,7 +155,7 @@
 .taja {
 	display:flex;
 	align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
 	height: 100%;
 	margin-right: 70px;
 }
@@ -164,7 +164,7 @@
 	height: 100%;
 	display:flex;
 	align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .taja{

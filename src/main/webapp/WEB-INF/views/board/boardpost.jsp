@@ -184,6 +184,20 @@
     #ud{
     	text-align: right;
     }
+    .nickname li ul{                        /* 포트폴리오 버튼 */
+    	background: rgb(109,109,109);
+		display:none;  /* 평상시에는 서브메뉴가 안보이게 하기 */
+		height:auto;
+		padding:0px;
+		margin:0px;
+		border:0px;
+		position:absolute;
+		width:450px;
+		z-index:200;
+    }
+    .nickname li:hover ul {
+		display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -230,31 +244,41 @@
 		<div id="post_data">
 			<div id="main_data">
 				<input type="hidden" name="bnum" value="${board.bnum }"> 
-				
 				<input type="hidden" name="email" value="${board.email }">
-			
 				<div id="title">${board.title } | 자유 게시판</div><div id="date">${board.board_date }</div>
 				
 				<c:set var="MEmail" value="${member.email }"/>
 				 <c:if test="${board.email eq MEmail }">
-					<div class="nickname">${board.nickname}</div><div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
+					<div class="nickname">
+					<ul>
+						<li>
+							${board.nickname}
+								<ul>
+									<li><a href="#">포트폴리오</a> </li>
+								
+								</ul>
+								
+						</li>
+					</ul>
+					
+					</div>
+					
+					<div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
 				</c:if>
 				<c:if test="${board.email ne MEmail }">
 					<div class="nickname">${board.nickname}</div>
 				</c:if> 
+				
 				<div>
 					<pre id="content">
 						${board.content }
 					</pre>
 				</div>
-				
 			</div>
 				
 				
 			 <div id="feplyall">
-				
 				<div id="replyform">
-					
 					<c:forEach var="reply" items="${rlist }">
 						<div id="r_nickname">
 							${reply.nickname }
@@ -262,7 +286,6 @@
 						<div id="r_date">
 							${reply.reply_date }
 						</div>
-						
 						<div id="r_content">
 							${reply.content }
 						</div>
@@ -271,9 +294,6 @@
 				</div>
 			
 			</div> 
-				
-				
-				
 			 	<div id="reply">             
 					<form action="replyPosting1">
 						<input type="hidden" value="${board.bnum }" name="bnum">
@@ -282,23 +302,15 @@
 							<input type="submit" id="replyPosting_btn" value="댓글입력" >
 					</form>
 				</div> 
-				
-				
 				<div id="btn">
 				<input type="button" value="글쓰기" onclick="location.href='postingform'">
 				 <input type="button" value="목록" onclick="location.href='list1'">
 				</div>
-			
-			
-			 
 		</div>
-		 
 		 <div id="side_advertising">
 				
 				 광고 모집
 			</div>
-		 
-		 
 	</div>
 	 
 	 

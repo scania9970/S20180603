@@ -115,15 +115,11 @@
 		text-align: left;
 	}
 	
-	
-	
-	
 	#feplyall{
 		background-color: #f4f4f4;
 		padding: 10px;
 		border: 1px solid;
 	}
-	
 	
 	#replyform{               /* 댓글 리스트 */
 		border: 3px solid;
@@ -147,10 +143,10 @@
 	
 	
 	.listbtn{
-				font-size: 18px;
+			font-size: 18px;
 			}
     .aaa{
-   		text-align: right;
+   			text-align: right;
     	}
     	
     	
@@ -184,6 +180,20 @@
     #ud{
     	text-align: right;
     }
+     .nickname li ul{                        /* 포트폴리오 버튼 */
+    	background: rgb(109,109,109);
+		display:none;  /* 평상시에는 서브메뉴가 안보이게 하기 */
+		height:auto;
+		padding:0px;
+		margin:0px;
+		border:0px;
+		position:absolute;
+		width:450px;
+		z-index:200;
+    }
+    .nickname li:hover ul {
+		display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -237,11 +247,26 @@
 				
 				<c:set var="MEmail" value="${member.email }"/>
 				 <c:if test="${board.email eq MEmail }">
-					<div class="nickname">${board.nickname}</div><div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
+					<div class="nickname">
+					<ul>
+						<li>
+							${board.nickname}
+								<ul>
+									<li><a href="#">포트폴리오</a> </li>
+								
+								</ul>
+								
+						</li>
+					</ul>
+					
+					</div>
+					
+					<div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
 				</c:if>
 				<c:if test="${board.email ne MEmail }">
 					<div class="nickname">${board.nickname}</div>
 				</c:if> 
+				
 				<div>
 					<pre id="content">
 						${board.content }
@@ -252,9 +277,7 @@
 				
 				
 			 <div id="feplyall">
-				
 				<div id="replyform">
-					
 					<c:forEach var="reply" items="${rlist }">
 						<div id="r_nickname">
 							${reply.nickname }
@@ -262,17 +285,13 @@
 						<div id="r_date">
 							${reply.reply_date }
 						</div>
-						
 						<div id="r_content">
 							${reply.content }
 						</div>
 						<hr id="hr"/>
 					</c:forEach>
 				</div>
-			
 			</div> 
-				
-				
 				
 			 	<div id="reply">             
 					<form action="replyPosting2">
@@ -282,20 +301,15 @@
 							<input type="submit" id="replyPosting_btn" value="댓글입력" >
 					</form>
 				</div> 
-				
-				
 				<div id="btn">
 				<input type="button" value="글쓰기" onclick="location.href='postingform2'">
 				 <input type="button" value="목록" onclick="location.href='list2'">
 				</div>
-			
-			
-			 
 		</div>
-		 
 		 <div id="side_advertising">
 				
 				 광고 모집
+				 
 			</div>
 		 
 		 
@@ -303,9 +317,6 @@
 	 
 	 
 	 
-	 
-	 
-
 	 
 	 <script src="${pageContext.request.contextPath}/mypage/vendor/jquery/jquery.min.js"></script>
 

@@ -1,5 +1,18 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Administrator
+=======
+<<<<<<< HEAD
+Built-By: Administrator
+Build-Jdk: 1.8.0_171
+=======
+<<<<<<< HEAD
+Built-By: scani
+=======
+Built-By: user
+>>>>>>> 4c7c7daa3d961c1ecd3a12dc6d68efc75a8cef45
+>>>>>>> 0bd1eb0e9c744d4b1e2d85440ebb346a80f83259
 Build-Jdk: 1.8.0_73
+>>>>>>> 5cc7d47f31ed7527bebbda3681775b26fbea443a
 Created-By: Maven Integration for Eclipse
 

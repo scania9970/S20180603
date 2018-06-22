@@ -14,7 +14,7 @@
 
 <script type="text/javascript">
 window.onload = function() { // 버튼없이 바로 실행
-	alert("꺼져.");
+	alert("응 꺼져~ 느림보새끼야 ~ 응 꺼져 응 닥치고 꺼져 응 ~");
 	location.href="loginpage";  /*  main page로 이동     jsp에서 이동시  */    <%-- <% response.sendRedirect("start"); 자바시 이동%>  --%>
 }
 </script>

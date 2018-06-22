@@ -16,8 +16,8 @@ public class GroupDaoImpl implements GroupDao{
 	private SqlSession session;
 
 	@Override
-	public List<Board> getPosts() {
-		return session.selectList("getPosts");
+	public List<Board> getPosts(Board board) {
+		return session.selectList("getPosts", board);
 	}
 
 	@Override
@@ -64,5 +64,10 @@ public class GroupDaoImpl implements GroupDao{
 	@Override
 	public void updateJoinStatus(Board board) {
 		session.update("updateJoinStatus", board);
+	}
+
+	@Override
+	public int getTotalPostsCount() {
+		return session.selectOne("getTotalPostsCount");
 	}
 }

@@ -15,8 +15,8 @@ public class GroupServiceImpl implements GroupService{
 	private GroupDao gd;
 
 	@Override
-	public ArrayList<Board> getPosts() {
-		return (ArrayList<Board>)gd.getPosts();
+	public ArrayList<Board> getPosts(Board board) {
+		return (ArrayList<Board>)gd.getPosts(board);
 	}
 
 	@Override
@@ -62,6 +62,11 @@ public class GroupServiceImpl implements GroupService{
 	@Override
 	public void updateJoinStatus(Board board) {
 		gd.updateJoinStatus(board);
+	}
+
+	@Override
+	public int getTotalPostsCount() {
+		return gd.getTotalPostsCount();
 	}
 
 

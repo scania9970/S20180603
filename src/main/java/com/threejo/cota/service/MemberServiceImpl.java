@@ -50,4 +50,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		return md.passwordchange(member);
 	}
+	
+	@Override // ajax
+	public String FindPasswordPro(String email) {
+		EmailConfirm confirm = new EmailConfirm();
+		return confirm.connectEmail(email, 1);
+	}
 }

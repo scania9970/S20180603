@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.threejo.cota.dao.GroupDao;
 import com.threejo.cota.model.Board;
+import com.threejo.cota.model.Reply;
 
 @Service
 public class GroupServiceImpl implements GroupService{
@@ -14,8 +15,8 @@ public class GroupServiceImpl implements GroupService{
 	private GroupDao gd;
 
 	@Override
-	public ArrayList<Board> getPosts() {
-		return (ArrayList<Board>)gd.getPosts();
+	public ArrayList<Board> getPosts(Board board) {
+		return (ArrayList<Board>)gd.getPosts(board);
 	}
 
 	@Override
@@ -27,5 +28,46 @@ public class GroupServiceImpl implements GroupService{
 	public Board getGroupPost(int bnum) {
 		return gd.getGroupPost(bnum);
 	}
+
+	@Override
+	public int getReplyCount(int bnum) {
+		return gd.getReplyCount(bnum);
+	}
+
+	@Override
+	public void insertGroupReply(Reply reply) {
+		gd.insertGroupReply(reply);
+	}
+
+	@Override
+	public ArrayList<Reply> getReplys(int bnum) {
+		return (ArrayList<Reply>)gd.getReplys(bnum);
+	}
+
+	@Override
+	public void deleteGroupPost(int bnum) {
+		gd.deleteGroupPost(bnum);
+	}
+
+	@Override
+	public void updateGroupPost(Board board) {
+		gd.updateGroupPost(board);
+	}
+
+	@Override
+	public void updateViewCount(int bnum) {
+		gd.updateViewCount(bnum);
+	}
+
+	@Override
+	public void updateJoinStatus(Board board) {
+		gd.updateJoinStatus(board);
+	}
+
+	@Override
+	public int getTotalPostsCount() {
+		return gd.getTotalPostsCount();
+	}
+
 
 }

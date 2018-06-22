@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 <style type="text/css">
 :focus {
@@ -17,7 +18,7 @@
 }
 .row {
   margin-right: 0;
-  margin-left: 0;
+  margin-left: 0; 
 }
 /* 
     Sometimes the sub menus get too large for the page and prevent the menu from scrolling, limiting functionality
@@ -366,6 +367,8 @@
  
 }
 </style>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script type="text/javascript">
 $(function () {
     $('.navbar-toggle').click(function () {
@@ -388,6 +391,84 @@ $(function () {
 
     });
 });
+
+$(document).on('click', '#replyBtn', function(){
+	var replyContent = $("#replyContent").val();
+	var email = "";
+	var bnum = "${post.bnum}";
+	<%if(member != null){%>
+		email = "<%=member.getEmail()%>"
+	<%}%>
+	
+	if(replyContent == "" && email == ""){
+		return;
+	}else{
+		var sendData = "email="+email+"&content="+replyContent+"&bnum="+bnum;
+		$.ajax({
+			url : '/cota/insertGroupReply',			// 전송할 URL
+			type : 'get',				// 전송 방식
+			data : sendData, 							// 전송할 데이터
+			success : function() {  // 통신이 성공했다면 수행할 콜백메서드
+				location.href = "/cota/viewGroupPost?bnum=${post.bnum}";
+			}
+		});
+	}
+});
+
+
+$(document).on('click', '#updateBtn', function(){
+	location.href = "/cota/showUpdateGroup?bnum="+"${post.bnum}";
+});
+
+$(document).on('click', '#deleteBtn', function(){
+	bootbox.confirm({
+	    message: "게시물을 삭제하시겠습니까?",
+	    buttons: {
+	        confirm: {
+	            label: 'Yes',
+	            className: 'btn-success'
+	        },
+	        cancel: {
+	            label: 'No',
+	            className: 'btn-danger'
+	        }
+	    },
+	    callback: function (result) {
+			if(result == true){
+				location.href = "/cota/deleteGroupPost?bnum="+"${post.bnum}";
+			}else{
+				return;
+			}
+	    }
+	});
+});
+
+
+$(document).on('change', '#updateChkBox', function(){
+	var status = $("#updateChkBox").prop('checked');
+	var joinStatus = 0;
+	console.log("status : " + status);
+	if(status === true){
+		bootbox.alert("모집 처리 되었습니다.");
+		joinStatus = 0;
+	}else{
+		bootbox.alert("마감 처리 되었습니다.");
+		joinStatus = 1;
+	}
+	
+	
+	var sendData = "bnum="+${post.bnum}+"&join_status="+joinStatus;
+	$.ajax({
+		url : '/cota/updateJoinStatus',			// 전송할 URL
+		type : 'get',				// 전송 방식
+		data : sendData, 							// 전송할 데이터
+		success : function() {  // 통신이 성공했다면 수행할 콜백메서드
+		}
+	});
+	
+});
+
+
 </script>
 </head>
 <body>
@@ -416,9 +497,9 @@ $(function () {
     <div class="side-menu-container">
         <ul class="nav navbar-nav">
             <li style="border:none;"><a href="#"><span class=""></span></a></li> <!-- add class "active" -->
-            <li><a href="/cota/list1"><span class="glyphicon glyphicon-comment"></span>자유게시판</a></li> <!-- add class "active" -->
-            <li><a href="/cota/list2"><span class="glyphicon glyphicon-search"></span>Q & A</a></li>
-            <li><a href="/cota/group"><span class="glyphicon glyphicon-user"></span>소모임 / 스터디</a></li>
+            <li><a href="/cota/list1" style="font-size:20px;"><span class="glyphicon glyphicon-comment"></span>자유게시판</a></li> <!-- add class "active" -->
+            <li><a href="/cota/list2" style="font-size:20px;"><span class="glyphicon glyphicon-search"></span>Q & A</a></li>
+            <li><a href="/cota/group" style="font-size:20px;"><span class="glyphicon glyphicon-user"></span>소모임 / 스터디</a></li>
 
         </ul>
     </div><!-- /.navbar-collapse -->
@@ -429,10 +510,119 @@ $(function () {
     <!-- Main Content -->
     <div class="container-fluid">
         <div class="side-body">
-           <h1>소모임 & 스터디</h1>
+           <h2>소모임 & 스터디</h2>
            
+           <!-- <div class="row" style="height:15px;"></div> -->
+           			
+           		<div class="col-lg-8" id="rowWrapper">
+           			<div class="alert alert-success col-lg-12">
+						 소모임 & 스터디 게시판입니다. 다른 개발자들과 함께 학습해보세요.
+					</div>
+           			<div class="row">
+					<div class="col-lg-12" style="padding: 0; border: 1px solid gray;">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="row">
+									<div class="col-lg-12" style="padding:0; margin:0;"><h4># ${post.bnum }</h4></div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12" style="padding:0; margin:0;"><h4>${post.title }</h4></div>
+								</div>
+							</div>
+							<div class="col-lg-2" style="border-right: 1px solid gray; height: 85px;">
+									<div class="col-lg-2" style="margin-top: 15px;">
+										<span class="glyphicon glyphicon-comment"></span> 
+									</div>
+									<div class="col-lg-3" style="margin-top: 15px;">
+										${replyCnt }
+									</div>
+									<div class="col-lg-2" style="margin-top: 15px;">
+										<span class="glyphicon glyphicon-eye-open"></span>
+									</div>
+									<div class="col-lg-3" style="margin-top: 15px;">
+										${post.view_count }
+									</div>
+							</div>
+							<div class="col-lg-1" style="margin-top: 15px;">
+								  <img src="/cota/images/python.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+							</div>
+							<div class="col-lg-3" style="margin-top: 15px;">
+							    <h4 style="margin-top:5px; margin-left:10px;">${post.nickname }</h4>
+							    <i style="margin-left:10px;">Posted on </i> ${post.board_date } 
+							</div>
+						</div>
+					</div>
+					
+				</div>   
+				
+				        
+				<div class="row">
+					<div class="col-lg-12" style="font-size:16px; height: 500px; border: 1px solid gray; border-bottom:none;">
+						${post.content }					
+					</div>
+				</div>
+				<div class="row" style="margin-bottom: 15px;">
+					<div class="col-lg-12"  style="height: 40px; border: 1px solid gray; border-top:none;">
+						<div class="col-lg-1">
+							<a href="/cota/group"><button type="button" class="btn btn-primary">목 록</button></a>
+						</div>
+						<c:if test="${member.email eq post.email }">
+						<div class="col-lg-offset-8 col-lg-1">
+							<button type="button" class="btn btn-primary" id="updateBtn">수 정</button>
+						</div>
+						<div class="col-lg-1">
+							<button type="button" class="btn btn-primary" id="deleteBtn">삭 제</button>
+						</div>
+						<div class="col-lg-1">
+						<c:if test="${post.join_status == 1}">
+							<input type="checkbox" data-toggle="toggle" id="updateChkBox" data-on="모집" data-off="마감">
+						</c:if>
+						<c:if test="${post.join_status == 0}">
+							<input type="checkbox" checked data-toggle="toggle" id="updateChkBox" data-on="모집" data-off="마감">
+						</c:if>
+						</div>
+						</c:if>
+					</div>
+				</div>
+					<c:forEach var="reply" items="${replys }">
+					<div class="row">
+						<div class="col-lg-12" style="border:1px solid gray; border-bottom:none;">
+							<div class="col-lg-1" style="margin-top: 10px;">
+								  <img src="/cota/images/python.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+							</div>
+							<div class="col-lg-7" style="margin-top: 15px;">
+							    <label style="font-size: 20px; width:100px; margin:0px 0px 5px 10px;">${reply.nickname }</label>
+							    <i style="margin-left:10px;">Posted on </i> <label width>${reply.reply_date }</label> 
+							    <p style="margin-left:10px;">${reply.content }</p>
+							</div>
+						</div>
+					</div>
+					</c:forEach>
+					<div class="row justify-content-center" style="margin-bottom: 100px;">
+						<div class="col-lg-12" style="padding: 0px; border: 1px solid gray;">
+							<div class="col-lg-1" style="padding: 0px;">
+								  <img src="/cota/images/python.png" style="width:60px;">
+								  ${member.nickname }
+							</div>
+							<form action="/cota/insertGroupReply">
+								<input type="hidden" value="${post.bnum}" name='bnum'>
+								<input type="hidden" value="${post.email}" name="email">
+								<div class="col-lg-10">
+									<textarea class="form-control" rows="5" name="replyContent" id="replyContent" placeholder="댓글 입력"></textarea>
+								</div>
+							</form>
+							<div class="col-lg-1">
+								<button type="button" class="btn btn-primary" id="replyBtn">입력</button>
+							</div>
+						</div>	
+					</div>
+           		</div>
+				<div class="col-lg-2" style="height: 700px; background-image:url(/cota/images/verticalad.gif); background-size:100% 100%;">
+	        	</div>
+					
         </div>
     </div>
+	       	
 </div>
 
 </body>

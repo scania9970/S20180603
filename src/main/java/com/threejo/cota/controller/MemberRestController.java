@@ -31,5 +31,10 @@ public class MemberRestController {
 	public String EmailConfirmPro(String email) {
 		return ms.EmailConfirmPro(email);
 	}
+	
+	@RequestMapping(value = "FindPasswordPro")
+	public String FindPasswordPro(String email) {
+		return ms.FindPasswordPro(email);
+	}
 
 }

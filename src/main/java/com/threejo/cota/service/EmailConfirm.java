@@ -32,14 +32,14 @@ public class EmailConfirm {
 				"<h2>인증번호 [" + authNum + "]</h2>" +
 				"<p>감사합니다.</p>";
 		} else {
-			subject = "cota 계정 새 비밀번호 발송";
+			subject = "cota 계정 인증번호 발송";
 			authNum = EmailConfirm.authNum(1);
 			content =
-				"<img alt='미소플랜' src='https://i.imgur.com/HftX1AR.png'>" +
+				"<img alt='COTA' src='https://i.imgur.com/GRMdaaM.png'>" +
 				"<p>안녕하세요. 'cota' 입니다.</p>" +
-				"<p>귀하의 새로운 비밀번호는 아래와 같습니다. 로그인 후 반드시 비밀번호를 변경해 주세요.</p>" +
+				"<p>귀하의 인증번호는 아래와 같습니다. 로그인 후 반드시 비밀번호를 변경해 주세요.</p>" +
 				"<h2>이메일 주소 [" + email + "]</h2>" +
-				"<h2>비밀번호 [" + authNum + "]</h2>" +
+				"<h2>인증번호 [" + authNum + "]</h2>" +
 				"<p>감사합니다.</p>";
 		}
 		

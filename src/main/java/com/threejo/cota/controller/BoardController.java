@@ -28,6 +28,8 @@ public class BoardController {
 	public String listvalue(Board board,String currentPage, Model model) {
 		int total = bs.total();
 		Paging pg = new Paging(total, currentPage);
+		board.setStart(pg.getStart());
+		board.setEnd(pg.getEnd());
 		List<Board> list = bs.list(board);
 		
 		model.addAttribute("list", list);
@@ -38,6 +40,8 @@ public class BoardController {
 	public String list2value(Board board,String currentPage, Model model) {
 		int total = bs.total2();
 		Paging pg = new Paging(total, currentPage);
+		board.setStart(pg.getStart());
+		board.setEnd(pg.getEnd());
 		List<Board> list2 = bs.list2(board);
 		
 		model.addAttribute("list2", list2);

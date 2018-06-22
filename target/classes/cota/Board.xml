@@ -15,19 +15,23 @@
 	</resultMap>
 
 	<select id="Boardlist" parameterType="Board" resultMap="BoardResult">
-		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 1 order by bnum desc
+		select * from (select rownum rn, a.* from (
+select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 1 order by bnum) a) where rn between #{start} and
+    	 #{end}
 	</select>
 	
 	<select id="Boardlist2" parameterType="Board" resultMap="BoardResult">
-		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum desc
+		select * from (select rownum rn, a.* from (
+select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum) a) where rn between #{start} and
+    	 #{end}
 	</select>
 	
 	<select id="total" resultType="int">
-  	select count(*) from BOARD
+  	select count(*) from BOARD where board_type = 1
   	</select>
 	
 	<select id="total2" resultType="int">
-  	select count(*) from BOARD
+  	select count(*) from BOARD where board_type = 2
   	</select>
 	
 	<insert id="Boardinsert" parameterType="Board">

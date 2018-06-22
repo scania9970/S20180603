@@ -416,9 +416,9 @@ $(function () {
     <div class="side-menu-container">
         <ul class="nav navbar-nav">
             <li style="border:none;"><a href="#"><span class=""></span></a></li> <!-- add class "active" -->
-            <li><a href="#"><span class="glyphicon glyphicon-comment"></span>자유게시판</a></li> <!-- add class "active" -->
-            <li><a href="#"><span class="glyphicon glyphicon-search"></span>Q & A</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>소모임 / 스터디</a></li>
+             <li><a href="/cota/list1" style="font-size:20px;"><span class="glyphicon glyphicon-comment"></span>자유게시판</a></li> <!-- add class "active" -->
+            <li><a href="/cota/list2" style="font-size:20px;"><span class="glyphicon glyphicon-search"></span>Q & A</a></li>
+            <li><a href="/cota/group" style="font-size:20px;"><span class="glyphicon glyphicon-user"></span>소모임 / 스터디</a></li>
 
         </ul>
     </div><!-- /.navbar-collapse -->
@@ -429,10 +429,12 @@ $(function () {
     <!-- Main Content -->
     <div class="container-fluid">
         <div class="side-body">
-        <h1>소모임 & 스터디</h1>
-        	<div class="row" style="height: 50px;"></div>
+        <h2>소모임 & 스터디</h2>
            <div class='row'>
 				<div class="col-lg-8">
+          			<div class="alert alert-success col-lg-12">
+					 소모임 & 스터디 게시판입니다. 다른 개발자들과 함께 학습해보세요.
+				</div>
 					<form action="/cota/insertGroup">
 					<input type="hidden" name="email" value="${member.email }">
 					  <div class="input-group" style="margin-bottom: 10px;">

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.threejo.cota.service.EmailConfirm"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -13,26 +14,35 @@
 }
 
 #emailChkbtn {
+	width: 100%;
+	height: 40px;
 	color: white;
-	background-color:#2B2B2B;
+	background-color:#000000;
 	border-color: transparent;
 }
 
 #btnConfirm {
 	color: white;
-	background-color:#2B2B2B;
+	background-color:#000000;
 	border-color: transparent;
 }
 
+#btnConfirm {
+	height: 40px;
+}
+
 #btnEmailChk {
+	width: 120px;
+	height: 40px;
 	color: white;
-	background-color:#2B2B2B;
+	background-color:#000000;
 	border-color: transparent;
 }
 
 #nicknameChkbtn {
+	height: 40px;
 	color: white;
-	background-color:#2B2B2B;
+	background-color:#000000;
 	border-color: transparent;
 }
 
@@ -46,7 +56,7 @@
 }
 
 .test1 {
-	height:2px;
+	height:7px;
 }
 
 #image_select {
@@ -59,11 +69,44 @@
 	color : #FF3636;
 }
 
+.view {
+	vertical-align: top;
+	display: inline-block;
+}
+
+.view2 {
+	vertical-align: top;
+	display: inline-block;
+}
+
+#email {
+	width: 302px;
+	height: 40px;
+}
+
+#confirmCode {
+	width: 302px;
+	height: 40px;
+
+}
+
+#nickname {
+	width: 302px;
+	height: 40px;
+}
+
+#password {
+	height: 40px;
+}
+
+#passwordChk {
+	height: 40px;
+}
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 var confirmNum = "";
-
 $(function() { // 무조건 실행한다.
 	$('#passwordChk').change(function() {
 		if ($('#password').val() != $('#passwordChk').val()) { 
@@ -73,7 +116,7 @@ $(function() { // 무조건 실행한다.
 			
 			return;
 		} else {
-			$('#spanPassword').html("　");
+			$('#spanPassword').html("비밀번호가 일치합니다.");
 		}
 	});
 });
@@ -140,7 +183,7 @@ function emailCheck(){
 	$("#confirmCode").prop('disabled', false);
 	$("#btnConfirm").prop('disabled', false);
 	$("#btnConfirm").css('color', 'white');
-	$("#btnConfirm").css('background-color', '#2B2B2B');
+	$("#btnConfirm").css('background-color', '#000000');
 	
 	var sendData = 'email=' + $('#email').val();
 	console.log("sendData : " + sendData);
@@ -192,7 +235,7 @@ function chk() {
 	
 	if (join.btnConfirm.value.indexOf("인증완료") < 0 ) {
 		alert("이메일 인증이 처리되지 않았습니다.");
-		joinForm.email.focus();
+		join.email.focus();
 		
 		return false;
 	}
@@ -249,20 +292,32 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
                         <form role="form" action="insertmb" name="join" method="post" enctype="multipart/form-data" onsubmit="return chk()">
                             <fieldset>
                                 <div class="form-group">
+                                <div class="view">
                               	    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" required autofocus>
+                              	    </div>
+                              	    <div class="view2">
                                     <button id='emailChkbtn' class="form-control">이메일 중복확인</button>
+                                    </div>
                                    	
                                    	<div class="test"></div>
 
                                     <span id="spanemail"></span>
+                                    <div class="view">
                                     <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled" required>
+                                    </div>
+                                    <div class="view2">
                                     <input class="form-control" type="button" name="btnEmailChk" id='btnEmailChk' value="인증번호받기" onclick="emailCheck(join.email.value)">
+                                    </div>
                                     <div class="test1"></div>
                                     <input type="button" id="btnConfirm" name="btnConfirm" class="form-control" value="인증하기" disabled="disabled">
                                 </div>
                                 <div class="form-group">
+                                <div class="view">
                                     <input class="form-control" placeholder="닉네임" name="nickname" id="nickname" type="text" required>
+                                    </div>
+                                    <div class="view2">
                                     <button id='nicknameChkbtn' class="form-control">닉네임 중복확인</button>
+                                    </div>
                                     <span id="spannickname"></span>
                                 </div>
                                 <div class="form-group">

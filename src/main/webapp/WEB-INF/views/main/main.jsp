@@ -99,275 +99,104 @@
 		</div>
 	</div>
 	
-	<!-- 최신글  -->
-	<div class="ranking-header">
-		<div class="card one">
-			<div class="card-row">
-				<div class="card-cell today">자유게시판</div>
-			</div>
-		</div>
-		<div class="card two">
-			<div class="card-row">
-				<div class="card-cell weekly">Q&A</div>
-			</div>
-		</div>
-		<div class="card three">
-			<div class="card-row">
-				<div class="card-cell monthly">소모임</div>
-			</div>
-		</div>
-	</div>
-	<div class="ranking-wrapper">
-		<div class="card one">
-			<div class="card-row">
-				<div class="card-cell rank">1</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">2</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">3</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">4</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">5</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">6</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">7</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">8</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">9</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">10</div>
-			</div>
-		</div>
-		
-			<div class="card two">
-			<div class="card-row">
-				<div class="card-cell rank">1</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">2</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">3</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">4</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">5</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">6</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">7</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">8</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">9</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">10</div>
-			</div>
-		</div>
-		
-			<div class="card three">
-			<div class="card-row">
-				<div class="card-cell rank">1</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">2</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">3</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">4</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">5</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">6</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">7</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">8</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">9</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">10</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 인포 -->
-	<div class="info-wrapper" style="height: 100px">
-	</div>
-	
 	<!-- 랭킹 -->
 	<div class="ranking-header">
 		<div class="card one">
 			<div class="card-row">
-				<div class="card-cell today">오늘의 랭킹</div>
+				<div class="card-cell today">오늘의 타자왕</div>
 			</div>
 		</div>
 		<div class="card two">
 			<div class="card-row">
-				<div class="card-cell weekly">주간 랭킹</div>
+				<div class="card-cell weekly">이달의 타자왕</div>
 			</div>
 		</div>
 		<div class="card three">
 			<div class="card-row">
-				<div class="card-cell monthly">월간 랭킹</div>
+				<div class="card-cell monthly">올해의 타자왕</div>
 			</div>
 		</div>
 	</div>
 	<div class="ranking-wrapper">
 		<div class="card one">
-			<div class="card-row">
-				<div class="card-cell rank">1</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">2</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">3</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">4</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">5</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">6</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">7</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">8</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">9</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">10</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
+			<c:set var="count" value="1" />
+			<c:forEach var="rank" items="${ranks_today}" begin="0" end="9" step="1">
+				<div class="card-row">
+					<c:if test="${count == 1 }">
+						<div class="card-cell rank"><i class="crown"></i></div>
+					</c:if>
+					<c:if test="${count != 1 }">
+						<div class="card-cell rank">${count }</div>
+					</c:if>
+					
+					<c:if test="${rank.lang_type == 'java'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'python'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'cdoubleplus'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+				</div>
+			</c:forEach>
 		</div>
 		
 		<div class="card two">
-			<div class="card-row">
-				<div class="card-cell rank">1</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">2</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">3</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">4</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">5</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">6</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">7</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">8</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">9</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">10</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
+			<c:set var="count" value="1" />
+			<c:forEach var="rank" items="${ranks_weekly}" begin="0" end="9" step="1">
+				<div class="card-row">
+					<c:if test="${count == 1 }">
+						<div class="card-cell rank"><i class="crown"></i></div>
+					</c:if>
+					<c:if test="${count != 1 }">
+						<div class="card-cell rank">${count }</div>
+					</c:if>
+					
+					<c:if test="${rank.lang_type == 'java'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'python'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'cdoubleplus'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+				</div>
+			</c:forEach>
 		</div>
 		
 		<div class="card three">
-			<div class="card-row">
-				<div class="card-cell rank">1</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">2</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">3</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">4</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">5</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">6</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">7</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">8</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">9</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
-			<div class="card-row">
-				<div class="card-cell rank">10</div>
-				<div class="card-cell">endorphin / 990타 / 100%</div>
-			</div>
+			<c:set var="count" value="1" />
+			<c:forEach var="rank" items="${ranks_anual}" begin="0" end="9" step="1">
+				<div class="card-row">
+					<c:if test="${count == 1 }">
+						<div class="card-cell rank"><i class="crown"></i></div>
+					</c:if>
+					<c:if test="${count != 1 }">
+						<div class="card-cell rank">${count }</div>
+					</c:if>
+					
+					<c:if test="${rank.lang_type == 'java'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'python'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+					<c:if test="${rank.lang_type == 'cdoubleplus'}">
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
+						<c:set var="count" value="${count + 1}" />
+					</c:if>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 	

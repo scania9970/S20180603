@@ -8,7 +8,7 @@ import com.threejo.cota.model.Reply;
 
 public interface GroupDao {
 
-	List<Board> getPosts();
+	List<Board> getPosts(Board board);
 
 	void insertGroup(Board board);
 
@@ -27,5 +27,11 @@ public interface GroupDao {
 	void updateViewCount(int bnum);
 
 	void updateJoinStatus(Board board);
+
+	int getTotalPostsCount();
+
+	int getSearchedTotalPostsCount(String searchText);
+
+	List<Board> getSearchedPosts(Board board);
 
 }

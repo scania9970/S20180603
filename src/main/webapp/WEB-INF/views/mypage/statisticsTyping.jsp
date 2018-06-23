@@ -115,10 +115,17 @@
 	height: 25px;
 	width: 100%;
 }
+
+#typing_data {
+	width: 765px;
+}
 </style>
 
 <script src="${pageContext.request.contextPath}/js/heatmap.js"></script>
 <script type="text/javascript">
+	var date_count = 0;
+	var chart_data = "";
+
 	window.onload = function() {
 		//minimal heatmap instance configuration
 		var heatmapInstance = h337.create({
@@ -244,12 +251,13 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-8">
 					<div class="panel panel-default">
 						<div class="panel-heading">많이 틀린 키</div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
+									<input type="hidden" class="email" value="${email}">
 									<div class="incorrect_key">
 										<c:forEach items="${listStatToday}" var="list">
 											${list.incorrect_key}
@@ -516,6 +524,39 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<i class="fa fa-bar-chart-o fa-fw"></i>통계 그래프
+							<div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#">Action</a>
+                                        </li>
+                                        <li><a href="#">Another action</a>
+                                        </li>
+                                        <li><a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+						</div>
+						<div class="panel-body">
+							<div id="typing_data"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 
 	</div>
@@ -532,7 +573,22 @@
 	<!-- Morris Charts JavaScript -->
 	<script src="${pageContext.request.contextPath}/mypage/vendor/raphael/raphael.min.js"></script>
 	<script src="${pageContext.request.contextPath}/mypage/vendor/morrisjs/morris.min.js"></script>
-	<script src="${pageContext.request.contextPath}/mypage/data/morris-data.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var result = ${morrisGraph};
+			
+			new Morris.Line({
+				element : 'typing_data',
+				data : result,
+				xkey : 'day',
+				xLabels : 'day',
+				ykeys : [ 'speed', 'accuracy', 'interrupt' ],
+				labels : [ '속도', '정확도', '방해지수' ],
+				hideHover : true,
+				resize : true
+			});
+		});
+	</script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="${pageContext.request.contextPath}/mypage/dist/js/sb-admin-2.js"></script>

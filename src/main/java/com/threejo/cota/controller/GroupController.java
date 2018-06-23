@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.threejo.cota.model.Board;
 import com.threejo.cota.model.Reply;
 import com.threejo.cota.service.GroupService;
+import com.threejo.cota.service.Paging;
 
 @Controller
 public class GroupController {
@@ -18,10 +19,16 @@ public class GroupController {
 	private GroupService gs;
 	
 	@RequestMapping(value = "/group")
-	public String showGroupBoard(Model model ) {
-		ArrayList<Board> posts = gs.getPosts();
+	public String showGroupBoard(Board board, String currentPage, Model model ) {
+		int total = gs.getTotalPostsCount();
+		Paging pg = new Paging(total, currentPage);
+		board.setStart(pg.getStart());
+		board.setEnd(pg.getEnd());
+		ArrayList<Board> posts = gs.getPosts(board);
+		
 		model.addAttribute("posts", posts);
-		model.addAttribute("total", posts.size());
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		return "board/groupBoard";
 	}
 	
@@ -68,5 +75,21 @@ public class GroupController {
 		System.out.println("bnum : " + bnum);
 		gs.updateGroupPost(board);
 		return "redirect:viewGroupPost?bnum="+bnum;
+	}
+	
+	@RequestMapping(value = "/searchGroupList")
+	public String searchGroupList(Model model, Board board, String currentPage) {
+		int searched = gs.getSearchedTotalPostsCount(board.getSearch());
+		int total = gs.getTotalPostsCount();
+		Paging pg = new Paging(searched, currentPage);
+		board.setStart(pg.getStart());
+		board.setEnd(pg.getEnd());
+		ArrayList<Board> posts = gs.getSearchedPosts(board);
+		
+		model.addAttribute("posts", posts);
+		model.addAttribute("total", total);
+		model.addAttribute("searched", searched);
+		model.addAttribute("pg", pg);
+		return "board/groupBoard";
 	}
 }

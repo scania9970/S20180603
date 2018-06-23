@@ -106,7 +106,7 @@
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-
+var confirmNum = "";
 $(function() { // 무조건 실행한다.
 	$('#passwordChk').change(function() {
 		if ($('#password').val() != $('#passwordChk').val()) { 

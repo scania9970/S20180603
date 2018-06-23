@@ -199,7 +199,7 @@ body {
 }
 
 .card-row{
-	border: solid;
+	border: 1px solid;
 	border-collapse: collapse;
 	display: table-row;
 	width: 100%;
@@ -209,6 +209,7 @@ body {
 	padding-left: 10px;
 	display: table-cell;
 	vertical-align: middle;
+	font-size: 20px;
 }
 
 .today{
@@ -232,7 +233,51 @@ body {
 .rank {
 	padding-left: 0px;
 	width: 10%;
-	border: solid;
+	border: 1px solid;
 	border-collapse: collapse;
 	text-align: center;
+}
+
+.java{
+	width: 34px;
+	height: 65%;
+	background: url("../images/Java_logo.svg") no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.python{
+	width: 34px;
+	height: 65%;
+	background: url("../images/Python_logo.svg") no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.c{
+	width: 34px;
+	height: 65%;
+	background: url("../images/c++_logo.svg") no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.crown{
+	width: 34px;
+	height: 65%;
+	background: url("../images/crown.svg") no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.card-cell > a {
+	color: #5E5E5E;
+	text-decoration: none;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 20px;
 }

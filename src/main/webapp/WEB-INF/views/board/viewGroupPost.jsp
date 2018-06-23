@@ -547,7 +547,7 @@ $(document).on('change', '#updateChkBox', function(){
 								  <img src="/cota/images/python.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 							</div>
 							<div class="col-lg-3" style="margin-top: 15px;">
-							    <h4 style="margin-top:5px; margin-left:10px;">${post.nickname }</h4>
+							    <h4 style="margin-top:5px; margin-left:10px;"><a href="/cota/viewPortfolio?email=${post.email }">${post.nickname }</a></h4>
 							    <i style="margin-left:10px;">Posted on </i> ${post.board_date } 
 							</div>
 						</div>
@@ -600,9 +600,9 @@ $(document).on('change', '#updateChkBox', function(){
 					</c:forEach>
 					<div class="row justify-content-center" style="margin-bottom: 100px;">
 						<div class="col-lg-12" style="padding: 0px; border: 1px solid gray;">
-							<div class="col-lg-1" style="padding: 0px;">
+							<div class="col-lg-1" style="padding: 20px 0 0 20px;">
 								  <img src="/cota/images/python.png" style="width:60px;">
-								  ${member.nickname }
+								  ${post.nickname }
 							</div>
 							<form action="/cota/insertGroupReply">
 								<input type="hidden" value="${post.bnum}" name='bnum'>
@@ -612,7 +612,7 @@ $(document).on('change', '#updateChkBox', function(){
 								</div>
 							</form>
 							<div class="col-lg-1">
-								<button type="button" class="btn btn-primary" id="replyBtn">입력</button>
+								<button type="button" class="btn btn-primary" id="replyBtn" style="width:100%; height:100%; margin-top:35px; ">입력</button>
 							</div>
 						</div>	
 					</div>

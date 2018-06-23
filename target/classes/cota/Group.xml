@@ -12,6 +12,7 @@
     <result property="vote_conut" column="vote_conut"/>
     <result property="board_date" column="board_date"/>
     <result property="nickname" column="nickname"/>
+    <result property="search" column="search"/>
 	</resultMap>
 	
 	<resultMap id="ReplyResult" type="Reply">
@@ -25,7 +26,9 @@
 	</resultMap>
 
 	<select id="getPosts" parameterType="Board" resultMap="BoardResult">
-		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 3 order by bnum desc
+		select * from (select rownum rn, a.* from (
+		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 3 order by bnum desc) a) where rn between #{start} and
+    	 #{end}
 	</select>
 	
 	<insert id="insertGroup" parameterType="Board">
@@ -67,5 +70,19 @@
 	<update id="updateJoinStatus" parameterType="Board">
 		update board set join_status = #{join_status} where bnum = #{bnum}
 	</update>
+	
+	<select id="getTotalPostsCount" parameterType="Board" resultType="int">
+  		select count(*) from BOARD where board_type = 3
+	</select>
+	
+	<select id="getSearchedTotalPostsCount" parameterType="String" resultType="int">
+		select count(*) from BOARD where title like #{searchText} and board_type=3
+	</select>
+	
+	<select id="getSearchedPosts" parameterType="Board" resultType="Board">
+		select * from (select rownum rn, a.* from (
+		select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 3 and title like #{search} order by bnum desc) a) 
+    where rn between #{start} and #{end}
+	</select>
 	
 </mapper>

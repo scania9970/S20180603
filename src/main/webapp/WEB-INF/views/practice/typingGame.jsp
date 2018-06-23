@@ -429,7 +429,7 @@ input[type="text"]{
 	cursor: pointer;
 	width: 160px;
 	height: 160px;
-	background: url("${pageContext.request.contextPath}/images/pikachu.svg");
+	background: url("${pageContext.request.contextPath}/images/ing.png");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	margin-left: 23%;
@@ -493,7 +493,10 @@ input[type="text"]{
 	<!-- <div class="fake-div"></div> -->
 	
 	<audio id="audio-attack">
-		<source src="${pageContext.request.contextPath}/audios/pikachu-thunderbolt.mp3" type="audio/mpeg">
+		<source src="${pageContext.request.contextPath}/audios/punch.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="audio-thunderbolt">
+		<source src="${pageContext.request.contextPath}/audios/thunderbolt.mp3" type="audio/mpeg">
 	</audio>
 	<audio id="audio-start">
 		<source src="${pageContext.request.contextPath}/audios/pikachu-start.mp3" type="audio/mpeg">
@@ -531,7 +534,7 @@ input[type="text"]{
 				<div id="blank">
 					<label id="money"></label><label id="money-left">0</label>
 				</div>
-				<div id="user-id"><label>USER ID</label></div>
+				<div id="user-id"><label>USER</label></div>
 				<div id="user-image">
 					<div id="image-wrapper">
 						<label id="pikachu-image"></label>
@@ -589,7 +592,7 @@ input[type="text"]{
 		var user_full_hp = 100;
 		var level = 1;
 		var intervalTime = 2500;
-		var user_damage = 4;
+		var user_damage = 5;
 		var com_damage = 3;
 		var money = 0;
 		var potion = 0;
@@ -603,7 +606,10 @@ input[type="text"]{
 			document.getElementById("com-meter").max = com_full_hp;
 			document.getElementById("com-meter").value = com_hp;
 			$('#com-hp-left').text('체력: ' + com_hp);
-			$('#user-hp-left').text('체력: ' + com_hp);
+			$('#user-hp-left').text('체력: ' + user_hp);
+			$('#money-left').text(money);
+			$('#thunderbolt').text(potion);
+			$('#potion').text(thunderbolt);
 			clearInterval(intervalId);
 		}
 		
@@ -622,7 +628,7 @@ input[type="text"]{
 			
 				if(input_sentence == attack_sentence){
 					
-					//attack_sound();
+					attack_sound();
 					com_hp -= user_damage;
 					document.getElementById("com-meter").value = com_hp;
 					
@@ -653,11 +659,37 @@ input[type="text"]{
 				$('input').val("");
 				
 			}
-			
-			
-			if(x == 'Escape'){
-				$( "#toShop" ).click();
+			if( x == '1'){
+				if(potion >= 1){
+					potion -=  1;
+					$('#potion').text(potion);
+					user_hp += 50;
+					if(user_hp > user_full_hp){
+						user_hp = user_full_hp;
+					}
+					$('#user-hp-left').text('체력: ' + user_hp);
+					document.getElementById("user-meter").value = user_hp;
+				}
 			}
+			
+			if( x == '2'){
+				if(thunderbolt >= 1){
+					thunderbolt -= 1;
+					$('#thunderbolt').text(thunderbolt);
+					com_hp = com_hp - (com_full_hp * 0.5);
+					$('#com-hp-left').text('체력: ' + com_hp);
+					document.getElementById("com-meter").value = com_hp;
+					
+					if(com_hp <= 0){
+						com_hp = 0;
+						money += level*10;
+						$('#money-left').text(money);
+						alert("you win!");
+						next_round();
+					}
+				}
+			}
+			
 			
 		}
 		
@@ -696,6 +728,64 @@ input[type="text"]{
 			document.getElementById("user-meter").value = user_hp;
 			if(intervalTime > 1000){
 				intervalTime -= 200;
+			}
+			switch(level){
+				case 1:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/ing.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 2:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/caterpi.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 3:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/sanghae.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 4:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/eevee.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 5:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/bugi.jpeg")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 6:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/jam.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 7:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/lizamong.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 8:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/gyara.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 9:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/freezer.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				case 10:
+					$('#com-char-image').css('background', 'url("${pageContext.request.contextPath}/images/megamew.png")');
+					$('#com-char-image').css('background-size', '100% 100%');
+					break;
+				default : 
+					alert("끝!")
+					$('#start-frame').css('display', 'inline-block');
+					$('#frame').css('display', 'none');
+					com_hp = 100;
+					com_full_hp = 100;
+					user_hp = 100;
+					user_full_hp = 100;
+					level = 1;
+					intervalTime = 2500;
+					user_damage = 4;
+					com_damage = 3;
+					money = 0;
+					potion = 0;
+					thunderbolt = 0;
+					clearInterval(intervalId);
 			}
 			$('#current-level').text(level);
 			$('#user-hp-left').text('체력: ' + user_hp);
@@ -823,6 +913,7 @@ input[type="text"]{
 		document.getElementById("thunderbolt").onclick = function() {
 			if(thunderbolt >= 1){
 				
+				thunderbolt_sound();
 				thunderbolt -= 1;
 				$('#thunderbolt').text(thunderbolt);
 				com_hp = com_hp - (com_full_hp * 0.5);
@@ -848,6 +939,11 @@ input[type="text"]{
 		function start_sound(){
 			var audio = document.getElementById("audio-start");
 		    audio.play();
+		}
+		
+		function thunderbolt_sound(){
+			var audio = document.getElementById("audio-thunderbolt");
+			audio.play();
 		}
 		
 		var sentences = ['String',

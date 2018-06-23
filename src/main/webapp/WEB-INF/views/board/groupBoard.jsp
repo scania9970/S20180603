@@ -399,6 +399,22 @@ function submitChk(){
 	}
 	
 }
+
+$(document).on('click', '#searchbtn', function(){
+	var searchText = $("#searchIpt").val();
+	console.log("searchText : " + searchText);
+	location.href = "/cota/searchGroupList?search="+searchText;
+});
+
+function search(event){
+	if(event.keyCode == 13){
+		var searchText = $("#searchIpt").val();
+		console.log("searchText : " + searchText);
+		location.href = "/cota/searchGroupList?search="+searchText;
+	}else{
+		return;
+	}
+}
 </script>
 </head>
 <body>
@@ -447,16 +463,22 @@ function submitChk(){
 				</div>
            </div>
            <div class="row">
-           		<div class="col-lg-2" style="font-size: 20px;">
+           		<div class="col-lg-2" style="font-size: 15px; cursor:pointer;" onclick="location.href='/cota/group'" >
 					<span class="glyphicon glyphicon-th"></span> 총 ${total} 개의 게시물
            		</div>
-           		<div class="col-lg-offset-2 col-lg-3">
+           		<div class="col-lg-2" style="font-size: 15px;">
+					<c:if test="${searched >= 1 }">
+						<span class="glyphicon glyphicon-filter"></span> 
+						검색된 ${searched} 개의 게시물
+					</c:if>
+           		</div>
+           		<div class="col-lg-3">
            			<div class="form-group">
-					  <input type="text" class="form-control" id="search" placeholder="SEARCH...">
+					  <input type="text" class="form-control" id="searchIpt" placeholder="SEARCH..." onkeyup="search(event)">
 					</div>
            		</div>
            		<div class="col-lg-1">
-					<button type="button" class="btn btn-primary" style="width:79.11px; height:34px">검색</button>
+					<button type="button" class="btn btn-primary" id="searchbtn" style="width:79.11px; height:34px">검색</button>
            		</div>
            </div>
            <div class="row">
@@ -494,13 +516,15 @@ function submitChk(){
            <div class="row" style="height: 50px;">
 		            <div class="col-lg-offset-2 col-lg-4">
 		            	<ul class="pagination" style="padding:0; margin:0 auto;">
-						  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-						  <li class="page-item"><a class="page-link" href="#">1</a></li>
-						  <li class="page-item"><a class="page-link" href="#">2</a></li>
-						  <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  <li class="page-item"><a class="page-link" href="#">4</a></li>
-						  <li class="page-item"><a class="page-link" href="#">5</a></li>
-						  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+		            	<c:if test="${pg.startPage > pg.pageBlock}">
+						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">Previous</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${i}">${i}</a></li>
+						</c:forEach>
+						<c:if test="${pg.endPage < pg.totalPage}">
+						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">Next</a></li>
+						</c:if>
 						</ul>
 		            </div>
 		            <div class="col-lg-offset-1 col-lg-1">

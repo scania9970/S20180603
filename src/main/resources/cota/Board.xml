@@ -16,13 +16,13 @@
 
 	<select id="Boardlist" parameterType="Board" resultMap="BoardResult">
 		select * from (select rownum rn, a.* from (
-select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 1 order by bnum) a) where rn between #{start} and
+select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 1 order by bnum DESC) a) where rn between #{start} and
     	 #{end}
 	</select>
 	
 	<select id="Boardlist2" parameterType="Board" resultMap="BoardResult">
 		select * from (select rownum rn, a.* from (
-select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum) a) where rn between #{start} and
+select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum DESC) a) where rn between #{start} and
     	 #{end}
 	</select>
 	

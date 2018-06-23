@@ -1,337 +1,621 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
+<%@include file="/WEB-INF/views/main/header.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>GROUP</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
-<title>게시판</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="${pageContext.request.contextPath}/mypage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- MetisMenu CSS -->
-<link href="${pageContext.request.contextPath}/mypage/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="${pageContext.request.contextPath}/mypage/dist/css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Morris Charts CSS -->
-<link href="${pageContext.request.contextPath}/mypage/vendor/morrisjs/morris.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="${pageContext.request.contextPath}/mypage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 <style type="text/css">
-		* {
-		   margin: 0px;
-		   padding: 0px;
-		}
-		
-		li {
-		   list-style: none;
-		}
-		
-		a {
-		   text-decoration: none;
-		}
-		
-		a:LINK {
-		   color: black;
-		}
-		
-		a:VISITED {
-		   color: black;
-		}
-		
-	
-		#reply {
-			border: 3px solid;
-		} 
-		
-	#replyPosting {
-		width: 550px;
-		height: 100px;
-		background: white;
-	}
-	#replyPosting_btn{
-		width: 70px;
-		height: 100px;
-	}
-	
-	
-	#main{
-			position : absolute;
-    		width: 100%;
-    		height: 100%;
-    	}
-    	
-    	
-    	
-	#post_data{
-	  	border: 1px solid;           /* data 전체 감싸는 div */
-		width: 650px;
-		margin: 47px 15px 15px 180px; 
-	}
-	
-	
-	
-	#main_data{
-		margin: 0 auto;
-		border: 1px solid black;
-		padding: 10px;
-		width: 600px;
-		border-radius:10px;
-		margin-bottom: 20px; 
-		
-	}
-	
-	#title{
-		float: left;
-		width: 450px;
-		border: 1px solid;
-	}
-	#date{
-		text-align: right;
-	}
-	#content{
-		padding: 5px;
-		margin: 0 auto;
-		width: 550px;
-		height: 400px;
-		border: 1px solid;
-		text-align: left;
-	}
-	
-	#feplyall{
-		background-color: #f4f4f4;
-		padding: 10px;
-		border: 1px solid;
-	}
-	
-	#replyform{               /* 댓글 리스트 */
-		border: 3px solid;
-	}
-	
-	#r_nickname{
-	
-		width: 500px;
-		float: left;
-	}
-	#r_date{
-	
-	}
-	#r_content{
-		width: 550px;
-		height: 60px;
-		border: 1px solid;
-		margin: 6px;
-	}
-	
-	
-	
-	.listbtn{
-			font-size: 18px;
-			}
-    .aaa{
-   			text-align: right;
-    	}
-    	
-    	
-    #post{
-    		background-color:#e2e2e8;
-    		position : absolute;
-    		width: 83.5%;
-    		left: 16.5%;
-    		top: 8%;
-    		float: left;
-    }
-   		 #side_advertising{
-    			position : absolute;
-    			
-    			width: 240px;
-    			height: 590px;
-    			top: 40px;
-    			right: 70px;
-    			background: blue;
-    }
-    #btn{
-    	position : absolute;
-    	bottom: -30px;
-    	right: 20px;
-    }
-    .nickname{
-		width: 450px;
-		float: left;
-		text-align: left;
-    }
-    #ud{
-    	text-align: right;
-    }
-     .nickname li ul{                        /* 포트폴리오 버튼 */
-    	background: rgb(109,109,109);
-		display:none;  /* 평상시에는 서브메뉴가 안보이게 하기 */
-		height:auto;
-		padding:0px;
-		margin:0px;
-		border:0px;
-		position:absolute;
-		width:450px;
-		z-index:200;
-    }
-    .nickname li:hover ul {
-		display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
-	}
-</style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-	
+:focus {
+  outline: none;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0; 
+}
+/* 
+    Sometimes the sub menus get too large for the page and prevent the menu from scrolling, limiting functionality
+    A quick fix is to change .side-menu to 
 
+    -> position:absolute
+    
+    and uncomment the code below.
+    You also need to uncomment 
+    
+    -> <div class="absolute-wrapper"> </div> in the html file
+
+    you also need to tweek the animation. Just uncomment the code in that section
+    --------------------------------------------------------------------------------------------------------------------
+    If you want to make it really neat i suggest you look into an alternative like http://areaaperta.com/nicescroll/
+    This will allow the menu to say fixed on body scoll and scoll on the side bar if it get to large
+*/
+.absolute-wrapper{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background-color: #f8f8f8;
+    border-right: 1px solid #e7e7e7;
+}
+
+.side-menu {
+  position:absolute;
+  width: 300px;
+  height: 100%;
+  background-color: #f8f8f8;
+  border-right: 1px solid #e7e7e7;
+}
+.side-menu .navbar {
+  border: none;
+}
+.side-menu .navbar-header {
+  width: 100%;
+  border-bottom: 1px solid #e7e7e7;
+}
+.side-menu .navbar-nav .active a {
+  background-color: transparent;
+  margin-right: -1px;
+  border-right: 5px solid #e7e7e7;
+}
+.side-menu .navbar-nav li {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #e7e7e7;
+}
+.side-menu .navbar-nav li a {
+  padding: 15px;
+}
+.side-menu .navbar-nav li a .glyphicon {
+  padding-right: 10px;
+}
+.side-menu #dropdown {
+  border: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+.side-menu #dropdown .caret {
+  float: right;
+  margin: 9px 5px 0;
+}
+.side-menu #dropdown .indicator {
+  float: right;
+}
+.side-menu #dropdown > a {
+  border-bottom: 1px solid #e7e7e7;
+}
+.side-menu #dropdown .panel-body {
+  padding: 0;
+  background-color: #f3f3f3;
+}
+.side-menu #dropdown .panel-body .navbar-nav {
+  width: 100%;
+}
+.side-menu #dropdown .panel-body .navbar-nav li {
+  padding-left: 15px;
+  border-bottom: 1px solid #e7e7e7;
+}
+.side-menu #dropdown .panel-body .navbar-nav li:last-child {
+  border-bottom: none;
+}
+.side-menu #dropdown .panel-body .panel > a {
+  margin-left: -20px;
+  padding-left: 35px;
+}
+.side-menu #dropdown .panel-body .panel-body {
+  margin-left: -15px;
+}
+.side-menu #dropdown .panel-body .panel-body li {
+  padding-left: 30px;
+}
+.side-menu #dropdown .panel-body .panel-body li:last-child {
+  border-bottom: 1px solid #e7e7e7;
+}
+.side-menu #search-trigger {
+  background-color: #f3f3f3;
+  border: 0;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 18px;
+}
+.side-menu .brand-name-wrapper {
+  min-height: 50px;
+}
+.side-menu .brand-name-wrapper .navbar-brand {
+  display: block;
+}
+.side-menu #search {
+  position: relative;
+  z-index: 1000;
+}
+.side-menu #search .panel-body {
+  padding: 0;
+}
+.side-menu #search .panel-body .navbar-form {
+  padding: 0;
+  padding-right: 50px;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  border-top: 1px solid #e7e7e7;
+}
+.side-menu #search .panel-body .navbar-form .form-group {
+  width: 100%;
+  position: relative;
+}
+.side-menu #search .panel-body .navbar-form input {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  height: 50px;
+}
+.side-menu #search .panel-body .navbar-form .btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: #f3f3f3;
+  padding: 15px 18px;
+}
+/* Main body section */
+.side-body {
+  margin-left: 310px;
+}
+/* small screen */
+@media (max-width: 768px) {
+  .side-menu {
+    position: relative;
+    width: 100%;
+    height: 0;
+    border-right: 0;
+    border-bottom: 1px solid #e7e7e7;
+  }
+  .side-menu .brand-name-wrapper .navbar-brand {
+    display: inline-block;
+  }
+  /* Slide in animation */
+  @-moz-keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 10px;
+    }
+  }
+  @-webkit-keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 10px;
+    }
+  }
+  @keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 10px;
+    }
+  }
+  @-moz-keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  @-webkit-keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  @keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  /* Slide side menu*/
+  /* Add .absolute-wrapper.slide-in for scrollable menu -> see top comment */
+  .side-menu-container > .navbar-nav.slide-in {
+    -moz-animation: slidein 300ms forwards;
+    -o-animation: slidein 300ms forwards;
+    -webkit-animation: slidein 300ms forwards;
+    animation: slidein 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .side-menu-container > .navbar-nav {
+    /* Add position:absolute for scrollable menu -> see top comment */
+    position: fixed;
+    left: -300px;
+    width: 300px;
+    top: 43px;
+    height: 100%;
+    border-right: 1px solid #e7e7e7;
+    background-color: #f8f8f8;
+    -moz-animation: slideout 300ms forwards;
+    -o-animation: slideout 300ms forwards;
+    -webkit-animation: slideout 300ms forwards;
+    animation: slideout 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  /* Uncomment for scrollable menu -> see top comment */
+  /*.absolute-wrapper{
+        width:285px;
+        -moz-animation: slideout 300ms forwards;
+        -o-animation: slideout 300ms forwards;
+        -webkit-animation: slideout 300ms forwards;
+        animation: slideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }*/
+  @-moz-keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @-webkit-keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @-moz-keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @-webkit-keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  /* Slide side body*/
+  .side-body {
+    margin-left: 5px;
+    margin-top: 70px;
+    position: relative;
+    -moz-animation: bodyslideout 300ms forwards;
+    -o-animation: bodyslideout 300ms forwards;
+    -webkit-animation: bodyslideout 300ms forwards;
+    animation: bodyslideout 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .body-slide-in {
+    -moz-animation: bodyslidein 300ms forwards;
+    -o-animation: bodyslidein 300ms forwards;
+    -webkit-animation: bodyslidein 300ms forwards;
+    animation: bodyslidein 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  /* Hamburger */
+  .navbar-toggle {
+    border: 0;
+    float: left;
+    padding: 18px;
+    margin: 0;
+    border-radius: 0;
+    background-color: #f3f3f3;
+  }
+  /* Search */
+  #search .panel-body .navbar-form {
+    border-bottom: 0;
+  }
+  #search .panel-body .navbar-form .form-group {
+    margin: 0;
+  }
+  .navbar-header {
+    /* this is probably redundant */
+    position: fixed;
+    z-index: 3;
+    background-color: #f8f8f8;
+  }
+  /* Dropdown tweek */
+  #dropdown .panel-body .navbar-nav {
+    margin: 0;
+  }
+  
+ 
+}
+</style>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script type="text/javascript">
+$(function () {
+    $('.navbar-toggle').click(function () {
+        $('.navbar-nav').toggleClass('slide-in');
+        $('.side-body').toggleClass('body-slide-in');
+        $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+        /// uncomment code for absolute positioning tweek see top comment in css
+        //$('.absolute-wrapper').toggleClass('slide-in');
+        
+    });
+   
+   // Remove menu for searching
+   $('#search-trigger').click(function () {
+        $('.navbar-nav').removeClass('slide-in');
+        $('.side-body').removeClass('body-slide-in');
+
+        /// uncomment code for absolute positioning tweek see top comment in css
+        //$('.absolute-wrapper').removeClass('slide-in');
+
+    });
+});
+
+$(document).on('click', '#replyBtn', function(){
+	var replyContent = $("#replyContent").val();
+	var email = "";
+	var bnum = "${board.bnum}";
+	<%if(member != null){%>
+		email = "<%=member.getEmail()%>"
+	<%}%>
+	
+	if(replyContent == "" && email == ""){
+		return;
+	}else{
+		var sendData = "email="+email+"&content="+Content+"&bnum="+bnum;
+		$.ajax({
+			url : '/cota/replyPosting2',			// 전송할 URL
+			type : 'get',				// 전송 방식
+			data : sendData, 							// 전송할 데이터
+			success : function() {  // 통신이 성공했다면 수행할 콜백메서드
+				location.href = "/cota/postform2?bnum=${board.bnum }";
+			}
+		});
+	}
+});
+
+
+$(document).on('click', '#updateBtn', function(){
+	location.href = "/cota/boardupdateForm2?bnum="+"${board.bnum }";
+});                       
+
+$(document).on('click', '#deleteBtn', function(){
+	bootbox.confirm({
+	    message: "게시물을 삭제하시겠습니까?",
+	    buttons: {
+	        confirm: {
+	            label: 'Yes',
+	            className: 'btn-success'
+	        },
+	        cancel: {
+	            label: 'No',
+	            className: 'btn-danger'
+	        }
+	    },
+	    callback: function (result) {
+			if(result == true){
+				location.href = "/cota/boarddelete2?bnum="+"${board.bnum }";
+			}else{                     
+				return;
+			}
+	    }
+	});
+});
+
+
+ 
 
 </script>
 </head>
-
 <body>
+<div class="row">
+    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+    <div class="absolute-wrapper"> </div>
+    <!-- Menu -->
+    <div class="side-menu">
+    
+    <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <div class="brand-wrapper">
+            <!-- Hamburger -->
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
-<% String email = (String)session.getAttribute("email"); 
-  System.out.println("session email->"+ email);
-%>
-<div id="main">
-</div>
-	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-			<jsp:include page="../main/header.jsp"/>
-			<div class="navbar-default sidebar" role="navigation">
-				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id="side-menu">
-						<li>
-							
-						</li>
-						<li>
-							<!-- <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>활동 내역 통계</a> -->
-							<p class="listbtn"><span class="glyphicon glyphicon-align-justify"><a href="/cota/list1"><i class="aaa"> 자유 게시판 </i></a></span></p>
-							
-						</li>
-						<li>
-							<!-- <a href="#"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a> -->
-							<p class="listbtn"><span class="glyphicon glyphicon-align-justify"><a href="/cota/list2"> <i class="aaa"> 질문 답 </i> </a></span></p>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		
-		
-		
-		
-		
-	<div id="post">
-		<div id="post_data">
-			<div id="main_data">
-				<input type="hidden" name="bnum" value="${board.bnum }"> 
-				
-				<input type="hidden" name="email" value="${board.email }">
-			
-				<div id="title">${board.title } | 자유 게시판</div><div id="date">${board.board_date }</div>
-				
-				<c:set var="MEmail" value="${member.email }"/>
-				 <c:if test="${board.email eq MEmail }">
-					<div class="nickname">
-					<ul>
-						<li>
-							${board.nickname}
-								<ul>
-									<li><a href="#">포트폴리오</a> </li>
-								
-								</ul>
-								
-						</li>
-					</ul>
-					
+    </div>
+
+    <!-- Main Menu -->
+    <div class="side-menu-container">
+        <ul class="nav navbar-nav">
+            <li style="border:none;"><a href="#"><span class=""></span></a></li> <!-- add class "active" -->
+            <li><a href="/cota/list1" style="font-size:20px;"><span class="glyphicon glyphicon-comment"></span>자유게시판</a></li> <!-- add class "active" -->
+            <li><a href="/cota/list2" style="font-size:20px;"><span class="glyphicon glyphicon-search"></span>Q & A</a></li>
+            <li><a href="/cota/group" style="font-size:20px;"><span class="glyphicon glyphicon-user"></span>소모임 / 스터디</a></li>
+
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+    
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="side-body">
+           <h2>Q & A </h2>
+           
+           <!-- <div class="row" style="height:15px;"></div> -->
+           			
+           		<div class="col-lg-8" id="rowWrapper">
+           			<div class="alert alert-success col-lg-12">
+						 Q & A 입니다. 다른 개발자들에게 자유롭게 질문해보세요.
 					</div>
-					
-					<div id="ud"><a href="boardupdateForm?bnum=${board.bnum }">수정 </a>| <a href="boarddelete?bnum=${board.bnum }"> 삭제</a></div>
-				</c:if>
-				<c:if test="${board.email ne MEmail }">
-					<div class="nickname">${board.nickname}</div>
-				</c:if> 
+           			<div class="row">
+					<div class="col-lg-12" style="padding: 0; border: 1px solid gray;">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="row">
+									<div class="col-lg-12" style="padding:0; margin:0;"><h4># ${board.bnum }</h4></div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12" style="padding:0; margin:0;"><h4>${board.title }</h4></div>
+								</div>
+							</div>
+							<div class="col-lg-2" style="border-right: 1px solid gray; height: 85px;">
+									<div class="col-lg-2" style="margin-top: 15px;">
+										<span class="glyphicon glyphicon-comment"></span> 
+									</div>
+									<div class="col-lg-3" style="margin-top: 15px;">
+										${replyCnt }  댓글 아직   <!-- 댓글수 -->
+									</div>
+									<div class="col-lg-2" style="margin-top: 15px;">
+										<span class="glyphicon glyphicon-eye-open"></span>
+									</div>
+									<div class="col-lg-3" style="margin-top: 15px;">
+										${board.view_count }
+									</div>
+							</div>
+							<div class="col-lg-1" style="margin-top: 15px;">
+								  <img src="/cota/images/python.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+							</div>
+							<div class="col-lg-3" style="margin-top: 15px;">
+							    <h4 style="margin-top:5px; margin-left:10px;">${board.nickname }</h4>
+							    <i style="margin-left:10px;">Posted on </i> ${board.board_date } 
+							</div>
+						</div>
+					</div>
+				</div>   
 				
-				<div>
-					<pre id="content">
-						${board.content }
-					</pre>
+				        
+				        
+				        
+				<div class="row">
+					<div class="col-lg-12" style="font-size:16px; height: 500px; border: 1px solid gray; border-bottom:none;">
+						${board.content }					
+					</div>
+				</div>
+				<div class="row" style="margin-bottom: 15px;">
+					<div class="col-lg-12"  style="height: 40px; border: 1px solid gray; border-top:none;">
+						<div class="col-lg-1">
+							<button type="button" class="btn btn-primary" onclick="location.href='list2'">목 록</button>
+						</div>
+						<c:if test="${member.email eq board.email }">
+						<div class="col-lg-offset-8 col-lg-1">
+							<button type="button" class="btn btn-primary" id="updateBtn">수 정</button>
+						</div>
+						<div class="col-lg-1">
+							<button type="button" class="btn btn-primary" id="deleteBtn">삭 제</button>
+						</div>
+						<div class="col-lg-1">
+						<c:if test="${post.join_status == 1}">
+							<input type="checkbox" data-toggle="toggle" id="updateChkBox" data-on="모집" data-off="마감">
+						</c:if>
+						<c:if test="${post.join_status == 0}">
+							<input type="checkbox" checked data-toggle="toggle" id="updateChkBox" data-on="모집" data-off="마감">
+						</c:if>
+						</div>
+						</c:if>
+					</div>
 				</div>
 				
-			</div>
-				
-				
-			 <div id="feplyall">
-				<div id="replyform">
 					<c:forEach var="reply" items="${rlist }">
-						<div id="r_nickname">
-							${reply.nickname }
+					<div class="row">
+						<div class="col-lg-12" style="border:1px solid gray; border-bottom:none;">
+							<div class="col-lg-1" style="margin-top: 10px;">
+								  <img src="/cota/images/python.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+							</div>
+							<div class="col-lg-7" style="margin-top: 15px;">
+							    <label style="font-size: 20px; width:100px; margin:0px 0px 5px 10px;">${reply.nickname }</label>
+							    <i style="margin-left:10px;">Posted on </i> <label width>${reply.reply_date }</label> 
+							    <p style="margin-left:10px;">${reply.content }</p>
+							</div>
 						</div>
-						<div id="r_date">
-							${reply.reply_date }
-						</div>
-						<div id="r_content">
-							${reply.content }
-						</div>
-						<hr id="hr"/>
+					</div>
 					</c:forEach>
-				</div>
-			</div> 
-				
-			 	<div id="reply">             
-					<form action="replyPosting2">
-						<input type="hidden" value="${board.bnum }" name="bnum">
-						<input type="hidden" value="${member.email }" name="email">
-						<input type="text" id="replyPosting" name="content">
-							<input type="submit" id="replyPosting_btn" value="댓글입력" >
-					</form>
-				</div> 
-				<div id="btn">
-				<input type="button" value="글쓰기" onclick="location.href='postingform2'">
-				 <input type="button" value="목록" onclick="location.href='list2'">
-				</div>
-		</div>
-		 <div id="side_advertising">
-				
-				 광고 모집
-				 
-			</div>
-		 
-		 
-	</div>
-	 
-	 
-	 
-	 
-	 <script src="${pageContext.request.contextPath}/mypage/vendor/jquery/jquery.min.js"></script>
+					
+					
+					
+					<div class="row justify-content-center" style="margin-bottom: 100px;">
+						<div class="col-lg-12" style="padding: 0px; border: 1px solid gray;">
+							<div class="col-lg-1" style="padding: 0px;">
+								  <img src="/cota/images/python.png" style="width:60px;">
+								  ${member.nickname }
+							</div>
+							<form action="replyPosting2">
+								<input type="hidden" value="${board.bnum }" name="bnum">
+								<input type="hidden" value="${member.email }" name="email">
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="content" id="replyContent" placeholder="댓글 입력"></textarea>
+								</div>
+							<div class="col-lg-1">
+								<input type="submit" class="btn btn-primary" id="replyBtn" value="입력">
+							</div>
+							</form>
+						</div>	
+					</div>
+           		</div>
+           		
+           		
+           		
+           		
+           		
+           		
+           		
+           		
+           		
+           		
+				<div class="col-lg-2" style="height: 700px; background-image:url(/cota/images/verticalad.gif); background-size:100% 100%;">
+	        	</div>
+					
+        </div>
+    </div>
+	       	
+</div>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="${pageContext.request.contextPath}/mypage/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="${pageContext.request.contextPath}/mypage/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- Morris Charts JavaScript -->
-	<script src="${pageContext.request.contextPath}/mypage/vendor/raphael/raphael.min.js"></script>
-	<script src="${pageContext.request.contextPath}/mypage/vendor/morrisjs/morris.min.js"></script>
-	<script src="${pageContext.request.contextPath}/mypage/data/morris-data.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="${pageContext.request.contextPath}/mypage/dist/js/sb-admin-2.js"></script>
 </body>
 </html>

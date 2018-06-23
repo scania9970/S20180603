@@ -363,9 +363,7 @@
     margin: 0;
   }
   
- a {
- 	text-decoration: none !important;
- }
+ 
 }
 </style>
 <script type="text/javascript">
@@ -390,15 +388,6 @@ $(function () {
 
     });
 });
-
-function submitChk(){
-	if("${member}"){
-		location.href='postingform2';
-	}else{
-		alert("로그인이 필요한 서비스입니다.");
-	}
-	
-}
 </script>
 </head>
 <body>
@@ -427,9 +416,9 @@ function submitChk(){
     <div class="side-menu-container">
         <ul class="nav navbar-nav">
             <li style="border:none;"><a href="#"><span class=""></span></a></li> <!-- add class "active" -->
-             <li><a href="/cota/list1" style="font-size:20px;"><span class="glyphicon glyphicon-comment"></span>자유게시판</a></li> <!-- add class "active" -->
-            <li><a href="/cota/list2" style="font-size:20px;"><span class="glyphicon glyphicon-search"></span>Q & A</a></li>
-            <li><a href="/cota/group" style="font-size:20px;"><span class="glyphicon glyphicon-user"></span>소모임 / 스터디</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-comment"></span>자유게시판</a></li> <!-- add class "active" -->
+            <li><a href="#"><span class="glyphicon glyphicon-search"></span>Q & A</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>소모임 / 스터디</a></li>
 
         </ul>
     </div><!-- /.navbar-collapse -->
@@ -437,93 +426,39 @@ function submitChk(){
     
     </div>
 
-
-
-
     <!-- Main Content -->
     <div class="container-fluid">
         <div class="side-body">
-           <h2>Q & A</h2>
-           <div class="row">
-	           <div class="alert alert-success col-lg-8">
-					 Q & A 입니다. 다른 개발자들에게 자유롭게 질문해보세요.
-				</div>
-           </div>
-           <div class="row">
-           		<div class="col-lg-2" style="font-size: 20px;">
-					<span class="glyphicon glyphicon-th"></span> 총 ${total} 개의 게시물
+        <h1>Q & A</h1>
+        	<div class="row" style="height: 50px;"></div>
+           <div class='row'>
+				<div class="col-lg-8">
+					<form action="boardupdate2">
+					<input type="hidden" name="email" value="${member.email }">
+					<input type="hidden" name="bnum" value="${board.bnum }">
+					  <div class="input-group" style="margin-bottom: 10px;">
+					    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					    <input id="email" type="text" class="form-control" name="title" placeholder="TITLE" value="${board.title }">
+					  </div>
+					  <div class="input-group">
+					    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+					    <textarea class="form-control" rows="28" placeholder="CONTENT" name="content">${board.content }</textarea>
+					  </div>
+					  <div class="row" style="margin-top:10px;">
+					  	<div class="col-lg-11">
+					  	</div>
+					  	<div class="col-lg-1">
+						  <input type="submit" class="btn btn-primary" value="완료">
+					  	</div>
+					  </div>
+					</form>
+				</div>           
+           		<div class="col-lg-offset-1 col-lg-2" style="height: 700px; background-image:url(/cota/images/verticalad.gif); background-size:100% 100%;">
            		</div>
-           		<div class="col-lg-offset-2 col-lg-3">
-           			<div class="form-group">
-					  <input type="text" class="form-control" id="search" placeholder="SEARCH...">
-					</div>
-           		</div>
-           		<div class="col-lg-1">
-					<button type="button" class="btn btn-primary" style="width:79.11px; height:34px">검색</button>
-           		</div>
-           </div>
-           <div class="row">
-           	<div class="col-lg-8">
-           	<table class="table table-bordered">
-	               <tr style="text-align:center;">
-	                   <th>번호</th><th>제목</th><th>작성자</th><th>날짜</th>
-	               </tr>
-	               <c:forEach var="board" items="${list2 }">
-	               <tr>
-	                   <td>${board.bnum}</td>
-	                   <td><a href="postform2?bnum=${board.bnum }">${board.title}</a></td>
-	                   <td>${board.nickname}</td>
-	                   <td>${board.board_date}</td>
-	               </tr>
-	               <c:set var="num" value="${num - 1}" />
-	               </c:forEach>
-	           </table>
-	           
-           	</div>
-           	
-           	<div class="col-lg-2" style="height: 591px; background-image:url(/cota/images/verticalad.gif); background-size:100% 100%;">
-           	</div>
-	           
-           </div>
-           <div class="row" style="height: 50px;">
-		            <div class="col-lg-offset-2 col-lg-4">
-		            	<ul class="pagination" style="padding:0; margin:0 auto;">
-		            	<c:if test="${pg.startPage > pg.pageBlock}">
-						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">Previous</a></li>
-						 </c:if> 
-						  <li class="page-item"><a class="page-link" href="#">1</a></li>
-						  <li class="page-item"><a class="page-link" href="#">2</a></li>
-						  <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  <li class="page-item"><a class="page-link" href="#">4</a></li>
-						  <li class="page-item"><a class="page-link" href="#">5</a></li>
-						 <c:if test="${pg.endPage < pg.totalPage}">
-						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">Next</a></li>
-						 </c:if>
-						</ul>
-		            </div>
-		            <div class="col-lg-offset-1 col-lg-1">
-	           			<button type="button" class="btn btn-primary" onclick="submitChk()" style="width:79.11px; height:34px">글쓰기</button>
-	           		</div>
-	           </div>
-           <div class="row">
-	           <div class="col-lg-7">
-	           </div>
            </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-<div class="row" style="height: 200px;">></div>
-<div class="row">
-	<div class="col-lg-12">
-		<%@include file="/WEB-INF/views/main/footer.jsp" %>
-	</div>
-</div>
 </body>
 </html>

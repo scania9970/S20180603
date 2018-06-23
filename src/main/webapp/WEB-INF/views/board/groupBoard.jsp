@@ -517,13 +517,13 @@ function search(event){
 		            <div class="col-lg-offset-2 col-lg-4">
 		            	<ul class="pagination" style="padding:0; margin:0 auto;">
 		            	<c:if test="${pg.startPage > pg.pageBlock}">
-						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">Previous</a></li>
+						  <li class="page-item"><a class="page-link" href="/cota/group?currentPage=${pg.startPage - pg.pageBlock}">Previous</a></li>
 						</c:if>
 						<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${i}">${i}</a></li>
+						  <li class="page-item"><a class="page-link" href="/cota/group?currentPage=${i}">${i}</a></li>
 						</c:forEach>
 						<c:if test="${pg.endPage < pg.totalPage}">
-						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">Next</a></li>
+						  <li class="page-item"><a class="page-link" href="/cota/group?currentPage=${pg.startPage + pg.pageBlock}">Next</a></li>
 						</c:if>
 						</ul>
 		            </div>

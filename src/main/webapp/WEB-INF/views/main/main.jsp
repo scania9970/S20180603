@@ -81,7 +81,7 @@
 		</div>
 		<div class="info twoo">
 			<div class="digit-wrapper">
-				<label class="digit">3</label>
+				<label class="digit">11</label>
 				<label class="digit-info">사용가능한 언어</label>
 			</div>
 		</div>
@@ -130,15 +130,15 @@
 					</c:if>
 					
 					<c:if test="${rank.lang_type == 'java'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 					<c:if test="${rank.lang_type == 'python'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 					<c:if test="${rank.lang_type == 'cdoubleplus'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 				</div>
@@ -157,15 +157,15 @@
 					</c:if>
 					
 					<c:if test="${rank.lang_type == 'java'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 					<c:if test="${rank.lang_type == 'python'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 					<c:if test="${rank.lang_type == 'cdoubleplus'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 				</div>
@@ -184,15 +184,15 @@
 					</c:if>
 					
 					<c:if test="${rank.lang_type == 'java'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="java"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 					<c:if test="${rank.lang_type == 'python'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="python"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 					<c:if test="${rank.lang_type == 'cdoubleplus'}">
-						<div class="card-cell">${rank.nickname} / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
+						<div class="card-cell"><a href="/cota/viewPortfolio?email=${rank.email }">${rank.nickname}</a> / ${rank.speed}타 / ${rank.accuracy}% /<i class="c"></i></div>
 						<c:set var="count" value="${count + 1}" />
 					</c:if>
 				</div>

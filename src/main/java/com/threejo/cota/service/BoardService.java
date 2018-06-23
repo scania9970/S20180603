@@ -26,6 +26,8 @@ public interface BoardService {
 
 	int total2();
 
+	int getReplyCount(int bnum);
+
 
 
 }

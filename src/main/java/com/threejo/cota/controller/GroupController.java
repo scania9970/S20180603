@@ -40,7 +40,7 @@ public class GroupController {
 	public String getGroupPost(Model model, Board board) {
 		int bnum = board.getBnum();
 		Board post = gs.getGroupPost(bnum); 
-		int replyCnt = gs.getReplyCount(bnum);
+		int replyCnt = gs.getReplyCount(bnum);         /* 댓글 수량 */
 		ArrayList<Reply> replys = (ArrayList<Reply>) gs.getReplys(bnum);
 		gs.updateViewCount(bnum);
 		model.addAttribute("post", post);

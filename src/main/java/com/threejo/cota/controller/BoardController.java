@@ -66,6 +66,7 @@ public class BoardController {
 
 		/*조회수 업데이트*/
 		int a = bs.view_countupdate(bnum);
+		int replyCnt = bs.getReplyCount(bnum);
 		
 		Board board = bs.post(bnum);
 		model.addAttribute("board", board);
@@ -73,6 +74,7 @@ public class BoardController {
 		
 		List<Reply> replylist = rs.rlist(reply);
 		model.addAttribute("rlist", replylist);
+		model.addAttribute("replyCnt", replyCnt);
 		System.out.println("rlist" + replylist);
 		return "board/boardpost";
 	}
@@ -82,6 +84,7 @@ public class BoardController {
 
 		/*조회수 업데이트*/
 		int a = bs.view_countupdate(bnum);
+		int replyCnt = bs.getReplyCount(bnum);
 		
 		Board board = bs.post(bnum);
 		model.addAttribute("board", board);
@@ -89,6 +92,7 @@ public class BoardController {
 		
 		List<Reply> replylist = rs.rlist(reply);
 		model.addAttribute("rlist", replylist);
+		model.addAttribute("replyCnt", replyCnt);
 		System.out.println("rlist" + replylist);
 		return "board/boardpost2";
 	}

@@ -514,7 +514,7 @@ $(document).on('click', '#deleteBtn', function(){
 										<span class="glyphicon glyphicon-comment"></span> 
 									</div>
 									<div class="col-lg-3" style="margin-top: 15px;">
-										${replyCnt }  댓글 아직   <!-- 댓글수 -->
+										${replyCnt }   <!-- 댓글수 -->
 									</div>
 									<div class="col-lg-2" style="margin-top: 15px;">
 										<span class="glyphicon glyphicon-eye-open"></span>

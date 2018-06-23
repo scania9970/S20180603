@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.threejo.cota.model.Career;
+import com.threejo.cota.model.Member;
 import com.threejo.cota.model.Mypage;
 import com.threejo.cota.model.Portfolio;
 import com.threejo.cota.model.Project;
@@ -76,6 +77,15 @@ public class MypageDaoImpl implements MypageDao {
 	@Override
 	public int deleteMyinfoProject(int pnum) {
 		return session.delete("deleteMyinfoProject", pnum);
+	}
+
+	@Override
+	public int updateMypagePass(String email, String password) {
+		Member member = new Member();
+		member.setEmail(email);
+		member.setPassword(password);
+		
+		return session.update("updateMypagePass", member);
 	}
 	
 }

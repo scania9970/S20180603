@@ -1,3 +1,4 @@
+<%@page import="com.threejo.cota.model.Portfolio"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -283,6 +284,8 @@
 </head>
 <body>
 
+	<% Portfolio myPortfolio = (Portfolio)request.getAttribute("portfolioRequest"); %>
+
 	<div id="wrapper">
 	
 		<!-- Navigation -->
@@ -298,7 +301,7 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">기본 정보 수정</div>
 							<div class="panel-body">
@@ -328,6 +331,55 @@
 											<label>자기소개</label>
 											<textarea class="form-control" name="introduction" rows="5">${portfolio.introduction}</textarea>
 										</div>
+										<div class="form-group">
+											<label>포트폴리오 색상</label><br>
+											<c:if test="${portfolio.color_back == null}">
+												글자　<input class="jscolor" name="color_font" value="#ffffff" style="width: 55px; margin-bottom: 5px;"><br>
+												배경　<input class="jscolor" name="color_back" value="#000000" style="width: 55px;">
+											</c:if>
+											<c:if test="${portfolio.color_back != null}">
+												글자　<input class="jscolor" name="color_font" value="${portfolio.color_font}" style="width: 55px; margin-bottom: 5px;"><br>
+												배경　<input class="jscolor" name="color_back" value="${portfolio.color_back}" style="width: 55px;">
+											</c:if>
+										</div>
+										<div class="form-group">
+											<label>구직 여부</label><br>
+											<c:if test="${portfolio.is_search == null}">
+												<label class="radio-inline">
+	                                                <input type="radio" name="is_search" id="radioSearch1" value="0" checked>구직 중 아님
+	                                            </label>
+	                                            <label class="radio-inline">
+	                                                <input type="radio" name="is_search" id="radioSearch2" value="1">구직 중
+	                                            </label>
+											</c:if>
+											<c:if test="${portfolio.is_search != null}">
+												<label class="radio-inline">
+	                                                <input type="radio" name="is_search" id="radioSearch1" value="0" <%if(myPortfolio.getIs_search() == 0){%> checked <%}%>>구직 중 아님
+	                                            </label>
+	                                            <label class="radio-inline">
+	                                                <input type="radio" name="is_search" id="radioSearch2" value="1" <%if(myPortfolio.getIs_search() == 1){%> checked <%}%>>구직 중
+	                                            </label>
+                                            </c:if>
+										</div>
+										<div class="form-group">
+											<label>공개 여부</label><br>
+											<c:if test="${portfolio.is_visible == null}">
+												<label class="radio-inline">
+	                                                <input type="radio" name="is_visible" id="radioSearch1" value="0" checked>비공개
+	                                            </label>
+	                                            <label class="radio-inline">
+	                                                <input type="radio" name="is_visible" id="radioSearch2" value="1">공개
+	                                            </label>
+											</c:if>
+											<c:if test="${portfolio.is_visible != null}">
+												<label class="radio-inline">
+	                                                <input type="radio" name="is_visible" id="radioSearch1" value="0" <%if(myPortfolio.getIs_visible() == 0){%> checked <%}%>>비공개
+	                                            </label>
+	                                            <label class="radio-inline">
+	                                                <input type="radio" name="is_visible" id="radioSearch2" value="1" <%if(myPortfolio.getIs_visible() == 1){%> checked <%}%>>공개
+	                                            </label>
+	                                        </c:if>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -336,7 +388,7 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">경력 정보 수정</div>
 							<div class="panel-body">
@@ -394,7 +446,7 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">프로젝트 정보 수정</div>
 							<div class="panel-body">
@@ -403,6 +455,7 @@
 										<div class="div_no_project"></div>
 										<c:if test="${fn:length(listProject) <= 0}">
 											<p class="p_no_project">프로젝트 없음</p>
+											<input type="file" class="project_url_temp" name="project_url" style="visibility: hidden;">
 										</c:if>
 										<c:if test="${fn:length(listProject) > 0}">
 											<c:forEach items="${listProject}" var="project" varStatus="statusProject">
@@ -453,7 +506,7 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-8">
 						<input type="submit" class="btn btn-outline btn-success btn-lg" value="수정하기">
 					</div>
 				</div>
@@ -479,5 +532,8 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="${pageContext.request.contextPath}/mypage/dist/js/sb-admin-2.js"></script>
+	
+	<!-- 컬러 픽 컨트롤 -->
+	<script src="${pageContext.request.contextPath}/js/jscolor.js"></script>
 </body>
 </html>

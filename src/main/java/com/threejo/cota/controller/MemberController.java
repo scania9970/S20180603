@@ -100,7 +100,7 @@ public class MemberController {
 				System.out.println("여기냐 ?");
 				
 				session.setAttribute("member", resultMember); // session 에 email    jsppage 참고
-				return "main/main";
+				return "redirect:main";
 			}
 		// 실패
 		return "member/loginPro";

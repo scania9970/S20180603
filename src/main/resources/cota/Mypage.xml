@@ -22,13 +22,13 @@
 	
 	<insert id="insertMyinfoPort" parameterType="Portfolio">
 		<![CDATA[
-			INSERT INTO PORTFOLIO VALUES(#{email}, '홍길동', #{birth}, #{image_url}, #{job}, #{introduction}, null, null, 0, 0, SYSDATE)
+			INSERT INTO PORTFOLIO VALUES(#{email}, '홍길동', #{birth}, #{image_url}, #{job}, #{introduction}, #{color_back}, #{color_font}, #{is_search}, #{is_visible}, SYSDATE)
 		]]>
 	</insert>
 	
 	<update id="updateMyinfoPort" parameterType="Mypage">
 		<![CDATA[
-			UPDATE PORTFOLIO SET BIRTH = #{birth}, IMAGE_URL = #{image_url}, JOB = #{job}, INTRODUCTION = #{introduction} WHERE EMAIL = #{email}
+			UPDATE PORTFOLIO SET BIRTH = #{birth}, IMAGE_URL = #{image_url}, JOB = #{job}, INTRODUCTION = #{introduction}, COLOR_BACK = #{color_back}, COLOR_FONT = #{color_font}, IS_SEARCH = #{is_search}, IS_VISIBLE = #{is_visible} WHERE EMAIL = #{email}
 		]]>
 	</update>
 	
@@ -67,6 +67,12 @@
 			DELETE FROM PROJECT WHERE PNUM = #{pnum}
 		]]>
 	</delete>
+	
+	<update id="updateMypagePass" parameterType="Member">
+		<![CDATA[
+			UPDATE MEMBER SET PASSWORD = #{password} WHERE EMAIL = #{email}
+		]]>
+	</update>
 	
 	<select id="selectListStatToday" resultType="Statistics_TODAY">
 		<![CDATA[

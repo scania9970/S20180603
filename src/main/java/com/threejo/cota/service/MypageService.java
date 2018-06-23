@@ -25,6 +25,8 @@ public interface MypageService {
 	int insertMyinfoProject(Project project);
 	int deleteMyinfoProject(int pnum);
 	
+	int updateMypagePass(String email, String password);
+	
 	List<Statistics_TODAY> selectListStatToday(String email);
 	
 }

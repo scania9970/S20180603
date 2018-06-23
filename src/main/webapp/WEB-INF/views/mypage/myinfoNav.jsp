@@ -15,14 +15,14 @@
 						<ul class="nav nav-second-level">
 							<li><a href="myinfo">개인 정보 수정</a></li>
 							<li><a href="myinfoPort">포트폴리오 수정</a></li>
-							<li><a href="#">비밀번호 변경</a></li>
+							<li><a href="mypagePassChange">비밀번호 변경</a></li>
 						</ul></li>
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>활동 내역 통계<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li><a href="statisticsTyping">타자 연습 통계</a></li>
 							<li><a href="#">작성한 글 통계</a></li>
 						</ul></li>
-					<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a>
+					<li><a href="mypageMemberLeave"><i class="fa fa-sign-out fa-fw"></i>회원 탈퇴</a>
 					</li>
 				</ul>
 			</div>

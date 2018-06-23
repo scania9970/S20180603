@@ -8,8 +8,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,11 +82,13 @@ public class MypageController {
 	
 	// 포트폴리오 수정 화면
 	@RequestMapping(value = "myinfoPort")
-	public String myinfoPort(HttpSession session, Model model) {
+	public String myinfoPort(HttpSession session, HttpServletRequest request, Model model) {
 		Member member = (Member)session.getAttribute("member");
 		Portfolio portfolio = ms.selectMyinfoPort(member.getEmail());
 		List<Career> career = ms.selectMyinfoCareer(member.getEmail());
 		List<Project> project = ms.selectMyinfoProject(member.getEmail());
+		
+		request.setAttribute("portfolioRequest", portfolio);
 		
 		model.addAttribute("portfolio", portfolio);
 		model.addAttribute("listCareer", career);
@@ -129,6 +129,10 @@ public class MypageController {
 
 		newPortfolio.setJob(request.getParameter("job"));
 		newPortfolio.setIntroduction(request.getParameter("introduction"));
+		newPortfolio.setIs_search(Integer.parseInt(request.getParameter("is_search")));
+		newPortfolio.setIs_visible(Integer.parseInt(request.getParameter("is_visible")));
+		newPortfolio.setColor_font("#" + request.getParameter("color_font"));
+		newPortfolio.setColor_back("#" + request.getParameter("color_back"));
 
 		int result = 0;
 		Portfolio portfolio = ms.selectMyinfoPort(request.getParameter("email"));
@@ -206,6 +210,44 @@ public class MypageController {
 		}
 		
 		return "redirect:myinfoPort";
+	}
+	
+	// 비밀번호 변경 화면
+	@RequestMapping(value = "mypagePassChange")
+	public String mypagePassChange(HttpSession session, String email, Model model) {
+		Member member = (Member)session.getAttribute("member");
+		Mypage memberInfo = ms.selectMyinfo(member.getEmail());
+		
+		model.addAttribute("member", memberInfo);
+		
+		return "mypage/mypagePassChange";
+	}
+	
+	// 비밀번호 변경 처리
+	@RequestMapping(value = "updateMypagePass", method = RequestMethod.POST)
+	public String updateMypagePass(String email, String password, Model model) {
+		// 사용자 비밀번호 암호화 (SHA-256)
+		SecurityUtil securityUtil = new SecurityUtil();
+		String passwordSec = securityUtil.encryptSHA256(password);
+		
+		int result = ms.updateMypagePass(email, passwordSec);
+		
+		if (result <= 0) {
+			System.out.println("비밀번호 변경 실패");
+		}
+		
+		return "redirect:mypagePassChange";
+	}
+	
+	// 회원 탈퇴 화면
+	@RequestMapping(value = "mypageMemberLeave")
+	public String mypageMemberLeave(HttpSession session, Model model) {
+		Member member = (Member)session.getAttribute("member");
+		Mypage memberInfo = ms.selectMyinfo(member.getEmail());
+		
+		model.addAttribute("member", memberInfo);
+		
+		return "mypage/mypageMemberLeave";
 	}
 	
 	// 타자 연습 통계

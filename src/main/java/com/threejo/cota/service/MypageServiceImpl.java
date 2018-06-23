@@ -79,4 +79,9 @@ public class MypageServiceImpl implements MypageService {
 		return md.deleteMyinfoProject(pnum);
 	}
 
+	@Override
+	public int updateMypagePass(String email, String password) {
+		return md.updateMypagePass(email, password);
+	}
+
 }

@@ -99,11 +99,7 @@ public class MemberController {
 				System.out.println(member);
 				System.out.println("�뿬湲곕깘 ?");
 				
-<<<<<<< HEAD
 				session.setAttribute("member", resultMember); // session 에 email    jsppage 참고
-=======
-				session.setAttribute("member", resultMember); // session �뿉 email    jsppage 李멸퀬
->>>>>>> 6fb7c57439dab5678d4da5d933735ed08d406091
 				return "redirect:main";
 			}
 		// �떎�뙣

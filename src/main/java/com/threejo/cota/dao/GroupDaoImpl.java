@@ -70,4 +70,14 @@ public class GroupDaoImpl implements GroupDao{
 	public int getTotalPostsCount() {
 		return session.selectOne("getTotalPostsCount");
 	}
+
+	@Override
+	public int getSearchedTotalPostsCount(String searchText) {
+		return session.selectOne("getSearchedTotalPostsCount", searchText);
+	}
+
+	@Override
+	public List<Board> getSearchedPosts(Board board) {
+		return session.selectList("getSearchedPosts", board);
+	}
 }

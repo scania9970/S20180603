@@ -399,6 +399,22 @@ function submitChk(){
 	}
 	
 }
+
+$(document).on('click', '#searchbtn', function(){
+	var searchText = $("#searchIpt").val();
+	console.log("searchText : " + searchText);
+	location.href = "/cota/searchGroupList?search="+searchText;
+});
+
+function search(event){
+	if(event.keyCode == 13){
+		var searchText = $("#searchIpt").val();
+		console.log("searchText : " + searchText);
+		location.href = "/cota/searchGroupList?search="+searchText;
+	}else{
+		return;
+	}
+}
 </script>
 </head>
 <body>
@@ -447,16 +463,22 @@ function submitChk(){
 				</div>
            </div>
            <div class="row">
-           		<div class="col-lg-2" style="font-size: 15px;">
+           		<div class="col-lg-2" style="font-size: 15px; cursor:pointer;" onclick="location.href='/cota/group'" >
 					<span class="glyphicon glyphicon-th"></span> 총 ${total} 개의 게시물
            		</div>
-           		<div class="col-lg-offset-2 col-lg-3">
+           		<div class="col-lg-2" style="font-size: 15px;">
+					<c:if test="${searched >= 1 }">
+						<span class="glyphicon glyphicon-filter"></span> 
+						검색된 ${searched} 개의 게시물
+					</c:if>
+           		</div>
+           		<div class="col-lg-3">
            			<div class="form-group">
-					  <input type="text" class="form-control" id="search" placeholder="SEARCH...">
+					  <input type="text" class="form-control" id="searchIpt" placeholder="SEARCH..." onkeyup="search(event)">
 					</div>
            		</div>
            		<div class="col-lg-1">
-					<button type="button" class="btn btn-primary" style="width:79.11px; height:34px">검색</button>
+					<button type="button" class="btn btn-primary" id="searchbtn" style="width:79.11px; height:34px">검색</button>
            		</div>
            </div>
            <div class="row">

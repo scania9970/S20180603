@@ -69,5 +69,19 @@ public class GroupServiceImpl implements GroupService{
 		return gd.getTotalPostsCount();
 	}
 
+	@Override
+	public int getSearchedTotalPostsCount(String searchText) {
+		searchText = "%" + searchText + "%";
+		System.out.println("searchText : " + searchText);
+		return gd.getSearchedTotalPostsCount(searchText);
+	}
+
+	@Override
+	public ArrayList<Board> getSearchedPosts(Board board) {
+		board.setSearch("%"+board.getSearch()+"%");
+		System.out.println("getSearch : " + board.getSearch());
+		return (ArrayList<Board>)gd.getSearchedPosts(board);
+	}
+
 
 }

@@ -30,4 +30,8 @@ public interface GroupDao {
 
 	int getTotalPostsCount();
 
+	int getSearchedTotalPostsCount(String searchText);
+
+	List<Board> getSearchedPosts(Board board);
+
 }

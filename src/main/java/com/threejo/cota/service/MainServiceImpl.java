@@ -17,4 +17,14 @@ public class MainServiceImpl implements MainService{
 	public List<Statistics_TODAY> selectDailyRanking() {
 		return mainDao.selectDailyRanking();
 	}
+
+	@Override
+	public List<Statistics_TODAY> selectWeeklyRanking() {
+		return mainDao.selectWeeklyRanking();
+	}
+
+	@Override
+	public List<Statistics_TODAY> selectAnualRanking() {
+		return mainDao.selectAnualRanking();
+	}
 }

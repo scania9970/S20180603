@@ -3,6 +3,21 @@
 <mapper namespace="Statistics_TODAY">
 
 	<select id="selectDailyRanking" resultType="Statistics_TODAY">
- 		select b.*, m.NICKNAME from statistics_today b, member m where b.email = m.email and b.field_type = 'paragraph' and b.accuracy >= 95 order by b.speed desc, b.accuracy desc
+		<![CDATA[
+ 			select b.*, m.NICKNAME from statistics_today b, member m where b.today_date = (select to_char(sysdate, 'YYYY/MM/DD') from dual) and b.email = m.email and b.field_type = 'paragraph' and b.accuracy >= 95 and rownum <= 10 order by b.speed desc, b.accuracy desc
+ 		]]>
 	</select>
+	
+	<select id="selectWeeklyRanking" resultType="Statistics_TODAY">
+		<![CDATA[
+ 			select b.*, m.NICKNAME from statistics_today b, member m where substr(b.today_date,4,2) = (select to_char(SYSDATE,'MM') from dual) and (b.email = m.email) and (b.field_type = 'paragraph') and (b.accuracy >= 95) and (rownum <= 10) order by b.speed desc, b.accuracy desc
+ 		]]>
+	</select>
+	
+	<select id="selectAnualRanking" resultType="Statistics_TODAY">
+		<![CDATA[
+		 	select b.*, m.NICKNAME from statistics_today b, member m where substr(b.today_date,1,2) = (select substr(EXTRACT(YEAR FROM SYSDATE), 3) from dual) and (b.email = m.email) and (b.field_type = 'paragraph') and (b.accuracy >= 95) and (rownum <= 10) order by b.speed desc, b.accuracy desc
+		 ]]>
+	</select>
+	
 </mapper>

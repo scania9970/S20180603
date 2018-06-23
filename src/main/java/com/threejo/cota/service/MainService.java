@@ -8,4 +8,8 @@ public interface MainService {
 
 	List<Statistics_TODAY> selectDailyRanking();
 
+	List<Statistics_TODAY> selectWeeklyRanking();
+
+	List<Statistics_TODAY> selectAnualRanking();
+
 }

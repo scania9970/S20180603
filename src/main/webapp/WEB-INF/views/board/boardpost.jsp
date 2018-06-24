@@ -13,6 +13,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 <style type="text/css">
+a {
+   text-decoration: none;
+}
+
+a:LINK {
+   color: black;
+}
+
+a:VISITED {
+   color: black;
+}
 :focus {
   outline: none;
 }
@@ -369,6 +380,30 @@
 #replyContent{
 	height: 120px;
 }
+ .nickname li ul{                        /* 포트폴리오 버튼 */
+		display:none;  /* 평상시에는 서브메뉴가 안보이게 하기 */
+		height:auto;
+		padding:0px;
+		margin:0px;
+		border:0px;
+		position:absolute;
+		width:450px;
+		z-index:200;
+    }
+    .nickname li:hover ul {
+  		padding-top: 5px;
+		background-color: white;
+		text-decoration: none;
+		width: 150px;
+		height: 25px;
+		display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
+	}
+	#view_count{
+		clear: both;
+	}
+	#reply_nickname{
+		clear: both;
+	}
 </style>
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -516,7 +551,7 @@ $(document).on('click', '#deleteBtn', function(){
 									<div class="col-lg-3" style="margin-top: 15px;">
 										${replyCnt }   <!-- 댓글수 -->
 									</div>
-									<div class="col-lg-2" style="margin-top: 15px;">
+									<div class="col-lg-2" style="margin-top: 15px;" id="view_count">
 										<span class="glyphicon glyphicon-eye-open"></span>
 									</div>
 									<div class="col-lg-3" style="margin-top: 15px;">
@@ -527,7 +562,23 @@ $(document).on('click', '#deleteBtn', function(){
 								  <img src="/cota/images/python.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 							</div>
 							<div class="col-lg-3" style="margin-top: 15px;">
-							    <h4 style="margin-top:5px; margin-left:10px;">${board.nickname }</h4>
+							    <h4 style="margin-top:5px; margin-left:10px;">
+							    
+							   		<%--  ${board.nickname } --%>
+							   		
+							    	<div class="nickname">
+										<ul>
+											<li>
+												${board.nickname}
+													<ul>
+														<li><a href="viewPortfolio?email=${board.email}">포트폴리오</a> </li>
+													</ul>
+											</li>
+										</ul>
+									</div>
+							    
+							    
+							    </h4>
 							    <i style="margin-left:10px;">Posted on </i> ${board.board_date } 
 							</div>
 						</div>
@@ -535,11 +586,9 @@ $(document).on('click', '#deleteBtn', function(){
 				</div>   
 				
 				        
-				        
-				        
 				<div class="row">
 					<div class="col-lg-12" style="font-size:16px; height: 500px; border: 1px solid gray; border-bottom:none;">
-						${board.content }					
+						<pre>${board.content }</pre>	
 					</div>
 				</div>
 				<div class="row" style="margin-bottom: 15px;">
@@ -587,7 +636,9 @@ $(document).on('click', '#deleteBtn', function(){
 						<div class="col-lg-12" style="padding: 0px; border: 1px solid gray;">
 							<div class="col-lg-1" style="padding: 0px;">
 								  <img src="/cota/images/python.png" style="width:60px;">
+								 <div id="reply_nickname">
 								  ${member.nickname }
+								 </div>
 							</div>
 							<form action="replyPosting1">
 								<input type="hidden" value="${board.bnum }" name="bnum">

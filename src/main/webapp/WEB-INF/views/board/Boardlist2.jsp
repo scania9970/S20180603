@@ -455,11 +455,11 @@ function submitChk(){
            		</div>
            		<div class="col-lg-offset-2 col-lg-3">
            			<div class="form-group">
-					  <input type="text" class="form-control" id="search" placeholder="SEARCH...">
+					<!--   <input type="text" class="form-control" id="search" placeholder="SEARCH..."> -->
 					</div>
            		</div>
            		<div class="col-lg-1">
-					<button type="button" class="btn btn-primary" style="width:79.11px; height:34px">검색</button>
+					<!-- <button type="button" class="btn btn-primary" style="width:79.11px; height:34px">검색</button> -->
            		</div>
            </div>
            <div class="row">
@@ -489,16 +489,14 @@ function submitChk(){
 		            <div class="col-lg-offset-2 col-lg-4">
 		            	<ul class="pagination" style="padding:0; margin:0 auto;">
 		            	<c:if test="${pg.startPage > pg.pageBlock}">
-						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage - pg.pageBlock}">Previous</a></li>
-						 </c:if> 
-						  <li class="page-item"><a class="page-link" href="#">1</a></li>
-						  <li class="page-item"><a class="page-link" href="#">2</a></li>
-						  <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  <li class="page-item"><a class="page-link" href="#">4</a></li>
-						  <li class="page-item"><a class="page-link" href="#">5</a></li>
-						 <c:if test="${pg.endPage < pg.totalPage}">
-						  <li class="page-item"><a class="page-link" href="/cota/list1?currentPage=${pg.startPage + pg.pageBlock}">Next</a></li>
-						 </c:if>
+						  <li class="page-item"><a class="page-link" href="/cota/list2?currentPage=${pg.startPage - pg.pageBlock}">Previous</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+						  <li class="page-item"><a class="page-link" href="/cota/list2?currentPage=${i}">${i}</a></li>
+						</c:forEach>
+						<c:if test="${pg.endPage < pg.totalPage}">
+						  <li class="page-item"><a class="page-link" href="/cota/list2?currentPage=${pg.startPage + pg.pageBlock}">Next</a></li>
+						</c:if>
 						</ul>
 		            </div>
 		            <div class="col-lg-offset-1 col-lg-1">

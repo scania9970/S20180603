@@ -3,8 +3,8 @@ package com.threejo.cota.service;
 public class Paging {
 
 	private int currentPage = 1;
-	private int rowPage = 10;
-	private int pageBlock = 10;
+	private int rowPage = 15;
+	private int pageBlock = 5;
 	private int start;
 	private int end;
 	private int startPage;

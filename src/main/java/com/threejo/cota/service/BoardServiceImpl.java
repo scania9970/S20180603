@@ -65,6 +65,11 @@ public class BoardServiceImpl implements BoardService{
 		return bd.total2();
 	}
 
+	@Override
+	public int getReplyCount(int bnum) {
+		return bd.getReplyCount(bnum);
+	}
+
 
 
 }

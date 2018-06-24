@@ -26,6 +26,8 @@ public interface BoardDao {
 
 	int total2();
 
+	int getReplyCount(int bnum);
+
 
 
 }

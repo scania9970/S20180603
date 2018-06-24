@@ -22,27 +22,57 @@
 	
 	<insert id="insertMyinfoPort" parameterType="Portfolio">
 		<![CDATA[
-			INSERT INTO PORTFOLIO VALUES(#{email}, #{birth}, #{image_url}, #{job}, #{introduction}, null, 0, 0, SYSDATE)
+			INSERT INTO PORTFOLIO VALUES(#{email}, '홍길동', #{birth}, #{image_url}, #{job}, #{introduction}, #{color_back}, #{color_font}, #{is_search}, #{is_visible}, SYSDATE)
 		]]>
 	</insert>
 	
 	<update id="updateMyinfoPort" parameterType="Mypage">
 		<![CDATA[
-			UPDATE PORTFOLIO SET BIRTH = #{birth}, IMAGE_URL = #{image_url}, JOB = #{job}, INTRODUCTION = #{introduction} WHERE EMAIL = #{email}
+			UPDATE PORTFOLIO SET BIRTH = #{birth}, IMAGE_URL = #{image_url}, JOB = #{job}, INTRODUCTION = #{introduction}, COLOR_BACK = #{color_back}, COLOR_FONT = #{color_font}, IS_SEARCH = #{is_search}, IS_VISIBLE = #{is_visible} WHERE EMAIL = #{email}
 		]]>
 	</update>
 	
 	<select id="selectMyinfoCareer" resultType="Career">
 		<![CDATA[
-			SELECT * FROM CAREER WHERE EMAIL = #{email}
+			SELECT * FROM CAREER WHERE EMAIL = #{email} ORDER BY CNUM
 		]]>
 	</select>
 	
 	<insert id="insertMyinfoCareer" parameterType="Career">
 		<![CDATA[
-			INSERT INTO CAREER VALUES(CNUM.NEXTVAL, #{email}, #{company}, #{date_start}, #{date_end}, #{rank}, #{detail})
+			INSERT INTO CAREER VALUES(CNUM_SEQ.NEXTVAL, #{email}, #{company}, #{date_start}, #{date_end}, #{rank}, #{detail})
 		]]>
 	</insert>
+	
+	<delete id="deleteMyinfoCareer" parameterType="int">
+		<![CDATA[
+			DELETE FROM CAREER WHERE CNUM = #{cnum}
+		]]>
+	</delete>
+	
+	<select id="selectMyinfoProject" resultType="Project">
+		<![CDATA[
+			SELECT * FROM PROJECT WHERE EMAIL = #{email} ORDER BY PNUM
+		]]>
+	</select>
+	
+	<insert id="insertMyinfoProject" parameterType="Project">
+		<![CDATA[
+			INSERT INTO PROJECT VALUES(PNUM_SEQ.NEXTVAL, #{email}, #{title}, #{content}, #{project_url}, #{project_date})
+		]]>
+	</insert>
+	
+	<delete id="deleteMyinfoProject" parameterType="int">
+		<![CDATA[
+			DELETE FROM PROJECT WHERE PNUM = #{pnum}
+		]]>
+	</delete>
+	
+	<update id="updateMypagePass" parameterType="Member">
+		<![CDATA[
+			UPDATE MEMBER SET PASSWORD = #{password} WHERE EMAIL = #{email}
+		]]>
+	</update>
 	
 	<select id="selectListStatToday" resultType="Statistics_TODAY">
 		<![CDATA[

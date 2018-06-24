@@ -13,16 +13,16 @@
     <result property="board_date" column="board_date"/>
     <result property="nickname" column="nickname"/>
 	</resultMap>
-
+	
 	<select id="Boardlist" parameterType="Board" resultMap="BoardResult">
 		select * from (select rownum rn, a.* from (
-select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 1 order by bnum) a) where rn between #{start} and
+select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 1 order by bnum DESC) a) where rn between #{start} and
     	 #{end}
 	</select>
 	
 	<select id="Boardlist2" parameterType="Board" resultMap="BoardResult">
 		select * from (select rownum rn, a.* from (
-select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum) a) where rn between #{start} and
+select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_type = 2 order by bnum DESC) a) where rn between #{start} and
     	 #{end}
 	</select>
 	
@@ -54,4 +54,9 @@ select b.*, m.NICKNAME from BOARD b, member m where b.email = m.email and board_
 	<update id="view_countupdate">
 		update board set view_count = view_count + 1 where bnum = #{bnum}
 	</update>
+	<select id="ReplyCount" parameterType="int" resultType="int">
+		select count(*) from reply where bnum = #{bnum}
+	</select>
+	
+	
 </mapper>

@@ -32,6 +32,7 @@ public class BoardController {
 		board.setEnd(pg.getEnd());
 		List<Board> list = bs.list(board);
 		
+		model.addAttribute("total", bs.total());
 		model.addAttribute("list", list);
 		model.addAttribute("pg", pg);
 		return "board/Boardlist";
@@ -44,6 +45,7 @@ public class BoardController {
 		board.setEnd(pg.getEnd());
 		List<Board> list2 = bs.list2(board);
 		
+		model.addAttribute("total", bs.total2());
 		model.addAttribute("list2", list2);
 		model.addAttribute("pg", pg);
 		return "board/Boardlist2";
@@ -64,6 +66,7 @@ public class BoardController {
 
 		/*조회수 업데이트*/
 		int a = bs.view_countupdate(bnum);
+		int replyCnt = bs.getReplyCount(bnum);
 		
 		Board board = bs.post(bnum);
 		model.addAttribute("board", board);
@@ -71,6 +74,7 @@ public class BoardController {
 		
 		List<Reply> replylist = rs.rlist(reply);
 		model.addAttribute("rlist", replylist);
+		model.addAttribute("replyCnt", replyCnt);
 		System.out.println("rlist" + replylist);
 		return "board/boardpost";
 	}
@@ -80,6 +84,7 @@ public class BoardController {
 
 		/*조회수 업데이트*/
 		int a = bs.view_countupdate(bnum);
+		int replyCnt = bs.getReplyCount(bnum);
 		
 		Board board = bs.post(bnum);
 		model.addAttribute("board", board);
@@ -87,6 +92,7 @@ public class BoardController {
 		
 		List<Reply> replylist = rs.rlist(reply);
 		model.addAttribute("rlist", replylist);
+		model.addAttribute("replyCnt", replyCnt);
 		System.out.println("rlist" + replylist);
 		return "board/boardpost2";
 	}
@@ -120,17 +126,36 @@ public class BoardController {
 		model.addAttribute("board", board);
 		return "board/boardupdateForm";
 	}
+	@RequestMapping(value="boardupdateForm2")
+	public String boardupdateForm2(int bnum, Model model) {
+		Board board = bs.post(bnum);
+		model.addAttribute("board", board);
+		return "board/boardupdateForm2";
+	}
 	@RequestMapping(value="/boardupdate")
 	public String boardupdate(Board board, Model model) {
 		int a = bs.boardupdate(board);
 		return "board/boardpost";
+	}
+	@RequestMapping(value="/boardupdate2")
+	public String boardupdate2(Board board, Model model) {
+		int a = bs.boardupdate(board);
+		return "board/boardpost2";
 	}
 	@RequestMapping(value="boarddelete")
 	public String boarddelete(int bnum, Model model) {
 		rs.replydelete(bnum);
 		bs.boarddelete(bnum);
 		
-		return "redirect:list";
+		return "redirect:list1";
+	}
+	
+	@RequestMapping(value="boarddelete2")
+	public String boarddelete2(int bnum, Model model) {
+		rs.replydelete(bnum);
+		bs.boarddelete(bnum);
+		
+		return "redirect:list2";
 	}
 
 	@RequestMapping(value="replyPosting1")

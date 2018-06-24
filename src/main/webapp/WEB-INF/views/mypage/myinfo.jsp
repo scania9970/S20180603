@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -64,13 +66,12 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">필수 입력 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-lg-6">
-
 										<div class="form-group">
 											<label>이메일 주소</label>
 											<input type="hidden" name="email" value="${member.email}">
@@ -79,9 +80,30 @@
 										<div class="form-group">
 											<label>별명 수정</label><input class="form-control" name="nickname"
 												value="${member.nickname}">
-											<p class="help-block">Example block-level help text here.</p>
+											<p class="help-block"></p>
 										</div>
-
+										<div class="form-group">
+											<label>회원 레벨</label>
+											<p class="form-control-static">${member.grade}</p>
+										</div>
+										<div class="form-group">
+											<label>경험치</label><br>
+											<meter value="${member.exp}" max="10000" style="width: 400px;" ></meter> ${member.exp} / 10000<br>
+										</div>
+										<div class="form-group">
+											<label>기업회원 여부</label><br>
+											<c:if test="${member.is_enterprise == 0}">
+												<p class="form-control-static">일반회원</p>
+											</c:if>
+											<c:if test="${member.is_enterprise == 1}">
+												<p class="form-control-static">기업회원</p>
+											</c:if>
+										</div>
+										<div class="form-group">
+											<label>회원 가입일</label><br>
+											<fmt:formatDate value="${member.join_date}" pattern="yyyy-MM-dd" var="join_date" />
+											<p class="form-control-static">${join_date}</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -90,20 +112,18 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">선택 입력 정보 수정</div>
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-lg-6">
-
 										<div class="form-group">
 											<input type="hidden" name="original_url" value="${member.profile_url}">
 											<label>프로필 사진 변경</label><br>
 											<img id="output" src="${member.profile_url}">
 											<input type="file" accept="image/*" onchange="loadFile(event)" name="profile_url">
 										</div>
-
 									</div>
 								</div>
 							</div>
@@ -112,12 +132,13 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-12">
-						<input type="submit" class="btn btn-outline btn-success btn-lg"
-							value="수정하기">
+					<div class="col-lg-8">
+						<input type="submit" class="btn btn-outline btn-success btn-lg"value="수정하기">
 					</div>
 				</div>
-
+				
+				<div class="row">　</div>
+				
 			</div>
 		</form>
 

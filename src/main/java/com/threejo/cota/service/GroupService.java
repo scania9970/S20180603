@@ -7,7 +7,7 @@ import com.threejo.cota.model.Reply;
 
 public interface GroupService {
 
-	ArrayList<Board> getPosts();
+	ArrayList<Board> getPosts(Board board);
 
 	void insertGroup(Board board);
 
@@ -26,5 +26,11 @@ public interface GroupService {
 	void updateViewCount(int bnum);
 
 	void updateJoinStatus(Board board);
+
+	int getTotalPostsCount();
+
+	int getSearchedTotalPostsCount(String searchText);
+
+	ArrayList<Board> getSearchedPosts(Board board);
 	
 }

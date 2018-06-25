@@ -2,7 +2,20 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	<c:if test="${port == null }">
+		<script>
+			alert("해당 사용자는 포트폴리오를 등록하지 않았습니다.");
+			history.go(-1);
+		</script>
+	</c:if>
+	<c:if test="${port.is_visible == 0}">
+		<script>
+			alert("해당 사용자의 포트폴리오는 비공개 되어있습니다.");
+			history.go(-1);
+		</script>
+	</c:if>
+	<c:if test="${port.is_visible == 1}">
+		<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,9 +42,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
-
 <body id="page-top" class="index">
 <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 
@@ -86,7 +97,7 @@
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" style="width:230px; height:230px;" src="/cota/images/python.png" alt="">
+                    <img class="img-responsive" style="width:230px; height:230px;" src="${port.image_url }" alt="">
                     <div class="intro-text">
                         <h1 class="name">${port.name }</h1>
                         <span class="skills">${port.job}</span>
@@ -335,3 +346,6 @@
 </body>
 
 </html>
+		
+	</c:if>
+	

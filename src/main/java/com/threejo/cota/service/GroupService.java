@@ -28,5 +28,9 @@ public interface GroupService {
 	void updateJoinStatus(Board board);
 
 	int getTotalPostsCount();
+
+	int getSearchedTotalPostsCount(String searchText);
+
+	ArrayList<Board> getSearchedPosts(Board board);
 	
 }

@@ -69,5 +69,11 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 
+	@Override
+	public int getReplyCount(int bnum) {
+		return session.selectOne("ReplyCount", bnum);
+	}
+
+
 
 }

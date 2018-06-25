@@ -298,9 +298,7 @@ var loadFile = function(event) { // image file 선택시 바로 보여주기 위
                               	    <div class="view2">
                                     <button id='emailChkbtn' class="form-control">이메일 중복확인</button>
                                     </div>
-                                   	
                                    	<div class="test"></div>
-
                                     <span id="spanemail"></span>
                                     <div class="view">
                                     <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="인증번호" disabled="disabled" required>

@@ -659,36 +659,7 @@ input[type="text"]{
 				$('input').val("");
 				
 			}
-			if( x == '1'){
-				if(potion >= 1){
-					potion -=  1;
-					$('#potion').text(potion);
-					user_hp += 50;
-					if(user_hp > user_full_hp){
-						user_hp = user_full_hp;
-					}
-					$('#user-hp-left').text('체력: ' + user_hp);
-					document.getElementById("user-meter").value = user_hp;
-				}
-			}
 			
-			if( x == '2'){
-				if(thunderbolt >= 1){
-					thunderbolt -= 1;
-					$('#thunderbolt').text(thunderbolt);
-					com_hp = com_hp - (com_full_hp * 0.5);
-					$('#com-hp-left').text('체력: ' + com_hp);
-					document.getElementById("com-meter").value = com_hp;
-					
-					if(com_hp <= 0){
-						com_hp = 0;
-						money += level*10;
-						$('#money-left').text(money);
-						alert("you win!");
-						next_round();
-					}
-				}
-			}
 			
 			
 		}

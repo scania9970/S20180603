@@ -31,6 +31,9 @@ a:VISITED {
   margin-right: 0;
   margin-left: 0; 
 }
+li {
+   list-style: none;
+}
 /* 
     Sometimes the sub menus get too large for the page and prevent the menu from scrolling, limiting functionality
     A quick fix is to change .side-menu to 

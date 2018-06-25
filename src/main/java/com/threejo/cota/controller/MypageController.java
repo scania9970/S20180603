@@ -251,11 +251,13 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "updateMypageLeave")
-	public String mypageMemberLeave(String email, Model model) {
+	public String mypageMemberLeave(HttpSession session, String email, Model model) {
 		int result = ms.updateMypageLeave(email);
 		
 		if (result <= 0) {
 			System.out.println("회원 탈퇴 처리 실패");
+		} else {
+			session.invalidate();
 		}
 		
 		return "redirect:main";

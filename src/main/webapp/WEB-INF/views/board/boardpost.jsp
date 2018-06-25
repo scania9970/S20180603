@@ -658,7 +658,8 @@ $(document).on('click', '#deleteBtn', function(){
 								<input type="hidden" value="${board.bnum }" name="bnum">
 								<input type="hidden" value="${member.email }" name="email">
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="content" id="replyContent" placeholder="댓글 입력"></textarea>
+									<textarea class="form-control" rows="5" placeholder="CONTENT" name="content"></textarea>
+									<!-- <input type="text" class="form-control" name="content" id="replyContent" placeholder="댓글 입력"></textarea> -->
 								</div>
 							<div class="col-lg-1">
 								<input type="submit" class="btn btn-primary" id="replyBtn" value="입력">

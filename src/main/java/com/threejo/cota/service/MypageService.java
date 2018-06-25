@@ -27,6 +27,8 @@ public interface MypageService {
 	
 	int updateMypagePass(String email, String password);
 	
+	int updateMypageLeave(String email);
+	
 	List<Statistics_TODAY> selectListStatToday(String email);
 	
 }

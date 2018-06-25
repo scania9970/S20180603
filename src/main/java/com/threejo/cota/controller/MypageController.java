@@ -250,6 +250,17 @@ public class MypageController {
 		return "mypage/mypageMemberLeave";
 	}
 	
+	@RequestMapping(value = "updateMypageLeave")
+	public String mypageMemberLeave(String email, Model model) {
+		int result = ms.updateMypageLeave(email);
+		
+		if (result <= 0) {
+			System.out.println("회원 탈퇴 처리 실패");
+		}
+		
+		return "redirect:main";
+	}
+	
 	// 타자 연습 통계
 	@RequestMapping(value = "statisticsTyping")
 	public String statisticsTyping(HttpSession session, Model model) {

@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: bestl
-=======
-Built-By: scani
->>>>>>> 23829e3de4d3788abc53abd3b36084da7c331c3d
 Build-Jdk: 1.8.0_73
 Created-By: Maven Integration for Eclipse
 

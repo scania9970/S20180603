@@ -396,7 +396,7 @@ a:VISITED {
 		background-color: white;
 		text-decoration: none;
 		width: 150px;
-		height: 25px;
+		height: 35px;
 		display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
 	}
 	#view_count{
@@ -620,7 +620,18 @@ $(document).on('click', '#deleteBtn', function(){
 								  <img src="/cota/images/python.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 							</div>
 							<div class="col-lg-7" style="margin-top: 15px;">
-							    <label style="font-size: 20px; width:100px; margin:0px 0px 5px 10px;">${reply.nickname }</label>
+							    <label style="font-size: 20px; width:100px; margin:0px 0px 5px 10px;">
+							 	 <div class="nickname">
+										<ul>
+											<li>
+												 ${reply.nickname }
+													<ul>
+														<li><a href="viewPortfolio?email=${reply.email}">포트폴리오</a> </li>
+													</ul>
+											</li>
+										</ul>
+								</div>
+							    </label>
 							    <i style="margin-left:10px;">Posted on </i> <label width>${reply.reply_date }</label> 
 							    <p style="margin-left:10px;">${reply.content }</p>
 							</div>
@@ -638,7 +649,7 @@ $(document).on('click', '#deleteBtn', function(){
 								  ${member.nickname }
 								 </div>
 							</div>
-							<form action="replyPosting2">
+							<form action="replyPosting2?bnum=${board.bnum }">
 								<input type="hidden" value="${board.bnum }" name="bnum">
 								<input type="hidden" value="${member.email }" name="email">
 								<div class="col-lg-10">

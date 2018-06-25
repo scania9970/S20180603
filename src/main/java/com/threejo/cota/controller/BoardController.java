@@ -159,28 +159,32 @@ public class BoardController {
 	}
 
 	@RequestMapping(value="replyPosting1")
-	public String replyPosting1(Reply reply, Model model) {
+	public String replyPosting1(int bnum, Reply reply, Model model) {
 		
 		int result = rs.replyinsert(reply);
 		if(result > 0) {
 			model.addAttribute("msg", "댓글입력 성공");
-			return "redirect:list1";
+			model.addAttribute("bnum", bnum);
+			return "redirect:postform1";
 			
 		} else {
 			model.addAttribute("msg", "댓글입력 실패");
-			return "redirect:list1";
+			model.addAttribute("bnum", bnum);
+			return "redirect:postform1";
 		}
 	}
 	@RequestMapping(value="replyPosting2")
-	public String replyPosting2(Reply reply, Model model) {
+	public String replyPosting2(int bnum,Reply reply, Model model) {
 		int result = rs.replyinsert(reply);
 		if(result > 0) {
 			model.addAttribute("msg", "댓글입력 성공");
-			return "redirect:list2";
+			model.addAttribute("bnum", bnum);
+			return "redirect:postform2";
 			
 		} else {
 			model.addAttribute("msg", "댓글입력 실패");
-			return "redirect:list2";
+			model.addAttribute("bnum", bnum);
+			return "redirect:postform2";
 		}
 	}
 }

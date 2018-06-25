@@ -87,5 +87,10 @@ public class MypageDaoImpl implements MypageDao {
 		
 		return session.update("updateMypagePass", member);
 	}
+
+	@Override
+	public int updateMypageLeave(String email) {
+		return session.update("updateMypageLeave", email);
+	}
 	
 }

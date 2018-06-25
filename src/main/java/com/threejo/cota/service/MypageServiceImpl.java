@@ -84,4 +84,9 @@ public class MypageServiceImpl implements MypageService {
 		return md.updateMypagePass(email, password);
 	}
 
+	@Override
+	public int updateMypageLeave(String email) {
+		return md.updateMypageLeave(email);
+	}
+
 }

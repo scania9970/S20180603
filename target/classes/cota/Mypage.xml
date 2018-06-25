@@ -74,6 +74,12 @@
 		]]>
 	</update>
 	
+	<update id="updateMypageLeave" parameterType="java.lang.String">
+		<![CDATA[
+			UPDATE MEMBER SET IS_LEAVE = 1 WHERE EMAIL = #{email}
+		]]>
+	</update>
+	
 	<select id="selectListStatToday" resultType="Statistics_TODAY">
 		<![CDATA[
 			SELECT * FROM STATISTICS_TODAY WHERE EMAIL = #{email}

@@ -51,7 +51,7 @@
 		<jsp:include page="myinfoNav.jsp" />
 
 		<!-- Content -->
-		<form role="form" action="updateMypagePass" method="post" enctype="multipart/form-data" onsubmit="return chk()">
+		<form role="form" action="updateMypageLeave" onsubmit="return chk()">
 			<input type="hidden" name="email" value="${member.email}">
 			<div id="page-wrapper">
 			

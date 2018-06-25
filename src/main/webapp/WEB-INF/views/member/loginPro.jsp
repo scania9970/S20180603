@@ -9,6 +9,7 @@
 window.onload = function() { // 버튼없이 바로 실행
 	alert("니모가 아니잖아 ?? 뀨뀨...");
 	location.href="loginpage";  /*  main page로 이동     jsp에서 이동시  */    <%-- <% response.sendRedirect("start"); 자바시 이동%>  --%>
+	session.invalidate();
 }
 </script>
 </head>

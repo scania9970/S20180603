@@ -23,17 +23,17 @@ public class MemberController {
 	@Autowired
 	private MemberService ms;
 
-	@RequestMapping(value = "joinpage") // �쉶�썝媛��엯 �럹�씠吏�
+	@RequestMapping(value = "joinpage") // 회원가입 페이지
 	public String joinpage() {
 
 		return "member/join";
 	}
 
-	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // �뿤�뜑 二쇱냼 �쉶�썝媛��엯 (insert)
+	@RequestMapping(value = "insertmb", method = RequestMethod.POST) // 회원가입 페이지 (insert)
 	public String insertmb(@RequestParam("profile_url") MultipartFile uploadfile,
 						   @RequestParam("email") String email,
 						   @RequestParam("nickname") String nickname,
-						   boolean is_enterprise,       // boolean�� �삁�쇅
+						   boolean is_enterprise,       // boolean 타입 예외
 						   HttpServletRequest request, Model model) throws Exception {
 		
 		String fileName = "";
@@ -45,27 +45,27 @@ public class MemberController {
 			
 			if (!fileDirectory.exists()) {
 				fileDirectory.mkdirs();
-				System.out.println("�뾽濡쒕뱶 �뤃�뜑 �깮�꽦 : " + fileSave);
+				System.out.println("업로드용 폴더 생성 : " + fileSave);
 			}
 			
 			fileName = uploadfile.getOriginalFilename();
 			member.setProfile_url("/cota/upload/" + fileName);
 			uploadfile.transferTo(new File(fileSave + fileName));
-			System.out.println("�봽濡쒗븘 �궗吏� �뾽濡쒕뱶 �꽦怨� : " + fileName);
+			System.out.println("업로드 성공 : " + fileName);
 			
 		} else {
 			member.setProfile_url("images/no_profile_image.png");
 		}
-		// �궗�슜�옄 鍮꾨�踰덊샇 �븫�샇�솕 (SHA-256)
+		// 암호화 코드 (SHA-256)
 		SecurityUtil securityUtil = new SecurityUtil();
-		String password = securityUtil.encryptSHA256(request.getParameter("password")); // �엯�젰�븳 password �뜲�씠�꽣 oracle濡� �뒡�뒡 �븯湲곗쟾
+		String password = securityUtil.encryptSHA256(request.getParameter("password")); // 패스워드 암호화
 		
 		member.setEmail(email);
 		member.setPassword(password);
 		member.setNickname(nickname);
 		member.setIs_enterprise(is_enterprise);
 		
-		ms.insert(member); // 諛쏆븘�삱 �뜲�씠�꽣���엯 �븵�뿉 �꽑�뼵 �빐以�
+		ms.insert(member); // oracle insert
 		model.addAttribute("member", member);
 		System.out.println("checkbox : " + member.getIs_enterprise());
 		System.out.println("profile_url : " + member.getProfile_url());
@@ -74,49 +74,52 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping(value = "loginpage") // 濡쒓렇�씤 �럹�씠吏�
+	@RequestMapping(value = "loginpage") // 로그인 페이지
 	public String loginpage() {
 		
 		return "member/login";
 	}
 
-	@RequestMapping(value = "login") // 濡쒓렇�씤 李�
+	@RequestMapping(value = "login") //로그인 페이지
 	public String login(HttpSession session, Member member, Model model, HttpServletRequest request) {
 		
-		// �궗�슜�옄 鍮꾨�踰덊샇 �븫�샇�솕 (SHA-256)
+		// 암호화 코드 (SHA-256)
 		SecurityUtil securityUtil = new SecurityUtil();
-		String password = securityUtil.encryptSHA256(request.getParameter("password")); // �엯�젰�븳 password �븫�샇�솕
+		String password = securityUtil.encryptSHA256(request.getParameter("password")); // 입력한 password 암호화
 		
 		System.out.println("pasword : " + member.getPassword());
 		System.out.println(password);
-
-		member.setPassword(password);  // �쐞 �븫�샇�솕 怨쇱젙 媛�怨듯븳 �뜲�씠�꽣 set
 		
-		Member resultMember = ms.select(member);  // oracle怨� �엯�젰�븳 媛� (�븫�샇�솕媛� 鍮꾧탳)
+		member.setPassword(password);  // 암호화된 password set
+		
+		Member resultMember = ms.select(member);  // oracle password (내가 입력한 암호화 password = oracle password 비교)
+		
 		System.out.println(member.getPassword());
 		if (resultMember != null) {
-				// �꽦怨�
+			if (resultMember.getIs_leave() == 1) {
+				return "member/loginPro";
+			}
+				// 성공
 				System.out.println(member);
-				System.out.println("�뿬湲곕깘 ?");
-				
+				System.out.println("회원탈퇴 여부  : " + resultMember.getIs_leave());
 				session.setAttribute("member", resultMember); // session 에 email    jsppage 참고
 				return "redirect:main";
 			}
-		// �떎�뙣
+		// 실패
 		return "member/loginPro";
 	}
 	
-	@RequestMapping(value="logout") // 濡쒓렇�븘�썐
+	@RequestMapping(value="logout") // 로그아웃 페이지
 	public String logout() {
 		return "member/logout";
 	}
 	
-	@RequestMapping(value="findPassword") // 鍮꾨�踰덊샇 李얘린
+	@RequestMapping(value="findPassword") // 비밀번호 찾기
 	public String findPassword() {
 		return "member/findPassword";
 	}
 	
-	@RequestMapping(value="passwordchange")
+	@RequestMapping(value="passwordchange") // 비밀번호 찾기
 	public String passwordchange(HttpSession session, Member member, Model model, HttpServletRequest request) {
 		Member emailChk = ms.passwordchange(member);
 		
